@@ -20,8 +20,21 @@
 
   <main class="content">    <div class="run-bar">
       <span class="run-bar-label">Viewing run</span>
-      <span class="run-bar-single">2026-05-29 23:44</span>
-      <span class="run-bar-meta">latest run</span>
+      <div class="run-dropdown" data-run-dropdown>
+        <button type="button" class="run-dropdown-toggle" aria-haspopup="listbox" aria-expanded="false">
+          <span class="run-dropdown-current">2026-06-01 10:20</span>
+          <span class="run-dropdown-chevron" aria-hidden="true"></span>
+        </button>
+        <ul class="run-dropdown-list" role="listbox" aria-label="Runs" hidden>          <li role="option" aria-selected="true">
+            <a href="new-gas.html" class="run-dropdown-option is-current" tabindex="-1">2026-06-01 10:20</a>
+          </li>          <li role="option" aria-selected="false">
+            <a href="runs/20260529T234448Z_3182dda7b93dee61/new-gas.html" class="run-dropdown-option" tabindex="-1">2026-05-29 23:44</a>
+          </li>        </ul>
+      </div>
+      <noscript>
+        <span class="run-dropdown-noscript"><a href="runs/20260529T234448Z_3182dda7b93dee61/new-gas.html">2026-05-29 23:44</a>        </span>
+      </noscript>
+      <span class="run-bar-meta">latest of 2</span>
     </div>
 <h1>New gas proposal</h1>
 <p>
@@ -30,7 +43,7 @@
   <a href="runtime.html">runtime</a> and <a href="glue.html">glue</a> pages for the
   underlying per-fit detail.
 </p>
-<p><em>Generated 2026-06-01 11:34:29Z · fork <code>osaka</code> · anchor_rate 100 Mgas/s</em></p>
+<p><em>Generated 2026-06-01 11:52:36Z · fork <code>osaka</code> · anchor_rate 100 Mgas/s</em></p>
 <p><strong>Summary:</strong> 9 parameters proposed — 9 increased, 0 decreased, 0 new, 0 unresolved · 4 warnings · 0 poor-fit selections</p>
 <h2 id="proposed-gas-parameters">Proposed gas parameters</h2>
 <table>
@@ -47,65 +60,65 @@
 <tr>
 <td>COLD_STORAGE_ACCESS</td>
 <td>2100</td>
-<td>15576</td>
-<td>+13476</td>
-<td>+642%</td>
+<td>2755</td>
+<td>+655</td>
+<td>+31%</td>
 </tr>
 <tr>
 <td>STORAGE_WRITE</td>
 <td>2800</td>
-<td>204878</td>
-<td>+202078</td>
-<td>+7217%</td>
+<td>212839</td>
+<td>+210039</td>
+<td>+7501%</td>
 </tr>
 <tr>
 <td>COLD_ACCOUNT_NOCODE_ACCESS</td>
 <td>2600</td>
-<td>10295</td>
-<td>+7695</td>
-<td>+296%</td>
+<td>10350</td>
+<td>+7750</td>
+<td>+298%</td>
 </tr>
 <tr>
 <td>ACCOUNT_WRITE</td>
 <td>6700</td>
-<td>186070</td>
-<td>+179370</td>
-<td>+2677%</td>
+<td>202822</td>
+<td>+196122</td>
+<td>+2927%</td>
 </tr>
 <tr>
 <td>COLD_ACCOUNT_CODE_ACCESS</td>
 <td>2600</td>
-<td>10295</td>
-<td>+7695</td>
-<td>+296%</td>
+<td>10350</td>
+<td>+7750</td>
+<td>+298%</td>
 </tr>
 <tr>
 <td>WARM_ACCESS</td>
 <td>100</td>
-<td>136</td>
-<td>+36</td>
-<td>+36%</td>
+<td>135</td>
+<td>+35</td>
+<td>+35%</td>
 </tr>
 <tr>
 <td>REFUND_STORAGE_CLEAR</td>
 <td>4800</td>
-<td>211636</td>
-<td>+206836</td>
-<td>+4309%</td>
+<td>206971</td>
+<td>+202171</td>
+<td>+4212%</td>
 </tr>
 <tr>
 <td>TX_ACCESS_LIST_STORAGE_KEY</td>
 <td>1900</td>
-<td>15576</td>
-<td>+13676</td>
-<td>+720%</td>
+<td>2755</td>
+<td>+855</td>
+<td>+45%</td>
 </tr>
 <tr>
 <td>TX_ACCESS_LIST_ADDRESS</td>
 <td>2400</td>
-<td>10295</td>
-<td>+7895</td>
-<td>+329%</td>
+<td>10350</td>
+<td>+7950</td>
+<td>+331%</td>
 </tr>
 </tbody>
 </table>
@@ -125,51 +138,51 @@
 <tbody>
 <tr>
 <td>COLD_STORAGE_ACCESS</td>
-<td>geth</td>
-<td>15576</td>
 <td>nethermind</td>
-<td>2592</td>
-<td>6.01×</td>
+<td>2755</td>
+<td>besu</td>
+<td>1568</td>
+<td>1.76×</td>
 </tr>
 <tr>
 <td>STORAGE_WRITE</td>
 <td>erigon</td>
-<td>204878</td>
-<td>geth</td>
-<td>18605</td>
-<td>11.01×</td>
+<td>212839</td>
+<td>reth</td>
+<td>17126</td>
+<td>12.43×</td>
 </tr>
 <tr>
 <td>COLD_ACCOUNT_NOCODE_ACCESS</td>
 <td>erigon</td>
-<td>10295</td>
-<td>geth</td>
-<td>4802</td>
-<td>2.14×</td>
+<td>10350</td>
+<td>reth</td>
+<td>3746</td>
+<td>2.76×</td>
 </tr>
 <tr>
 <td>ACCOUNT_WRITE</td>
 <td>erigon</td>
-<td>186070</td>
+<td>202822</td>
 <td>reth</td>
-<td>16468</td>
-<td>11.30×</td>
+<td>16411</td>
+<td>12.36×</td>
 </tr>
 <tr>
 <td>COLD_ACCOUNT_CODE_ACCESS</td>
 <td>erigon</td>
-<td>10295</td>
-<td>geth</td>
-<td>4802</td>
-<td>2.14×</td>
+<td>10350</td>
+<td>reth</td>
+<td>3746</td>
+<td>2.76×</td>
 </tr>
 <tr>
 <td>WARM_ACCESS</td>
 <td>besu</td>
-<td>136</td>
-<td>geth</td>
-<td>70</td>
-<td>1.94×</td>
+<td>135</td>
+<td>nethermind</td>
+<td>72</td>
+<td>1.88×</td>
 </tr>
 </tbody>
 </table>
@@ -178,15 +191,15 @@
 <h2 id="worst-case-provenance-per-gas-param">Worst-case provenance per gas param</h2>
 <p>One collapsible block per gas parameter showing every per-client candidate that the worst-case selector saw. Rows are model combos (the source regression's <code>test_name</code>, <code>target_opcode</code>, <code>model_coef_name</code>, and any <code>model_by</code> factors — components constant within a parameter are dropped from the label). Cells carry each candidate's proposed gas; the cell the per-client selector picked is outlined in black. Colors are <code>log2(proposed / current)</code> against that parameter's baseline on a per-parameter symmetric scale.</p>
 <details>
-<summary><code>COLD_STORAGE_ACCESS</code> — 4 combos × 5 clients</summary>
+<summary><code>COLD_STORAGE_ACCESS</code> — 4 combos × 4 clients</summary>
 <p><img alt="" src="figs/proposal/provenance__COLD_STORAGE_ACCESS.png" /></p>
 </details>
 <details>
-<summary><code>STORAGE_WRITE</code> — 2 combos × 5 clients</summary>
+<summary><code>STORAGE_WRITE</code> — 2 combos × 4 clients</summary>
 <p><img alt="" src="figs/proposal/provenance__STORAGE_WRITE.png" /></p>
 </details>
 <details>
-<summary><code>COLD_ACCOUNT_NOCODE_ACCESS</code> — 21 combos × 5 clients</summary>
+<summary><code>COLD_ACCOUNT_NOCODE_ACCESS</code> — 21 combos × 4 clients</summary>
 <table>
 <thead>
 <tr>
@@ -284,7 +297,7 @@
 <p><img alt="" src="figs/proposal/provenance__COLD_ACCOUNT_NOCODE_ACCESS.png" /></p>
 </details>
 <details>
-<summary><code>ACCOUNT_WRITE</code> — 6 combos × 5 clients</summary>
+<summary><code>ACCOUNT_WRITE</code> — 6 combos × 4 clients</summary>
 <table>
 <thead>
 <tr>
@@ -322,7 +335,7 @@
 <p><img alt="" src="figs/proposal/provenance__ACCOUNT_WRITE.png" /></p>
 </details>
 <details>
-<summary><code>COLD_ACCOUNT_CODE_ACCESS</code> — 21 combos × 5 clients</summary>
+<summary><code>COLD_ACCOUNT_CODE_ACCESS</code> — 21 combos × 4 clients</summary>
 <table>
 <thead>
 <tr>
@@ -420,7 +433,7 @@
 <p><img alt="" src="figs/proposal/provenance__COLD_ACCOUNT_CODE_ACCESS.png" /></p>
 </details>
 <details>
-<summary><code>WARM_ACCESS</code> — 8 combos × 5 clients</summary>
+<summary><code>WARM_ACCESS</code> — 8 combos × 4 clients</summary>
 <table>
 <thead>
 <tr>
@@ -469,7 +482,42 @@
 <h3 id="missing-parameters">Missing parameters</h3>
 <p><em>None.</em></p>
 <h3 id="incomplete-client-coverage">Incomplete client coverage</h3>
-<p><em>None.</em></p>
+<p><strong>Clients with no estimations at all:</strong> <code>geth</code>. These configured clients produced no fits for any gas parameter — check that the runtimes CSV contains their rows and that the fixture-name conventions match. Inspect the <code>evm_gasfit</code> warnings in <code>meta.json</code> for the cause.</p>
+<p>These gas parameters were fit by at least one client but not by every configured client — the listed clients produced no estimation, so the worst-case value was selected from a smaller pool. Inspect the <code>evm_gasfit</code> warnings in <code>meta.json</code> for the cause.</p>
+<table>
+<thead>
+<tr>
+<th>Gas param</th>
+<th>Missing clients</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>COLD_STORAGE_ACCESS</code></td>
+<td><code>geth</code></td>
+</tr>
+<tr>
+<td><code>STORAGE_WRITE</code></td>
+<td><code>geth</code></td>
+</tr>
+<tr>
+<td><code>COLD_ACCOUNT_NOCODE_ACCESS</code></td>
+<td><code>geth</code></td>
+</tr>
+<tr>
+<td><code>ACCOUNT_WRITE</code></td>
+<td><code>geth</code></td>
+</tr>
+<tr>
+<td><code>COLD_ACCOUNT_CODE_ACCESS</code></td>
+<td><code>geth</code></td>
+</tr>
+<tr>
+<td><code>WARM_ACCESS</code></td>
+<td><code>geth</code></td>
+</tr>
+</tbody>
+</table>
 <h3 id="missing-glue-adjustments">Missing glue adjustments</h3>
 <details>
 <summary><b>Non-priced opcodes correlated with the target opcount</b> — 1 test affected</summary>
@@ -490,7 +538,7 @@
 </table>
 </details>
 <details>
-<summary><b>Priced glue opcodes with a poor fit</b> — 32 (glue_opcode, client) fits skipped</summary>
+<summary><b>Priced glue opcodes with a poor fit</b> — 27 (glue_opcode, client) fits skipped</summary>
 <p><code>p_value &gt;= glue_contribution_p_value_threshold</code> (0.05) or <code>rsquared &lt; glue_contribution_rsquared_threshold</code> (0.5) — the contribution of these (glue_opcode, client) fits was <strong>skipped</strong> when computing the glue adjustment, so the listed gas params carry a target coefficient that is not net of this glue opcode's runtime on the affected clients. See <code>glue_opcodes_autogenerated_report.md</code> for per-fit metrics.</p>
 <table>
 <thead>
@@ -502,43 +550,48 @@
 </thead>
 <tbody>
 <tr>
+<td><code>AND</code></td>
+<td><code>reth</code> (R²)</td>
+<td><code>COLD_ACCOUNT_CODE_ACCESS</code>, <code>COLD_ACCOUNT_NOCODE_ACCESS</code></td>
+</tr>
+<tr>
 <td><code>CALLDATALOAD</code></td>
-<td><code>besu</code> (R²), <code>erigon</code> (R²), <code>geth</code> (R²), <code>nethermind</code> (both), <code>reth</code> (R²)</td>
+<td><code>besu</code> (both), <code>erigon</code> (R²), <code>geth</code> (R²), <code>nethermind</code> (R²), <code>reth</code> (R²)</td>
 <td>—</td>
 </tr>
 <tr>
-<td><code>DIV</code></td>
-<td><code>nethermind</code> (R²)</td>
+<td><code>CALLDATASIZE</code></td>
+<td><code>nethermind</code> (p-value)</td>
 <td><code>COLD_ACCOUNT_CODE_ACCESS</code>, <code>COLD_ACCOUNT_NOCODE_ACCESS</code></td>
+</tr>
+<tr>
+<td><code>DUP</code></td>
+<td><code>nethermind</code> (p-value)</td>
+<td><code>COLD_STORAGE_ACCESS</code></td>
 </tr>
 <tr>
 <td><code>EXP</code></td>
-<td><code>erigon</code> (R²), <code>nethermind</code> (both)</td>
+<td><code>nethermind</code> (both)</td>
 <td><code>COLD_ACCOUNT_CODE_ACCESS</code>, <code>COLD_ACCOUNT_NOCODE_ACCESS</code></td>
 </tr>
 <tr>
+<td><code>GAS</code></td>
+<td><code>nethermind</code> (p-value)</td>
+<td><code>COLD_ACCOUNT_CODE_ACCESS</code>, <code>COLD_ACCOUNT_NOCODE_ACCESS</code>, <code>COLD_STORAGE_ACCESS</code>, <code>WARM_ACCESS</code></td>
+</tr>
+<tr>
 <td><code>GT</code></td>
-<td><code>besu</code> (R²), <code>erigon</code> (R²), <code>nethermind</code> (R²)</td>
+<td><code>nethermind</code> (R²)</td>
 <td><code>COLD_ACCOUNT_CODE_ACCESS</code>, <code>COLD_ACCOUNT_NOCODE_ACCESS</code>, <code>COLD_STORAGE_ACCESS</code></td>
 </tr>
 <tr>
 <td><code>ISZERO</code></td>
-<td><code>nethermind</code> (R²)</td>
+<td><code>erigon</code> (R²), <code>nethermind</code> (R²)</td>
 <td><code>COLD_ACCOUNT_CODE_ACCESS</code>, <code>COLD_ACCOUNT_NOCODE_ACCESS</code></td>
-</tr>
-<tr>
-<td><code>JUMP</code></td>
-<td><code>besu</code> (R²)</td>
-<td><code>COLD_ACCOUNT_CODE_ACCESS</code>, <code>COLD_ACCOUNT_NOCODE_ACCESS</code></td>
-</tr>
-<tr>
-<td><code>JUMPDEST</code></td>
-<td><code>besu</code> (R²)</td>
-<td><code>COLD_ACCOUNT_CODE_ACCESS</code>, <code>COLD_ACCOUNT_NOCODE_ACCESS</code>, <code>COLD_STORAGE_ACCESS</code></td>
 </tr>
 <tr>
 <td><code>JUMPI</code></td>
-<td><code>besu</code> (R²), <code>erigon</code> (R²)</td>
+<td><code>nethermind</code> (R²)</td>
 <td><code>COLD_ACCOUNT_CODE_ACCESS</code>, <code>COLD_ACCOUNT_NOCODE_ACCESS</code>, <code>COLD_STORAGE_ACCESS</code></td>
 </tr>
 <tr>
@@ -548,7 +601,7 @@
 </tr>
 <tr>
 <td><code>LT</code></td>
-<td><code>besu</code> (R²), <code>nethermind</code> (R²)</td>
+<td><code>nethermind</code> (R²)</td>
 <td><code>COLD_STORAGE_ACCESS</code></td>
 </tr>
 <tr>
@@ -557,23 +610,33 @@
 <td><code>COLD_ACCOUNT_CODE_ACCESS</code>, <code>COLD_ACCOUNT_NOCODE_ACCESS</code></td>
 </tr>
 <tr>
+<td><code>MSTORE8</code></td>
+<td><code>reth</code> (R²)</td>
+<td><code>COLD_ACCOUNT_CODE_ACCESS</code>, <code>COLD_ACCOUNT_NOCODE_ACCESS</code></td>
+</tr>
+<tr>
+<td><code>PUSH0</code></td>
+<td><code>nethermind</code> (p-value)</td>
+<td>—</td>
+</tr>
+<tr>
 <td><code>RETURNDATASIZE</code></td>
-<td><code>erigon</code> (R²), <code>nethermind</code> (R²)</td>
+<td><code>nethermind</code> (R²)</td>
 <td>—</td>
 </tr>
 <tr>
 <td><code>SELFBALANCE</code></td>
-<td><code>besu</code> (R²), <code>erigon</code> (R²)</td>
+<td><code>besu</code> (R²)</td>
 <td>—</td>
 </tr>
 <tr>
-<td><code>SUB</code></td>
-<td><code>erigon</code> (R²)</td>
-<td><code>COLD_ACCOUNT_CODE_ACCESS</code>, <code>COLD_ACCOUNT_NOCODE_ACCESS</code>, <code>COLD_STORAGE_ACCESS</code></td>
+<td><code>STATICCALL</code></td>
+<td><code>geth</code> (p-value)</td>
+<td>—</td>
 </tr>
 <tr>
 <td><code>SWAP</code></td>
-<td><code>erigon</code> (R²), <code>nethermind</code> (R²), <code>reth</code> (R²)</td>
+<td><code>nethermind</code> (R²)</td>
 <td>—</td>
 </tr>
 </tbody>
@@ -591,7 +654,7 @@
 <p><em>None.</em></p>
 <h3 id="other-weak-candidates">Other weak candidates</h3>
 <details>
-<summary><code>COLD_STORAGE_ACCESS</code> — 3 weak combos</summary>
+<summary><code>COLD_STORAGE_ACCESS</code> — 2 weak combos</summary>
 <table>
 <thead>
 <tr>
@@ -603,13 +666,6 @@
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>test_sload_bloated</code></td>
-<td><code>SLOAD</code></td>
-<td><code>target_coef</code></td>
-<td><code>param_existing_slots=True</code></td>
-<td><code>nethermind</code> (R²)</td>
-</tr>
 <tr>
 <td><code>test_sstore_bloated</code></td>
 <td><code>SSTORE</code></td>
@@ -682,28 +738,28 @@
 <td><code>CALL</code></td>
 <td><code>update</code></td>
 <td><code>param_account_mode=AccountMode.NON_EXISTING_ACCOUNT</code> / <code>param_opcode=CALL</code></td>
-<td><code>besu</code> (p-value), <code>geth</code> (p-value), <code>reth</code> (R²)</td>
+<td><code>besu</code> (p-value), <code>reth</code> (R²)</td>
 </tr>
 <tr>
 <td><code>test_account_access</code></td>
 <td><code>CALLCODE</code></td>
 <td><code>update</code></td>
 <td><code>param_account_mode=AccountMode.EXISTING_CONTRACT</code> / <code>param_opcode=CALLCODE</code></td>
-<td><code>besu</code> (p-value), <code>erigon</code> (p-value), <code>geth</code> (p-value), <code>nethermind</code> (p-value), <code>reth</code> (p-value)</td>
+<td><code>besu</code> (p-value), <code>erigon</code> (p-value), <code>nethermind</code> (p-value), <code>reth</code> (p-value)</td>
 </tr>
 <tr>
 <td><code>test_account_access</code></td>
 <td><code>CALLCODE</code></td>
 <td><code>update</code></td>
 <td><code>param_account_mode=AccountMode.EXISTING_EOA</code> / <code>param_opcode=CALLCODE</code></td>
-<td><code>besu</code> (p-value), <code>erigon</code> (p-value), <code>geth</code> (p-value), <code>nethermind</code> (p-value), <code>reth</code> (p-value)</td>
+<td><code>besu</code> (p-value), <code>erigon</code> (p-value), <code>nethermind</code> (p-value), <code>reth</code> (p-value)</td>
 </tr>
 <tr>
 <td><code>test_account_access</code></td>
 <td><code>CALLCODE</code></td>
 <td><code>update</code></td>
 <td><code>param_account_mode=AccountMode.NON_EXISTING_ACCOUNT</code> / <code>param_opcode=CALLCODE</code></td>
-<td><code>besu</code> (p-value), <code>erigon</code> (p-value), <code>geth</code> (p-value), <code>nethermind</code> (p-value), <code>reth</code> (p-value)</td>
+<td><code>besu</code> (p-value), <code>erigon</code> (p-value), <code>nethermind</code> (p-value), <code>reth</code> (p-value)</td>
 </tr>
 </tbody>
 </table>
@@ -750,10 +806,10 @@
   <footer class="site-footer">
     <p class="repro">
       Suites
-<code>3182dda7b93dee61</code>, <code>a11611f320a39015</code>      · run 2026-05-29T23:44:48Z
+<code>3182dda7b93dee61</code>, <code>a11611f320a39015</code>      · run 2026-06-01T10:20:15Z
       · evm-gasfit 0.0.2
       · benchmarkoor-fetch 0.2.0
-      · commit <code>fb13b87</code>
+      · commit <code>e860d21</code>
     </p>
   </footer>
   <script src="run_selector.js"></script>

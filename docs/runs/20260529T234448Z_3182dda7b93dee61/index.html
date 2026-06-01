@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EIP-8038 Repricing — Overview</title>
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-title" href="index.html">EIP-8038 Repricing</a>
+    <nav class="site-nav">
+      <a href="index.html" class="active">Overview</a>
+      <a href="new-gas.html">New Gas</a>
+      <a href="runtime.html">Runtime Model</a>
+      <a href="glue.html">Glue Runtime</a>
+      <a href="methodology.html">Methodology</a>
+    </nav>
+  </header>
+
+  <main class="content">    <div class="run-bar run-bar-older">
+      <span class="run-bar-label">Viewing run</span>
+      <div class="run-dropdown" data-run-dropdown>
+        <button type="button" class="run-dropdown-toggle" aria-haspopup="listbox" aria-expanded="false">
+          <span class="run-dropdown-current">2026-05-29 23:44</span>
+          <span class="run-dropdown-chevron" aria-hidden="true"></span>
+        </button>
+        <ul class="run-dropdown-list" role="listbox" aria-label="Runs" hidden>          <li role="option" aria-selected="false">
+            <a href="../../index.html" class="run-dropdown-option" tabindex="-1">2026-06-01 10:20</a>
+          </li>          <li role="option" aria-selected="true">
+            <a href="../../runs/20260529T234448Z_3182dda7b93dee61/index.html" class="run-dropdown-option is-current" tabindex="-1">2026-05-29 23:44</a>
+          </li>        </ul>
+      </div>
+      <noscript>
+        <span class="run-dropdown-noscript"><a href="../../index.html">2026-06-01 10:20</a>        </span>
+      </noscript>
+      <span class="run-bar-meta">older run &middot; latest of 2</span>
+    </div>
+<h1>EIP-8038 Repricing Analysis</h1>
+
+<p>
+  <a href="https://eips.ethereum.org/EIPS/eip-8038">EIP-8038</a> reprices a set of
+  EVM state-access operations — cold and warm storage and account access, plus
+  account and storage writes. This site reports an empirical re-derivation of those
+  gas costs: NNLS regressions fit on client benchmark runtimes, anchored at
+  100&nbsp;Mgas/s, with the worst-case client selected per gas parameter. The
+  <a href="methodology.html">methodology</a> page documents the full pipeline.
+</p>
+
+<p class="takeaway">
+  Of the 9 gas parameters analysed,
+  <strong>9</strong> warrant an increase and
+  <strong>0</strong> could be reduced relative to the current cost
+  table. The pressure is concentrated in the state-access operations that EIP-8038
+  targets — cold storage and account access and the account and storage writes that
+  run below the 100&nbsp;Mgas/s anchor; see the
+  <a href="new-gas.html">new-gas proposal</a> for the per-parameter breakdown.
+</p>
+
+<p class="warning">
+  <strong>Preliminary results.</strong> These gas parameters are not yet final:
+  the underlying measurements are still being refined as the execution clients
+  continue to optimize their state-access paths. As those optimizations land we
+  expect the per-client runtimes to converge, which may shift the worst-case
+  selection and the resulting gas parameters.
+</p>
+
+<div class="cards">
+  <a class="card" href="new-gas.html">
+    <h3>New Gas Proposal &rarr;</h3>
+    <p>Proposed vs. current gas per parameter, per-client comparison, and worst-case provenance.</p>
+  </a>
+  <a class="card" href="runtime.html">
+    <h3>Runtime Model &rarr;</h3>
+    <p>Per-opcode NNLS fits of runtime against opcode count, filterable by opcode and client.</p>
+  </a>
+  <a class="card" href="glue.html">
+    <h3>Glue Runtime &rarr;</h3>
+    <p>Per-client fits for the priced glue opcodes that the target coefficients are netted against.</p>
+  </a>
+  <a class="card" href="methodology.html">
+    <h3>Methodology &rarr;</h3>
+    <p>Benchmark suites, regression model, anchor, worst-case selection, and how to reproduce.</p>
+  </a>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <p class="repro">
+      Suites
+<code>3182dda7b93dee61</code>, <code>a11611f320a39015</code>      · run 2026-05-29T23:44:48Z
+      · evm-gasfit 0.0.2
+      · benchmarkoor-fetch 0.2.0
+      · commit <code>e860d21</code>
+    </p>
+  </footer>
+  <script src="../../run_selector.js"></script>
+</body>
+</html>

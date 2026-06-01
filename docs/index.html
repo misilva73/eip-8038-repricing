@@ -20,8 +20,21 @@
 
   <main class="content">    <div class="run-bar">
       <span class="run-bar-label">Viewing run</span>
-      <span class="run-bar-single">2026-05-29 23:44</span>
-      <span class="run-bar-meta">latest run</span>
+      <div class="run-dropdown" data-run-dropdown>
+        <button type="button" class="run-dropdown-toggle" aria-haspopup="listbox" aria-expanded="false">
+          <span class="run-dropdown-current">2026-06-01 10:20</span>
+          <span class="run-dropdown-chevron" aria-hidden="true"></span>
+        </button>
+        <ul class="run-dropdown-list" role="listbox" aria-label="Runs" hidden>          <li role="option" aria-selected="true">
+            <a href="index.html" class="run-dropdown-option is-current" tabindex="-1">2026-06-01 10:20</a>
+          </li>          <li role="option" aria-selected="false">
+            <a href="runs/20260529T234448Z_3182dda7b93dee61/index.html" class="run-dropdown-option" tabindex="-1">2026-05-29 23:44</a>
+          </li>        </ul>
+      </div>
+      <noscript>
+        <span class="run-dropdown-noscript"><a href="runs/20260529T234448Z_3182dda7b93dee61/index.html">2026-05-29 23:44</a>        </span>
+      </noscript>
+      <span class="run-bar-meta">latest of 2</span>
     </div>
 <h1>EIP-8038 Repricing Analysis</h1>
 
@@ -75,10 +88,10 @@
   <footer class="site-footer">
     <p class="repro">
       Suites
-<code>3182dda7b93dee61</code>, <code>a11611f320a39015</code>      · run 2026-05-29T23:44:48Z
+<code>3182dda7b93dee61</code>, <code>a11611f320a39015</code>      · run 2026-06-01T10:20:15Z
       · evm-gasfit 0.0.2
       · benchmarkoor-fetch 0.2.0
-      · commit <code>fb13b87</code>
+      · commit <code>e860d21</code>
     </p>
   </footer>
   <script src="run_selector.js"></script>
