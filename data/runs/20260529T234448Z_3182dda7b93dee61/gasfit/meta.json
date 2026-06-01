@@ -1,6 +1,6 @@
 {
-  "evm_gasfit_version": "0.0.1",
-  "run_started_at": "2026-06-01T11:32:39+00:00",
+  "evm_gasfit_version": "0.0.3",
+  "run_started_at": "2026-06-01T15:23:28+00:00",
   "inputs": {
     "config": "fit.yaml",
     "runtimes": "data/raw/runtimes.csv",

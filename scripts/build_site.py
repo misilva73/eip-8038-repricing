@@ -177,6 +177,24 @@ def _heat_cell_style(t: float) -> str:
     return f"background: rgba({r},{g},{b},{a:.3f}); color: {fg};"
 
 
+def winning_fits(ap: pd.DataFrame) -> pd.DataFrame:
+    """The selected (winning) fit per (param, client) in ``new_gas_all_params.csv``.
+
+    evm-gasfit >=0.0.3 emits *every* candidate fit and flags the chosen one with
+    ``is_winner``; pre-0.0.3 output carried only the winners (where the row's own
+    test/opcode/coef equalled the ``selected_*`` triple, which is no longer unique
+    now that losing candidates share it). Prefer the flag, fall back to the triple
+    match so older archives still render."""
+    if "is_winner" in ap.columns:
+        mask = ap["is_winner"].astype(str).str.strip().str.lower().isin(("true", "1"))
+        return ap[mask]
+    return ap[
+        (ap["test_name"] == ap["selected_test"])
+        & (ap["target_opcode"] == ap["selected_opcode"])
+        & (ap["model_coef_name"] == ap["selected_model_coef_name"])
+    ]
+
+
 def build_proposal_heatmap(gasfit: Path, current_by_param: dict[str, str]) -> str | None:
     """Themed HTML replacement for evm-gasfit's ``heatmap.png``.
 
@@ -189,11 +207,7 @@ def build_proposal_heatmap(gasfit: Path, current_by_param: dict[str, str]) -> st
     if not csv.exists():
         return None
     ap = pd.read_csv(csv)
-    sel = ap[
-        (ap["test_name"] == ap["selected_test"])
-        & (ap["target_opcode"] == ap["selected_opcode"])
-        & (ap["model_coef_name"] == ap["selected_model_coef_name"])
-    ]
+    sel = winning_fits(ap)
     value: dict[str, dict[str, int]] = {}
     clients: set[str] = set()
     for _, row in sel.iterrows():
@@ -403,11 +417,7 @@ def collect_trends(runs: list[dict]) -> dict:
     for i, run in enumerate(chron):
         gasfit = run["gasfit"]
         ap = pd.read_csv(gasfit / "new_gas_all_params.csv")
-        selected = ap[
-            (ap["test_name"] == ap["selected_test"])
-            & (ap["target_opcode"] == ap["selected_opcode"])
-            & (ap["model_coef_name"] == ap["selected_model_coef_name"])
-        ]
+        selected = winning_fits(ap)
         for _, row in selected.iterrows():
             client = row["client_name"]
             if not isinstance(client, str) or not client:

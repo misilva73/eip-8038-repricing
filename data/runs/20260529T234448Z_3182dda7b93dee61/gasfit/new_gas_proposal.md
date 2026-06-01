@@ -1,6 +1,6 @@
 # New gas proposal
 
-_Generated 2026-06-01 11:34:29Z · fork `osaka` · anchor_rate 100 Mgas/s_
+_Generated 2026-06-01 15:25:22Z · fork `osaka` · anchor_rate 100 Mgas/s_
 
 **Summary:** 9 parameters proposed — 9 increased, 0 decreased, 0 new, 0 unresolved · 4 warnings · 0 poor-fit selections
 
