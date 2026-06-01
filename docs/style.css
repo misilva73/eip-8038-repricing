@@ -353,3 +353,97 @@ figcaption { color: var(--muted); font-size: 0.85rem; margin-top: 0.5rem; }
 .run-dropdown-option:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 .run-dropdown-option.is-current { color: var(--accent-strong); font-weight: 600; }
 .run-dropdown-noscript a { margin-right: 0.6rem; }
+
+/* ---- Trends page ---- */
+.muted { color: var(--muted); }
+
+/* Filter bar: client checkboxes + metric radios live in borderless fieldsets. */
+.toggle-set { border: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem 0.85rem; }
+.toggle-set legend {
+  float: left;
+  margin-right: 0.6rem;
+  padding: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.toggle { font-size: 0.9rem; font-weight: 500; display: inline-flex; align-items: center; gap: 0.3rem; }
+.toggle input { margin: 0; }
+
+/* Delta table color coding: down = faster/lower = good; up = regression. */
+.delta-down { color: #2b8a3e; font-weight: 600; }
+.delta-up { color: #c92a2a; font-weight: 600; }
+.combo-badge {
+  position: relative;
+  display: inline-block;
+  margin-left: 0.4rem;
+  padding: 0.05em 0.45em;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #8a6d00;
+  background: var(--warn-bg);
+  border: 1px solid var(--warn-border);
+  border-radius: 999px;
+  cursor: help;
+  white-space: nowrap;
+}
+/* Reliable styled tooltip (the native title attribute is slow and renders
+   multi-line text inconsistently). Shows the prev → latest fit on hover/focus. */
+.combo-badge:hover::after,
+.combo-badge:focus::after {
+  content: attr(data-tip);
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 6px);
+  z-index: 30;
+  width: max-content;
+  max-width: 320px;
+  padding: 0.5rem 0.65rem;
+  white-space: pre-line;
+  text-align: left;
+  font-size: 0.78rem;
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--fg);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: var(--shadow-md);
+}
+.combo-badge:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+/* Low-confidence marker: a "*" on values whose fit evm-gasfit flagged as poor. */
+.poor-flag { color: #c2410c; font-weight: 700; cursor: help; margin-left: 1px; }
+
+/* Binding (worst-case) row: the client that sets the proposed gas for a param. */
+#delta-table tbody tr.binding-row { background: rgba(47, 111, 237, 0.07); }
+#delta-table tbody tr.binding-row:hover { background: rgba(47, 111, 237, 0.13); }
+#delta-table tbody tr.binding-row td:first-child { box-shadow: inset 3px 0 0 var(--accent); }
+.binding-tag {
+  display: inline-block;
+  margin-left: 0.4rem;
+  padding: 0.05em 0.5em;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--accent-strong);
+  background: rgba(47, 111, 237, 0.12);
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  vertical-align: middle;
+}
+
+/* Charts: Chart.js needs a sized, position:relative wrapper. The Δ% bar chart
+   sets its own height inline (it grows with the row count). */
+.chart-wrap { position: relative; height: 320px; margin: 1.5rem 0; }
+.chart-wrap canvas { max-width: 100%; }
+.trend-chart { margin: 2.25rem 0; padding-top: 1rem; border-top: 1px solid var(--border); }
+.trend-chart h3 { margin: 0 0 0.25rem; }
+.trend-chart[hidden] { display: none; }
+
+@media (prefers-color-scheme: dark) {
+  .delta-down { color: #69db7c; }
+  .delta-up { color: #ff8787; }
+  .combo-badge { color: var(--warn-border); }
+  #delta-table tbody tr.binding-row { background: rgba(110, 160, 255, 0.13); }
+  #delta-table tbody tr.binding-row:hover { background: rgba(110, 160, 255, 0.2); }
+  .poor-flag { color: #fdba74; }
+}

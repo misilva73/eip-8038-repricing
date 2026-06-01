@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trends — EIP-8038</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-title" href="index.html">EIP-8038 Repricing</a>
+    <nav class="site-nav">
+      <a href="index.html">Overview</a>
+      <a href="new-gas.html">New Gas</a>
+      <a href="runtime.html">Runtime Model</a>
+      <a href="glue.html">Glue Runtime</a>
+      <a href="trends.html" class="active">Trends</a>
+      <a href="methodology.html">Methodology</a>
+    </nav>
+  </header>
+
+  <main class="content"><h1>Trends across runs</h1>
+<p>
+  How each client's numbers move between benchmark runs. Lower is faster — a
+  falling line or a green delta means a client's worst-case runtime (and so its
+  proposed gas) came down since the previous run.
+</p>
+
+<script id="trends-data" type="application/json">{"binding": {"ACCOUNT_WRITE": [{"client": "erigon", "value": 186070}, {"client": "erigon", "value": 202822}], "COLD_ACCOUNT_CODE_ACCESS": [{"client": "erigon", "value": 10295}, {"client": "erigon", "value": 10350}], "COLD_ACCOUNT_NOCODE_ACCESS": [{"client": "erigon", "value": 10295}, {"client": "erigon", "value": 10350}], "COLD_STORAGE_ACCESS": [{"client": "geth", "value": 15576}, {"client": "nethermind", "value": 2755}], "REFUND_STORAGE_CLEAR": [{"client": null, "value": 211636}, {"client": null, "value": 206971}], "STORAGE_WRITE": [{"client": "erigon", "value": 204878}, {"client": "erigon", "value": 212839}], "TX_ACCESS_LIST_ADDRESS": [{"client": null, "value": 10295}, {"client": null, "value": 10350}], "TX_ACCESS_LIST_STORAGE_KEY": [{"client": null, "value": 15576}, {"client": null, "value": 2755}], "WARM_ACCESS": [{"client": "besu", "value": 136}, {"client": "besu", "value": 135}]}, "clients": ["besu", "erigon", "geth", "nethermind", "reth"], "combo": {"ACCOUNT_WRITE": {"besu": ["test_account_access \u00b7 CALL \u00b7 update (EXISTING_CONTRACT, CALL)", "test_account_access \u00b7 CALL \u00b7 update (EXISTING_CONTRACT, CALL)"], "erigon": ["test_account_access \u00b7 CALL \u00b7 update (NON_EXISTING_ACCOUNT, CALL)", "test_account_access \u00b7 CALL \u00b7 update (NON_EXISTING_ACCOUNT, CALL)"], "geth": ["test_account_access \u00b7 CALL \u00b7 update (EXISTING_CONTRACT, CALL)", null], "nethermind": ["test_account_access \u00b7 CALL \u00b7 update (EXISTING_CONTRACT, CALL)", "test_account_access \u00b7 CALL \u00b7 update (EXISTING_EOA, CALL)"], "reth": ["test_account_access \u00b7 CALL \u00b7 update (EXISTING_EOA, CALL)", "test_account_access \u00b7 CALL \u00b7 update (EXISTING_EOA, CALL)"]}, "COLD_ACCOUNT_CODE_ACCESS": {"besu": ["test_account_access \u00b7 CALLCODE \u00b7 target_coef (EXISTING_CONTRACT, CALLCODE)", "test_account_access \u00b7 CALLCODE \u00b7 target_coef (EXISTING_CONTRACT, CALLCODE)"], "erigon": ["test_account_access \u00b7 CALLCODE \u00b7 target_coef (EXISTING_CONTRACT, CALLCODE)", "test_account_access \u00b7 CALLCODE \u00b7 target_coef (EXISTING_CONTRACT, CALLCODE)"], "geth": ["test_account_access \u00b7 CALLCODE \u00b7 target_coef (NON_EXISTING_ACCOUNT, CALLCODE)", null], "nethermind": ["test_account_access \u00b7 CALLCODE \u00b7 target_coef (EXISTING_CONTRACT, CALLCODE)", "test_account_access \u00b7 CALLCODE \u00b7 target_coef (EXISTING_CONTRACT, CALLCODE)"], "reth": ["test_account_access \u00b7 DELEGATECALL \u00b7 target_coef (EXISTING_CONTRACT, DELEGATECALL)", "test_account_access \u00b7 DELEGATECALL \u00b7 target_coef (EXISTING_CONTRACT, DELEGATECALL)"]}, "COLD_ACCOUNT_NOCODE_ACCESS": {"besu": ["test_account_access \u00b7 CALLCODE \u00b7 target_coef (EXISTING_CONTRACT, CALLCODE)", "test_account_access \u00b7 CALLCODE \u00b7 target_coef (EXISTING_CONTRACT, CALLCODE)"], "erigon": ["test_account_access \u00b7 CALLCODE \u00b7 target_coef (EXISTING_CONTRACT, CALLCODE)", "test_account_access \u00b7 CALLCODE \u00b7 target_coef (EXISTING_CONTRACT, CALLCODE)"], "geth": ["test_account_access \u00b7 CALLCODE \u00b7 target_coef (NON_EXISTING_ACCOUNT, CALLCODE)", null], "nethermind": ["test_account_access \u00b7 CALLCODE \u00b7 target_coef (EXISTING_CONTRACT, CALLCODE)", "test_account_access \u00b7 CALLCODE \u00b7 target_coef (EXISTING_CONTRACT, CALLCODE)"], "reth": ["test_account_access \u00b7 DELEGATECALL \u00b7 target_coef (EXISTING_CONTRACT, DELEGATECALL)", "test_account_access \u00b7 DELEGATECALL \u00b7 target_coef (EXISTING_CONTRACT, DELEGATECALL)"]}, "COLD_STORAGE_ACCESS": {"besu": ["test_sload_bloated \u00b7 SLOAD \u00b7 target_coef", "test_sload_bloated \u00b7 SLOAD \u00b7 target_coef"], "erigon": ["test_sload_bloated \u00b7 SLOAD \u00b7 target_coef", "test_sload_bloated \u00b7 SLOAD \u00b7 target_coef"], "geth": ["test_sload_bloated \u00b7 SLOAD \u00b7 target_coef", null], "nethermind": ["test_sstore_bloated \u00b7 SSTORE \u00b7 target_coef", "test_sstore_bloated \u00b7 SSTORE \u00b7 target_coef"], "reth": ["test_sload_bloated \u00b7 SLOAD \u00b7 target_coef", "test_sload_bloated \u00b7 SLOAD \u00b7 target_coef"]}, "STORAGE_WRITE": {"besu": ["test_sstore_bloated \u00b7 SSTORE \u00b7 update", "test_sstore_bloated \u00b7 SSTORE \u00b7 update"], "erigon": ["test_sstore_bloated \u00b7 SSTORE \u00b7 update", "test_sstore_bloated \u00b7 SSTORE \u00b7 update"], "geth": ["test_sstore_bloated \u00b7 SSTORE \u00b7 update", null], "nethermind": ["test_sstore_bloated \u00b7 SSTORE \u00b7 update", "test_sstore_bloated \u00b7 SSTORE \u00b7 update"], "reth": ["test_sstore_bloated \u00b7 SSTORE \u00b7 update", "test_sstore_bloated \u00b7 SSTORE \u00b7 update"]}, "WARM_ACCESS": {"besu": ["test_ext_account_query_warm \u00b7 CALLCODE \u00b7 target_coef (CALLCODE)", "test_ext_account_query_warm \u00b7 CALL \u00b7 target_coef (CALL)"], "erigon": ["test_ext_account_query_warm \u00b7 CALL \u00b7 target_coef (CALL)", "test_ext_account_query_warm \u00b7 CALL \u00b7 target_coef (CALL)"], "geth": ["test_ext_account_query_warm \u00b7 CALLCODE \u00b7 target_coef (CALLCODE)", null], "nethermind": ["test_ext_account_query_warm \u00b7 CALLCODE \u00b7 target_coef (CALLCODE)", "test_ext_account_query_warm \u00b7 STATICCALL \u00b7 target_coef (STATICCALL)"], "reth": ["test_ext_account_query_warm \u00b7 CALL \u00b7 target_coef (CALL)", "test_ext_account_query_warm \u00b7 CALL \u00b7 target_coef (CALL)"]}}, "derived_params": ["REFUND_STORAGE_CLEAR", "TX_ACCESS_LIST_ADDRESS", "TX_ACCESS_LIST_STORAGE_KEY"], "estimated_params": ["ACCOUNT_WRITE", "COLD_ACCOUNT_CODE_ACCESS", "COLD_ACCOUNT_NOCODE_ACCESS", "COLD_STORAGE_ACCESS", "STORAGE_WRITE", "WARM_ACCESS"], "gas": {"ACCOUNT_WRITE": {"besu": [8226, 8354], "erigon": [186070, 202822], "geth": [4525, null], "nethermind": [3889, 3277], "reth": [16468, 16411]}, "COLD_ACCOUNT_CODE_ACCESS": {"besu": [3780, 3265], "erigon": [10295, 10350], "geth": [4802, null], "nethermind": [2314, 3428], "reth": [3755, 3746]}, "COLD_ACCOUNT_NOCODE_ACCESS": {"besu": [3780, 3265], "erigon": [10295, 10350], "geth": [4802, null], "nethermind": [2314, 3428], "reth": [3755, 3746]}, "COLD_STORAGE_ACCESS": {"besu": [1965, 1568], "erigon": [622, 624], "geth": [15576, null], "nethermind": [2592, 2755], "reth": [146, 144]}, "STORAGE_WRITE": {"besu": [13842, 9406], "erigon": [204878, 212839], "geth": [18605, null], "nethermind": [5849, 6206], "reth": [17122, 17126]}, "WARM_ACCESS": {"besu": [136, 135], "erigon": [52, 50], "geth": [70, null], "nethermind": [54, 72], "reth": [5, 5]}}, "poor": {"ACCOUNT_WRITE": {"besu": [false, false], "erigon": [false, false], "geth": [false, null], "nethermind": [false, false], "reth": [false, false]}, "COLD_ACCOUNT_CODE_ACCESS": {"besu": [false, false], "erigon": [false, false], "geth": [false, null], "nethermind": [false, false], "reth": [false, false]}, "COLD_ACCOUNT_NOCODE_ACCESS": {"besu": [false, false], "erigon": [false, false], "geth": [false, null], "nethermind": [false, false], "reth": [false, false]}, "COLD_STORAGE_ACCESS": {"besu": [false, false], "erigon": [false, false], "geth": [false, null], "nethermind": [false, false], "reth": [false, false]}, "STORAGE_WRITE": {"besu": [false, false], "erigon": [false, false], "geth": [false, null], "nethermind": [false, false], "reth": [false, false]}, "WARM_ACCESS": {"besu": [false, false], "erigon": [false, false], "geth": [false, null], "nethermind": [false, false], "reth": [false, false]}}, "runs": [{"label": "2026-05-29 23:44", "run_id": "20260529T234448Z_3182dda7b93dee61"}, {"label": "2026-06-01 10:20", "run_id": "20260601T102015Z_3182dda7b93dee61"}], "runtime": {"ACCOUNT_WRITE": {"besu": [0.0822598239824904, 0.0835322619708093], "erigon": [1.860690655409732, 2.028216893414683], "geth": [0.0452464559168365, null], "nethermind": [0.0388833359612824, 0.0327671949430901], "reth": [0.1646745384057433, 0.1641004220330874]}, "COLD_ACCOUNT_CODE_ACCESS": {"besu": [0.0377951092612183, 0.0326401607560122], "erigon": [0.1029416135315432, 0.1034904327818489], "geth": [0.0480187041158084, null], "nethermind": [0.0231359932602541, 0.0342716537024479], "reth": [0.0375413852514919, 0.0374531567916922]}, "COLD_ACCOUNT_NOCODE_ACCESS": {"besu": [0.0377951092612183, 0.0326401607560122], "erigon": [0.1029416135315432, 0.1034904327818489], "geth": [0.0480187041158084, null], "nethermind": [0.0231359932602541, 0.0342716537024479], "reth": [0.0375413852514919, 0.0374531567916922]}, "COLD_STORAGE_ACCESS": {"besu": [0.0196488104327484, 0.0156732099874322], "erigon": [0.0062182919839147, 0.0062329879061481], "geth": [0.1557529185949273, null], "nethermind": [0.0259140940174505, 0.0275498481355456], "reth": [0.0014540422840752, 0.0014374078559578]}, "STORAGE_WRITE": {"besu": [0.1384112072643169, 0.0940575250224553], "erigon": [2.048777868018319, 2.1283847099926003], "geth": [0.1860422068212993, null], "nethermind": [0.0584800603784516, 0.0620518288000906], "reth": [0.1712175547985819, 0.1712596445918769]}, "WARM_ACCESS": {"besu": [0.0013563598565016, 0.0013475626422155], "erigon": [0.0005190052525955, 0.0004960442891968], "geth": [0.0006909231421361, null], "nethermind": [0.0005330017996766, 0.0007179813306791], "reth": [4.963970305281492e-05, 4.901992731233138e-05]}}}</script>
+
+<div class="filters" id="trends-filters">
+  <label>Parameter
+    <select id="param-filter">
+      <option value="all">All</option>
+<option value="ACCOUNT_WRITE">ACCOUNT_WRITE</option><option value="COLD_ACCOUNT_CODE_ACCESS">COLD_ACCOUNT_CODE_ACCESS</option><option value="COLD_ACCOUNT_NOCODE_ACCESS">COLD_ACCOUNT_NOCODE_ACCESS</option><option value="COLD_STORAGE_ACCESS">COLD_STORAGE_ACCESS</option><option value="STORAGE_WRITE">STORAGE_WRITE</option><option value="WARM_ACCESS">WARM_ACCESS</option>    </select>
+  </label>
+  <fieldset class="toggle-set" id="client-toggles">
+    <legend>Clients</legend>
+    <label class="toggle"><input type="checkbox" value="besu" checked> besu</label>
+    <label class="toggle"><input type="checkbox" value="erigon" checked> erigon</label>
+    <label class="toggle"><input type="checkbox" value="geth" checked> geth</label>
+    <label class="toggle"><input type="checkbox" value="nethermind" checked> nethermind</label>
+    <label class="toggle"><input type="checkbox" value="reth" checked> reth</label>
+  </fieldset>
+  <fieldset class="toggle-set" id="metric-toggle">
+    <legend>Metric</legend>
+    <label class="toggle"><input type="radio" name="metric" value="gas" checked> Proposed gas</label>
+    <label class="toggle"><input type="radio" name="metric" value="runtime"> Runtime (ms)</label>
+  </fieldset>
+</div>
+
+<h2>Since last run</h2>
+<p id="compare-caption" class="muted"></p>
+<table id="delta-table">
+  <thead>
+    <tr>
+      <th>Parameter</th><th>Client</th><th>Previous</th><th>Latest</th><th>Δ</th><th>Δ%</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+<p id="delta-empty" class="muted" hidden>No rows match the current filters.</p>
+<p id="poor-note" class="muted" hidden>
+  <span class="poor-flag">*</span> the value's underlying regression was flagged as a
+  poor fit (R²/p-value) by the New-gas analysis — treat it as low-confidence.
+</p>
+<p class="muted">
+  Change by client — each bar points left (green) when a client got faster/lower
+  and right (red) when it regressed, sized by percent change so it's comparable
+  across parameters.
+</p>
+<div class="chart-wrap" id="delta-bar-wrap"><canvas id="delta-bar"></canvas></div>
+<p id="delta-bar-hint" class="muted" hidden></p>
+
+<h2>Across all runs</h2>
+<p class="muted">
+  One chart per estimated parameter — run on the x-axis, the selected metric on
+  the y-axis, one line per client. Toggle clients above or via each chart's
+  legend; hover a point to see the fit that produced it.
+</p>
+<div id="trend-charts"></div>
+<p id="charts-empty" class="muted" hidden>No parameters match the current filters.</p>
+  </main>
+
+  <footer class="site-footer">
+    <p class="repro">
+      Suites
+<code>3182dda7b93dee61</code>, <code>a11611f320a39015</code>      · run 2026-06-01T10:20:15Z
+      · evm-gasfit 0.0.2
+      · benchmarkoor-fetch 0.2.0
+      · commit <code>5668127</code>
+    </p>
+  </footer>
+  <script src="run_selector.js"></script>
+<script src="chart.umd.min.js"></script>
+<script src="trends.js"></script>
+</body>
+</html>

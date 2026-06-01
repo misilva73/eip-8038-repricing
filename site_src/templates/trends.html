@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}Trends — EIP-8038{% endblock %}
+{% block content %}
+<h1>Trends across runs</h1>
+<p>
+  How each client's numbers move between benchmark runs. Lower is faster — a
+  falling line or a green delta means a client's worst-case runtime (and so its
+  proposed gas) came down since the previous run.
+</p>
+
+{# Whole cross-run dataset, consumed by trends.js. #}
+<script id="trends-data" type="application/json">{{ trends | tojson }}</script>
+
+<div class="filters" id="trends-filters">
+  <label>Parameter
+    <select id="param-filter">
+      <option value="all">All</option>
+      {% for p in trends.estimated_params %}<option value="{{ p }}">{{ p }}</option>{% endfor %}
+    </select>
+  </label>
+  <fieldset class="toggle-set" id="client-toggles">
+    <legend>Clients</legend>
+    {% for c in trends.clients %}
+    <label class="toggle"><input type="checkbox" value="{{ c }}" checked> {{ c }}</label>
+    {% endfor %}
+  </fieldset>
+  <fieldset class="toggle-set" id="metric-toggle">
+    <legend>Metric</legend>
+    <label class="toggle"><input type="radio" name="metric" value="gas" checked> Proposed gas</label>
+    <label class="toggle"><input type="radio" name="metric" value="runtime"> Runtime (ms)</label>
+  </fieldset>
+</div>
+
+<h2>Since last run</h2>
+{% if trends.runs | length < 2 %}
+<p class="warning">
+  <strong>Only one run archived.</strong> The latest-vs-previous comparison needs
+  at least two runs; it'll populate once another run is archived.
+</p>
+{% else %}
+<p id="compare-caption" class="muted"></p>
+<table id="delta-table">
+  <thead>
+    <tr>
+      <th>Parameter</th><th>Client</th><th>Previous</th><th>Latest</th><th>Δ</th><th>Δ%</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+<p id="delta-empty" class="muted" hidden>No rows match the current filters.</p>
+<p id="poor-note" class="muted" hidden>
+  <span class="poor-flag">*</span> the value's underlying regression was flagged as a
+  poor fit (R²/p-value) by the New-gas analysis — treat it as low-confidence.
+</p>
+<p class="muted">
+  Change by client — each bar points left (green) when a client got faster/lower
+  and right (red) when it regressed, sized by percent change so it's comparable
+  across parameters.
+</p>
+<div class="chart-wrap" id="delta-bar-wrap"><canvas id="delta-bar"></canvas></div>
+<p id="delta-bar-hint" class="muted" hidden></p>
+{% endif %}
+
+<h2>Across all runs</h2>
+<p class="muted">
+  One chart per estimated parameter — run on the x-axis, the selected metric on
+  the y-axis, one line per client. Toggle clients above or via each chart's
+  legend; hover a point to see the fit that produced it.
+</p>
+<div id="trend-charts"></div>
+<p id="charts-empty" class="muted" hidden>No parameters match the current filters.</p>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ root_prefix }}chart.umd.min.js"></script>
+<script src="{{ root_prefix }}trends.js"></script>
+{% endblock %}

@@ -277,6 +277,94 @@ def parse_glue(gasfit: Path) -> dict:
 
 
 # --------------------------------------------------------------------------- #
+# Cross-run trends (the Trends page — spans every run, rendered once)
+# --------------------------------------------------------------------------- #
+def _combo_label(row) -> str:
+    """Human label for the binding fit that produced a client's value.
+
+    The selected row is the client's worst-case fit, so its ``selected_*`` triple
+    names the test/opcode/model that set the value; ``param_account_mode`` /
+    ``param_opcode`` disambiguate the account-param variants."""
+    def clean(v) -> str:
+        return "" if v is None or (isinstance(v, float) and pd.isna(v)) else str(v)
+
+    core = " · ".join(p for p in (
+        clean(row["selected_test"]),
+        clean(row["selected_opcode"]),
+        clean(row["selected_model_coef_name"]),
+    ) if p)
+    extras = [clean(row.get(c)).replace("AccountMode.", "")
+              for c in ("param_account_mode", "param_opcode")]
+    extras = [e for e in extras if e]
+    return f"{core} ({', '.join(extras)})" if extras else core
+
+
+def collect_trends(runs: list[dict]) -> dict:
+    """Per-client gas/runtime series across all runs, for the Trends page.
+
+    ``discover_runs()`` yields newest-first; here we reverse to oldest→newest so
+    the run axis reads chronologically. Per run we read the per-client selected
+    fits (``new_gas_all_params.csv``) and the binding proposal — the worst-client
+    value actually proposed (``new_gas.csv``). Estimated params carry a per-client
+    series; derived params (empty ``client_name``) only have the binding value.
+    Clients are unioned across runs; a run missing a (param, client) leaves a
+    ``None`` gap."""
+    chron = list(reversed(runs))
+    n = len(chron)
+    gas: dict[str, dict[str, list]] = {}
+    runtime: dict[str, dict[str, list]] = {}
+    combo: dict[str, dict[str, list]] = {}
+    poor: dict[str, dict[str, list]] = {}
+    binding: dict[str, list] = {}
+    clients: set[str] = set()
+
+    def cell(store: dict, param: str, client: str) -> list:
+        return store.setdefault(param, {}).setdefault(client, [None] * n)
+
+    for i, run in enumerate(chron):
+        gasfit = run["gasfit"]
+        ap = pd.read_csv(gasfit / "new_gas_all_params.csv")
+        selected = ap[
+            (ap["test_name"] == ap["selected_test"])
+            & (ap["target_opcode"] == ap["selected_opcode"])
+            & (ap["model_coef_name"] == ap["selected_model_coef_name"])
+        ]
+        for _, row in selected.iterrows():
+            client = row["client_name"]
+            if not isinstance(client, str) or not client:
+                continue  # derived params have no per-client fit
+            param = row["gas_param"]
+            clients.add(client)
+            cell(gas, param, client)[i] = int(row["new_gas_rounded"])
+            cell(runtime, param, client)[i] = float(row["runtime_ms"])
+            cell(combo, param, client)[i] = _combo_label(row)
+            # evm-gasfit's own poor-fit flag (its New-gas R²/p-value thresholds).
+            cell(poor, param, client)[i] = str(row["poor_fit"]).strip().lower() in ("true", "1")
+
+        ng = pd.read_csv(gasfit / "new_gas.csv")
+        for _, row in ng.iterrows():
+            param = row["gas_param"]
+            client = row["client_name"]
+            binding.setdefault(param, [None] * n)[i] = {
+                "value": int(row["new_gas_rounded"]),
+                "client": client if isinstance(client, str) and client else None,
+            }
+
+    all_params = sorted(binding)
+    return {
+        "runs": [{"run_id": r["run_id"], "label": r["label"]} for r in chron],
+        "clients": sorted(clients),
+        "estimated_params": [p for p in all_params if p in gas],
+        "derived_params": [p for p in all_params if p not in gas],
+        "gas": gas,
+        "runtime": runtime,
+        "combo": combo,
+        "poor": poor,
+        "binding": binding,
+    }
+
+
+# --------------------------------------------------------------------------- #
 # Run discovery
 # --------------------------------------------------------------------------- #
 def discover_runs() -> list[dict]:
@@ -367,6 +455,7 @@ def clear_stale_outputs() -> None:
         shutil.rmtree(OUT / "figs")
     for page_file in PAGES.values():
         (OUT / page_file).unlink(missing_ok=True)
+    (OUT / "trends.html").unlink(missing_ok=True)  # singleton cross-run page
 
 
 def render_run(env: Environment, run: dict, runs: list[dict]) -> None:
@@ -428,6 +517,18 @@ def main() -> None:
     runs = discover_runs()
     for run in runs:
         render_run(env, run, runs)
+
+    # Trends — one cross-run page at the docs root (not per run, so it's kept out
+    # of PAGES and the run dropdown). runs=None hides the run-bar in base.html;
+    # the newest run supplies the reproducibility footer.
+    (OUT / "trends.html").write_text(env.get_template("trends.html").render(
+        trends=collect_trends(runs),
+        meta=load_meta(runs[0]["raw_meta"]),
+        page="trends",
+        root_prefix="",
+        runs=None,
+    ))
+
     copy_static()
     print(f"Built site → {OUT} ({len(runs)} run(s))")
 

@@ -65,6 +65,10 @@ the dashboard accumulates a history of runs rather than just showing the latest.
 
 - The site shows the **latest** run on its main pages; a dropdown banner switches
   to any previous run, updating every page at once.
+- A **Trends** page compares runs directly: a latest-vs-previous change table
+  (worst-case "binding" client highlighted, low-confidence fits flagged) and a
+  line chart per gas parameter across every run. It always spans all runs, so it
+  sits outside the run dropdown.
 - The **5 newest** runs keep all plots. Older runs keep their new-gas plots plus
   all text and tables, but drop the runtime and glue plots to bound repo size.
 - Remove a run with `make clean-run RUN_ID=<id>` (deletes `data/runs/<id>/` and
@@ -82,7 +86,7 @@ A run dir holds `meta.json`, `fit.yaml`, the markdown reports, the CSVs, and
 | `scripts/build_site.py` | renders templates → `docs/`, copies figures |
 | `scripts/clean_run.py` | deletes a run dir + re-renders (`make clean-run RUN_ID=<id>`) |
 | `site_src/templates/` | Jinja2 templates (`base.html` + one per page) |
-| `site_src/assets/` | `style.css`, `runtime_filter.js` |
+| `site_src/assets/` | `style.css`, page JS (`runtime_filter.js`, `run_selector.js`, `trends.js`), vendored `chart.umd.min.js` |
 | `data/raw/` | fetched benchmark inputs |
 | `data/gasfit/` | estimation outputs (CSVs, reports, `figs/`) |
 | `data/runs/<run_id>/` | committed per-run archive (one dir per fit; the site's history) |
