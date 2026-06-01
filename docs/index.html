@@ -40,30 +40,29 @@
 <h1>EIP-8038 Repricing Analysis</h1>
 
 <p>
-  <a href="https://eips.ethereum.org/EIPS/eip-8038">EIP-8038</a> reprices a set of
-  EVM state-access operations — cold and warm storage and account access, plus
-  account and storage writes. This site reports an empirical re-derivation of those
-  gas costs: NNLS regressions fit on client benchmark runtimes, anchored at
-  100&nbsp;Mgas/s, with the worst-case client selected per gas parameter. The
-  <a href="methodology.html">methodology</a> page documents the full pipeline.
+  <a href="https://eips.ethereum.org/EIPS/eip-8038">EIP-8038</a> reprices EVM
+  state-access operations — cold and warm storage and account access, plus account
+  and storage writes. This site re-derives those gas costs empirically: NNLS
+  regressions on client benchmark runtimes, anchored at 100&nbsp;Mgas/s, taking the
+  worst-case client per parameter. See the
+  <a href="methodology.html">methodology</a> page for the full pipeline.
 </p>
 
 <p class="takeaway">
   Of the 9 gas parameters analysed,
   <strong>9</strong> warrant an increase and
   <strong>0</strong> could be reduced relative to the current cost
-  table. The pressure is concentrated in the state-access operations that EIP-8038
-  targets — cold storage and account access and the account and storage writes that
-  run below the 100&nbsp;Mgas/s anchor; see the
-  <a href="new-gas.html">new-gas proposal</a> for the per-parameter breakdown.
+  table. See the <a href="new-gas.html">new-gas proposal</a> for the per-parameter
+  breakdown, or <a href="trends.html">trends</a> for how these
+  estimates have moved across runs.
 </p>
 
 <p class="warning">
-  <strong>Preliminary results.</strong> These gas parameters are not yet final:
-  the underlying measurements are still being refined as the execution clients
-  continue to optimize their state-access paths. As those optimizations land we
-  expect the per-client runtimes to converge, which may shift the worst-case
-  selection and the resulting gas parameters.
+  <strong>Preliminary results.</strong> These parameters are not final: the
+  underlying measurements are still being refined as execution clients optimize
+  their state-access paths. As those optimizations land, per-client runtimes should
+  converge — which may shift the worst-case selection and the resulting gas
+  parameters.
 </p>
 
 <div class="cards">
@@ -79,10 +78,22 @@
     <h3>Glue Runtime &rarr;</h3>
     <p>Per-client fits for the priced glue opcodes that the target coefficients are netted against.</p>
   </a>
+  <a class="card" href="trends.html">
+    <h3>Trends &rarr;</h3>
+    <p>How each estimated parameter has moved across runs, per client and at the binding worst case.</p>
+  </a>
   <a class="card" href="methodology.html">
     <h3>Methodology &rarr;</h3>
     <p>Benchmark suites, regression model, anchor, worst-case selection, and how to reproduce.</p>
   </a>
+  <div class="card card-links">
+    <h3>Source &amp; Data</h3>
+    <ul>
+      <li><a href="https://github.com/misilva73/benchmarkoor-fetch">benchmarkoor-fetch</a> — benchmark data fetcher</li>
+      <li><a href="https://github.com/misilva73/evm-gasfit">evm-gasfit</a> — gas-cost estimation</li>
+      <li><a href="https://benchmarkoor.core.ethpandaops.io/">Benchmarkoor API</a> — upstream benchmark data</li>
+    </ul>
+  </div>
 </div>
   </main>
 
@@ -92,7 +103,7 @@
 <code>3182dda7b93dee61</code>, <code>a11611f320a39015</code>      · run 2026-06-01T10:20:15Z
       · evm-gasfit 0.0.2
       · benchmarkoor-fetch 0.2.0
-      · commit <code>5668127</code>
+      · commit <code>18807a0</code>
     </p>
   </footer>
   <script src="run_selector.js"></script>

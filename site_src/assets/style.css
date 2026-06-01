@@ -194,6 +194,13 @@ figcaption { color: var(--muted); font-size: 0.85rem; margin-top: 0.5rem; }
 .card h3 { margin: 0 0 0.5rem; color: var(--accent); }
 .card p { margin: 0; color: var(--muted); font-size: 0.9rem; }
 
+/* Multi-link card (not itself clickable) */
+.card-links:hover { border-color: var(--border); transform: none; box-shadow: none; }
+.card-links ul { margin: 0; padding: 0; list-style: none; }
+.card-links li { margin: 0.4rem 0; color: var(--muted); font-size: 0.9rem; }
+.card-links li a { color: var(--accent); text-decoration: none; }
+.card-links li a:hover { text-decoration: underline; }
+
 /* Warnings */
 .warning {
   background: var(--warn-bg);
