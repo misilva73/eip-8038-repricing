@@ -8,6 +8,14 @@
   single opcode or client.
 </p>
 
+{% if figs_pruned %}
+<p class="warning">
+  <strong>Plots omitted.</strong> This is an older archived run; only the 5 most
+  recent runs retain the runtime plots. The per-fit stats and NNLS summaries
+  below are unchanged.
+</p>
+{% endif %}
+
 <div class="filters">
   <label>Opcode
     <select data-filter="opcode">
@@ -52,5 +60,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="runtime_filter.js"></script>
+<script src="{{ root_prefix }}runtime_filter.js"></script>
 {% endblock %}

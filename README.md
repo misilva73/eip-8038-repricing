@@ -55,7 +55,23 @@ make serve     # preview docs/ locally on http://localhost:8000 (override PORT=�
 make
 ```
 
-`make clean` removes `data/` and `docs/`.
+`make clean` removes `data/raw/`, `data/gasfit/`, and `docs/` (it preserves
+`data/runs/`, the committed run history — see below).
+
+## Run history
+
+Each `make gasfit` archives the fit into `data/runs/<run_id>/` (committed), so
+the dashboard accumulates a history of runs rather than just showing the latest.
+
+- The site shows the **latest** run on its main pages; a dropdown banner switches
+  to any previous run, updating every page at once.
+- The **5 newest** runs keep all plots. Older runs keep their new-gas plots plus
+  all text and tables, but drop the runtime and glue plots to bound repo size.
+- Remove a run with `make clean-run RUN_ID=<id>` (deletes `data/runs/<id>/` and
+  re-renders the site).
+
+A run dir holds `meta.json`, `fit.yaml`, the markdown reports, the CSVs, and
+`figs/{proposal,runtime,glue}/`.
 
 ## Layout
 
@@ -64,8 +80,10 @@ make
 | `fetch.yaml` | benchmarkoor-fetch config (pinned suites, amsterdam fork) |
 | `fit.yaml` | evm-gasfit config (anchor 1e8, osaka cost table, presets, glue on) |
 | `scripts/build_site.py` | renders templates → `docs/`, copies figures |
+| `scripts/clean_run.py` | deletes a run dir + re-renders (`make clean-run RUN_ID=<id>`) |
 | `site_src/templates/` | Jinja2 templates (`base.html` + one per page) |
 | `site_src/assets/` | `style.css`, `runtime_filter.js` |
 | `data/raw/` | fetched benchmark inputs |
 | `data/gasfit/` | estimation outputs (CSVs, reports, `figs/`) |
+| `data/runs/<run_id>/` | committed per-run archive (one dir per fit; the site's history) |
 | `docs/` | generated static site (served by GitHub Pages) |

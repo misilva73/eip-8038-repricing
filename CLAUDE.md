@@ -6,18 +6,21 @@ README.md has user-facing setup/run docs — this file is for *changing* the rep
 ## Layout that matters
 - `fetch.yaml` — what benchmark data to pull (pinned suites, fork).
 - `fit.yaml` — the estimation: anchor, clients, cost-table fork, op presets, glue.
-- `scripts/build_site.py` — renders `site_src/templates/` → `docs/`, parses `data/gasfit/` reports.
+- `scripts/build_site.py` — renders `site_src/templates/` → `docs/`, parses `data/gasfit/` reports (now per run dir).
+- `scripts/archive_run.py` — snapshots a fit into `data/runs/<run_id>/` (run by `make gasfit`). Owned elsewhere; see Run history.
+- `scripts/clean_run.py` — deletes a run dir + re-renders (`make clean-run RUN_ID=<id>`).
 - `site_src/{templates,assets}/` — edit these, never `docs/` (regenerated).
-- `data/raw/` — fetched inputs; `data/gasfit/` — estimation outputs. Both committed.
+- `data/raw/` — fetched inputs; `data/gasfit/` — estimation outputs; `data/runs/<run_id>/` — committed per-run archive (the history). All committed.
 
 ## Common tasks
-- **Re-run end-to-end:** `make` (= `make fetch gasfit site`). `make clean` wipes `data/` + `docs/`.
+- **Re-run end-to-end:** `make` (= `make fetch gasfit site`). `make clean` wipes `data/raw`, `data/gasfit`, `docs/` — NOT `data/runs/` (history preserved).
 - **Rebuild site only** (after template/asset edits): `make site` — no token needed.
 - **Preview locally:** `make serve` (serves `docs/` on `:8000`; override with `PORT=…`).
-- **Re-fit only** (after `fit.yaml` edits): `make gasfit && make site`.
+- **Re-fit only** (after `fit.yaml` edits): `make gasfit && make site` (still holds; `make gasfit` now also archives the fit — see Run history).
+- **Delete a run:** `make clean-run RUN_ID=<id>` (`scripts/clean_run.py`) — removes `data/runs/<id>/` and re-renders.
 - **Change the op set:** edit `models.presets` in `fit.yaml` (preset names; 101 available in evm-gasfit). New 8038 gas params that error as missing in the osaka table go under `new_params` (this repo already sets `COLD_ACCOUNT_*`, `ACCOUNT_WRITE`, `STORAGE_WRITE`, plus the `derived` block).
 - **Re-pin suites:** `benchmarkoor-fetch suites --network <n> --fork <f> --test-type <t>` → paste hashes into `fetch.yaml`. `run_id_pattern` is a full regex match.
-- **Deploy:** commit updated `data/` + `docs/`, push `main`. No CI. (GitHub Pages → Settings → Pages: source `main` / `/docs`.)
+- **Deploy:** commit the new/updated `data/runs/<run_id>/` + regenerated `docs/` (and any changed `data/raw`/`data/gasfit`), push `main`. No CI. (GitHub Pages → Settings → Pages: source `main` / `/docs`.)
 
 ## Gotchas
 - **secrets.json** (gitignored, repo root): `{ "benchmarkoor_bearer_token": "bmk_..." }`. Makefile reads it with `jq`, exports `BENCHMARKOOR_TOKEN`. Never put the token in `fetch.yaml` (loader rejects it). Never commit it.
@@ -25,6 +28,13 @@ README.md has user-facing setup/run docs — this file is for *changing* the rep
 - **build_site.py parsing is brittle by design.** It regex-parses the exact markdown shape of evm-gasfit's reports — `<details><summary>… NNLS regression summary</summary>` blocks, `## `/`### ` heading splits, the `## Proposed gas parameters` table. If an evm-gasfit upgrade changes report formatting, the runtime/glue/new-gas pages silently lose sections. After bumping `evm-gasfit`, eyeball those three pages.
 - **Two forks, intentionally:** benchmarks run on `amsterdam` (`fetch.yaml`); gas-cost table is `osaka` (`fit.yaml`). Not a typo.
 - **`ethrex` is dropped by omission** from `clients` in `fit.yaml`. Per-op fixture exclusions live inside each preset's built-in `filter_by` — not in a pre-fit script.
+
+## Run history
+- **`data/runs/<run_id>/`** is the committed archive — one dir per fit. `run_id` = `data_window.end` from `meta.json` (with `:` and `-` stripped) + first suite hash, e.g. `20260529T234448Z_3182dda7b93dee61`. Newest sorts last lexically. Re-fitting the same data window overwrites the same dir (no dupes).
+- A run dir holds `meta.json`, `fit.yaml`, the markdown reports, the CSVs, and `figs/{proposal,runtime,glue}/`.
+- **`make gasfit` runs evm-gasfit THEN `scripts/archive_run.py`** — archive_run snapshots `data/gasfit/` + `data/raw/meta.json` + `fit.yaml` into the run dir, then prunes `figs/runtime/` + `figs/glue/` from every run beyond the 5 newest (keeping `figs/proposal/`). So those older runtime/glue pages render text/tables but no plots.
+- **`make site`** (`build_site.py`) renders every run dir: latest → `docs/*.html` (+ `docs/figs/`); older → `docs/runs/<run_id>/*.html` (+ `docs/runs/<run_id>/figs/`). Older pages sit beside their own `figs/` so relative image paths resolve without rewriting. A dropdown banner switches runs across all five pages. Stale `docs/runs/` is cleared at the start of each build.
+- **`make clean-run RUN_ID=<id>`** (`scripts/clean_run.py`) recursively removes the run dir and re-renders. No "latest pointer" to fix up (latest = newest dir; no `results.json` here, unlike eip-2780).
 
 ## Site pages (data coupling)
 - `index` — static + headline up/down counts from the proposal table.

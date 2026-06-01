@@ -9,6 +9,14 @@
   summaries are collected in the appendix at the bottom.
 </p>
 
+{% if figs_pruned %}
+<p class="warning">
+  <strong>Plots omitted.</strong> This is an older archived run; only the 5 most
+  recent runs retain the glue plots. The per-fit stats and regression summaries
+  below are unchanged.
+</p>
+{% endif %}
+
 <div class="filters">
   <label>Client
     <select data-filter="client">
@@ -62,5 +70,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="runtime_filter.js"></script>
+<script src="{{ root_prefix }}runtime_filter.js"></script>
 {% endblock %}

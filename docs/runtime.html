@@ -18,13 +18,18 @@
     </nav>
   </header>
 
-  <main class="content">
+  <main class="content">    <div class="run-bar">
+      <span class="run-bar-label">Viewing run</span>
+      <span class="run-bar-single">2026-05-29 23:44</span>
+      <span class="run-bar-meta">latest run</span>
+    </div>
 <h1>Runtime model results</h1>
 <p>
   Per-spec NNLS fits of test runtime against opcode count — one block per
   (target opcode, test, model combo, client). Use the filters to narrow to a
   single opcode or client.
 </p>
+
 
 <div class="filters">
   <label>Opcode
@@ -6688,9 +6693,10 @@ Notes: Non-negative least squares with bootstrap inference (1000 iterations)
 <code>3182dda7b93dee61</code>, <code>a11611f320a39015</code>      · run 2026-05-29T23:44:48Z
       · evm-gasfit 0.0.2
       · benchmarkoor-fetch 0.2.0
-      · commit <code>3015a50</code>
+      · commit <code>fb13b87</code>
     </p>
   </footer>
+  <script src="run_selector.js"></script>
 <script src="runtime_filter.js"></script>
 </body>
 </html>
