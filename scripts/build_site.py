@@ -251,6 +251,112 @@ def build_proposal_heatmap(gasfit: Path, current_by_param: dict[str, str]) -> st
     )
 
 
+# Combo identity for a provenance candidate: the source regression triple plus
+# the model_by factors. Order matches evm-gasfit's M1…Mn legend (and the CSV's
+# first-appearance order, which we rely on below).
+_PROV_COMBO_COLS = [
+    "test_name", "target_opcode", "model_coef_name",
+    "param_account_mode", "param_existing_slots", "param_opcode",
+]
+
+
+def _prov_short(col: str, val) -> str:
+    """Compact rendering of one combo component for a descriptive row label
+    (used when the report emits no ``M#`` legend for the parameter)."""
+    s = str(val)
+    if col == "param_account_mode":
+        return s.replace("AccountMode.", "")
+    if col == "param_existing_slots":
+        return f"slots={s}"
+    return s
+
+
+def build_provenance_heatmap(
+    gasfit: Path, param: str, current_by_param: dict[str, str], mlabels: bool
+) -> str | None:
+    """Themed HTML replacement for evm-gasfit's ``provenance__<param>.png``.
+
+    Same palette as :func:`build_proposal_heatmap`, but rows are the candidate
+    model combos the worst-case selector saw (first-appearance order, matching
+    the report's ``M1…Mn`` legend) and columns are clients. Each cell carries
+    that candidate's proposed gas, tinted by ``log2(proposed / current)`` on a
+    *per-parameter* symmetric scale; the cell the selector picked
+    (``is_winner``) gets a ``sel`` outline. When ``mlabels`` is false (the
+    report has no legend table for this param, i.e. few combos) rows are
+    labelled by their varying combo components instead of ``M#``. Returns
+    ``None`` if the CSV is absent or has no per-client rows for ``param``, so
+    the caller can keep the PNG."""
+    csv = gasfit / "new_gas_all_params.csv"
+    if not csv.exists():
+        return None
+    ap = pd.read_csv(csv)
+    g = ap[(ap["gas_param"] == param) & ap["client_name"].notna()
+           & (ap["client_name"].astype(str) != "")]
+    if g.empty:
+        return None
+
+    combo_cols = [c for c in _PROV_COMBO_COLS if c in g.columns]
+    varying = [c for c in combo_cols if g[c].astype(str).nunique() > 1]
+
+    # Combos in first-appearance order → M1…Mn (matches the report legend);
+    # cells keyed by (combo, client) → (proposed gas, is_winner). The CSV emits
+    # each candidate more than once (identical combo + value); collapse to one
+    # cell per (combo, client) and OR the winner flag so a later non-winner
+    # duplicate can't unset the selected outline.
+    combos: list[tuple] = []
+    cell: dict[tuple, dict[str, tuple[int, bool]]] = {}
+    for _, r in g.iterrows():
+        key = tuple(r[c] for c in combo_cols)
+        if key not in cell:
+            combos.append(key)
+        win = str(r.get("is_winner", "")).strip().lower() in ("true", "1")
+        prev = cell.setdefault(key, {}).get(r["client_name"])
+        cell[key][r["client_name"]] = (int(r["new_gas_rounded"]), win or bool(prev and prev[1]))
+    clients = sorted(c for c in g["client_name"].unique() if isinstance(c, str) and c)
+
+    cur = current_by_param.get(param, "")
+    cur_n = int(cur) if cur.lstrip("-").isdigit() else None
+
+    def log2ratio(v: int) -> float | None:
+        return math.log2(v / cur_n) if cur_n and v else None
+
+    all_lr = [lr for combo in combos for c in clients
+              if (cv := cell[combo].get(c)) and (lr := log2ratio(cv[0])) is not None]
+    vmax = max((abs(x) for x in all_lr), default=1.0) or 1.0
+
+    def row_label(i: int, combo: tuple) -> str:
+        if mlabels:
+            return f"M{i}"
+        descr = " · ".join(
+            _prov_short(c, v) for c, v in zip(combo_cols, combo)
+            if c in varying and pd.notna(v)
+        )
+        return descr or f"M{i}"
+
+    head = "".join(f"<th scope='col'>{c}</th>" for c in clients)
+    body = ""
+    for i, combo in enumerate(combos, 1):
+        full = " / ".join(f"{c}={v}" for c, v in zip(combo_cols, combo) if pd.notna(v))
+        cells = f'<th scope="row" title="{full}">{row_label(i, combo)}</th>'
+        for c in clients:
+            cv = cell[combo].get(c)
+            if cv is None:
+                cells += '<td class="empty">—</td>'
+                continue
+            v, win = cv
+            lr = log2ratio(v)
+            style = _heat_cell_style((lr / vmax) if lr is not None else 0.0)
+            cls = " class='sel'" if win else ""
+            title = "" if lr is None else f" title='log2(proposed/current) = {lr:+.2f}'"
+            cells += f"<td{cls} style='{style}'{title}>{v:,}</td>"
+        body += f"<tr>{cells}</tr>"
+    return (
+        '<table class="heatmap provenance">'
+        f"<thead><tr><th scope='col'></th>{head}</tr></thead>"
+        f"<tbody>{body}</tbody></table>"
+    )
+
+
 # --------------------------------------------------------------------------- #
 # Runtime report → filterable sections
 # --------------------------------------------------------------------------- #
@@ -563,9 +669,14 @@ def render_run(env: Environment, run: dict, runs: list[dict]) -> None:
         }
 
     # Copy this run's figures next to its pages (relative figs/... paths resolve).
+    # The proposal figs (heatmap + provenance PNGs) are skipped — both are now
+    # rendered as themed HTML tables (build_proposal_heatmap / build_provenance_heatmap).
     figs_src = gasfit / "figs"
     if figs_src.exists():
-        shutil.copytree(figs_src, out / "figs", dirs_exist_ok=True)
+        shutil.copytree(
+            figs_src, out / "figs", dirs_exist_ok=True,
+            ignore=shutil.ignore_patterns("proposal"),
+        )
 
     # Landing page — static narrative + headline counts.
     proposed = parse_proposed_table(gasfit)
@@ -586,12 +697,30 @@ def render_run(env: Environment, run: dict, runs: list[dict]) -> None:
     # Swap evm-gasfit's heatmap.png for a themed HTML table (kept inline via a
     # sentinel that survives markdown as a bare paragraph). Falls back to the PNG
     # if the source CSV is missing.
-    heatmap_html = build_proposal_heatmap(gasfit, {r["param"]: r["current"] for r in proposed})
+    current_by_param = {r["param"]: r["current"] for r in proposed}
+    heatmap_html = build_proposal_heatmap(gasfit, current_by_param)
     if heatmap_html:
         rest_md = rest_md.replace("![](figs/proposal/heatmap.png)", "HEATMAPSLOTTOKEN")
+    # Same treatment for the per-param worst-case provenance plots. Each gas
+    # param's <details> block carries an M1…Mn legend only when it has enough
+    # combos; without one, the heatmap labels rows by their varying components.
+    prov_legend = {
+        m.group(1)
+        for m in re.finditer(r"<summary><code>(\w+)</code>.*?</details>", rest_md, re.S)
+        if "| Label | Combo |" in m.group(0)
+    }
+    prov_html: dict[str, str] = {}
+    for p in dict.fromkeys(re.findall(r"provenance__(\w+)\.png", rest_md)):
+        html = build_provenance_heatmap(gasfit, p, current_by_param, p in prov_legend)
+        if html:
+            token = f"PROVHEATMAP{p}TOKEN"
+            rest_md = rest_md.replace(f"![](figs/proposal/provenance__{p}.png)", token)
+            prov_html[token] = html
     rest_html = md_to_html(rest_md)
     if heatmap_html:
         rest_html = rest_html.replace("<p>HEATMAPSLOTTOKEN</p>", heatmap_html)
+    for token, html in prov_html.items():
+        rest_html = rest_html.replace(f"<p>{token}</p>", html)
     (out / PAGES["new-gas"]).write_text(env.get_template("new_gas.html").render(
         intro_html=md_to_html(intro_md),
         proposed=proposed,

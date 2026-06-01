@@ -197,6 +197,17 @@ table.heatmap td.empty { color: var(--muted); background: none; }
 /* Cells own their tint, so the row stripe/hover must not paint over them. */
 table.heatmap tbody tr:nth-child(even),
 table.heatmap tbody tr:hover { background: none; }
+/* Provenance heatmap: the cell the worst-case selector picked. Outline (not
+   border) so it sits inside the cell without nudging the grid; tabular numbers
+   stay aligned. Theme-aware via --fg, readable over any tint. */
+table.heatmap td.sel {
+  outline: 2px solid var(--fg);
+  outline-offset: -2px;
+  font-weight: 700;
+}
+/* Provenance rows are model combos, not param names — descriptive (no-legend)
+   labels can be long, so let them wrap instead of forcing the column wide. */
+table.heatmap.provenance th[scope="row"] { white-space: normal; }
 
 /* Cards (landing page) */
 .cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin: 2rem 0; }

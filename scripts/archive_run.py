@@ -10,8 +10,9 @@ filesystem-safe and sorts chronologically) plus the first suite hash. Re-fitting
 the same data window overwrites the same run dir rather than duplicating it.
 
 To bound repo size, only the ``KEEP_FULL_FIGS`` newest runs keep the heavy
-runtime/glue figures; older runs keep their (small) proposal figures and all
-text/tables, but their runtime/glue plots are pruned.
+runtime/glue figures; older runs keep all text/tables but have their
+runtime/glue plots pruned. The proposal figs (heatmap + provenance PNGs) are
+never archived — the site renders both as themed HTML tables instead.
 """
 from __future__ import annotations
 
@@ -26,7 +27,7 @@ GASFIT = ROOT / "data" / "gasfit"
 RUNS = ROOT / "data" / "runs"
 FIT = ROOT / "fit.yaml"
 
-# Newest N runs keep runtime/glue figs; older runs keep only the proposal figs.
+# Newest N runs keep runtime/glue figs; older runs keep none.
 KEEP_FULL_FIGS = 5
 
 
@@ -52,7 +53,8 @@ def archive() -> str:
     if dest.exists():
         shutil.rmtree(dest)
     dest.mkdir(parents=True)
-    shutil.copytree(GASFIT, dest / "gasfit")
+    # Proposal figs are unused (rendered as HTML tables), so don't archive them.
+    shutil.copytree(GASFIT, dest / "gasfit", ignore=shutil.ignore_patterns("proposal"))
     shutil.copy2(RAW / "meta.json", dest / "raw_meta.json")
     if FIT.exists():
         shutil.copy2(FIT, dest / "fit.yaml")

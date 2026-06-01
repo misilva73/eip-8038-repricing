@@ -16,3 +16,7 @@ secrets.json
 data/raw/runtimes.csv
 data/raw/bench_data.parquet
 data/raw/trace.parquet
+
+# Proposal figs are rendered as HTML tables now, not images. evm-gasfit still
+# emits these PNGs on every fit, but they're unused — keep them out of the repo.
+data/gasfit/figs/proposal/
