@@ -46,83 +46,81 @@
 </p>
 <p><em>Generated 2026-06-01 11:34:29Z · fork <code>osaka</code> · anchor_rate 100 Mgas/s</em></p>
 <p><strong>Summary:</strong> 9 parameters proposed — 9 increased, 0 decreased, 0 new, 0 unresolved · 4 warnings · 0 poor-fit selections</p>
+
 <h2 id="proposed-gas-parameters">Proposed gas parameters</h2>
-<table>
-<thead>
-<tr>
-<th>Gas param</th>
-<th>Current gas</th>
-<th>Proposed gas</th>
-<th>Diff</th>
-<th>Diff %</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>COLD_STORAGE_ACCESS</td>
-<td>2100</td>
-<td>15576</td>
-<td>+13476</td>
-<td>+642%</td>
-</tr>
-<tr>
-<td>STORAGE_WRITE</td>
-<td>2800</td>
-<td>204878</td>
-<td>+202078</td>
-<td>+7217%</td>
-</tr>
-<tr>
-<td>COLD_ACCOUNT_NOCODE_ACCESS</td>
-<td>2600</td>
-<td>10295</td>
-<td>+7695</td>
-<td>+296%</td>
-</tr>
-<tr>
-<td>ACCOUNT_WRITE</td>
-<td>6700</td>
-<td>186070</td>
-<td>+179370</td>
-<td>+2677%</td>
-</tr>
-<tr>
-<td>COLD_ACCOUNT_CODE_ACCESS</td>
-<td>2600</td>
-<td>10295</td>
-<td>+7695</td>
-<td>+296%</td>
-</tr>
-<tr>
-<td>WARM_ACCESS</td>
-<td>100</td>
-<td>136</td>
-<td>+36</td>
-<td>+36%</td>
-</tr>
-<tr>
-<td>REFUND_STORAGE_CLEAR</td>
-<td>4800</td>
-<td>211636</td>
-<td>+206836</td>
-<td>+4309%</td>
-</tr>
-<tr>
-<td>TX_ACCESS_LIST_STORAGE_KEY</td>
-<td>1900</td>
-<td>15576</td>
-<td>+13676</td>
-<td>+720%</td>
-</tr>
-<tr>
-<td>TX_ACCESS_LIST_ADDRESS</td>
-<td>2400</td>
-<td>10295</td>
-<td>+7895</td>
-<td>+329%</td>
-</tr>
-</tbody>
+<table id="proposed-table">
+  <thead>
+    <tr>
+      <th>Gas param</th><th>Current gas</th><th>Proposed gas</th><th>Δ</th><th>Δ%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>COLD_STORAGE_ACCESS</td>
+      <td>2100</td>
+      <td>15576</td>
+      <td class="delta-up">+13476</td>
+      <td class="delta-up">+642%</td>
+    </tr>
+    <tr>
+      <td>STORAGE_WRITE</td>
+      <td>2800</td>
+      <td>204878</td>
+      <td class="delta-up">+202078</td>
+      <td class="delta-up">+7217%</td>
+    </tr>
+    <tr>
+      <td>COLD_ACCOUNT_NOCODE_ACCESS</td>
+      <td>2600</td>
+      <td>10295</td>
+      <td class="delta-up">+7695</td>
+      <td class="delta-up">+296%</td>
+    </tr>
+    <tr>
+      <td>ACCOUNT_WRITE</td>
+      <td>6700</td>
+      <td>186070</td>
+      <td class="delta-up">+179370</td>
+      <td class="delta-up">+2677%</td>
+    </tr>
+    <tr>
+      <td>COLD_ACCOUNT_CODE_ACCESS</td>
+      <td>2600</td>
+      <td>10295</td>
+      <td class="delta-up">+7695</td>
+      <td class="delta-up">+296%</td>
+    </tr>
+    <tr>
+      <td>WARM_ACCESS</td>
+      <td>100</td>
+      <td>136</td>
+      <td class="delta-up">+36</td>
+      <td class="delta-up">+36%</td>
+    </tr>
+    <tr>
+      <td>REFUND_STORAGE_CLEAR</td>
+      <td>4800</td>
+      <td>211636</td>
+      <td class="delta-up">+206836</td>
+      <td class="delta-up">+4309%</td>
+    </tr>
+    <tr>
+      <td>TX_ACCESS_LIST_STORAGE_KEY</td>
+      <td>1900</td>
+      <td>15576</td>
+      <td class="delta-up">+13676</td>
+      <td class="delta-up">+720%</td>
+    </tr>
+    <tr>
+      <td>TX_ACCESS_LIST_ADDRESS</td>
+      <td>2400</td>
+      <td>10295</td>
+      <td class="delta-up">+7895</td>
+      <td class="delta-up">+329%</td>
+    </tr>
+  </tbody>
 </table>
+
 <h2 id="client-comparison">Client comparison</h2>
 <p>Worst client vs. second-worst client per gas parameter. The <code>Ratio</code> column is <code>worst gas / second-worst gas</code> — values close to 1× mean the worst case sits next to the rest of the field, while large ratios flag the worst client as an outlier.</p>
 <table>
@@ -188,7 +186,7 @@
 </tbody>
 </table>
 <p>Per-client proposed gas for each parameter. Cells are colored by <code>log2(proposed / current)</code> — red means the proposal is more expensive than the current gas cost, green means cheaper, and white sits at unchanged. Annotations show the absolute proposed gas value; blank rows are parameters with no prior baseline (see warnings below).</p>
-<p><img alt="" src="figs/proposal/heatmap.png" /></p>
+<table class="heatmap"><thead><tr><th scope='col'></th><th scope='col'>besu</th><th scope='col'>erigon</th><th scope='col'>geth</th><th scope='col'>nethermind</th><th scope='col'>reth</th></tr></thead><tbody><tr><th scope='row'>COLD_STORAGE_ACCESS</th><td style='background: rgba(43,138,62,0.250); color: inherit;' title='log2(proposed/current) = -0.10'>1,965</td><td style='background: rgba(43,138,62,0.567); color: inherit;' title='log2(proposed/current) = -1.76'>622</td><td style='background: rgba(201,42,42,0.710); color: #fff;' title='log2(proposed/current) = +2.89'>15,576</td><td style='background: rgba(201,42,42,0.257); color: inherit;' title='log2(proposed/current) = +0.30'>2,592</td><td style='background: rgba(43,138,62,0.807); color: #fff;' title='log2(proposed/current) = -3.85'>146</td></tr><tr><th scope='row'>STORAGE_WRITE</th><td style='background: rgba(201,42,42,0.641); color: #fff;' title='log2(proposed/current) = +2.31'>13,842</td><td style='background: rgba(201,42,42,1.000); color: #fff;' title='log2(proposed/current) = +6.19'>204,878</td><td style='background: rgba(201,42,42,0.692); color: #fff;' title='log2(proposed/current) = +2.73'>18,605</td><td style='background: rgba(201,42,42,0.452); color: inherit;' title='log2(proposed/current) = +1.06'>5,849</td><td style='background: rgba(201,42,42,0.678); color: #fff;' title='log2(proposed/current) = +2.61'>17,122</td></tr><tr><th scope='row'>COLD_ACCOUNT_NOCODE_ACCESS</th><td style='background: rgba(201,42,42,0.334); color: inherit;' title='log2(proposed/current) = +0.54'>3,780</td><td style='background: rgba(201,42,42,0.599); color: inherit;' title='log2(proposed/current) = +1.99'>10,295</td><td style='background: rgba(201,42,42,0.417); color: inherit;' title='log2(proposed/current) = +0.89'>4,802</td><td style='background: rgba(43,138,62,0.250); color: inherit;' title='log2(proposed/current) = -0.17'>2,314</td><td style='background: rgba(201,42,42,0.331); color: inherit;' title='log2(proposed/current) = +0.53'>3,755</td></tr><tr><th scope='row'>ACCOUNT_WRITE</th><td style='background: rgba(201,42,42,0.255); color: inherit;' title='log2(proposed/current) = +0.30'>8,226</td><td style='background: rgba(201,42,42,0.891); color: #fff;' title='log2(proposed/current) = +4.80'>186,070</td><td style='background: rgba(43,138,62,0.341); color: inherit;' title='log2(proposed/current) = -0.57'>4,525</td><td style='background: rgba(43,138,62,0.395); color: inherit;' title='log2(proposed/current) = -0.78'>3,889</td><td style='background: rgba(201,42,42,0.495); color: inherit;' title='log2(proposed/current) = +1.30'>16,468</td></tr><tr><th scope='row'>COLD_ACCOUNT_CODE_ACCESS</th><td style='background: rgba(201,42,42,0.334); color: inherit;' title='log2(proposed/current) = +0.54'>3,780</td><td style='background: rgba(201,42,42,0.599); color: inherit;' title='log2(proposed/current) = +1.99'>10,295</td><td style='background: rgba(201,42,42,0.417); color: inherit;' title='log2(proposed/current) = +0.89'>4,802</td><td style='background: rgba(43,138,62,0.250); color: inherit;' title='log2(proposed/current) = -0.17'>2,314</td><td style='background: rgba(201,42,42,0.331); color: inherit;' title='log2(proposed/current) = +0.53'>3,755</td></tr><tr><th scope='row'>WARM_ACCESS</th><td style='background: rgba(201,42,42,0.305); color: inherit;' title='log2(proposed/current) = +0.44'>136</td><td style='background: rgba(43,138,62,0.429); color: inherit;' title='log2(proposed/current) = -0.94'>52</td><td style='background: rgba(43,138,62,0.326); color: inherit;' title='log2(proposed/current) = -0.51'>70</td><td style='background: rgba(43,138,62,0.417); color: inherit;' title='log2(proposed/current) = -0.89'>54</td><td style='background: rgba(43,138,62,0.851); color: #fff;' title='log2(proposed/current) = -4.32'>5</td></tr></tbody></table>
 <h2 id="worst-case-provenance-per-gas-param">Worst-case provenance per gas param</h2>
 <p>One collapsible block per gas parameter showing every per-client candidate that the worst-case selector saw. Rows are model combos (the source regression's <code>test_name</code>, <code>target_opcode</code>, <code>model_coef_name</code>, and any <code>model_by</code> factors — components constant within a parameter are dropped from the label). Cells carry each candidate's proposed gas; the cell the per-client selector picked is outlined in black. Colors are <code>log2(proposed / current)</code> against that parameter's baseline on a per-parameter symmetric scale.</p>
 <details>
@@ -767,7 +765,7 @@
 <code>3182dda7b93dee61</code>, <code>a11611f320a39015</code>      · run 2026-05-29T23:44:48Z
       · evm-gasfit 0.0.2
       · benchmarkoor-fetch 0.2.0
-      · commit <code>18807a0</code>
+      · commit <code>51e0806</code>
     </p>
   </footer>
   <script src="../../run_selector.js"></script>

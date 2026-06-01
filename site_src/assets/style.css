@@ -121,7 +121,9 @@ th {
   top: var(--header-h);
   z-index: 2;
   font-weight: 600;
-  white-space: nowrap;
+  /* Multi-word headers (e.g. "Second-worst client") wrap rather than force the
+     table wider than the content column; short single-word headers never wrap. */
+  white-space: normal;
   box-shadow: inset 0 -1px 0 var(--border);
 }
 /* Round outer corners without overflow:hidden (which would break sticky th) */
@@ -167,6 +169,34 @@ figure img {
   box-shadow: var(--shadow-sm);
 }
 figcaption { color: var(--muted); font-size: 0.85rem; margin-top: 0.5rem; }
+
+/* Proposed-gas heatmap: per-client proposed gas, cells tinted by
+   log2(proposed/current) (green = cheaper, red = pricier). Replaces the
+   matplotlib heatmap.png with a theme-native, dark-mode-aware table. */
+table.heatmap { border-spacing: 3px; border-collapse: separate; }
+table.heatmap th,
+table.heatmap td { border-bottom: none; text-align: center; padding: 0.55rem 0.4rem; }
+/* Data columns share the space evenly; the row-header column sizes to its
+   (nowrap) parameter name so long names don't bleed into the first client. */
+table.heatmap thead th[scope="col"] { width: 8rem; }
+table.heatmap thead th { position: static; background: var(--code-bg); font-size: 0.84rem; }
+table.heatmap th[scope="row"] {
+  position: static;
+  background: var(--code-bg);
+  text-align: right;
+  font-weight: 500;
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+table.heatmap td {
+  font-variant-numeric: tabular-nums;
+  border-radius: 5px;
+  font-size: 0.86rem;
+}
+table.heatmap td.empty { color: var(--muted); background: none; }
+/* Cells own their tint, so the row stripe/hover must not paint over them. */
+table.heatmap tbody tr:nth-child(even),
+table.heatmap tbody tr:hover { background: none; }
 
 /* Cards (landing page) */
 .cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin: 2rem 0; }

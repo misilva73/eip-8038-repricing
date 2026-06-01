@@ -31,6 +31,7 @@ Data sources per run (all produced by ``make fetch`` + ``make gasfit``):
 from __future__ import annotations
 
 import json
+import math
 import re
 import shutil
 import subprocess
@@ -156,6 +157,84 @@ def parse_proposed_table(gasfit: Path) -> list[dict]:
             "diff_pct": cells[4],
         })
     return rows
+
+
+def _heat_cell_style(t: float) -> str:
+    """Inline background/text style for one heatmap cell. ``t`` ∈ [-1, 1]:
+    negative = cheaper than current (green), positive = pricier (red), 0 = blank.
+    Alpha rides over a transparent base, so it reads in both themes; saturated
+    cells flip to white text. Mirrors the site's delta green/red.
+
+    A *linear* alpha buries small changes near-transparent — a +0.3 and a -0.3
+    log2 ratio both look blank, so faint red and faint green are indistinguishable.
+    A gamma curve plus a floor lifts small magnitudes into a clearly visible tint
+    while keeping the big movers saturated, so hue (not just intensity) carries
+    the increase-vs-decrease signal."""
+    mag = min(abs(t), 1.0)
+    a = 0.0 if mag == 0 else max(0.25, mag ** 0.45)
+    r, g, b = (201, 42, 42) if t > 0 else (43, 138, 62)
+    fg = "#fff" if a > 0.6 else "inherit"
+    return f"background: rgba({r},{g},{b},{a:.3f}); color: {fg};"
+
+
+def build_proposal_heatmap(gasfit: Path, current_by_param: dict[str, str]) -> str | None:
+    """Themed HTML replacement for evm-gasfit's ``heatmap.png``.
+
+    Per-client proposed gas (the selected fits in ``new_gas_all_params.csv``) for
+    each estimated parameter, cells tinted by ``log2(proposed / current)`` on a
+    symmetric green→red scale. Estimated params only — derived params (empty
+    ``client_name``) have no per-client series. Returns ``None`` if the source
+    CSV is absent or carries no per-client rows, so the caller can keep the PNG."""
+    csv = gasfit / "new_gas_all_params.csv"
+    if not csv.exists():
+        return None
+    ap = pd.read_csv(csv)
+    sel = ap[
+        (ap["test_name"] == ap["selected_test"])
+        & (ap["target_opcode"] == ap["selected_opcode"])
+        & (ap["model_coef_name"] == ap["selected_model_coef_name"])
+    ]
+    value: dict[str, dict[str, int]] = {}
+    clients: set[str] = set()
+    for _, row in sel.iterrows():
+        client = row["client_name"]
+        if not isinstance(client, str) or not client:
+            continue
+        value.setdefault(row["gas_param"], {})[client] = int(row["new_gas_rounded"])
+        clients.add(client)
+    if not value:
+        return None
+    ordered_clients = sorted(clients)
+    params = [p for p in current_by_param if p in value]  # proposal-table order
+
+    def log2ratio(param: str, client: str) -> float | None:
+        cur = current_by_param.get(param, "")
+        cur_n = int(cur) if cur.lstrip("-").isdigit() else None
+        v = value[param].get(client)
+        return math.log2(v / cur_n) if cur_n and v else None
+
+    all_lr = [lr for p in params for c in ordered_clients if (lr := log2ratio(p, c)) is not None]
+    vmax = max((abs(x) for x in all_lr), default=1.0) or 1.0
+
+    head = "".join(f"<th scope='col'>{c}</th>" for c in ordered_clients)
+    body = ""
+    for p in params:
+        cells = f"<th scope='row'>{p}</th>"
+        for c in ordered_clients:
+            v = value[p].get(c)
+            if v is None:
+                cells += '<td class="empty">—</td>'
+                continue
+            lr = log2ratio(p, c)
+            style = _heat_cell_style((lr / vmax) if lr is not None else 0.0)
+            title = "" if lr is None else f" title='log2(proposed/current) = {lr:+.2f}'"
+            cells += f"<td style='{style}'{title}>{v:,}</td>"
+        body += f"<tr>{cells}</tr>"
+    return (
+        '<table class="heatmap">'
+        f"<thead><tr><th scope='col'></th>{head}</tr></thead>"
+        f"<tbody>{body}</tbody></table>"
+    )
 
 
 # --------------------------------------------------------------------------- #
@@ -486,11 +565,28 @@ def render_run(env: Environment, run: dict, runs: list[dict]) -> None:
         proposed=proposed, n_up=n_up, n_down=n_down, **common("index"),
     ))
 
-    # New-gas page — wholesale render of the proposal report.
+    # New-gas page — the headline parameter table is re-rendered as a styled
+    # (Δ-colored) table from the parsed rows; everything else renders wholesale.
+    # Split the report into the intro (before the table) and the rest (from the
+    # next ``## `` heading on), dropping the markdown table in between.
     report = (gasfit / "new_gas_proposal.md").read_text()
     report = drop_section(strip_first_h1(report), "## Contents")
+    intro_md, _, tail_md = report.partition("## Proposed gas parameters\n")
+    rest_md = re.sub(r"\A.*?(?=^## )", "", tail_md, count=1, flags=re.S | re.M)
+    # Swap evm-gasfit's heatmap.png for a themed HTML table (kept inline via a
+    # sentinel that survives markdown as a bare paragraph). Falls back to the PNG
+    # if the source CSV is missing.
+    heatmap_html = build_proposal_heatmap(gasfit, {r["param"]: r["current"] for r in proposed})
+    if heatmap_html:
+        rest_md = rest_md.replace("![](figs/proposal/heatmap.png)", "HEATMAPSLOTTOKEN")
+    rest_html = md_to_html(rest_md)
+    if heatmap_html:
+        rest_html = rest_html.replace("<p>HEATMAPSLOTTOKEN</p>", heatmap_html)
     (out / PAGES["new-gas"]).write_text(env.get_template("new_gas.html").render(
-        report_html=md_to_html(report), **common("new-gas"),
+        intro_html=md_to_html(intro_md),
+        proposed=proposed,
+        rest_html=rest_html,
+        **common("new-gas"),
     ))
 
     # Runtime page — filterable per-fit sections.
