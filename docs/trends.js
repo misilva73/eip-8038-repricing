@@ -80,9 +80,16 @@
         if (!state.clients.has(client)) return;
 
         var s = seriesFor(param, client);
-        var pv = s[prev], lv = s[last];
+        var lv = s[last];
+        // Back-fill the "previous" side only: if the client has no value in the
+        // immediately-prior run, walk further back to its most recent run with a
+        // value. The latest is never back-filled — a missing latest stays missing.
+        var pi = prev;
+        while (pi >= 0 && s[pi] == null) pi--;
+        var pv = pi >= 0 ? s[pi] : null;
         if (pv == null && lv == null) return;
 
+        var prevIdx = pv != null ? pi : null;
         var cs = DATA.combo[param] && DATA.combo[param][client];
         var ps = DATA.poor[param] && DATA.poor[param][client];
         var delta = (pv != null && lv != null) ? lv - pv : null;
@@ -90,8 +97,14 @@
         rows.push({
           param: param, client: client, isBinding: client === bindingClient,
           pv: pv, lv: lv, delta: delta, pct: pct,
-          comboPrev: cs && cs[prev], comboLast: cs && cs[last],
-          poorPrev: !!(ps && ps[prev]), poorLast: !!(ps && ps[last]),
+          // Combo/poor for the "previous" side track whichever run pv came from.
+          comboPrev: prevIdx != null && cs ? cs[prevIdx] : null,
+          comboLast: cs && cs[last],
+          poorPrev: !!(prevIdx != null && ps && ps[prevIdx]),
+          poorLast: !!(ps && ps[last]),
+          // Flag + source label when the previous value isn't from run N-2.
+          backfilled: prevIdx != null && prevIdx !== prev,
+          prevLabel: prevIdx != null ? LABELS[prevIdx] : null,
         });
       });
     });
@@ -191,7 +204,8 @@
     barHint.hidden = skipped === 0;
     if (skipped) {
       barHint.textContent = skipped + " row" + (skipped > 1 ? "s" : "") +
-        " not shown — the client is missing from one of the two runs, so there's no % change.";
+        " not shown — the client has no value in the latest run, or no prior run to " +
+        "compare against, so there's no % change.";
     }
     barCanvas.hidden = drawable.length === 0;
     if (!drawable.length) return;
@@ -243,10 +257,14 @@
               },
               afterLabel: function (ctx) {
                 var r = drawable[ctx.dataIndex];
+                var lines = [];
+                if (r.backfilled) lines.push("previous from " + r.prevLabel + " (no value in " + LABELS[N - 2] + ")");
                 if (r.comboPrev && r.comboLast && r.comboPrev !== r.comboLast) {
-                  return "combo changed: " + r.comboPrev + " → " + r.comboLast;
+                  lines.push("combo changed: " + r.comboPrev + " → " + r.comboLast);
+                } else if (r.comboLast) {
+                  lines.push("fit: " + r.comboLast);
                 }
-                return r.comboLast ? "fit: " + r.comboLast : undefined;
+                return lines.length ? lines : undefined;
               },
             },
           },
