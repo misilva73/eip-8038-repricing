@@ -417,8 +417,10 @@ table.heatmap.provenance th[scope="row"] { white-space: normal; }
 .toggle { font-size: 0.9rem; font-weight: 500; display: inline-flex; align-items: center; gap: 0.3rem; }
 .toggle input { margin: 0; }
 
-/* Delta table color coding: down = faster/lower = good; up = regression. */
+/* Delta table color coding: down = faster/lower = good; up = regression.
+   mid = a moderate increase (0% < Δ% ≤ 100%), tinted yellow/amber. */
 .delta-down { color: #2b8a3e; font-weight: 600; }
+.delta-mid { color: #b8860b; font-weight: 600; }
 .delta-up { color: #c92a2a; font-weight: 600; }
 .combo-badge {
   position: relative;
@@ -489,6 +491,7 @@ table.heatmap.provenance th[scope="row"] { white-space: normal; }
 
 @media (prefers-color-scheme: dark) {
   .delta-down { color: #69db7c; }
+  .delta-mid { color: #ffd43b; }
   .delta-up { color: #ff8787; }
   .combo-badge { color: var(--warn-border); }
   #delta-table tbody tr.binding-row { background: rgba(110, 160, 255, 0.13); }

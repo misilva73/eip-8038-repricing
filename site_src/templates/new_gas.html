@@ -11,23 +11,24 @@
 {{ intro_html | safe }}
 
 <h2 id="proposed-gas-parameters">Proposed gas parameters</h2>
-{# Re-rendered from the parsed rows (not the wholesale markdown) so the Δ columns
-   carry the same green=down / red=up coloring as the Trends "Since last run" table.
-   Sign comes straight from the report's diff strings (e.g. "+655", "-12%"). #}
+{# Re-rendered from the parsed rows (not the wholesale markdown) so the Δ% column
+   carries the same green=down / red=up coloring as the Trends "Since last run"
+   table. Sign comes straight from the report's diff strings (e.g. "+655", "-12%");
+   a moderate increase (0% < Δ% ≤ 100%) is tinted yellow rather than full red. #}
 <table id="proposed-table">
   <thead>
     <tr>
-      <th>Gas param</th><th>Current gas</th><th>Proposed gas</th><th>Δ</th><th>Δ%</th>
+      <th>Gas param</th><th>Current gas</th><th>Proposed gas</th><th>Δ%</th>
     </tr>
   </thead>
   <tbody>
     {% for r in proposed %}
-    {% set cls = "delta-down" if r.diff.startswith("-") else ("delta-up" if r.diff.startswith("+") else "") %}
+    {% set pct = r.diff_pct | replace("%", "") | replace("+", "") | replace(",", "") | float %}
+    {% set cls = "delta-down" if r.diff.startswith("-") else (("delta-mid" if pct <= 100 else "delta-up") if r.diff.startswith("+") else "") %}
     <tr>
       <td>{{ r.param }}</td>
       <td>{{ r.current }}</td>
       <td>{{ r.proposed }}</td>
-      <td class="{{ cls }}">{{ r.diff }}</td>
       <td class="{{ cls }}">{{ r.diff_pct }}</td>
     </tr>
     {% endfor %}
