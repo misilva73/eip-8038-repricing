@@ -654,131 +654,6 @@ Notes: Non-negative least squares with bootstrap inference (1000 iterations)
 
 ## BALANCE
 
-### test_account_access — combo `BALANCE_AccountMode.EXISTING_CONTRACT`
-
-| client | nobs | R² | target_coef (ms) | p-value | 95% CI |
-| --- | --- | --- | --- | --- | --- |
-| `erigon` | 33 | 0.9025 | 0.03579 | 1.00e-03 | [0.03095, 0.03932] |
-| `geth` | 99 | 0.6699 | 0.03448 | 1.00e-03 | [0.02979, 0.03967] |
-| `nethermind` | 66 | 0.9075 | 0.01947 | 1.00e-03 | [0.01788, 0.02121] |
-| `reth` | 66 | 0.7652 | 0.03025 | 1.00e-03 | [0.02639, 0.03386] |
-
-<details><summary>erigon — NNLS regression summary</summary>
-
-```
-==============================================================================
-                           NNLS Regression Results                            
-==============================================================================
-Dep. Variable:          test_runtime_ms              R-squared:          0.902
-Model:                  NNLS                    Adj. R-squared:          0.899
-No. Observations:       33                                RMSE:         244.80
-Df Residuals:           31                                 MAE:         207.17
-Df Model:               1      
-==============================================================================
-                      coef     std err     P-value      [0.025      0.975]
-------------------------------------------------------------------------------
-         const    431.4027    150.4979       0.001    172.0663    782.1404
-       opcount      0.0358      0.0020       0.001      0.0310      0.0393
-==============================================================================
-Notes: Non-negative least squares with bootstrap inference (1000 iterations)
-==============================================================================
-```
-
-![](figs/runtime/BALANCE__test_account_access__BALANCE_AccountMode_EXISTING_CONTRACT__erigon__regression.png)
-
-![](figs/runtime/BALANCE__test_account_access__BALANCE_AccountMode_EXISTING_CONTRACT__erigon__bootstrap.png)
-
-![](figs/runtime/BALANCE__test_account_access__BALANCE_AccountMode_EXISTING_CONTRACT__erigon__diagnostics.png)
-
-</details>
-
-<details><summary>geth — NNLS regression summary</summary>
-
-```
-==============================================================================
-                           NNLS Regression Results                            
-==============================================================================
-Dep. Variable:          test_runtime_ms              R-squared:          0.670
-Model:                  NNLS                    Adj. R-squared:          0.666
-No. Observations:       99                                RMSE:         503.53
-Df Residuals:           97                                 MAE:         411.95
-Df Model:               1      
-==============================================================================
-                      coef     std err     P-value      [0.025      0.975]
-------------------------------------------------------------------------------
-         const   1471.9648    165.0201       0.001   1114.7946   1765.4452
-       opcount      0.0345      0.0025       0.001      0.0298      0.0397
-==============================================================================
-Notes: Non-negative least squares with bootstrap inference (1000 iterations)
-==============================================================================
-```
-
-![](figs/runtime/BALANCE__test_account_access__BALANCE_AccountMode_EXISTING_CONTRACT__geth__regression.png)
-
-![](figs/runtime/BALANCE__test_account_access__BALANCE_AccountMode_EXISTING_CONTRACT__geth__bootstrap.png)
-
-![](figs/runtime/BALANCE__test_account_access__BALANCE_AccountMode_EXISTING_CONTRACT__geth__diagnostics.png)
-
-</details>
-
-<details><summary>nethermind — NNLS regression summary</summary>
-
-```
-==============================================================================
-                           NNLS Regression Results                            
-==============================================================================
-Dep. Variable:          test_runtime_ms              R-squared:          0.908
-Model:                  NNLS                    Adj. R-squared:          0.906
-No. Observations:       66                                RMSE:         129.31
-Df Residuals:           64                                 MAE:          98.55
-Df Model:               1      
-==============================================================================
-                      coef     std err     P-value      [0.025      0.975]
-------------------------------------------------------------------------------
-         const    206.2844     47.5973       0.001    112.3036    302.4987
-       opcount      0.0195      0.0008       0.001      0.0179      0.0212
-==============================================================================
-Notes: Non-negative least squares with bootstrap inference (1000 iterations)
-==============================================================================
-```
-
-![](figs/runtime/BALANCE__test_account_access__BALANCE_AccountMode_EXISTING_CONTRACT__nethermind__regression.png)
-
-![](figs/runtime/BALANCE__test_account_access__BALANCE_AccountMode_EXISTING_CONTRACT__nethermind__bootstrap.png)
-
-![](figs/runtime/BALANCE__test_account_access__BALANCE_AccountMode_EXISTING_CONTRACT__nethermind__diagnostics.png)
-
-</details>
-
-<details><summary>reth — NNLS regression summary</summary>
-
-```
-==============================================================================
-                           NNLS Regression Results                            
-==============================================================================
-Dep. Variable:          test_runtime_ms              R-squared:          0.765
-Model:                  NNLS                    Adj. R-squared:          0.762
-No. Observations:       66                                RMSE:         348.56
-Df Residuals:           64                                 MAE:         246.58
-Df Model:               1      
-==============================================================================
-                      coef     std err     P-value      [0.025      0.975]
-------------------------------------------------------------------------------
-         const    857.8989    138.2550       0.001    593.5619   1134.1225
-       opcount      0.0302      0.0019       0.001      0.0264      0.0339
-==============================================================================
-Notes: Non-negative least squares with bootstrap inference (1000 iterations)
-==============================================================================
-```
-
-![](figs/runtime/BALANCE__test_account_access__BALANCE_AccountMode_EXISTING_CONTRACT__reth__regression.png)
-
-![](figs/runtime/BALANCE__test_account_access__BALANCE_AccountMode_EXISTING_CONTRACT__reth__bootstrap.png)
-
-![](figs/runtime/BALANCE__test_account_access__BALANCE_AccountMode_EXISTING_CONTRACT__reth__diagnostics.png)
-
-</details>
-
 ### test_account_access — combo `BALANCE_AccountMode.EXISTING_EOA`
 
 | client | nobs | R² | target_coef (ms) | p-value | 95% CI |
@@ -904,7 +779,257 @@ Notes: Non-negative least squares with bootstrap inference (1000 iterations)
 
 </details>
 
-### test_account_access — combo `BALANCE_AccountMode.NON_EXISTING_ACCOUNT`
+### test_account_access — combo `BALANCE_AccountMode.NON_EXISTING_ACCOUNT` — `presets[cold_account_nocode_access]`
+
+| client | nobs | R² | target_coef (ms) | p-value | 95% CI |
+| --- | --- | --- | --- | --- | --- |
+| `erigon` | 33 | 0.9982 | 0.009107 | 1.00e-03 | [0.008992, 0.009125] |
+| `geth` | 99 | 0.7244 | 0.02812 | 1.00e-03 | [0.02486, 0.03173] |
+| `nethermind` | 66 | 0.8335 | 0.004969 | 1.00e-03 | [0.00442, 0.00545] |
+| `reth` | 66 | 0.9749 | 0.000919 | 1.00e-03 | [0.0008808, 0.0009565] |
+
+<details><summary>erigon — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.998
+Model:                  NNLS                    Adj. R-squared:          0.998
+No. Observations:       33                                RMSE:           9.13
+Df Residuals:           31                                 MAE:           7.31
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const      0.0000      3.0580       1.000      0.0000      9.7998
+       opcount      0.0091      0.0000       0.001      0.0090      0.0091
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/BALANCE__test_account_access__BALANCE_AccountMode_NON_EXISTING_ACCOUNT__erigon__regression.png)
+
+![](figs/runtime/BALANCE__test_account_access__BALANCE_AccountMode_NON_EXISTING_ACCOUNT__erigon__bootstrap.png)
+
+![](figs/runtime/BALANCE__test_account_access__BALANCE_AccountMode_NON_EXISTING_ACCOUNT__erigon__diagnostics.png)
+
+</details>
+
+<details><summary>geth — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.724
+Model:                  NNLS                    Adj. R-squared:          0.722
+No. Observations:       99                                RMSE:         414.56
+Df Residuals:           97                                 MAE:         324.65
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const   1767.2473    147.5042       0.001   1445.8292   2049.1644
+       opcount      0.0281      0.0017       0.001      0.0249      0.0317
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/BALANCE__test_account_access__BALANCE_AccountMode_NON_EXISTING_ACCOUNT__geth__regression.png)
+
+![](figs/runtime/BALANCE__test_account_access__BALANCE_AccountMode_NON_EXISTING_ACCOUNT__geth__bootstrap.png)
+
+![](figs/runtime/BALANCE__test_account_access__BALANCE_AccountMode_NON_EXISTING_ACCOUNT__geth__diagnostics.png)
+
+</details>
+
+<details><summary>nethermind — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.833
+Model:                  NNLS                    Adj. R-squared:          0.831
+No. Observations:       66                                RMSE:          53.08
+Df Residuals:           64                                 MAE:          35.04
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     29.4940     16.7615       0.050      0.0000     64.0963
+       opcount      0.0050      0.0003       0.001      0.0044      0.0054
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/BALANCE__test_account_access__BALANCE_AccountMode_NON_EXISTING_ACCOUNT__nethermind__regression.png)
+
+![](figs/runtime/BALANCE__test_account_access__BALANCE_AccountMode_NON_EXISTING_ACCOUNT__nethermind__bootstrap.png)
+
+![](figs/runtime/BALANCE__test_account_access__BALANCE_AccountMode_NON_EXISTING_ACCOUNT__nethermind__diagnostics.png)
+
+</details>
+
+<details><summary>reth — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.975
+Model:                  NNLS                    Adj. R-squared:          0.975
+No. Observations:       66                                RMSE:           3.52
+Df Residuals:           64                                 MAE:           2.83
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     31.2516      1.4390       0.001     28.4345     34.1966
+       opcount      0.0009      0.0000       0.001      0.0009      0.0010
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/BALANCE__test_account_access__BALANCE_AccountMode_NON_EXISTING_ACCOUNT__reth__regression.png)
+
+![](figs/runtime/BALANCE__test_account_access__BALANCE_AccountMode_NON_EXISTING_ACCOUNT__reth__bootstrap.png)
+
+![](figs/runtime/BALANCE__test_account_access__BALANCE_AccountMode_NON_EXISTING_ACCOUNT__reth__diagnostics.png)
+
+</details>
+
+### test_account_access — combo `BALANCE_AccountMode.EXISTING_CONTRACT`
+
+| client | nobs | R² | target_coef (ms) | p-value | 95% CI |
+| --- | --- | --- | --- | --- | --- |
+| `erigon` | 33 | 0.9025 | 0.03579 | 1.00e-03 | [0.03095, 0.03932] |
+| `geth` | 99 | 0.6699 | 0.03448 | 1.00e-03 | [0.02979, 0.03967] |
+| `nethermind` | 66 | 0.9075 | 0.01947 | 1.00e-03 | [0.01788, 0.02121] |
+| `reth` | 66 | 0.7652 | 0.03025 | 1.00e-03 | [0.02639, 0.03386] |
+
+<details><summary>erigon — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.902
+Model:                  NNLS                    Adj. R-squared:          0.899
+No. Observations:       33                                RMSE:         244.80
+Df Residuals:           31                                 MAE:         207.17
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const    431.4027    150.4979       0.001    172.0663    782.1404
+       opcount      0.0358      0.0020       0.001      0.0310      0.0393
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/BALANCE__test_account_access__BALANCE_AccountMode_EXISTING_CONTRACT__erigon__regression.png)
+
+![](figs/runtime/BALANCE__test_account_access__BALANCE_AccountMode_EXISTING_CONTRACT__erigon__bootstrap.png)
+
+![](figs/runtime/BALANCE__test_account_access__BALANCE_AccountMode_EXISTING_CONTRACT__erigon__diagnostics.png)
+
+</details>
+
+<details><summary>geth — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.670
+Model:                  NNLS                    Adj. R-squared:          0.666
+No. Observations:       99                                RMSE:         503.53
+Df Residuals:           97                                 MAE:         411.95
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const   1471.9648    165.0201       0.001   1114.7946   1765.4452
+       opcount      0.0345      0.0025       0.001      0.0298      0.0397
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/BALANCE__test_account_access__BALANCE_AccountMode_EXISTING_CONTRACT__geth__regression.png)
+
+![](figs/runtime/BALANCE__test_account_access__BALANCE_AccountMode_EXISTING_CONTRACT__geth__bootstrap.png)
+
+![](figs/runtime/BALANCE__test_account_access__BALANCE_AccountMode_EXISTING_CONTRACT__geth__diagnostics.png)
+
+</details>
+
+<details><summary>nethermind — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.908
+Model:                  NNLS                    Adj. R-squared:          0.906
+No. Observations:       66                                RMSE:         129.31
+Df Residuals:           64                                 MAE:          98.55
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const    206.2844     47.5973       0.001    112.3036    302.4987
+       opcount      0.0195      0.0008       0.001      0.0179      0.0212
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/BALANCE__test_account_access__BALANCE_AccountMode_EXISTING_CONTRACT__nethermind__regression.png)
+
+![](figs/runtime/BALANCE__test_account_access__BALANCE_AccountMode_EXISTING_CONTRACT__nethermind__bootstrap.png)
+
+![](figs/runtime/BALANCE__test_account_access__BALANCE_AccountMode_EXISTING_CONTRACT__nethermind__diagnostics.png)
+
+</details>
+
+<details><summary>reth — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.765
+Model:                  NNLS                    Adj. R-squared:          0.762
+No. Observations:       66                                RMSE:         348.56
+Df Residuals:           64                                 MAE:         246.58
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const    857.8989    138.2550       0.001    593.5619   1134.1225
+       opcount      0.0302      0.0019       0.001      0.0264      0.0339
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/BALANCE__test_account_access__BALANCE_AccountMode_EXISTING_CONTRACT__reth__regression.png)
+
+![](figs/runtime/BALANCE__test_account_access__BALANCE_AccountMode_EXISTING_CONTRACT__reth__bootstrap.png)
+
+![](figs/runtime/BALANCE__test_account_access__BALANCE_AccountMode_EXISTING_CONTRACT__reth__diagnostics.png)
+
+</details>
+
+### test_account_access — combo `BALANCE_AccountMode.NON_EXISTING_ACCOUNT` — `presets[cold_account_code_access]`
 
 | client | nobs | R² | target_coef (ms) | p-value | 95% CI |
 | --- | --- | --- | --- | --- | --- |
@@ -1156,135 +1281,6 @@ Notes: Non-negative least squares with bootstrap inference (1000 iterations)
 
 ## CALL
 
-### test_account_access — combo `CALL_AccountMode.EXISTING_CONTRACT`
-
-| client | nobs | R² | target_coef (ms) | p-value | 95% CI |
-| --- | --- | --- | --- | --- | --- |
-| `erigon` | 66 | 0.9778 | 0.002226 | 4.22e-01 | [0, 0.03503] |
-| `geth` | 198 | 0.9186 | 0.04709 | 1.00e-03 | [0.0447, 0.0494] |
-| `nethermind` | 132 | 0.9229 | 0.02104 | 1.00e-03 | [0.01999, 0.02229] |
-| `reth` | 132 | 0.9769 | 0.02993 | 1.00e-03 | [0.02808, 0.03205] |
-
-<details><summary>erigon — NNLS regression summary</summary>
-
-```
-==============================================================================
-                           NNLS Regression Results                            
-==============================================================================
-Dep. Variable:          test_runtime_ms              R-squared:          0.978
-Model:                  NNLS                    Adj. R-squared:          0.977
-No. Observations:       66                                RMSE:        2327.58
-Df Residuals:           63                                 MAE:        1828.71
-Df Model:               2      
-==============================================================================
-                      coef     std err     P-value      [0.025      0.975]
-------------------------------------------------------------------------------
-         const   7516.5306    841.9884       0.001   5181.4787   8260.9271
-       opcount      0.0022      0.0108       0.422      0.0000      0.0350
-        update      1.3928      0.0410       0.001      1.3355      1.4933
-==============================================================================
-Notes: Non-negative least squares with bootstrap inference (1000 iterations)
-==============================================================================
-```
-
-![](figs/runtime/CALL__test_account_access__CALL_AccountMode_EXISTING_CONTRACT__erigon__regression.png)
-
-![](figs/runtime/CALL__test_account_access__CALL_AccountMode_EXISTING_CONTRACT__erigon__bootstrap.png)
-
-![](figs/runtime/CALL__test_account_access__CALL_AccountMode_EXISTING_CONTRACT__erigon__diagnostics.png)
-
-</details>
-
-<details><summary>geth — NNLS regression summary</summary>
-
-```
-==============================================================================
-                           NNLS Regression Results                            
-==============================================================================
-Dep. Variable:          test_runtime_ms              R-squared:          0.919
-Model:                  NNLS                    Adj. R-squared:          0.918
-No. Observations:       198                               RMSE:         300.31
-Df Residuals:           195                                MAE:         226.37
-Df Model:               2      
-==============================================================================
-                      coef     std err     P-value      [0.025      0.975]
-------------------------------------------------------------------------------
-         const    928.2338     66.1710       0.001    800.9540   1058.0846
-       opcount      0.0471      0.0012       0.001      0.0447      0.0494
-        update      0.0395      0.0024       0.001      0.0351      0.0441
-==============================================================================
-Notes: Non-negative least squares with bootstrap inference (1000 iterations)
-==============================================================================
-```
-
-![](figs/runtime/CALL__test_account_access__CALL_AccountMode_EXISTING_CONTRACT__geth__regression.png)
-
-![](figs/runtime/CALL__test_account_access__CALL_AccountMode_EXISTING_CONTRACT__geth__bootstrap.png)
-
-![](figs/runtime/CALL__test_account_access__CALL_AccountMode_EXISTING_CONTRACT__geth__diagnostics.png)
-
-</details>
-
-<details><summary>nethermind — NNLS regression summary</summary>
-
-```
-==============================================================================
-                           NNLS Regression Results                            
-==============================================================================
-Dep. Variable:          test_runtime_ms              R-squared:          0.923
-Model:                  NNLS                    Adj. R-squared:          0.922
-No. Observations:       132                               RMSE:         119.02
-Df Residuals:           129                                MAE:          88.37
-Df Model:               2      
-==============================================================================
-                      coef     std err     P-value      [0.025      0.975]
-------------------------------------------------------------------------------
-         const    213.6951     30.2794       0.001    152.3350    273.0426
-       opcount      0.0210      0.0006       0.001      0.0200      0.0223
-        update      0.0379      0.0012       0.001      0.0355      0.0401
-==============================================================================
-Notes: Non-negative least squares with bootstrap inference (1000 iterations)
-==============================================================================
-```
-
-![](figs/runtime/CALL__test_account_access__CALL_AccountMode_EXISTING_CONTRACT__nethermind__regression.png)
-
-![](figs/runtime/CALL__test_account_access__CALL_AccountMode_EXISTING_CONTRACT__nethermind__bootstrap.png)
-
-![](figs/runtime/CALL__test_account_access__CALL_AccountMode_EXISTING_CONTRACT__nethermind__diagnostics.png)
-
-</details>
-
-<details><summary>reth — NNLS regression summary</summary>
-
-```
-==============================================================================
-                           NNLS Regression Results                            
-==============================================================================
-Dep. Variable:          test_runtime_ms              R-squared:          0.977
-Model:                  NNLS                    Adj. R-squared:          0.977
-No. Observations:       132                               RMSE:         179.10
-Df Residuals:           129                                MAE:         131.70
-Df Model:               2      
-==============================================================================
-                      coef     std err     P-value      [0.025      0.975]
-------------------------------------------------------------------------------
-         const    654.7855     71.5453       0.001    504.3260    784.3286
-       opcount      0.0299      0.0010       0.001      0.0281      0.0321
-        update      0.1398      0.0022       0.001      0.1359      0.1444
-==============================================================================
-Notes: Non-negative least squares with bootstrap inference (1000 iterations)
-==============================================================================
-```
-
-![](figs/runtime/CALL__test_account_access__CALL_AccountMode_EXISTING_CONTRACT__reth__regression.png)
-
-![](figs/runtime/CALL__test_account_access__CALL_AccountMode_EXISTING_CONTRACT__reth__bootstrap.png)
-
-![](figs/runtime/CALL__test_account_access__CALL_AccountMode_EXISTING_CONTRACT__reth__diagnostics.png)
-
-</details>
-
 ### test_account_access — combo `CALL_AccountMode.EXISTING_EOA`
 
 | client | nobs | R² | target_coef (ms) | p-value | 95% CI |
@@ -1414,7 +1410,265 @@ Notes: Non-negative least squares with bootstrap inference (1000 iterations)
 
 </details>
 
-### test_account_access — combo `CALL_AccountMode.NON_EXISTING_ACCOUNT`
+### test_account_access — combo `CALL_AccountMode.NON_EXISTING_ACCOUNT` — `presets[cold_account_nocode_access]`
+
+| client | nobs | R² | target_coef (ms) | p-value | 95% CI |
+| --- | --- | --- | --- | --- | --- |
+| `erigon` | 66 | 0.9067 | 0.005981 | 1.00e-03 | [0.00316, 0.008477] |
+| `geth` | 198 | 0.9456 | 0.04749 | 1.00e-03 | [0.04599, 0.04913] |
+| `nethermind` | 132 | 0.9386 | 0.00632 | 1.00e-03 | [0.005754, 0.006926] |
+| `reth` | 132 | 0.2694 | 0.0005943 | 1.00e-03 | [0.0003779, 0.0008136] |
+
+<details><summary>erigon — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.907
+Model:                  NNLS                    Adj. R-squared:          0.904
+No. Observations:       66                                RMSE:         275.14
+Df Residuals:           63                                 MAE:         204.43
+Df Model:               2      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const    352.6850    110.2815       0.001    148.8835    598.2957
+       opcount      0.0060      0.0013       0.001      0.0032      0.0085
+        update      1.8394      0.1261       0.001      1.5945      2.0858
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/CALL__test_account_access__CALL_AccountMode_NON_EXISTING_ACCOUNT__erigon__regression.png)
+
+![](figs/runtime/CALL__test_account_access__CALL_AccountMode_NON_EXISTING_ACCOUNT__erigon__bootstrap.png)
+
+![](figs/runtime/CALL__test_account_access__CALL_AccountMode_NON_EXISTING_ACCOUNT__erigon__diagnostics.png)
+
+</details>
+
+<details><summary>geth — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.946
+Model:                  NNLS                    Adj. R-squared:          0.945
+No. Observations:       198                               RMSE:         463.32
+Df Residuals:           195                                MAE:         318.03
+Df Model:               2      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const    280.0716     28.0721       0.001    230.9617    337.9161
+       opcount      0.0475      0.0008       0.001      0.0460      0.0491
+        update      0.0000      0.0000       1.000      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/CALL__test_account_access__CALL_AccountMode_NON_EXISTING_ACCOUNT__geth__regression.png)
+
+![](figs/runtime/CALL__test_account_access__CALL_AccountMode_NON_EXISTING_ACCOUNT__geth__bootstrap.png)
+
+![](figs/runtime/CALL__test_account_access__CALL_AccountMode_NON_EXISTING_ACCOUNT__geth__diagnostics.png)
+
+</details>
+
+<details><summary>nethermind — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.939
+Model:                  NNLS                    Adj. R-squared:          0.938
+No. Observations:       132                               RMSE:          61.82
+Df Residuals:           129                                MAE:          28.16
+Df Model:               2      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     20.0581     11.8459       0.057      0.0000     44.6826
+       opcount      0.0063      0.0003       0.001      0.0058      0.0069
+        update      0.0328      0.0101       0.001      0.0117      0.0498
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/CALL__test_account_access__CALL_AccountMode_NON_EXISTING_ACCOUNT__nethermind__regression.png)
+
+![](figs/runtime/CALL__test_account_access__CALL_AccountMode_NON_EXISTING_ACCOUNT__nethermind__bootstrap.png)
+
+![](figs/runtime/CALL__test_account_access__CALL_AccountMode_NON_EXISTING_ACCOUNT__nethermind__diagnostics.png)
+
+</details>
+
+<details><summary>reth — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.269
+Model:                  NNLS                    Adj. R-squared:          0.258
+No. Observations:       132                               RMSE:          22.26
+Df Residuals:           129                                MAE:          15.29
+Df Model:               2      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     62.0343      9.2890       0.001     43.9659     79.4191
+       opcount      0.0006      0.0001       0.001      0.0004      0.0008
+        update      0.0349      0.0072       0.001      0.0205      0.0483
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/CALL__test_account_access__CALL_AccountMode_NON_EXISTING_ACCOUNT__reth__regression.png)
+
+![](figs/runtime/CALL__test_account_access__CALL_AccountMode_NON_EXISTING_ACCOUNT__reth__bootstrap.png)
+
+![](figs/runtime/CALL__test_account_access__CALL_AccountMode_NON_EXISTING_ACCOUNT__reth__diagnostics.png)
+
+</details>
+
+### test_account_access — combo `CALL_AccountMode.EXISTING_CONTRACT`
+
+| client | nobs | R² | target_coef (ms) | p-value | 95% CI |
+| --- | --- | --- | --- | --- | --- |
+| `erigon` | 66 | 0.9778 | 0.002226 | 4.22e-01 | [0, 0.03503] |
+| `geth` | 198 | 0.9186 | 0.04709 | 1.00e-03 | [0.0447, 0.0494] |
+| `nethermind` | 132 | 0.9229 | 0.02104 | 1.00e-03 | [0.01999, 0.02229] |
+| `reth` | 132 | 0.9769 | 0.02993 | 1.00e-03 | [0.02808, 0.03205] |
+
+<details><summary>erigon — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.978
+Model:                  NNLS                    Adj. R-squared:          0.977
+No. Observations:       66                                RMSE:        2327.58
+Df Residuals:           63                                 MAE:        1828.71
+Df Model:               2      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const   7516.5306    841.9884       0.001   5181.4787   8260.9271
+       opcount      0.0022      0.0108       0.422      0.0000      0.0350
+        update      1.3928      0.0410       0.001      1.3355      1.4933
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/CALL__test_account_access__CALL_AccountMode_EXISTING_CONTRACT__erigon__regression.png)
+
+![](figs/runtime/CALL__test_account_access__CALL_AccountMode_EXISTING_CONTRACT__erigon__bootstrap.png)
+
+![](figs/runtime/CALL__test_account_access__CALL_AccountMode_EXISTING_CONTRACT__erigon__diagnostics.png)
+
+</details>
+
+<details><summary>geth — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.919
+Model:                  NNLS                    Adj. R-squared:          0.918
+No. Observations:       198                               RMSE:         300.31
+Df Residuals:           195                                MAE:         226.37
+Df Model:               2      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const    928.2338     66.1710       0.001    800.9540   1058.0846
+       opcount      0.0471      0.0012       0.001      0.0447      0.0494
+        update      0.0395      0.0024       0.001      0.0351      0.0441
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/CALL__test_account_access__CALL_AccountMode_EXISTING_CONTRACT__geth__regression.png)
+
+![](figs/runtime/CALL__test_account_access__CALL_AccountMode_EXISTING_CONTRACT__geth__bootstrap.png)
+
+![](figs/runtime/CALL__test_account_access__CALL_AccountMode_EXISTING_CONTRACT__geth__diagnostics.png)
+
+</details>
+
+<details><summary>nethermind — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.923
+Model:                  NNLS                    Adj. R-squared:          0.922
+No. Observations:       132                               RMSE:         119.02
+Df Residuals:           129                                MAE:          88.37
+Df Model:               2      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const    213.6951     30.2794       0.001    152.3350    273.0426
+       opcount      0.0210      0.0006       0.001      0.0200      0.0223
+        update      0.0379      0.0012       0.001      0.0355      0.0401
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/CALL__test_account_access__CALL_AccountMode_EXISTING_CONTRACT__nethermind__regression.png)
+
+![](figs/runtime/CALL__test_account_access__CALL_AccountMode_EXISTING_CONTRACT__nethermind__bootstrap.png)
+
+![](figs/runtime/CALL__test_account_access__CALL_AccountMode_EXISTING_CONTRACT__nethermind__diagnostics.png)
+
+</details>
+
+<details><summary>reth — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.977
+Model:                  NNLS                    Adj. R-squared:          0.977
+No. Observations:       132                               RMSE:         179.10
+Df Residuals:           129                                MAE:         131.70
+Df Model:               2      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const    654.7855     71.5453       0.001    504.3260    784.3286
+       opcount      0.0299      0.0010       0.001      0.0281      0.0321
+        update      0.1398      0.0022       0.001      0.1359      0.1444
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/CALL__test_account_access__CALL_AccountMode_EXISTING_CONTRACT__reth__regression.png)
+
+![](figs/runtime/CALL__test_account_access__CALL_AccountMode_EXISTING_CONTRACT__reth__bootstrap.png)
+
+![](figs/runtime/CALL__test_account_access__CALL_AccountMode_EXISTING_CONTRACT__reth__diagnostics.png)
+
+</details>
+
+### test_account_access — combo `CALL_AccountMode.NON_EXISTING_ACCOUNT` — `presets[cold_account_code_access]`
 
 | client | nobs | R² | target_coef (ms) | p-value | 95% CI |
 | --- | --- | --- | --- | --- | --- |
@@ -1670,135 +1924,6 @@ Notes: Non-negative least squares with bootstrap inference (1000 iterations)
 
 ## CALLCODE
 
-### test_account_access — combo `CALLCODE_AccountMode.EXISTING_CONTRACT`
-
-| client | nobs | R² | target_coef (ms) | p-value | 95% CI |
-| --- | --- | --- | --- | --- | --- |
-| `erigon` | 66 | 0.9579 | 0.1024 | 1.00e-03 | [0.09831, 0.1071] |
-| `geth` | 198 | 0.8836 | 0.04716 | 1.00e-03 | [0.04498, 0.04958] |
-| `nethermind` | 132 | 0.9665 | 0.0231 | 1.00e-03 | [0.0221, 0.02415] |
-| `reth` | 132 | 0.9009 | 0.03764 | 1.00e-03 | [0.03666, 0.03867] |
-
-<details><summary>erigon — NNLS regression summary</summary>
-
-```
-==============================================================================
-                           NNLS Regression Results                            
-==============================================================================
-Dep. Variable:          test_runtime_ms              R-squared:          0.958
-Model:                  NNLS                    Adj. R-squared:          0.957
-No. Observations:       66                                RMSE:         572.60
-Df Residuals:           63                                 MAE:         398.34
-Df Model:               2      
-==============================================================================
-                      coef     std err     P-value      [0.025      0.975]
-------------------------------------------------------------------------------
-         const    318.3476     81.6735       0.001    155.6784    479.9110
-       opcount      0.1024      0.0022       0.001      0.0983      0.1071
-        update      0.0000      0.0000       1.000      0.0000      0.0000
-==============================================================================
-Notes: Non-negative least squares with bootstrap inference (1000 iterations)
-==============================================================================
-```
-
-![](figs/runtime/CALLCODE__test_account_access__CALLCODE_AccountMode_EXISTING_CONTRACT__erigon__regression.png)
-
-![](figs/runtime/CALLCODE__test_account_access__CALLCODE_AccountMode_EXISTING_CONTRACT__erigon__bootstrap.png)
-
-![](figs/runtime/CALLCODE__test_account_access__CALLCODE_AccountMode_EXISTING_CONTRACT__erigon__diagnostics.png)
-
-</details>
-
-<details><summary>geth — NNLS regression summary</summary>
-
-```
-==============================================================================
-                           NNLS Regression Results                            
-==============================================================================
-Dep. Variable:          test_runtime_ms              R-squared:          0.884
-Model:                  NNLS                    Adj. R-squared:          0.882
-No. Observations:       198                               RMSE:         456.88
-Df Residuals:           195                                MAE:         334.86
-Df Model:               2      
-==============================================================================
-                      coef     std err     P-value      [0.025      0.975]
-------------------------------------------------------------------------------
-         const    594.6527     44.5881       0.001    507.2094    691.3841
-       opcount      0.0472      0.0011       0.001      0.0450      0.0496
-        update      0.0000      0.0000       1.000      0.0000      0.0000
-==============================================================================
-Notes: Non-negative least squares with bootstrap inference (1000 iterations)
-==============================================================================
-```
-
-![](figs/runtime/CALLCODE__test_account_access__CALLCODE_AccountMode_EXISTING_CONTRACT__geth__regression.png)
-
-![](figs/runtime/CALLCODE__test_account_access__CALLCODE_AccountMode_EXISTING_CONTRACT__geth__bootstrap.png)
-
-![](figs/runtime/CALLCODE__test_account_access__CALLCODE_AccountMode_EXISTING_CONTRACT__geth__diagnostics.png)
-
-</details>
-
-<details><summary>nethermind — NNLS regression summary</summary>
-
-```
-==============================================================================
-                           NNLS Regression Results                            
-==============================================================================
-Dep. Variable:          test_runtime_ms              R-squared:          0.967
-Model:                  NNLS                    Adj. R-squared:          0.966
-No. Observations:       132                               RMSE:         114.78
-Df Residuals:           129                                MAE:          83.01
-Df Model:               2      
-==============================================================================
-                      coef     std err     P-value      [0.025      0.975]
-------------------------------------------------------------------------------
-         const     50.8720     16.1269       0.001     17.7687     82.5702
-       opcount      0.0231      0.0005       0.001      0.0221      0.0242
-        update      0.0000      0.0000       1.000      0.0000      0.0000
-==============================================================================
-Notes: Non-negative least squares with bootstrap inference (1000 iterations)
-==============================================================================
-```
-
-![](figs/runtime/CALLCODE__test_account_access__CALLCODE_AccountMode_EXISTING_CONTRACT__nethermind__regression.png)
-
-![](figs/runtime/CALLCODE__test_account_access__CALLCODE_AccountMode_EXISTING_CONTRACT__nethermind__bootstrap.png)
-
-![](figs/runtime/CALLCODE__test_account_access__CALLCODE_AccountMode_EXISTING_CONTRACT__nethermind__diagnostics.png)
-
-</details>
-
-<details><summary>reth — NNLS regression summary</summary>
-
-```
-==============================================================================
-                           NNLS Regression Results                            
-==============================================================================
-Dep. Variable:          test_runtime_ms              R-squared:          0.901
-Model:                  NNLS                    Adj. R-squared:          0.899
-No. Observations:       132                               RMSE:         370.81
-Df Residuals:           129                                MAE:         286.70
-Df Model:               2      
-==============================================================================
-                      coef     std err     P-value      [0.025      0.975]
-------------------------------------------------------------------------------
-         const      0.0000      0.0000       1.000      0.0000      0.0000
-       opcount      0.0376      0.0005       0.001      0.0367      0.0387
-        update      0.0000      0.0000       1.000      0.0000      0.0000
-==============================================================================
-Notes: Non-negative least squares with bootstrap inference (1000 iterations)
-==============================================================================
-```
-
-![](figs/runtime/CALLCODE__test_account_access__CALLCODE_AccountMode_EXISTING_CONTRACT__reth__regression.png)
-
-![](figs/runtime/CALLCODE__test_account_access__CALLCODE_AccountMode_EXISTING_CONTRACT__reth__bootstrap.png)
-
-![](figs/runtime/CALLCODE__test_account_access__CALLCODE_AccountMode_EXISTING_CONTRACT__reth__diagnostics.png)
-
-</details>
-
 ### test_account_access — combo `CALLCODE_AccountMode.EXISTING_EOA`
 
 | client | nobs | R² | target_coef (ms) | p-value | 95% CI |
@@ -1928,7 +2053,265 @@ Notes: Non-negative least squares with bootstrap inference (1000 iterations)
 
 </details>
 
-### test_account_access — combo `CALLCODE_AccountMode.NON_EXISTING_ACCOUNT`
+### test_account_access — combo `CALLCODE_AccountMode.NON_EXISTING_ACCOUNT` — `presets[cold_account_nocode_access]`
+
+| client | nobs | R² | target_coef (ms) | p-value | 95% CI |
+| --- | --- | --- | --- | --- | --- |
+| `erigon` | 66 | 0.9414 | 0.0093 | 1.00e-03 | [0.008991, 0.009481] |
+| `geth` | 198 | 0.8675 | 0.05059 | 1.00e-03 | [0.0491, 0.05219] |
+| `nethermind` | 132 | 0.9353 | 0.006304 | 1.00e-03 | [0.006083, 0.006521] |
+| `reth` | 132 | 0.9109 | 0.001276 | 1.00e-03 | [0.001246, 0.001306] |
+
+<details><summary>erigon — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.941
+Model:                  NNLS                    Adj. R-squared:          0.940
+No. Observations:       66                                RMSE:          86.42
+Df Residuals:           63                                 MAE:          69.46
+Df Model:               2      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const      0.0000      0.0000       1.000      0.0000      0.0000
+       opcount      0.0093      0.0001       0.001      0.0090      0.0095
+        update      0.0000      0.0000       1.000      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/CALLCODE__test_account_access__CALLCODE_AccountMode_NON_EXISTING_ACCOUNT__erigon__regression.png)
+
+![](figs/runtime/CALLCODE__test_account_access__CALLCODE_AccountMode_NON_EXISTING_ACCOUNT__erigon__bootstrap.png)
+
+![](figs/runtime/CALLCODE__test_account_access__CALLCODE_AccountMode_NON_EXISTING_ACCOUNT__erigon__diagnostics.png)
+
+</details>
+
+<details><summary>geth — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.868
+Model:                  NNLS                    Adj. R-squared:          0.866
+No. Observations:       198                               RMSE:         678.42
+Df Residuals:           195                                MAE:         541.87
+Df Model:               2      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const      0.0000      0.0000       1.000      0.0000      0.0000
+       opcount      0.0506      0.0008       0.001      0.0491      0.0522
+        update      0.0000      0.0000       1.000      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/CALLCODE__test_account_access__CALLCODE_AccountMode_NON_EXISTING_ACCOUNT__geth__regression.png)
+
+![](figs/runtime/CALLCODE__test_account_access__CALLCODE_AccountMode_NON_EXISTING_ACCOUNT__geth__bootstrap.png)
+
+![](figs/runtime/CALLCODE__test_account_access__CALLCODE_AccountMode_NON_EXISTING_ACCOUNT__geth__diagnostics.png)
+
+</details>
+
+<details><summary>nethermind — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.935
+Model:                  NNLS                    Adj. R-squared:          0.934
+No. Observations:       132                               RMSE:          57.42
+Df Residuals:           129                                MAE:          44.59
+Df Model:               2      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const      0.0000      0.0000       1.000      0.0000      0.0000
+       opcount      0.0063      0.0001       0.001      0.0061      0.0065
+        update      0.0000      0.0000       1.000      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/CALLCODE__test_account_access__CALLCODE_AccountMode_NON_EXISTING_ACCOUNT__nethermind__regression.png)
+
+![](figs/runtime/CALLCODE__test_account_access__CALLCODE_AccountMode_NON_EXISTING_ACCOUNT__nethermind__bootstrap.png)
+
+![](figs/runtime/CALLCODE__test_account_access__CALLCODE_AccountMode_NON_EXISTING_ACCOUNT__nethermind__diagnostics.png)
+
+</details>
+
+<details><summary>reth — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.911
+Model:                  NNLS                    Adj. R-squared:          0.910
+No. Observations:       132                               RMSE:          14.58
+Df Residuals:           129                                MAE:          12.63
+Df Model:               2      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const      0.0000      0.0000       1.000      0.0000      0.0000
+       opcount      0.0013      0.0000       0.001      0.0012      0.0013
+        update      0.0000      0.0000       1.000      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/CALLCODE__test_account_access__CALLCODE_AccountMode_NON_EXISTING_ACCOUNT__reth__regression.png)
+
+![](figs/runtime/CALLCODE__test_account_access__CALLCODE_AccountMode_NON_EXISTING_ACCOUNT__reth__bootstrap.png)
+
+![](figs/runtime/CALLCODE__test_account_access__CALLCODE_AccountMode_NON_EXISTING_ACCOUNT__reth__diagnostics.png)
+
+</details>
+
+### test_account_access — combo `CALLCODE_AccountMode.EXISTING_CONTRACT`
+
+| client | nobs | R² | target_coef (ms) | p-value | 95% CI |
+| --- | --- | --- | --- | --- | --- |
+| `erigon` | 66 | 0.9579 | 0.1024 | 1.00e-03 | [0.09831, 0.1071] |
+| `geth` | 198 | 0.8836 | 0.04716 | 1.00e-03 | [0.04498, 0.04958] |
+| `nethermind` | 132 | 0.9665 | 0.0231 | 1.00e-03 | [0.0221, 0.02415] |
+| `reth` | 132 | 0.9009 | 0.03764 | 1.00e-03 | [0.03666, 0.03867] |
+
+<details><summary>erigon — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.958
+Model:                  NNLS                    Adj. R-squared:          0.957
+No. Observations:       66                                RMSE:         572.60
+Df Residuals:           63                                 MAE:         398.34
+Df Model:               2      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const    318.3476     81.6735       0.001    155.6784    479.9110
+       opcount      0.1024      0.0022       0.001      0.0983      0.1071
+        update      0.0000      0.0000       1.000      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/CALLCODE__test_account_access__CALLCODE_AccountMode_EXISTING_CONTRACT__erigon__regression.png)
+
+![](figs/runtime/CALLCODE__test_account_access__CALLCODE_AccountMode_EXISTING_CONTRACT__erigon__bootstrap.png)
+
+![](figs/runtime/CALLCODE__test_account_access__CALLCODE_AccountMode_EXISTING_CONTRACT__erigon__diagnostics.png)
+
+</details>
+
+<details><summary>geth — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.884
+Model:                  NNLS                    Adj. R-squared:          0.882
+No. Observations:       198                               RMSE:         456.88
+Df Residuals:           195                                MAE:         334.86
+Df Model:               2      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const    594.6527     44.5881       0.001    507.2094    691.3841
+       opcount      0.0472      0.0011       0.001      0.0450      0.0496
+        update      0.0000      0.0000       1.000      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/CALLCODE__test_account_access__CALLCODE_AccountMode_EXISTING_CONTRACT__geth__regression.png)
+
+![](figs/runtime/CALLCODE__test_account_access__CALLCODE_AccountMode_EXISTING_CONTRACT__geth__bootstrap.png)
+
+![](figs/runtime/CALLCODE__test_account_access__CALLCODE_AccountMode_EXISTING_CONTRACT__geth__diagnostics.png)
+
+</details>
+
+<details><summary>nethermind — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.967
+Model:                  NNLS                    Adj. R-squared:          0.966
+No. Observations:       132                               RMSE:         114.78
+Df Residuals:           129                                MAE:          83.01
+Df Model:               2      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     50.8720     16.1269       0.001     17.7687     82.5702
+       opcount      0.0231      0.0005       0.001      0.0221      0.0242
+        update      0.0000      0.0000       1.000      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/CALLCODE__test_account_access__CALLCODE_AccountMode_EXISTING_CONTRACT__nethermind__regression.png)
+
+![](figs/runtime/CALLCODE__test_account_access__CALLCODE_AccountMode_EXISTING_CONTRACT__nethermind__bootstrap.png)
+
+![](figs/runtime/CALLCODE__test_account_access__CALLCODE_AccountMode_EXISTING_CONTRACT__nethermind__diagnostics.png)
+
+</details>
+
+<details><summary>reth — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.901
+Model:                  NNLS                    Adj. R-squared:          0.899
+No. Observations:       132                               RMSE:         370.81
+Df Residuals:           129                                MAE:         286.70
+Df Model:               2      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const      0.0000      0.0000       1.000      0.0000      0.0000
+       opcount      0.0376      0.0005       0.001      0.0367      0.0387
+        update      0.0000      0.0000       1.000      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/CALLCODE__test_account_access__CALLCODE_AccountMode_EXISTING_CONTRACT__reth__regression.png)
+
+![](figs/runtime/CALLCODE__test_account_access__CALLCODE_AccountMode_EXISTING_CONTRACT__reth__bootstrap.png)
+
+![](figs/runtime/CALLCODE__test_account_access__CALLCODE_AccountMode_EXISTING_CONTRACT__reth__diagnostics.png)
+
+</details>
+
+### test_account_access — combo `CALLCODE_AccountMode.NON_EXISTING_ACCOUNT` — `presets[cold_account_code_access]`
 
 | client | nobs | R² | target_coef (ms) | p-value | 95% CI |
 | --- | --- | --- | --- | --- | --- |
@@ -2184,131 +2567,6 @@ Notes: Non-negative least squares with bootstrap inference (1000 iterations)
 
 ## DELEGATECALL
 
-### test_account_access — combo `DELEGATECALL_AccountMode.EXISTING_CONTRACT`
-
-| client | nobs | R² | target_coef (ms) | p-value | 95% CI |
-| --- | --- | --- | --- | --- | --- |
-| `erigon` | 33 | 0.8782 | 0.08689 | 1.00e-03 | [0.07413, 0.09619] |
-| `geth` | 99 | 0.7244 | 0.0362 | 1.00e-03 | [0.03251, 0.04006] |
-| `nethermind` | 66 | 0.8957 | 0.02033 | 1.00e-03 | [0.01859, 0.02216] |
-| `reth` | 66 | 0.9693 | 0.03744 | 1.00e-03 | [0.03693, 0.03798] |
-
-<details><summary>erigon — NNLS regression summary</summary>
-
-```
-==============================================================================
-                           NNLS Regression Results                            
-==============================================================================
-Dep. Variable:          test_runtime_ms              R-squared:          0.878
-Model:                  NNLS                    Adj. R-squared:          0.874
-No. Observations:       33                                RMSE:         659.22
-Df Residuals:           31                                 MAE:         571.04
-Df Model:               1      
-==============================================================================
-                      coef     std err     P-value      [0.025      0.975]
-------------------------------------------------------------------------------
-         const   1473.0208    441.0786       0.001    718.2871   2469.8222
-       opcount      0.0869      0.0058       0.001      0.0741      0.0962
-==============================================================================
-Notes: Non-negative least squares with bootstrap inference (1000 iterations)
-==============================================================================
-```
-
-![](figs/runtime/DELEGATECALL__test_account_access__DELEGATECALL_AccountMode_EXISTING_CONTRACT__erigon__regression.png)
-
-![](figs/runtime/DELEGATECALL__test_account_access__DELEGATECALL_AccountMode_EXISTING_CONTRACT__erigon__bootstrap.png)
-
-![](figs/runtime/DELEGATECALL__test_account_access__DELEGATECALL_AccountMode_EXISTING_CONTRACT__erigon__diagnostics.png)
-
-</details>
-
-<details><summary>geth — NNLS regression summary</summary>
-
-```
-==============================================================================
-                           NNLS Regression Results                            
-==============================================================================
-Dep. Variable:          test_runtime_ms              R-squared:          0.724
-Model:                  NNLS                    Adj. R-squared:          0.722
-No. Observations:       99                                RMSE:         454.93
-Df Residuals:           97                                 MAE:         358.38
-Df Model:               1      
-==============================================================================
-                      coef     std err     P-value      [0.025      0.975]
-------------------------------------------------------------------------------
-         const   1468.5189    134.7931       0.001   1201.0866   1723.8083
-       opcount      0.0362      0.0019       0.001      0.0325      0.0401
-==============================================================================
-Notes: Non-negative least squares with bootstrap inference (1000 iterations)
-==============================================================================
-```
-
-![](figs/runtime/DELEGATECALL__test_account_access__DELEGATECALL_AccountMode_EXISTING_CONTRACT__geth__regression.png)
-
-![](figs/runtime/DELEGATECALL__test_account_access__DELEGATECALL_AccountMode_EXISTING_CONTRACT__geth__bootstrap.png)
-
-![](figs/runtime/DELEGATECALL__test_account_access__DELEGATECALL_AccountMode_EXISTING_CONTRACT__geth__diagnostics.png)
-
-</details>
-
-<details><summary>nethermind — NNLS regression summary</summary>
-
-```
-==============================================================================
-                           NNLS Regression Results                            
-==============================================================================
-Dep. Variable:          test_runtime_ms              R-squared:          0.896
-Model:                  NNLS                    Adj. R-squared:          0.894
-No. Observations:       66                                RMSE:         141.34
-Df Residuals:           64                                 MAE:         113.96
-Df Model:               1      
-==============================================================================
-                      coef     std err     P-value      [0.025      0.975]
-------------------------------------------------------------------------------
-         const    255.6035     52.0646       0.001    154.9015    357.8632
-       opcount      0.0203      0.0009       0.001      0.0186      0.0222
-==============================================================================
-Notes: Non-negative least squares with bootstrap inference (1000 iterations)
-==============================================================================
-```
-
-![](figs/runtime/DELEGATECALL__test_account_access__DELEGATECALL_AccountMode_EXISTING_CONTRACT__nethermind__regression.png)
-
-![](figs/runtime/DELEGATECALL__test_account_access__DELEGATECALL_AccountMode_EXISTING_CONTRACT__nethermind__bootstrap.png)
-
-![](figs/runtime/DELEGATECALL__test_account_access__DELEGATECALL_AccountMode_EXISTING_CONTRACT__nethermind__diagnostics.png)
-
-</details>
-
-<details><summary>reth — NNLS regression summary</summary>
-
-```
-==============================================================================
-                           NNLS Regression Results                            
-==============================================================================
-Dep. Variable:          test_runtime_ms              R-squared:          0.969
-Model:                  NNLS                    Adj. R-squared:          0.969
-No. Observations:       66                                RMSE:         140.88
-Df Residuals:           64                                 MAE:         100.94
-Df Model:               1      
-==============================================================================
-                      coef     std err     P-value      [0.025      0.975]
-------------------------------------------------------------------------------
-         const      0.0000      1.9827       1.000      0.0000      0.0000
-       opcount      0.0374      0.0003       0.001      0.0369      0.0380
-==============================================================================
-Notes: Non-negative least squares with bootstrap inference (1000 iterations)
-==============================================================================
-```
-
-![](figs/runtime/DELEGATECALL__test_account_access__DELEGATECALL_AccountMode_EXISTING_CONTRACT__reth__regression.png)
-
-![](figs/runtime/DELEGATECALL__test_account_access__DELEGATECALL_AccountMode_EXISTING_CONTRACT__reth__bootstrap.png)
-
-![](figs/runtime/DELEGATECALL__test_account_access__DELEGATECALL_AccountMode_EXISTING_CONTRACT__reth__diagnostics.png)
-
-</details>
-
 ### test_account_access — combo `DELEGATECALL_AccountMode.EXISTING_EOA`
 
 | client | nobs | R² | target_coef (ms) | p-value | 95% CI |
@@ -2434,7 +2692,257 @@ Notes: Non-negative least squares with bootstrap inference (1000 iterations)
 
 </details>
 
-### test_account_access — combo `DELEGATECALL_AccountMode.NON_EXISTING_ACCOUNT`
+### test_account_access — combo `DELEGATECALL_AccountMode.NON_EXISTING_ACCOUNT` — `presets[cold_account_nocode_access]`
+
+| client | nobs | R² | target_coef (ms) | p-value | 95% CI |
+| --- | --- | --- | --- | --- | --- |
+| `erigon` | 33 | 0.9983 | 0.009431 | 1.00e-03 | [0.009303, 0.009585] |
+| `geth` | 99 | 0.647 | 0.03323 | 1.00e-03 | [0.02869, 0.03832] |
+| `nethermind` | 66 | 0.7852 | 0.005891 | 1.00e-03 | [0.005351, 0.006607] |
+| `reth` | 66 | 0.9725 | 0.0009521 | 1.00e-03 | [0.0009094, 0.0009979] |
+
+<details><summary>erigon — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.998
+Model:                  NNLS                    Adj. R-squared:          0.998
+No. Observations:       33                                RMSE:           9.13
+Df Residuals:           31                                 MAE:           7.82
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     19.0478      5.5823       0.006      6.3991     28.3842
+       opcount      0.0094      0.0001       0.001      0.0093      0.0096
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/DELEGATECALL__test_account_access__DELEGATECALL_AccountMode_NON_EXISTING_ACCOUNT__erigon__regression.png)
+
+![](figs/runtime/DELEGATECALL__test_account_access__DELEGATECALL_AccountMode_NON_EXISTING_ACCOUNT__erigon__bootstrap.png)
+
+![](figs/runtime/DELEGATECALL__test_account_access__DELEGATECALL_AccountMode_NON_EXISTING_ACCOUNT__erigon__diagnostics.png)
+
+</details>
+
+<details><summary>geth — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.647
+Model:                  NNLS                    Adj. R-squared:          0.643
+No. Observations:       99                                RMSE:         583.61
+Df Residuals:           97                                 MAE:         459.66
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const   1573.6991    183.6373       0.001   1205.0569   1911.6143
+       opcount      0.0332      0.0025       0.001      0.0287      0.0383
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/DELEGATECALL__test_account_access__DELEGATECALL_AccountMode_NON_EXISTING_ACCOUNT__geth__regression.png)
+
+![](figs/runtime/DELEGATECALL__test_account_access__DELEGATECALL_AccountMode_NON_EXISTING_ACCOUNT__geth__bootstrap.png)
+
+![](figs/runtime/DELEGATECALL__test_account_access__DELEGATECALL_AccountMode_NON_EXISTING_ACCOUNT__geth__diagnostics.png)
+
+</details>
+
+<details><summary>nethermind — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.785
+Model:                  NNLS                    Adj. R-squared:          0.782
+No. Observations:       66                                RMSE:          73.25
+Df Residuals:           64                                 MAE:          45.21
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     45.3962     17.8670       0.014      5.8463     77.4934
+       opcount      0.0059      0.0003       0.001      0.0054      0.0066
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/DELEGATECALL__test_account_access__DELEGATECALL_AccountMode_NON_EXISTING_ACCOUNT__nethermind__regression.png)
+
+![](figs/runtime/DELEGATECALL__test_account_access__DELEGATECALL_AccountMode_NON_EXISTING_ACCOUNT__nethermind__bootstrap.png)
+
+![](figs/runtime/DELEGATECALL__test_account_access__DELEGATECALL_AccountMode_NON_EXISTING_ACCOUNT__nethermind__diagnostics.png)
+
+</details>
+
+<details><summary>reth — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.972
+Model:                  NNLS                    Adj. R-squared:          0.972
+No. Observations:       66                                RMSE:           3.81
+Df Residuals:           64                                 MAE:           3.07
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     30.9556      1.6656       0.001     27.7212     34.2725
+       opcount      0.0010      0.0000       0.001      0.0009      0.0010
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/DELEGATECALL__test_account_access__DELEGATECALL_AccountMode_NON_EXISTING_ACCOUNT__reth__regression.png)
+
+![](figs/runtime/DELEGATECALL__test_account_access__DELEGATECALL_AccountMode_NON_EXISTING_ACCOUNT__reth__bootstrap.png)
+
+![](figs/runtime/DELEGATECALL__test_account_access__DELEGATECALL_AccountMode_NON_EXISTING_ACCOUNT__reth__diagnostics.png)
+
+</details>
+
+### test_account_access — combo `DELEGATECALL_AccountMode.EXISTING_CONTRACT`
+
+| client | nobs | R² | target_coef (ms) | p-value | 95% CI |
+| --- | --- | --- | --- | --- | --- |
+| `erigon` | 33 | 0.8782 | 0.08689 | 1.00e-03 | [0.07413, 0.09619] |
+| `geth` | 99 | 0.7244 | 0.0362 | 1.00e-03 | [0.03251, 0.04006] |
+| `nethermind` | 66 | 0.8957 | 0.02033 | 1.00e-03 | [0.01859, 0.02216] |
+| `reth` | 66 | 0.9693 | 0.03744 | 1.00e-03 | [0.03693, 0.03798] |
+
+<details><summary>erigon — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.878
+Model:                  NNLS                    Adj. R-squared:          0.874
+No. Observations:       33                                RMSE:         659.22
+Df Residuals:           31                                 MAE:         571.04
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const   1473.0208    441.0786       0.001    718.2871   2469.8222
+       opcount      0.0869      0.0058       0.001      0.0741      0.0962
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/DELEGATECALL__test_account_access__DELEGATECALL_AccountMode_EXISTING_CONTRACT__erigon__regression.png)
+
+![](figs/runtime/DELEGATECALL__test_account_access__DELEGATECALL_AccountMode_EXISTING_CONTRACT__erigon__bootstrap.png)
+
+![](figs/runtime/DELEGATECALL__test_account_access__DELEGATECALL_AccountMode_EXISTING_CONTRACT__erigon__diagnostics.png)
+
+</details>
+
+<details><summary>geth — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.724
+Model:                  NNLS                    Adj. R-squared:          0.722
+No. Observations:       99                                RMSE:         454.93
+Df Residuals:           97                                 MAE:         358.38
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const   1468.5189    134.7931       0.001   1201.0866   1723.8083
+       opcount      0.0362      0.0019       0.001      0.0325      0.0401
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/DELEGATECALL__test_account_access__DELEGATECALL_AccountMode_EXISTING_CONTRACT__geth__regression.png)
+
+![](figs/runtime/DELEGATECALL__test_account_access__DELEGATECALL_AccountMode_EXISTING_CONTRACT__geth__bootstrap.png)
+
+![](figs/runtime/DELEGATECALL__test_account_access__DELEGATECALL_AccountMode_EXISTING_CONTRACT__geth__diagnostics.png)
+
+</details>
+
+<details><summary>nethermind — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.896
+Model:                  NNLS                    Adj. R-squared:          0.894
+No. Observations:       66                                RMSE:         141.34
+Df Residuals:           64                                 MAE:         113.96
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const    255.6035     52.0646       0.001    154.9015    357.8632
+       opcount      0.0203      0.0009       0.001      0.0186      0.0222
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/DELEGATECALL__test_account_access__DELEGATECALL_AccountMode_EXISTING_CONTRACT__nethermind__regression.png)
+
+![](figs/runtime/DELEGATECALL__test_account_access__DELEGATECALL_AccountMode_EXISTING_CONTRACT__nethermind__bootstrap.png)
+
+![](figs/runtime/DELEGATECALL__test_account_access__DELEGATECALL_AccountMode_EXISTING_CONTRACT__nethermind__diagnostics.png)
+
+</details>
+
+<details><summary>reth — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.969
+Model:                  NNLS                    Adj. R-squared:          0.969
+No. Observations:       66                                RMSE:         140.88
+Df Residuals:           64                                 MAE:         100.94
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const      0.0000      1.9827       1.000      0.0000      0.0000
+       opcount      0.0374      0.0003       0.001      0.0369      0.0380
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/DELEGATECALL__test_account_access__DELEGATECALL_AccountMode_EXISTING_CONTRACT__reth__regression.png)
+
+![](figs/runtime/DELEGATECALL__test_account_access__DELEGATECALL_AccountMode_EXISTING_CONTRACT__reth__bootstrap.png)
+
+![](figs/runtime/DELEGATECALL__test_account_access__DELEGATECALL_AccountMode_EXISTING_CONTRACT__reth__diagnostics.png)
+
+</details>
+
+### test_account_access — combo `DELEGATECALL_AccountMode.NON_EXISTING_ACCOUNT` — `presets[cold_account_code_access]`
 
 | client | nobs | R² | target_coef (ms) | p-value | 95% CI |
 | --- | --- | --- | --- | --- | --- |
@@ -2686,6 +3194,131 @@ Notes: Non-negative least squares with bootstrap inference (1000 iterations)
 
 ## EXTCODECOPY
 
+### test_account_access — combo `EXTCODECOPY_AccountMode.NON_EXISTING_ACCOUNT` — `presets[cold_account_nocode_access]`
+
+| client | nobs | R² | target_coef (ms) | p-value | 95% CI |
+| --- | --- | --- | --- | --- | --- |
+| `erigon` | 33 | 0.7996 | 6.342e-05 | 1.00e-03 | [5.231e-05, 7.472e-05] |
+| `geth` | 99 | 0.9325 | 0.0007962 | 1.00e-03 | [0.0007544, 0.0008392] |
+| `nethermind` | 66 | 0.8695 | 0.0003186 | 1.00e-03 | [0.0002883, 0.0003467] |
+| `reth` | 66 | 0.6784 | 1.719e-05 | 1.00e-03 | [1.442e-05, 2.04e-05] |
+
+<details><summary>erigon — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.800
+Model:                  NNLS                    Adj. R-squared:          0.793
+No. Observations:       33                                RMSE:           8.15
+Df Residuals:           31                                 MAE:           6.40
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     43.1318      4.6890       0.001     34.2438     52.8302
+       opcount      0.0001      0.0000       0.001      0.0001      0.0001
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/EXTCODECOPY__test_account_access__EXTCODECOPY_AccountMode_NON_EXISTING_ACCOUNT__erigon__regression.png)
+
+![](figs/runtime/EXTCODECOPY__test_account_access__EXTCODECOPY_AccountMode_NON_EXISTING_ACCOUNT__erigon__bootstrap.png)
+
+![](figs/runtime/EXTCODECOPY__test_account_access__EXTCODECOPY_AccountMode_NON_EXISTING_ACCOUNT__erigon__diagnostics.png)
+
+</details>
+
+<details><summary>geth — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.933
+Model:                  NNLS                    Adj. R-squared:          0.932
+No. Observations:       99                                RMSE:          55.00
+Df Residuals:           97                                 MAE:          37.06
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     30.4238     15.6051       0.029      0.0000     62.9926
+       opcount      0.0008      0.0000       0.001      0.0008      0.0008
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/EXTCODECOPY__test_account_access__EXTCODECOPY_AccountMode_NON_EXISTING_ACCOUNT__geth__regression.png)
+
+![](figs/runtime/EXTCODECOPY__test_account_access__EXTCODECOPY_AccountMode_NON_EXISTING_ACCOUNT__geth__bootstrap.png)
+
+![](figs/runtime/EXTCODECOPY__test_account_access__EXTCODECOPY_AccountMode_NON_EXISTING_ACCOUNT__geth__diagnostics.png)
+
+</details>
+
+<details><summary>nethermind — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.869
+Model:                  NNLS                    Adj. R-squared:          0.867
+No. Observations:       66                                RMSE:          31.69
+Df Residuals:           64                                 MAE:          22.51
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const    108.2847     12.3103       0.001     86.2523    133.6363
+       opcount      0.0003      0.0000       0.001      0.0003      0.0003
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/EXTCODECOPY__test_account_access__EXTCODECOPY_AccountMode_NON_EXISTING_ACCOUNT__nethermind__regression.png)
+
+![](figs/runtime/EXTCODECOPY__test_account_access__EXTCODECOPY_AccountMode_NON_EXISTING_ACCOUNT__nethermind__bootstrap.png)
+
+![](figs/runtime/EXTCODECOPY__test_account_access__EXTCODECOPY_AccountMode_NON_EXISTING_ACCOUNT__nethermind__diagnostics.png)
+
+</details>
+
+<details><summary>reth — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.678
+Model:                  NNLS                    Adj. R-squared:          0.673
+No. Observations:       66                                RMSE:           3.04
+Df Residuals:           64                                 MAE:           2.22
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const      5.8952      1.1547       0.001      3.6656      8.1686
+       opcount      0.0000      0.0000       0.001      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/EXTCODECOPY__test_account_access__EXTCODECOPY_AccountMode_NON_EXISTING_ACCOUNT__reth__regression.png)
+
+![](figs/runtime/EXTCODECOPY__test_account_access__EXTCODECOPY_AccountMode_NON_EXISTING_ACCOUNT__reth__bootstrap.png)
+
+![](figs/runtime/EXTCODECOPY__test_account_access__EXTCODECOPY_AccountMode_NON_EXISTING_ACCOUNT__reth__diagnostics.png)
+
+</details>
+
 ### test_account_access — combo `EXTCODECOPY_AccountMode.EXISTING_CONTRACT`
 
 | client | nobs | R² | target_coef (ms) | p-value | 95% CI |
@@ -2811,7 +3444,7 @@ Notes: Non-negative least squares with bootstrap inference (1000 iterations)
 
 </details>
 
-### test_account_access — combo `EXTCODECOPY_AccountMode.NON_EXISTING_ACCOUNT`
+### test_account_access — combo `EXTCODECOPY_AccountMode.NON_EXISTING_ACCOUNT` — `presets[cold_account_code_access]`
 
 | client | nobs | R² | target_coef (ms) | p-value | 95% CI |
 | --- | --- | --- | --- | --- | --- |
@@ -2938,6 +3571,131 @@ Notes: Non-negative least squares with bootstrap inference (1000 iterations)
 
 ## EXTCODEHASH
 
+### test_account_access — combo `EXTCODEHASH_AccountMode.NON_EXISTING_ACCOUNT` — `presets[cold_account_nocode_access]`
+
+| client | nobs | R² | target_coef (ms) | p-value | 95% CI |
+| --- | --- | --- | --- | --- | --- |
+| `erigon` | 33 | 0.9983 | 0.00858 | 1.00e-03 | [0.008453, 0.008679] |
+| `geth` | 99 | 0.8112 | 0.04016 | 1.00e-03 | [0.03566, 0.04412] |
+| `nethermind` | 66 | 0.8729 | 0.005137 | 1.00e-03 | [0.004748, 0.005508] |
+| `reth` | 66 | 0.9615 | 0.0009128 | 1.00e-03 | [0.0008694, 0.0009568] |
+
+<details><summary>erigon — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.998
+Model:                  NNLS                    Adj. R-squared:          0.998
+No. Observations:       33                                RMSE:           8.41
+Df Residuals:           31                                 MAE:           7.36
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const      7.5148      4.6307       0.079      0.0000     16.9994
+       opcount      0.0086      0.0001       0.001      0.0085      0.0087
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/EXTCODEHASH__test_account_access__EXTCODEHASH_AccountMode_NON_EXISTING_ACCOUNT__erigon__regression.png)
+
+![](figs/runtime/EXTCODEHASH__test_account_access__EXTCODEHASH_AccountMode_NON_EXISTING_ACCOUNT__erigon__bootstrap.png)
+
+![](figs/runtime/EXTCODEHASH__test_account_access__EXTCODEHASH_AccountMode_NON_EXISTING_ACCOUNT__erigon__diagnostics.png)
+
+</details>
+
+<details><summary>geth — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.811
+Model:                  NNLS                    Adj. R-squared:          0.809
+No. Observations:       99                                RMSE:         462.94
+Df Residuals:           97                                 MAE:         338.74
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const   1272.8735    145.4273       0.001    996.2775   1587.1788
+       opcount      0.0402      0.0021       0.001      0.0357      0.0441
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/EXTCODEHASH__test_account_access__EXTCODEHASH_AccountMode_NON_EXISTING_ACCOUNT__geth__regression.png)
+
+![](figs/runtime/EXTCODEHASH__test_account_access__EXTCODEHASH_AccountMode_NON_EXISTING_ACCOUNT__geth__bootstrap.png)
+
+![](figs/runtime/EXTCODEHASH__test_account_access__EXTCODEHASH_AccountMode_NON_EXISTING_ACCOUNT__geth__diagnostics.png)
+
+</details>
+
+<details><summary>nethermind — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.873
+Model:                  NNLS                    Adj. R-squared:          0.871
+No. Observations:       66                                RMSE:          46.85
+Df Residuals:           64                                 MAE:          36.13
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     28.8496     14.7323       0.035      0.0000     59.3993
+       opcount      0.0051      0.0002       0.001      0.0047      0.0055
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/EXTCODEHASH__test_account_access__EXTCODEHASH_AccountMode_NON_EXISTING_ACCOUNT__nethermind__regression.png)
+
+![](figs/runtime/EXTCODEHASH__test_account_access__EXTCODEHASH_AccountMode_NON_EXISTING_ACCOUNT__nethermind__bootstrap.png)
+
+![](figs/runtime/EXTCODEHASH__test_account_access__EXTCODEHASH_AccountMode_NON_EXISTING_ACCOUNT__nethermind__diagnostics.png)
+
+</details>
+
+<details><summary>reth — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.961
+Model:                  NNLS                    Adj. R-squared:          0.961
+No. Observations:       66                                RMSE:           4.37
+Df Residuals:           64                                 MAE:           3.24
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     32.6623      1.6733       0.001     29.5495     36.1272
+       opcount      0.0009      0.0000       0.001      0.0009      0.0010
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/EXTCODEHASH__test_account_access__EXTCODEHASH_AccountMode_NON_EXISTING_ACCOUNT__reth__regression.png)
+
+![](figs/runtime/EXTCODEHASH__test_account_access__EXTCODEHASH_AccountMode_NON_EXISTING_ACCOUNT__reth__bootstrap.png)
+
+![](figs/runtime/EXTCODEHASH__test_account_access__EXTCODEHASH_AccountMode_NON_EXISTING_ACCOUNT__reth__diagnostics.png)
+
+</details>
+
 ### test_account_access — combo `EXTCODEHASH_AccountMode.EXISTING_CONTRACT`
 
 | client | nobs | R² | target_coef (ms) | p-value | 95% CI |
@@ -3063,7 +3821,7 @@ Notes: Non-negative least squares with bootstrap inference (1000 iterations)
 
 </details>
 
-### test_account_access — combo `EXTCODEHASH_AccountMode.NON_EXISTING_ACCOUNT`
+### test_account_access — combo `EXTCODEHASH_AccountMode.NON_EXISTING_ACCOUNT` — `presets[cold_account_code_access]`
 
 | client | nobs | R² | target_coef (ms) | p-value | 95% CI |
 | --- | --- | --- | --- | --- | --- |
@@ -3315,6 +4073,131 @@ Notes: Non-negative least squares with bootstrap inference (1000 iterations)
 
 ## EXTCODESIZE
 
+### test_account_access — combo `EXTCODESIZE_AccountMode.NON_EXISTING_ACCOUNT` — `presets[cold_account_nocode_access]`
+
+| client | nobs | R² | target_coef (ms) | p-value | 95% CI |
+| --- | --- | --- | --- | --- | --- |
+| `erigon` | 33 | 0.9976 | 0.008734 | 1.00e-03 | [0.008577, 0.008883] |
+| `geth` | 99 | 0.7963 | 0.03939 | 1.00e-03 | [0.03523, 0.04366] |
+| `nethermind` | 66 | 0.8268 | 0.00455 | 1.00e-03 | [0.004056, 0.004975] |
+| `reth` | 66 | 0.9646 | 0.0009111 | 1.00e-03 | [0.0008699, 0.0009458] |
+
+<details><summary>erigon — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.998
+Model:                  NNLS                    Adj. R-squared:          0.998
+No. Observations:       33                                RMSE:          10.19
+Df Residuals:           31                                 MAE:           8.53
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     13.3981      6.4971       0.023      0.6146     26.1311
+       opcount      0.0087      0.0001       0.001      0.0086      0.0089
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/EXTCODESIZE__test_account_access__EXTCODESIZE_AccountMode_NON_EXISTING_ACCOUNT__erigon__regression.png)
+
+![](figs/runtime/EXTCODESIZE__test_account_access__EXTCODESIZE_AccountMode_NON_EXISTING_ACCOUNT__erigon__bootstrap.png)
+
+![](figs/runtime/EXTCODESIZE__test_account_access__EXTCODESIZE_AccountMode_NON_EXISTING_ACCOUNT__erigon__diagnostics.png)
+
+</details>
+
+<details><summary>geth — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.796
+Model:                  NNLS                    Adj. R-squared:          0.794
+No. Observations:       99                                RMSE:         476.12
+Df Residuals:           97                                 MAE:         359.30
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const   1276.8197    142.6857       0.001   1002.1331   1547.6312
+       opcount      0.0394      0.0021       0.001      0.0352      0.0437
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/EXTCODESIZE__test_account_access__EXTCODESIZE_AccountMode_NON_EXISTING_ACCOUNT__geth__regression.png)
+
+![](figs/runtime/EXTCODESIZE__test_account_access__EXTCODESIZE_AccountMode_NON_EXISTING_ACCOUNT__geth__bootstrap.png)
+
+![](figs/runtime/EXTCODESIZE__test_account_access__EXTCODESIZE_AccountMode_NON_EXISTING_ACCOUNT__geth__diagnostics.png)
+
+</details>
+
+<details><summary>nethermind — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.827
+Model:                  NNLS                    Adj. R-squared:          0.824
+No. Observations:       66                                RMSE:          49.78
+Df Residuals:           64                                 MAE:          36.44
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     66.1184     17.4209       0.001     33.5054    102.0350
+       opcount      0.0045      0.0002       0.001      0.0041      0.0050
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/EXTCODESIZE__test_account_access__EXTCODESIZE_AccountMode_NON_EXISTING_ACCOUNT__nethermind__regression.png)
+
+![](figs/runtime/EXTCODESIZE__test_account_access__EXTCODESIZE_AccountMode_NON_EXISTING_ACCOUNT__nethermind__bootstrap.png)
+
+![](figs/runtime/EXTCODESIZE__test_account_access__EXTCODESIZE_AccountMode_NON_EXISTING_ACCOUNT__nethermind__diagnostics.png)
+
+</details>
+
+<details><summary>reth — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.965
+Model:                  NNLS                    Adj. R-squared:          0.964
+No. Observations:       66                                RMSE:           4.17
+Df Residuals:           64                                 MAE:           3.26
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     31.9837      1.6442       0.001     29.2050     35.5474
+       opcount      0.0009      0.0000       0.001      0.0009      0.0009
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/EXTCODESIZE__test_account_access__EXTCODESIZE_AccountMode_NON_EXISTING_ACCOUNT__reth__regression.png)
+
+![](figs/runtime/EXTCODESIZE__test_account_access__EXTCODESIZE_AccountMode_NON_EXISTING_ACCOUNT__reth__bootstrap.png)
+
+![](figs/runtime/EXTCODESIZE__test_account_access__EXTCODESIZE_AccountMode_NON_EXISTING_ACCOUNT__reth__diagnostics.png)
+
+</details>
+
 ### test_account_access — combo `EXTCODESIZE_AccountMode.EXISTING_CONTRACT`
 
 | client | nobs | R² | target_coef (ms) | p-value | 95% CI |
@@ -3440,7 +4323,7 @@ Notes: Non-negative least squares with bootstrap inference (1000 iterations)
 
 </details>
 
-### test_account_access — combo `EXTCODESIZE_AccountMode.NON_EXISTING_ACCOUNT`
+### test_account_access — combo `EXTCODESIZE_AccountMode.NON_EXISTING_ACCOUNT` — `presets[cold_account_code_access]`
 
 | client | nobs | R² | target_coef (ms) | p-value | 95% CI |
 | --- | --- | --- | --- | --- | --- |
@@ -3692,131 +4575,6 @@ Notes: Non-negative least squares with bootstrap inference (1000 iterations)
 
 ## STATICCALL
 
-### test_account_access — combo `STATICCALL_AccountMode.EXISTING_CONTRACT`
-
-| client | nobs | R² | target_coef (ms) | p-value | 95% CI |
-| --- | --- | --- | --- | --- | --- |
-| `erigon` | 33 | 0.8727 | 0.08701 | 1.00e-03 | [0.07444, 0.09671] |
-| `geth` | 99 | 0.7909 | 0.04312 | 1.00e-03 | [0.03846, 0.04812] |
-| `nethermind` | 66 | 0.9266 | 0.0221 | 1.00e-03 | [0.02058, 0.02361] |
-| `reth` | 66 | 0.9523 | 0.03566 | 1.00e-03 | [0.03315, 0.0381] |
-
-<details><summary>erigon — NNLS regression summary</summary>
-
-```
-==============================================================================
-                           NNLS Regression Results                            
-==============================================================================
-Dep. Variable:          test_runtime_ms              R-squared:          0.873
-Model:                  NNLS                    Adj. R-squared:          0.869
-No. Observations:       33                                RMSE:         676.94
-Df Residuals:           31                                 MAE:         583.03
-Df Model:               1      
-==============================================================================
-                      coef     std err     P-value      [0.025      0.975]
-------------------------------------------------------------------------------
-         const   1483.6630    443.8748       0.001    776.5723   2453.5238
-       opcount      0.0870      0.0058       0.001      0.0744      0.0967
-==============================================================================
-Notes: Non-negative least squares with bootstrap inference (1000 iterations)
-==============================================================================
-```
-
-![](figs/runtime/STATICCALL__test_account_access__STATICCALL_AccountMode_EXISTING_CONTRACT__erigon__regression.png)
-
-![](figs/runtime/STATICCALL__test_account_access__STATICCALL_AccountMode_EXISTING_CONTRACT__erigon__bootstrap.png)
-
-![](figs/runtime/STATICCALL__test_account_access__STATICCALL_AccountMode_EXISTING_CONTRACT__erigon__diagnostics.png)
-
-</details>
-
-<details><summary>geth — NNLS regression summary</summary>
-
-```
-==============================================================================
-                           NNLS Regression Results                            
-==============================================================================
-Dep. Variable:          test_runtime_ms              R-squared:          0.791
-Model:                  NNLS                    Adj. R-squared:          0.789
-No. Observations:       99                                RMSE:         451.72
-Df Residuals:           97                                 MAE:         362.23
-Df Model:               1      
-==============================================================================
-                      coef     std err     P-value      [0.025      0.975]
-------------------------------------------------------------------------------
-         const   1218.9353    139.2615       0.001    927.4201   1476.8242
-       opcount      0.0431      0.0024       0.001      0.0385      0.0481
-==============================================================================
-Notes: Non-negative least squares with bootstrap inference (1000 iterations)
-==============================================================================
-```
-
-![](figs/runtime/STATICCALL__test_account_access__STATICCALL_AccountMode_EXISTING_CONTRACT__geth__regression.png)
-
-![](figs/runtime/STATICCALL__test_account_access__STATICCALL_AccountMode_EXISTING_CONTRACT__geth__bootstrap.png)
-
-![](figs/runtime/STATICCALL__test_account_access__STATICCALL_AccountMode_EXISTING_CONTRACT__geth__diagnostics.png)
-
-</details>
-
-<details><summary>nethermind — NNLS regression summary</summary>
-
-```
-==============================================================================
-                           NNLS Regression Results                            
-==============================================================================
-Dep. Variable:          test_runtime_ms              R-squared:          0.927
-Model:                  NNLS                    Adj. R-squared:          0.925
-No. Observations:       66                                RMSE:         126.76
-Df Residuals:           64                                 MAE:          99.33
-Df Model:               1      
-==============================================================================
-                      coef     std err     P-value      [0.025      0.975]
-------------------------------------------------------------------------------
-         const    152.5674     41.9196       0.001     65.3345    234.4536
-       opcount      0.0221      0.0008       0.001      0.0206      0.0236
-==============================================================================
-Notes: Non-negative least squares with bootstrap inference (1000 iterations)
-==============================================================================
-```
-
-![](figs/runtime/STATICCALL__test_account_access__STATICCALL_AccountMode_EXISTING_CONTRACT__nethermind__regression.png)
-
-![](figs/runtime/STATICCALL__test_account_access__STATICCALL_AccountMode_EXISTING_CONTRACT__nethermind__bootstrap.png)
-
-![](figs/runtime/STATICCALL__test_account_access__STATICCALL_AccountMode_EXISTING_CONTRACT__nethermind__diagnostics.png)
-
-</details>
-
-<details><summary>reth — NNLS regression summary</summary>
-
-```
-==============================================================================
-                           NNLS Regression Results                            
-==============================================================================
-Dep. Variable:          test_runtime_ms              R-squared:          0.952
-Model:                  NNLS                    Adj. R-squared:          0.952
-No. Observations:       66                                RMSE:         162.48
-Df Residuals:           64                                 MAE:         123.54
-Df Model:               1      
-==============================================================================
-                      coef     std err     P-value      [0.025      0.975]
-------------------------------------------------------------------------------
-         const    203.7729     94.3275       0.017     24.9713    387.9693
-       opcount      0.0357      0.0013       0.001      0.0331      0.0381
-==============================================================================
-Notes: Non-negative least squares with bootstrap inference (1000 iterations)
-==============================================================================
-```
-
-![](figs/runtime/STATICCALL__test_account_access__STATICCALL_AccountMode_EXISTING_CONTRACT__reth__regression.png)
-
-![](figs/runtime/STATICCALL__test_account_access__STATICCALL_AccountMode_EXISTING_CONTRACT__reth__bootstrap.png)
-
-![](figs/runtime/STATICCALL__test_account_access__STATICCALL_AccountMode_EXISTING_CONTRACT__reth__diagnostics.png)
-
-</details>
-
 ### test_account_access — combo `STATICCALL_AccountMode.EXISTING_EOA`
 
 | client | nobs | R² | target_coef (ms) | p-value | 95% CI |
@@ -3942,7 +4700,257 @@ Notes: Non-negative least squares with bootstrap inference (1000 iterations)
 
 </details>
 
-### test_account_access — combo `STATICCALL_AccountMode.NON_EXISTING_ACCOUNT`
+### test_account_access — combo `STATICCALL_AccountMode.NON_EXISTING_ACCOUNT` — `presets[cold_account_nocode_access]`
+
+| client | nobs | R² | target_coef (ms) | p-value | 95% CI |
+| --- | --- | --- | --- | --- | --- |
+| `erigon` | 33 | 0.9975 | 0.0117 | 1.00e-03 | [0.01159, 0.01176] |
+| `geth` | 99 | 0.7061 | 0.03517 | 1.00e-03 | [0.03055, 0.03963] |
+| `nethermind` | 66 | 0.798 | 0.005009 | 1.00e-03 | [0.00434, 0.005585] |
+| `reth` | 66 | 0.9692 | 0.0009865 | 1.00e-03 | [0.0009383, 0.001035] |
+
+<details><summary>erigon — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.997
+Model:                  NNLS                    Adj. R-squared:          0.997
+No. Observations:       33                                RMSE:          14.02
+Df Residuals:           31                                 MAE:          10.79
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const      0.0000      2.0462       1.000      0.0000      7.9791
+       opcount      0.0117      0.0000       0.001      0.0116      0.0118
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/STATICCALL__test_account_access__STATICCALL_AccountMode_NON_EXISTING_ACCOUNT__erigon__regression.png)
+
+![](figs/runtime/STATICCALL__test_account_access__STATICCALL_AccountMode_NON_EXISTING_ACCOUNT__erigon__bootstrap.png)
+
+![](figs/runtime/STATICCALL__test_account_access__STATICCALL_AccountMode_NON_EXISTING_ACCOUNT__erigon__diagnostics.png)
+
+</details>
+
+<details><summary>geth — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.706
+Model:                  NNLS                    Adj. R-squared:          0.703
+No. Observations:       99                                RMSE:         539.44
+Df Residuals:           97                                 MAE:         420.25
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const   1520.4446    172.4491       0.001   1180.0313   1869.1914
+       opcount      0.0352      0.0023       0.001      0.0306      0.0396
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/STATICCALL__test_account_access__STATICCALL_AccountMode_NON_EXISTING_ACCOUNT__geth__regression.png)
+
+![](figs/runtime/STATICCALL__test_account_access__STATICCALL_AccountMode_NON_EXISTING_ACCOUNT__geth__bootstrap.png)
+
+![](figs/runtime/STATICCALL__test_account_access__STATICCALL_AccountMode_NON_EXISTING_ACCOUNT__geth__diagnostics.png)
+
+</details>
+
+<details><summary>nethermind — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.798
+Model:                  NNLS                    Adj. R-squared:          0.795
+No. Observations:       66                                RMSE:          59.92
+Df Residuals:           64                                 MAE:          42.66
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const    118.2717     23.8832       0.001     76.4691    170.2314
+       opcount      0.0050      0.0003       0.001      0.0043      0.0056
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/STATICCALL__test_account_access__STATICCALL_AccountMode_NON_EXISTING_ACCOUNT__nethermind__regression.png)
+
+![](figs/runtime/STATICCALL__test_account_access__STATICCALL_AccountMode_NON_EXISTING_ACCOUNT__nethermind__bootstrap.png)
+
+![](figs/runtime/STATICCALL__test_account_access__STATICCALL_AccountMode_NON_EXISTING_ACCOUNT__nethermind__diagnostics.png)
+
+</details>
+
+<details><summary>reth — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.969
+Model:                  NNLS                    Adj. R-squared:          0.969
+No. Observations:       66                                RMSE:           4.18
+Df Residuals:           64                                 MAE:           3.37
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     30.8105      1.9529       0.001     27.0734     34.7544
+       opcount      0.0010      0.0000       0.001      0.0009      0.0010
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/STATICCALL__test_account_access__STATICCALL_AccountMode_NON_EXISTING_ACCOUNT__reth__regression.png)
+
+![](figs/runtime/STATICCALL__test_account_access__STATICCALL_AccountMode_NON_EXISTING_ACCOUNT__reth__bootstrap.png)
+
+![](figs/runtime/STATICCALL__test_account_access__STATICCALL_AccountMode_NON_EXISTING_ACCOUNT__reth__diagnostics.png)
+
+</details>
+
+### test_account_access — combo `STATICCALL_AccountMode.EXISTING_CONTRACT`
+
+| client | nobs | R² | target_coef (ms) | p-value | 95% CI |
+| --- | --- | --- | --- | --- | --- |
+| `erigon` | 33 | 0.8727 | 0.08701 | 1.00e-03 | [0.07444, 0.09671] |
+| `geth` | 99 | 0.7909 | 0.04312 | 1.00e-03 | [0.03846, 0.04812] |
+| `nethermind` | 66 | 0.9266 | 0.0221 | 1.00e-03 | [0.02058, 0.02361] |
+| `reth` | 66 | 0.9523 | 0.03566 | 1.00e-03 | [0.03315, 0.0381] |
+
+<details><summary>erigon — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.873
+Model:                  NNLS                    Adj. R-squared:          0.869
+No. Observations:       33                                RMSE:         676.94
+Df Residuals:           31                                 MAE:         583.03
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const   1483.6630    443.8748       0.001    776.5723   2453.5238
+       opcount      0.0870      0.0058       0.001      0.0744      0.0967
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/STATICCALL__test_account_access__STATICCALL_AccountMode_EXISTING_CONTRACT__erigon__regression.png)
+
+![](figs/runtime/STATICCALL__test_account_access__STATICCALL_AccountMode_EXISTING_CONTRACT__erigon__bootstrap.png)
+
+![](figs/runtime/STATICCALL__test_account_access__STATICCALL_AccountMode_EXISTING_CONTRACT__erigon__diagnostics.png)
+
+</details>
+
+<details><summary>geth — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.791
+Model:                  NNLS                    Adj. R-squared:          0.789
+No. Observations:       99                                RMSE:         451.72
+Df Residuals:           97                                 MAE:         362.23
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const   1218.9353    139.2615       0.001    927.4201   1476.8242
+       opcount      0.0431      0.0024       0.001      0.0385      0.0481
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/STATICCALL__test_account_access__STATICCALL_AccountMode_EXISTING_CONTRACT__geth__regression.png)
+
+![](figs/runtime/STATICCALL__test_account_access__STATICCALL_AccountMode_EXISTING_CONTRACT__geth__bootstrap.png)
+
+![](figs/runtime/STATICCALL__test_account_access__STATICCALL_AccountMode_EXISTING_CONTRACT__geth__diagnostics.png)
+
+</details>
+
+<details><summary>nethermind — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.927
+Model:                  NNLS                    Adj. R-squared:          0.925
+No. Observations:       66                                RMSE:         126.76
+Df Residuals:           64                                 MAE:          99.33
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const    152.5674     41.9196       0.001     65.3345    234.4536
+       opcount      0.0221      0.0008       0.001      0.0206      0.0236
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/STATICCALL__test_account_access__STATICCALL_AccountMode_EXISTING_CONTRACT__nethermind__regression.png)
+
+![](figs/runtime/STATICCALL__test_account_access__STATICCALL_AccountMode_EXISTING_CONTRACT__nethermind__bootstrap.png)
+
+![](figs/runtime/STATICCALL__test_account_access__STATICCALL_AccountMode_EXISTING_CONTRACT__nethermind__diagnostics.png)
+
+</details>
+
+<details><summary>reth — NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.952
+Model:                  NNLS                    Adj. R-squared:          0.952
+No. Observations:       66                                RMSE:         162.48
+Df Residuals:           64                                 MAE:         123.54
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const    203.7729     94.3275       0.017     24.9713    387.9693
+       opcount      0.0357      0.0013       0.001      0.0331      0.0381
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/runtime/STATICCALL__test_account_access__STATICCALL_AccountMode_EXISTING_CONTRACT__reth__regression.png)
+
+![](figs/runtime/STATICCALL__test_account_access__STATICCALL_AccountMode_EXISTING_CONTRACT__reth__bootstrap.png)
+
+![](figs/runtime/STATICCALL__test_account_access__STATICCALL_AccountMode_EXISTING_CONTRACT__reth__diagnostics.png)
+
+</details>
+
+### test_account_access — combo `STATICCALL_AccountMode.NON_EXISTING_ACCOUNT` — `presets[cold_account_code_access]`
 
 | client | nobs | R² | target_coef (ms) | p-value | 95% CI |
 | --- | --- | --- | --- | --- | --- |
