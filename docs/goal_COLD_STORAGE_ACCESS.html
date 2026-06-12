@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>COLD_STORAGE_ACCESS combos — EIP-8038</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="page-goals">
+  <header class="site-header">
+    <div class="topbar-primary">
+      <a class="site-title" href="index.html">EIP-8038 Repricing</a>
+      <nav class="site-nav">
+        <a href="index.html">Overview</a>
+        <a href="goals.html" class="active">Goals</a>
+        <a href="new-gas.html">Gasfit Results</a>
+        <a href="trends.html">Trends</a>
+        <a href="methodology.html">Methodology</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="content"><p class="muted"><a href="goals.html">← Back to Goals</a></p>
+<h1>COLD_STORAGE_ACCESS<span class="muted"> — model combos</span></h1>
+<p>
+  Every candidate model combo evm-gasfit considered for each client's
+  <code>COLD_STORAGE_ACCESS</code> fit. The <strong>selected</strong> combo (winner)
+  sets the value used on the Goals page for the
+  <code>COLD_STORAGE_ACCESS</code> goal (target 3,000).
+</p>
+
+<h2 id="besu">besu</h2>
+<table>
+  <thead>
+    <tr><th>Combo</th><th>Proposed gas</th><th>R²</th><th>p-value</th><th>Runtime (ms)</th></tr>
+  </thead>
+  <tbody>
+    <tr class="winner-row">
+      <td class="combo-cell">test_sstore_bloated · SSTORE · target_coef (slots=True) <span class="binding-tag">selected</span></td>
+      <td class="" title="goal 3,000">1,717</td>
+      <td>0.940</td>
+      <td>0.001</td>
+      <td>0.01717</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_sload_bloated · SLOAD · target_coef (slots=False)</td>
+      <td class="" title="goal 3,000">908</td>
+      <td>0.819</td>
+      <td>0.001</td>
+      <td>0.009074</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_sstore_bloated · SSTORE · target_coef (slots=False)</td>
+      <td class="" title="goal 3,000">972</td>
+      <td>0.815</td>
+      <td>0.001</td>
+      <td>0.009714</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_sload_bloated · SLOAD · target_coef (slots=True)</td>
+      <td class="" title="goal 3,000">1,614</td>
+      <td>0.969</td>
+      <td>0.001</td>
+      <td>0.01614</td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="erigon">erigon</h2>
+<table>
+  <thead>
+    <tr><th>Combo</th><th>Proposed gas</th><th>R²</th><th>p-value</th><th>Runtime (ms)</th></tr>
+  </thead>
+  <tbody>
+    <tr class="winner-row">
+      <td class="combo-cell">test_sload_bloated · SLOAD · target_coef (slots=False) <span class="binding-tag">selected</span></td>
+      <td class="" title="goal 3,000">592</td>
+      <td>0.984</td>
+      <td>0.001</td>
+      <td>0.005913</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_sload_bloated · SLOAD · target_coef (slots=True)</td>
+      <td class="" title="goal 3,000">530</td>
+      <td>0.981</td>
+      <td>0.001</td>
+      <td>0.005298</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_sstore_bloated · SSTORE · target_coef (slots=True)</td>
+      <td class="" title="goal 3,000">530</td>
+      <td>0.976</td>
+      <td>0.001</td>
+      <td>0.005295</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_sstore_bloated · SSTORE · target_coef (slots=False)</td>
+      <td class="" title="goal 3,000">588</td>
+      <td>0.984</td>
+      <td>0.001</td>
+      <td>0.005878</td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="ethrex">ethrex</h2>
+<table>
+  <thead>
+    <tr><th>Combo</th><th>Proposed gas</th><th>R²</th><th>p-value</th><th>Runtime (ms)</th></tr>
+  </thead>
+  <tbody>
+    <tr class="winner-row">
+      <td class="combo-cell">test_sstore_bloated · SSTORE · target_coef (slots=True) <span class="binding-tag">selected</span></td>
+      <td class="" title="goal 3,000">2,483</td>
+      <td>0.991</td>
+      <td>0.001</td>
+      <td>0.02482</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_sload_bloated · SLOAD · target_coef (slots=False)</td>
+      <td class="" title="goal 3,000">846</td>
+      <td>0.914</td>
+      <td>0.001</td>
+      <td>0.008457</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_sstore_bloated · SSTORE · target_coef (slots=False)</td>
+      <td class="" title="goal 3,000">913</td>
+      <td>0.911</td>
+      <td>0.001</td>
+      <td>0.009126</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_sload_bloated · SLOAD · target_coef (slots=True)</td>
+      <td class="" title="goal 3,000">2,434</td>
+      <td>0.976</td>
+      <td>0.001</td>
+      <td>0.02434</td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="geth">geth</h2>
+<table>
+  <thead>
+    <tr><th>Combo</th><th>Proposed gas</th><th>R²</th><th>p-value</th><th>Runtime (ms)</th></tr>
+  </thead>
+  <tbody>
+    <tr class="winner-row">
+      <td class="combo-cell">test_sload_bloated · SLOAD · target_coef (slots=False) <span class="binding-tag">selected</span></td>
+      <td class="" title="goal 3,000">2,493</td>
+      <td>0.984</td>
+      <td>0.001</td>
+      <td>0.02493</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_sstore_bloated · SSTORE · target_coef (slots=True)</td>
+      <td class="" title="goal 3,000">2,393</td>
+      <td>0.983</td>
+      <td>0.001</td>
+      <td>0.02392</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_sload_bloated · SLOAD · target_coef (slots=True)</td>
+      <td class="" title="goal 3,000">2,433</td>
+      <td>0.984</td>
+      <td>0.001</td>
+      <td>0.02432</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_sstore_bloated · SSTORE · target_coef (slots=False)</td>
+      <td class="" title="goal 3,000">2,440</td>
+      <td>0.983</td>
+      <td>0.001</td>
+      <td>0.02439</td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="nethermind">nethermind</h2>
+<table>
+  <thead>
+    <tr><th>Combo</th><th>Proposed gas</th><th>R²</th><th>p-value</th><th>Runtime (ms)</th></tr>
+  </thead>
+  <tbody>
+    <tr class="winner-row">
+      <td class="combo-cell">test_sstore_bloated · SSTORE · target_coef (slots=True) <span class="binding-tag">selected</span></td>
+      <td class="" title="goal 3,000">1,727</td>
+      <td>0.797</td>
+      <td>0.001</td>
+      <td>0.01727</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_sload_bloated · SLOAD · target_coef (slots=False)</td>
+      <td class="" title="goal 3,000">319</td>
+      <td>0.871</td>
+      <td>0.001</td>
+      <td>0.003185</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_sstore_bloated · SSTORE · target_coef (slots=False)</td>
+      <td class="" title="goal 3,000">321</td>
+      <td>0.939</td>
+      <td>0.001</td>
+      <td>0.003205</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_sload_bloated · SLOAD · target_coef (slots=True)</td>
+      <td class="" title="goal 3,000">1,677</td>
+      <td>0.788</td>
+      <td>0.001</td>
+      <td>0.01676</td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="reth">reth</h2>
+<table>
+  <thead>
+    <tr><th>Combo</th><th>Proposed gas</th><th>R²</th><th>p-value</th><th>Runtime (ms)</th></tr>
+  </thead>
+  <tbody>
+    <tr class="winner-row">
+      <td class="combo-cell">test_sstore_bloated · SSTORE · target_coef (slots=True) <span class="binding-tag">selected</span></td>
+      <td class="" title="goal 3,000">155</td>
+      <td>0.981</td>
+      <td>0.001</td>
+      <td>0.001545</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_sload_bloated · SLOAD · target_coef (slots=False)</td>
+      <td class="" title="goal 3,000">127</td>
+      <td>0.977</td>
+      <td>0.001</td>
+      <td>0.001263</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_sstore_bloated · SSTORE · target_coef (slots=False)</td>
+      <td class="" title="goal 3,000">127</td>
+      <td>0.975</td>
+      <td>0.001</td>
+      <td>0.001268</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_sload_bloated · SLOAD · target_coef (slots=True)</td>
+      <td class="" title="goal 3,000">151</td>
+      <td>0.983</td>
+      <td>0.001</td>
+      <td>0.001505</td>
+    </tr>
+  </tbody>
+</table>
+  </main>
+
+  <footer class="site-footer">
+    <p class="repro">
+      Suites
+<code>1abf5c96ab2bbf14</code>, <code>d88b18464da7445e</code>      · run 2026-06-10T23:58:21Z
+      · evm-gasfit 0.1.0
+      · benchmarkoor-fetch 0.2.0
+      · commit <code>98b0c87</code>
+    </p>
+  </footer>
+  <script src="run_selector.js"></script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}Goals — EIP-8038{% endblock %}
+{% block content %}
+<h1>Goal targets</h1>
+<p>
+  Target gas values we want clients to reach for the key 8038 parameters, checked
+  against each client's latest estimate. A client <strong>clears</strong> a goal when
+  its estimate is at or below the target — lower is faster.
+</p>
+<ul class="muted">
+  <li>The <strong>account</strong> goals (<code>COLD_ACCOUNT_ACCESS</code>,
+    <code>ACCOUNT_WRITE</code>) require a client to clear <em>both</em> the CODE and
+    NOCODE variants — both values are shown in the cell.</li>
+  <li>The <strong>write</strong> goals subtract the bundled cold-access component
+    before comparing: <code>STORAGE_WRITE</code> uses
+    <code>COLD_STORAGE_WRITE − 3000</code> and <code>ACCOUNT_WRITE</code> uses
+    <code>COLD_ACCOUNT_*_WRITE − 3000</code> (the access goals).</li>
+</ul>
+
+<h2>Goals vs current</h2>
+<table>
+  <thead>
+    <tr><th>Parameter</th><th>Goal</th><th>Current</th><th>Δ% vs current</th><th>Clients clearing</th></tr>
+  </thead>
+  <tbody>
+    {% for g in goals.goals %}
+    {% set cls = "" if g.diff_pct is none else ("delta-down" if g.diff_pct < 0 else (("delta-mid" if g.diff_pct <= 100 else "delta-up") if g.diff_pct > 0 else "")) %}
+    {% set need = g.n_total - g.n_clear %}
+    {# green = all clear; yellow = up to half still need to optimize; red = more than half do. #}
+    {% set ccls = "" if not g.n_total else ("delta-down" if need == 0 else ("delta-up" if need * 2 > g.n_total else "delta-mid")) %}
+    <tr>
+      <th scope="row">{{ g.key }}</th>
+      <td>{{ "{:,}".format(g.goal) }}</td>
+      <td>{{ g.current }}</td>
+      <td class="{{ cls }}">{% if g.diff_pct is none %}—{% else %}{{ "%+d" | format(g.diff_pct) }}%{% endif %}</td>
+      <td class="{{ ccls }}">{{ g.n_clear }} / {{ g.n_total }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<h2>Per-client detail</h2>
+<p class="muted">
+  Each cell shows the client's estimate used for the goal (write goals show the
+  access-subtracted value); hover for the full computation, or click a cell to see
+  the candidate model combos behind it.
+</p>
+<table class="heatmap">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      {% for c in goals.clients %}<th scope="col">{{ c }}</th>{% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for g in goals.goals %}
+    {# CODE/NOCODE variants get their own rows; single-param goals have one. #}
+    {% for vi in range(g.variant_labels | length) %}
+    <tr>
+      <th scope="row" title="goal {{ g.goal }}">{{ g.key }}{% if g.variant_labels[vi] %} <span class="variant-label">{{ g.variant_labels[vi] }}</span>{% endif %}</th>
+      {% for c in goals.clients %}
+      {% set v = goals.matrix[g.key][c].variants[vi] %}
+      {% if v.missing %}
+      <td class="goal-nodata">—</td>
+      {% else %}
+      {# green = clears; yellow = over goal by up to 100%; red = more than 100% over. #}
+      {% set vcls = "goal-pass" if v.effective <= g.goal else ("goal-mid" if v.effective <= 2 * g.goal else "goal-fail") %}
+      <td class="{{ vcls }}" title="est {{ v.raw }}{% if g.subtract %} − {{ g.subtract }} = {{ v.effective }}{% endif %}, goal {{ g.goal }} — click for combos"><a class="goal-cell-link" href="goal_{{ v.param }}.html#{{ c }}">{{ "{:,}".format(v.effective) }}</a></td>
+      {% endif %}
+      {% endfor %}
+    </tr>
+    {% endfor %}
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

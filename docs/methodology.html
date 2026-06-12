@@ -12,6 +12,7 @@
       <a class="site-title" href="index.html">EIP-8038 Repricing</a>
       <nav class="site-nav">
         <a href="index.html">Overview</a>
+        <a href="goals.html">Goals</a>
         <a href="new-gas.html">Gasfit Results</a>
         <a href="trends.html">Trends</a>
         <a href="methodology.html" class="active">Methodology</a>
@@ -106,9 +107,11 @@
   The <code>target_coef</code> — the per-unit runtime of the operation under study — is the
   quantity we care about. The trailing sum carries variable-cost terms: the supporting gas
   parameters whose cost is netted out of the fixture (for example the cold-access surcharge
-  that rides along with a warm access, or the storage-access cost bundled into a write) get
-  their own fixture parameters, while a state-access operation with a single flat cost
-  collapses to one coefficient. Parameters that are constant across all
+  that rides along with a warm access) get their own fixture parameters, while a state-access
+  operation with a single flat cost collapses to one coefficient. Combined operations such as
+  a cold write are fit whole — as a single access-plus-write cost — and the write-only delta
+  is recovered downstream as a <a href="#derived">derived parameter</a>, not split out inside
+  the regression. Parameters that are constant across all
   fixtures are dropped automatically — their column is indistinguishable from
   <code>target_coef</code> — and a fit is skipped entirely if there are too few
   observations or the opcount never varies.
@@ -181,7 +184,7 @@
   current price and is flagged for a bump; the ceiling keeps the result an integer.
 </p>
 
-<h2>5. Worst-case selection &amp; derived parameters</h2>
+<h2 id="derived">5. Worst-case selection &amp; derived parameters</h2>
 <p>
   A single gas parameter is fit many times — once per client, sometimes across several
   fixtures. The proposal consolidates those in two passes, always erring toward the slowest
@@ -202,6 +205,115 @@
   <a href="https://misilva73.github.io/evm-gasfit/concepts/gas-params/">evm-gasfit gas-params docs</a>
   cover the selection and derivation rules in full.
 </p>
+
+<h2 id="param-map">Parameter → model map</h2>
+<p>
+  Every proposed value traces back to a specific set of model fits or to a formula
+  over other parameters. The two tables below are the full provenance for this run,
+  built directly from the fit artifacts.
+</p>
+<h3>Estimated parameters</h3>
+<p>
+  Each parameter below is fit by NNLS (stage 2) over the listed
+  <code>evm-gasfit</code> presets — the worst-case selector (stage 5) then picks the
+  binding client and combo. <em>Target opcodes</em> are the operations whose runtime
+  the fixtures stress; <em>fixtures</em> are the benchmark tests that feed the
+  regression; <em>coefficient</em> is the regression term read off as the per-unit
+  runtime. The exact winning combo and binding client per parameter are on the
+  <a href="new-gas.html#client-comparison">new-gas</a> and
+  <a href="goals.html">goals</a> pages.
+</p>
+<table class="param-map">
+  <thead>
+    <tr><th>Parameter</th><th>Presets</th><th>Target opcodes</th><th>Fixtures</th><th>Coefficient</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>COLD_STORAGE_ACCESS</code></td>
+      <td><code>cold_storage_sload</code>, <code>cold_storage_sstore_access</code></td>
+      <td><code>SLOAD</code>, <code>SSTORE</code></td>
+      <td><code>test_sload_bloated</code>, <code>test_sstore_bloated</code></td>
+      <td><code>target_coef</code></td>
+    </tr>
+    <tr>
+      <td><code>COLD_STORAGE_WRITE</code></td>
+      <td><code>cold_storage_sstore_write</code></td>
+      <td><code>SSTORE</code></td>
+      <td><code>test_sstore_bloated</code></td>
+      <td><code>target_coef</code></td>
+    </tr>
+    <tr>
+      <td><code>COLD_ACCOUNT_NOCODE_ACCESS</code></td>
+      <td><code>cold_account_nocode_access</code></td>
+      <td><code>BALANCE</code>, <code>CALL</code>, <code>CALLCODE</code>, <code>DELEGATECALL</code>, <code>EXTCODECOPY</code>, <code>EXTCODEHASH</code>, <code>EXTCODESIZE</code>, <code>STATICCALL</code></td>
+      <td><code>test_account_access</code></td>
+      <td><code>target_coef</code></td>
+    </tr>
+    <tr>
+      <td><code>COLD_ACCOUNT_CODE_ACCESS</code></td>
+      <td><code>cold_account_code_access</code></td>
+      <td><code>BALANCE</code>, <code>CALL</code>, <code>CALLCODE</code>, <code>DELEGATECALL</code>, <code>EXTCODECOPY</code>, <code>EXTCODEHASH</code>, <code>EXTCODESIZE</code>, <code>STATICCALL</code></td>
+      <td><code>test_account_access</code></td>
+      <td><code>target_coef</code></td>
+    </tr>
+    <tr>
+      <td><code>COLD_ACCOUNT_NOCODE_WRITE</code></td>
+      <td><code>cold_account_nocode_write</code></td>
+      <td><code>CALL</code>, <code>CALLCODE</code></td>
+      <td><code>test_account_access</code></td>
+      <td><code>target_coef</code></td>
+    </tr>
+    <tr>
+      <td><code>COLD_ACCOUNT_CODE_WRITE</code></td>
+      <td><code>cold_account_code_write</code></td>
+      <td><code>CALL</code>, <code>CALLCODE</code></td>
+      <td><code>test_account_access</code></td>
+      <td><code>target_coef</code></td>
+    </tr>
+    <tr>
+      <td><code>WARM_ACCESS</code></td>
+      <td><code>warm_account_access</code>, <code>warm_storage_access_sload</code></td>
+      <td><code>BALANCE</code>, <code>CALL</code>, <code>CALLCODE</code>, <code>DELEGATECALL</code>, <code>EXTCODEHASH</code>, <code>EXTCODESIZE</code>, <code>STATICCALL</code>, <code>SLOAD</code></td>
+      <td><code>test_ext_account_query_warm</code>, <code>test_storage_sload_same_key_benchmark</code></td>
+      <td><code>target_coef</code></td>
+    </tr>
+  </tbody>
+</table>
+<h3>Derived parameters</h3>
+<p>
+  These carry no per-client fit. They are evaluated in declaration order (stage 5)
+  over the estimated parameters above, the <strong>osaka</strong>
+  fork baseline, and the <code>new_params</code> integer baselines, using an
+  arithmetic-only expression language (<code>max</code>, <code>+ − × ÷</code>, integer
+  literals). The formulas are taken verbatim from <code>fit.yaml</code>.
+</p>
+<table class="param-map">
+  <thead>
+    <tr><th>Parameter</th><th>Formula</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>STORAGE_WRITE</code></td>
+      <td><code>max(0, COLD_STORAGE_WRITE - COLD_STORAGE_ACCESS)</code></td>
+    </tr>
+    <tr>
+      <td><code>ACCOUNT_WRITE</code></td>
+      <td><code>max(0, COLD_ACCOUNT_CODE_WRITE - COLD_ACCOUNT_CODE_ACCESS, COLD_ACCOUNT_NOCODE_WRITE - COLD_ACCOUNT_NOCODE_ACCESS)</code></td>
+    </tr>
+    <tr>
+      <td><code>REFUND_STORAGE_CLEAR</code></td>
+      <td><code>COLD_STORAGE_WRITE * 4800 / 5000</code></td>
+    </tr>
+    <tr>
+      <td><code>TX_ACCESS_LIST_STORAGE_KEY</code></td>
+      <td><code>COLD_STORAGE_ACCESS</code></td>
+    </tr>
+    <tr>
+      <td><code>TX_ACCESS_LIST_ADDRESS</code></td>
+      <td><code>max(COLD_ACCOUNT_CODE_ACCESS, COLD_ACCOUNT_NOCODE_ACCESS)</code></td>
+    </tr>
+  </tbody>
+</table>
 
 <h2>Gas-cost baseline</h2>
 <p>
@@ -229,7 +341,7 @@ make site      # renders this site into site/</code></pre>
 <code>1abf5c96ab2bbf14</code>, <code>d88b18464da7445e</code>      · run 2026-06-10T23:58:21Z
       · evm-gasfit 0.1.0
       · benchmarkoor-fetch 0.2.0
-      · commit <code>740ff3d</code>
+      · commit <code>98b0c87</code>
     </p>
   </footer>
   <script src="run_selector.js"></script>

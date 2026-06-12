@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Goals — EIP-8038</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="page-goals">
+  <header class="site-header">
+    <div class="topbar-primary">
+      <a class="site-title" href="index.html">EIP-8038 Repricing</a>
+      <nav class="site-nav">
+        <a href="index.html">Overview</a>
+        <a href="goals.html" class="active">Goals</a>
+        <a href="new-gas.html">Gasfit Results</a>
+        <a href="trends.html">Trends</a>
+        <a href="methodology.html">Methodology</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="content"><h1>Goal targets</h1>
+<p>
+  Target gas values we want clients to reach for the key 8038 parameters, checked
+  against each client's latest estimate. A client <strong>clears</strong> a goal when
+  its estimate is at or below the target — lower is faster.
+</p>
+<ul class="muted">
+  <li>The <strong>account</strong> goals (<code>COLD_ACCOUNT_ACCESS</code>,
+    <code>ACCOUNT_WRITE</code>) require a client to clear <em>both</em> the CODE and
+    NOCODE variants — both values are shown in the cell.</li>
+  <li>The <strong>write</strong> goals subtract the bundled cold-access component
+    before comparing: <code>STORAGE_WRITE</code> uses
+    <code>COLD_STORAGE_WRITE − 3000</code> and <code>ACCOUNT_WRITE</code> uses
+    <code>COLD_ACCOUNT_*_WRITE − 3000</code> (the access goals).</li>
+</ul>
+
+<h2>Goals vs current</h2>
+<table>
+  <thead>
+    <tr><th>Parameter</th><th>Goal</th><th>Current</th><th>Δ% vs current</th><th>Clients clearing</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">COLD_STORAGE_ACCESS</th>
+      <td>3,000</td>
+      <td>2100</td>
+      <td class="delta-mid">+43%</td>
+      <td class="delta-down">6 / 6</td>
+    </tr>
+    <tr>
+      <th scope="row">STORAGE_WRITE</th>
+      <td>10,000</td>
+      <td>2800</td>
+      <td class="delta-up">+257%</td>
+      <td class="delta-up">1 / 6</td>
+    </tr>
+    <tr>
+      <th scope="row">COLD_ACCOUNT_ACCESS</th>
+      <td>3,000</td>
+      <td>2600</td>
+      <td class="delta-mid">+15%</td>
+      <td class="delta-mid">4 / 6</td>
+    </tr>
+    <tr>
+      <th scope="row">ACCOUNT_WRITE</th>
+      <td>8,000</td>
+      <td>6700</td>
+      <td class="delta-mid">+19%</td>
+      <td class="delta-mid">4 / 6</td>
+    </tr>
+    <tr>
+      <th scope="row">WARM_ACCESS</th>
+      <td>100</td>
+      <td>100</td>
+      <td class="">+0%</td>
+      <td class="delta-down">6 / 6</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Per-client detail</h2>
+<p class="muted">
+  Each cell shows the client's estimate used for the goal (write goals show the
+  access-subtracted value); hover for the full computation, or click a cell to see
+  the candidate model combos behind it.
+</p>
+<table class="heatmap">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+<th scope="col">besu</th><th scope="col">erigon</th><th scope="col">ethrex</th><th scope="col">geth</th><th scope="col">nethermind</th><th scope="col">reth</th>    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row" title="goal 3000">COLD_STORAGE_ACCESS</th>
+      <td class="goal-pass" title="est 1717, goal 3000 — click for combos"><a class="goal-cell-link" href="goal_COLD_STORAGE_ACCESS.html#besu">1,717</a></td>
+      <td class="goal-pass" title="est 592, goal 3000 — click for combos"><a class="goal-cell-link" href="goal_COLD_STORAGE_ACCESS.html#erigon">592</a></td>
+      <td class="goal-pass" title="est 2483, goal 3000 — click for combos"><a class="goal-cell-link" href="goal_COLD_STORAGE_ACCESS.html#ethrex">2,483</a></td>
+      <td class="goal-pass" title="est 2493, goal 3000 — click for combos"><a class="goal-cell-link" href="goal_COLD_STORAGE_ACCESS.html#geth">2,493</a></td>
+      <td class="goal-pass" title="est 1727, goal 3000 — click for combos"><a class="goal-cell-link" href="goal_COLD_STORAGE_ACCESS.html#nethermind">1,727</a></td>
+      <td class="goal-pass" title="est 155, goal 3000 — click for combos"><a class="goal-cell-link" href="goal_COLD_STORAGE_ACCESS.html#reth">155</a></td>
+    </tr>
+    <tr>
+      <th scope="row" title="goal 10000">STORAGE_WRITE</th>
+      <td class="goal-mid" title="est 19230 − 3000 = 16230, goal 10000 — click for combos"><a class="goal-cell-link" href="goal_COLD_STORAGE_WRITE.html#besu">16,230</a></td>
+      <td class="goal-mid" title="est 13096 − 3000 = 10096, goal 10000 — click for combos"><a class="goal-cell-link" href="goal_COLD_STORAGE_WRITE.html#erigon">10,096</a></td>
+      <td class="goal-fail" title="est 24988 − 3000 = 21988, goal 10000 — click for combos"><a class="goal-cell-link" href="goal_COLD_STORAGE_WRITE.html#ethrex">21,988</a></td>
+      <td class="goal-mid" title="est 13813 − 3000 = 10813, goal 10000 — click for combos"><a class="goal-cell-link" href="goal_COLD_STORAGE_WRITE.html#geth">10,813</a></td>
+      <td class="goal-pass" title="est 5056 − 3000 = 2056, goal 10000 — click for combos"><a class="goal-cell-link" href="goal_COLD_STORAGE_WRITE.html#nethermind">2,056</a></td>
+      <td class="goal-mid" title="est 15275 − 3000 = 12275, goal 10000 — click for combos"><a class="goal-cell-link" href="goal_COLD_STORAGE_WRITE.html#reth">12,275</a></td>
+    </tr>
+    <tr>
+      <th scope="row" title="goal 3000">COLD_ACCOUNT_ACCESS <span class="variant-label">CODE</span></th>
+      <td class="goal-mid" title="est 3243, goal 3000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_CODE_ACCESS.html#besu">3,243</a></td>
+      <td class="goal-fail" title="est 8032, goal 3000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_CODE_ACCESS.html#erigon">8,032</a></td>
+      <td class="goal-pass" title="est 1831, goal 3000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_CODE_ACCESS.html#ethrex">1,831</a></td>
+      <td class="goal-pass" title="est 2365, goal 3000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_CODE_ACCESS.html#geth">2,365</a></td>
+      <td class="goal-pass" title="est 1931, goal 3000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_CODE_ACCESS.html#nethermind">1,931</a></td>
+      <td class="goal-pass" title="est 1854, goal 3000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_CODE_ACCESS.html#reth">1,854</a></td>
+    </tr>
+    <tr>
+      <th scope="row" title="goal 3000">COLD_ACCOUNT_ACCESS <span class="variant-label">NOCODE</span></th>
+      <td class="goal-pass" title="est 1721, goal 3000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_NOCODE_ACCESS.html#besu">1,721</a></td>
+      <td class="goal-pass" title="est 1099, goal 3000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_NOCODE_ACCESS.html#erigon">1,099</a></td>
+      <td class="goal-pass" title="est 1772, goal 3000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_NOCODE_ACCESS.html#ethrex">1,772</a></td>
+      <td class="goal-pass" title="est 2276, goal 3000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_NOCODE_ACCESS.html#geth">2,276</a></td>
+      <td class="goal-pass" title="est 398, goal 3000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_NOCODE_ACCESS.html#nethermind">398</a></td>
+      <td class="goal-pass" title="est 128, goal 3000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_NOCODE_ACCESS.html#reth">128</a></td>
+    </tr>
+    <tr>
+      <th scope="row" title="goal 8000">ACCOUNT_WRITE <span class="variant-label">CODE</span></th>
+      <td class="goal-fail" title="est 20057 − 3000 = 17057, goal 8000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_CODE_WRITE.html#besu">17,057</a></td>
+      <td class="goal-fail" title="est 27893 − 3000 = 24893, goal 8000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_CODE_WRITE.html#erigon">24,893</a></td>
+      <td class="goal-pass" title="est 2575 − 3000 = -425, goal 8000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_CODE_WRITE.html#ethrex">-425</a></td>
+      <td class="goal-pass" title="est 10344 − 3000 = 7344, goal 8000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_CODE_WRITE.html#geth">7,344</a></td>
+      <td class="goal-pass" title="est 5064 − 3000 = 2064, goal 8000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_CODE_WRITE.html#nethermind">2,064</a></td>
+      <td class="goal-pass" title="est 9343 − 3000 = 6343, goal 8000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_CODE_WRITE.html#reth">6,343</a></td>
+    </tr>
+    <tr>
+      <th scope="row" title="goal 8000">ACCOUNT_WRITE <span class="variant-label">NOCODE</span></th>
+      <td class="goal-fail" title="est 20057 − 3000 = 17057, goal 8000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_NOCODE_WRITE.html#besu">17,057</a></td>
+      <td class="goal-fail" title="est 21203 − 3000 = 18203, goal 8000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_NOCODE_WRITE.html#erigon">18,203</a></td>
+      <td class="goal-pass" title="est 2506 − 3000 = -494, goal 8000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_NOCODE_WRITE.html#ethrex">-494</a></td>
+      <td class="goal-pass" title="est 10344 − 3000 = 7344, goal 8000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_NOCODE_WRITE.html#geth">7,344</a></td>
+      <td class="goal-pass" title="est 4905 − 3000 = 1905, goal 8000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_NOCODE_WRITE.html#nethermind">1,905</a></td>
+      <td class="goal-pass" title="est 8278 − 3000 = 5278, goal 8000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_NOCODE_WRITE.html#reth">5,278</a></td>
+    </tr>
+    <tr>
+      <th scope="row" title="goal 100">WARM_ACCESS</th>
+      <td class="goal-pass" title="est 60, goal 100 — click for combos"><a class="goal-cell-link" href="goal_WARM_ACCESS.html#besu">60</a></td>
+      <td class="goal-pass" title="est 57, goal 100 — click for combos"><a class="goal-cell-link" href="goal_WARM_ACCESS.html#erigon">57</a></td>
+      <td class="goal-pass" title="est 11, goal 100 — click for combos"><a class="goal-cell-link" href="goal_WARM_ACCESS.html#ethrex">11</a></td>
+      <td class="goal-pass" title="est 20, goal 100 — click for combos"><a class="goal-cell-link" href="goal_WARM_ACCESS.html#geth">20</a></td>
+      <td class="goal-pass" title="est 45, goal 100 — click for combos"><a class="goal-cell-link" href="goal_WARM_ACCESS.html#nethermind">45</a></td>
+      <td class="goal-pass" title="est 6, goal 100 — click for combos"><a class="goal-cell-link" href="goal_WARM_ACCESS.html#reth">6</a></td>
+    </tr>
+  </tbody>
+</table>
+  </main>
+
+  <footer class="site-footer">
+    <p class="repro">
+      Suites
+<code>1abf5c96ab2bbf14</code>, <code>d88b18464da7445e</code>      · run 2026-06-10T23:58:21Z
+      · evm-gasfit 0.1.0
+      · benchmarkoor-fetch 0.2.0
+      · commit <code>98b0c87</code>
+    </p>
+  </footer>
+  <script src="run_selector.js"></script>
+</body>
+</html>

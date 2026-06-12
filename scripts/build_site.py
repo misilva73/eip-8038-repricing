@@ -560,6 +560,254 @@ def collect_trends(runs: list[dict]) -> dict:
 
 
 # --------------------------------------------------------------------------- #
+# Goal targets (the Goals page — latest run only, rendered once)
+# --------------------------------------------------------------------------- #
+# Fixed target gas values a client should reach. A client "clears" a goal when its
+# estimate is <= the goal (lower is better). The write goals subtract the bundled
+# cold-access component (the access goal) to isolate the pure-write cost, and the
+# account goals require *both* the CODE and NOCODE variants to clear.
+GOAL_SPECS = [
+    {"key": "COLD_STORAGE_ACCESS", "goal": 3000, "subtract": 0,
+     "params": ["COLD_STORAGE_ACCESS"], "current_param": "COLD_STORAGE_ACCESS"},
+    {"key": "STORAGE_WRITE", "goal": 10000, "subtract": 3000,
+     "params": ["COLD_STORAGE_WRITE"], "current_param": "STORAGE_WRITE"},
+    {"key": "COLD_ACCOUNT_ACCESS", "goal": 3000, "subtract": 0,
+     "params": ["COLD_ACCOUNT_CODE_ACCESS", "COLD_ACCOUNT_NOCODE_ACCESS"],
+     "current_param": "COLD_ACCOUNT_NOCODE_ACCESS"},
+    {"key": "ACCOUNT_WRITE", "goal": 8000, "subtract": 3000,
+     "params": ["COLD_ACCOUNT_CODE_WRITE", "COLD_ACCOUNT_NOCODE_WRITE"],
+     "current_param": "ACCOUNT_WRITE"},
+    {"key": "WARM_ACCESS", "goal": 100, "subtract": 0,
+     "params": ["WARM_ACCESS"], "current_param": "WARM_ACCESS"},
+]
+
+
+def _variant_label(param: str) -> str:
+    """CODE / NOCODE tag for an account-param variant; "" for single-param goals."""
+    if "NOCODE" in param:
+        return "NOCODE"
+    return "CODE" if "CODE" in param else ""
+
+
+def collect_goals(gasfit: Path) -> dict:
+    """Per-client pass/fail of each goal target for the latest run.
+
+    Reads the per-client selected fits (``winning_fits`` over
+    ``new_gas_all_params.csv``), derives each goal's per-client value (subtracting
+    the bundled access component for the write goals), and flags
+    ``clears = effective <= goal``. Account goals require *both* the CODE and NOCODE
+    variants to clear; a client missing any required param leaves a ``no_data`` cell
+    (which never counts as cleared)."""
+    ap = pd.read_csv(gasfit / "new_gas_all_params.csv")
+    sel = winning_fits(ap)
+    # value[param][client] -> rounded proposed gas (same extraction as build_proposal_heatmap)
+    value: dict[str, dict[str, int]] = {}
+    clients: set[str] = set()
+    for _, row in sel.iterrows():
+        client = row["client_name"]
+        if not isinstance(client, str) or not client:
+            continue  # derived params carry no per-client fit
+        value.setdefault(row["gas_param"], {})[client] = int(row["new_gas_rounded"])
+        clients.add(client)
+    ordered_clients = sorted(clients)
+
+    current_by_param = {r["param"]: r["current"] for r in parse_proposed_table(gasfit)}
+
+    matrix: dict[str, dict[str, dict]] = {}
+    goals: list[dict] = []
+    for spec in GOAL_SPECS:
+        goal, sub = spec["goal"], spec["subtract"]
+        row: dict[str, dict] = {}
+        n_clear = 0
+        for client in ordered_clients:
+            # One variant entry per param, index-aligned with spec["params"] so the
+            # detail table can render CODE/NOCODE as their own rows; missing fits
+            # carry effective=None.
+            variants = []
+            for param in spec["params"]:
+                est = value.get(param, {}).get(client)
+                eff = None if est is None else est - sub
+                variants.append({
+                    "label": _variant_label(param),
+                    "param": param,
+                    "raw": est,
+                    "effective": eff,
+                    "clears": eff is not None and eff <= goal,
+                    "missing": est is None,
+                })
+            no_data = any(v["missing"] for v in variants)
+            clears = (not no_data) and all(v["clears"] for v in variants)
+            row[client] = {"variants": variants, "clears": clears, "no_data": no_data}
+            if clears:
+                n_clear += 1
+        matrix[spec["key"]] = row
+        # Diff vs the current (osaka baseline) cost, same green=down/red=up coding
+        # as the proposal/Trends tables. None when the baseline is non-numeric.
+        current = current_by_param.get(spec["current_param"], "—")
+        cur_n = int(current) if str(current).lstrip("-").isdigit() else None
+        diff_pct = round((goal - cur_n) / cur_n * 100) if cur_n else None
+        goals.append({
+            "key": spec["key"],
+            "goal": goal,
+            "subtract": sub,
+            "current": current,
+            "diff_pct": diff_pct,
+            "n_clear": n_clear,
+            "n_total": len(ordered_clients),
+            "variant_labels": [_variant_label(p) for p in spec["params"]],
+        })
+
+    return {
+        "clients": ordered_clients,
+        "goals": goals,
+        "matrix": matrix,
+    }
+
+
+def _goal_param_meta() -> dict[str, dict]:
+    """Map each estimated param that feeds a goal to its goal context."""
+    meta: dict[str, dict] = {}
+    for spec in GOAL_SPECS:
+        for p in spec["params"]:
+            meta[p] = {"goal_key": spec["key"], "goal": spec["goal"],
+                       "subtract": spec["subtract"], "variant": _variant_label(p)}
+    return meta
+
+
+def _clean_cell(v) -> str:
+    return "" if v is None or (isinstance(v, float) and pd.isna(v)) else str(v)
+
+
+def _to_float(v) -> float | None:
+    try:
+        f = float(v)
+    except (TypeError, ValueError):
+        return None
+    return None if math.isnan(f) else f
+
+
+def _candidate_label(row) -> str:
+    """Readable label for one candidate combo (the row's own fit triple + factors)."""
+    core = " · ".join(p for p in (
+        _clean_cell(row.get("test_name")),
+        _clean_cell(row.get("target_opcode")),
+        _clean_cell(row.get("model_coef_name")),
+    ) if p)
+    extras = []
+    am = _clean_cell(row.get("param_account_mode")).replace("AccountMode.", "")
+    if am:
+        extras.append(am)
+    slots = _clean_cell(row.get("param_existing_slots"))
+    if slots:
+        extras.append(f"slots={slots}")
+    op = _clean_cell(row.get("param_opcode"))
+    if op and op != _clean_cell(row.get("target_opcode")):
+        extras.append(op)
+    return f"{core} ({', '.join(extras)})" if extras else (core or "—")
+
+
+def collect_goal_combos(gasfit: Path) -> dict[str, dict]:
+    """Per (goal param, client) candidate model combos for the per-cell detail pages.
+
+    Each estimated param that feeds a goal gets a page listing, per client, every
+    candidate fit evm-gasfit considered (``new_gas_all_params.csv``) with its proposed
+    gas and fit stats; the selected (winning) combo is flagged. Duplicate candidate
+    rows (same combo + value) are collapsed, OR-ing the winner flag."""
+    meta = _goal_param_meta()
+    ap = pd.read_csv(gasfit / "new_gas_all_params.csv")
+    out: dict[str, dict] = {}
+    for param, pmeta in meta.items():
+        g = ap[(ap["gas_param"] == param) & ap["client_name"].notna()
+               & (ap["client_name"].astype(str) != "")]
+        if g.empty:
+            continue
+        by_client: dict[str, list] = {}
+        for client in sorted(g["client_name"].unique()):
+            seen: dict[tuple, dict] = {}
+            order: list[dict] = []
+            for _, r in g[g["client_name"] == client].iterrows():
+                key = tuple(_clean_cell(r.get(c)) for c in _PROV_COMBO_COLS)
+                win = str(r.get("is_winner", "")).strip().lower() in ("true", "1")
+                if key in seen:
+                    seen[key]["is_winner"] = seen[key]["is_winner"] or win
+                    continue
+                combo = {
+                    "label": _candidate_label(r),
+                    "gas": int(r["new_gas_rounded"]),
+                    "rsquared": _to_float(r.get("rsquared")),
+                    "pvalue": _to_float(r.get("pvalue")),
+                    "runtime_ms": _to_float(r.get("runtime_ms")),
+                    "poor_fit": str(r.get("poor_fit", "")).strip().lower() in ("true", "1"),
+                    "is_winner": win,
+                }
+                seen[key] = combo
+                order.append(combo)
+            # Winner first, then cheapest proposed gas.
+            order.sort(key=lambda c: (not c["is_winner"], c["gas"]))
+            by_client[client] = order
+        out[param] = {
+            "param": param,
+            "goal_key": pmeta["goal_key"],
+            "goal": pmeta["goal"],
+            "subtract": pmeta["subtract"],
+            "variant": pmeta["variant"],
+            "clients": sorted(by_client),
+            "by_client": by_client,
+        }
+    return out
+
+
+def _ordered_unique(values) -> list:
+    """First-appearance-ordered de-dup of a non-empty string column."""
+    return list(dict.fromkeys(v for v in values if isinstance(v, str) and v))
+
+
+def _derived_formula(spec) -> str:
+    """The expression string for one ``fit.yaml`` ``derived`` entry (which is
+    either a bare string or a ``{formula: ...}`` mapping)."""
+    return spec["formula"] if isinstance(spec, dict) else str(spec)
+
+
+def collect_param_map(gasfit: Path, fit_cfg: dict) -> dict:
+    """The parameter→provenance reference for the methodology page.
+
+    ``estimated`` lists one row per fitted gas param — the presets, target
+    opcodes, fixtures, and model coefficient that feed its NNLS fits, aggregated
+    over *every* candidate combo in ``new_gas_all_params.csv`` (not just the
+    winner). ``derived`` lists the params computed from others, with the verbatim
+    ``fit.yaml`` formula. Both preserve first-appearance / declaration order so
+    the tables stay stable across re-fits."""
+    derived_cfg = fit_cfg.get("derived") or {}
+    derived = [
+        {"param": name, "formula": _derived_formula(spec)}
+        for name, spec in derived_cfg.items()
+    ]
+
+    estimated: list[dict] = []
+    csv = gasfit / "new_gas_all_params.csv"
+    if csv.exists():
+        ap = pd.read_csv(csv)
+        ap = ap[ap["client_name"].notna() & (ap["client_name"].astype(str) != "")]
+        for param in _ordered_unique(ap["gas_param"]):
+            if param in derived_cfg:
+                continue  # a derived param can also carry stray fitted rows
+            g = ap[ap["gas_param"] == param]
+            presets = _ordered_unique(
+                re.sub(r"^presets\[(.*)\]$", r"\1", s)
+                for s in g["source_label"]
+            )
+            estimated.append({
+                "param": param,
+                "presets": presets,
+                "opcodes": _ordered_unique(g["target_opcode"]),
+                "fixtures": _ordered_unique(g["test_name"]),
+                "coef": _ordered_unique(g["model_coef_name"]),
+            })
+
+    return {"estimated": estimated, "derived": derived}
+
+
+# --------------------------------------------------------------------------- #
 # Run discovery
 # --------------------------------------------------------------------------- #
 def discover_runs() -> list[dict]:
@@ -651,6 +899,9 @@ def clear_stale_outputs() -> None:
     for page_file in PAGES.values():
         (OUT / page_file).unlink(missing_ok=True)
     (OUT / "trends.html").unlink(missing_ok=True)  # singleton cross-run page
+    (OUT / "goals.html").unlink(missing_ok=True)  # singleton page
+    for f in OUT.glob("goal_*.html"):  # per-param combo detail pages
+        f.unlink()
 
 
 def render_run(env: Environment, run: dict, runs: list[dict]) -> None:
@@ -678,12 +929,13 @@ def render_run(env: Environment, run: dict, runs: list[dict]) -> None:
             ignore=shutil.ignore_patterns("proposal"),
         )
 
-    # Landing page — static narrative + headline counts.
+    # Landing page — static narrative. No run-bar here (runs=None): the overview
+    # is run-agnostic, so the dropdown would be misleading.
     proposed = parse_proposed_table(gasfit)
-    n_up = sum(1 for r in proposed if r["diff"].startswith("+"))
-    n_down = sum(1 for r in proposed if r["diff"].startswith("-"))
+    index_ctx = common("index")
+    index_ctx["runs"] = None
     (out / PAGES["index"]).write_text(env.get_template("index.html").render(
-        proposed=proposed, n_up=n_up, n_down=n_down, **common("index"),
+        **index_ctx,
     ))
 
     # New-gas page — the headline parameter table is re-rendered as a styled
@@ -738,10 +990,12 @@ def render_run(env: Environment, run: dict, runs: list[dict]) -> None:
         figs_pruned=run["figs_pruned"], **parse_glue(gasfit), **common("glue"),
     ))
 
-    # Methodology page — static narrative, config-driven values from the run's fit.
+    # Methodology page — static narrative, config-driven values from the run's
+    # fit, plus the parameter→provenance map built from this run's fits.
     fit_cfg = yaml.safe_load(run["fit"].read_text())
     (out / PAGES["methodology"]).write_text(env.get_template("methodology.html").render(
-        fit=fit_cfg, **common("methodology"),
+        fit=fit_cfg, param_map=collect_param_map(gasfit, fit_cfg),
+        **common("methodology"),
     ))
 
 
@@ -763,6 +1017,29 @@ def main() -> None:
         root_prefix="",
         runs=None,
     ))
+
+    # Goals — one latest-only page at the docs root: per-client estimates vs fixed
+    # target gas values. Singleton like Trends (kept out of PAGES / the dropdown).
+    latest_gasfit = runs[0]["gasfit"]
+    latest_meta = load_meta(runs[0]["raw_meta"])
+    (OUT / "goals.html").write_text(env.get_template("goals.html").render(
+        goals=collect_goals(latest_gasfit),
+        meta=latest_meta,
+        page="goals",
+        root_prefix="",
+        runs=None,
+    ))
+    # One detail page per goal param (docs root, so base.html's bare nav links work):
+    # the candidate model combos behind each client's value. Linked from the Goals
+    # per-client detail cells.
+    for param, detail in collect_goal_combos(latest_gasfit).items():
+        (OUT / f"goal_{param}.html").write_text(env.get_template("goal_detail.html").render(
+            detail=detail,
+            meta=latest_meta,
+            page="goals",
+            root_prefix="",
+            runs=None,
+        ))
 
     copy_static()
     print(f"Built site → {OUT} ({len(runs)} run(s))")

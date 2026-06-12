@@ -6,41 +6,30 @@
 <p>
   <a href="https://eips.ethereum.org/EIPS/eip-8038">EIP-8038</a> reprices EVM
   state-access operations — cold and warm storage and account access, plus account
-  and storage writes. This site re-derives those gas costs empirically: NNLS
-  regressions on client benchmark runtimes, anchored at 100&nbsp;Mgas/s, taking the
-  worst-case client per parameter. See the
+  and storage writes. This site turns client benchmark performance into
+  <a href="{{ root_prefix }}goals.html">gas-cost goals</a>: NNLS regressions on
+  measured runtimes, anchored at 100&nbsp;Mgas/s, set a target value each client
+  should be able to reach for every parameter — and we then report each client's
+  progress toward clearing those goals. See the
   <a href="methodology.html">methodology</a> page for the full pipeline.
 </p>
 
-<p class="takeaway">
-  Of the {{ proposed | length }} gas parameters analysed,
-  <strong>{{ n_up }}</strong> warrant an increase and
-  <strong>{{ n_down }}</strong> could be reduced relative to the current cost
-  table. See the <a href="new-gas.html">new-gas proposal</a> for the per-parameter
-  breakdown, or <a href="{{ root_prefix }}trends.html">trends</a> for how these
-  estimates have moved across runs.
-</p>
-
 <p class="warning">
-  <strong>Preliminary results.</strong> These parameters are not final: the
-  underlying measurements are still being refined as execution clients optimize
-  their state-access paths. As those optimizations land, per-client runtimes should
-  converge — which may shift the worst-case selection and the resulting gas
-  parameters.
+  <strong>Preliminary results.</strong> Neither the goals nor the progress against
+  them are final: the underlying measurements are still being refined as execution
+  clients optimize their state-access paths. As those optimizations land, per-client
+  runtimes should converge — which may shift the goal targets and move each client's
+  progress toward clearing them.
 </p>
 
 <div class="cards">
+  <a class="card" href="{{ root_prefix }}goals.html">
+    <h3>Goals &rarr;</h3>
+    <p>Target gas values for the key 8038 parameters, and which clients currently clear them.</p>
+  </a>
   <a class="card" href="new-gas.html">
-    <h3>New Gas Proposal &rarr;</h3>
-    <p>Proposed vs. current gas per parameter, per-client comparison, and worst-case provenance.</p>
-  </a>
-  <a class="card" href="runtime.html">
-    <h3>Runtime Model &rarr;</h3>
-    <p>Per-opcode NNLS fits of runtime against opcode count, filterable by opcode and client.</p>
-  </a>
-  <a class="card" href="glue.html">
-    <h3>Glue Runtime &rarr;</h3>
-    <p>Per-client fits for the priced glue opcodes that the target coefficients are netted against.</p>
+    <h3>Gasfit Results &rarr;</h3>
+    <p>Proposed vs. current gas per parameter, the per-opcode runtime model, and the glue fits behind them.</p>
   </a>
   <a class="card" href="{{ root_prefix }}trends.html">
     <h3>Trends &rarr;</h3>

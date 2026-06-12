@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>COLD_ACCOUNT_CODE_WRITE combos — EIP-8038</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="page-goals">
+  <header class="site-header">
+    <div class="topbar-primary">
+      <a class="site-title" href="index.html">EIP-8038 Repricing</a>
+      <nav class="site-nav">
+        <a href="index.html">Overview</a>
+        <a href="goals.html" class="active">Goals</a>
+        <a href="new-gas.html">Gasfit Results</a>
+        <a href="trends.html">Trends</a>
+        <a href="methodology.html">Methodology</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="content"><p class="muted"><a href="goals.html">← Back to Goals</a></p>
+<h1>COLD_ACCOUNT_CODE_WRITE<span class="muted"> — model combos</span></h1>
+<p>
+  Every candidate model combo evm-gasfit considered for each client's
+  <code>COLD_ACCOUNT_CODE_WRITE</code> fit. The <strong>selected</strong> combo (winner)
+  sets the value used on the Goals page for the
+  <code>ACCOUNT_WRITE</code> goal (target 8,000, after subtracting 3,000 for the bundled cold-access component).
+</p>
+
+<h2 id="besu">besu</h2>
+<table>
+  <thead>
+    <tr><th>Combo</th><th>Proposed gas</th><th>R²</th><th>p-value</th><th>Runtime (ms)</th></tr>
+  </thead>
+  <tbody>
+    <tr class="winner-row">
+      <td class="combo-cell">test_account_access · CALL · target_coef (NON_EXISTING_ACCOUNT) <span class="binding-tag">selected</span></td>
+      <td class="over-goal" title="20,057 − 3,000 = 17,057, goal 8,000">20,057 <span class="over-goal-tag">over goal</span></td>
+      <td>0.797</td>
+      <td>0.001</td>
+      <td>0.2006</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · CALLCODE · target_coef (NON_EXISTING_ACCOUNT) <span class="poor-flag" title="poor fit (R²/p-value)">*</span></td>
+      <td class="" title="645 − 3,000 = -2,355, goal 8,000">645</td>
+      <td>0.330</td>
+      <td>0.001</td>
+      <td>0.006447</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · CALLCODE · target_coef (EXISTING_CONTRACT)</td>
+      <td class="" title="3,161 − 3,000 = 161, goal 8,000">3,161</td>
+      <td>0.706</td>
+      <td>0.001</td>
+      <td>0.03161</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · CALL · target_coef (EXISTING_CONTRACT)</td>
+      <td class="" title="9,574 − 3,000 = 6,574, goal 8,000">9,574</td>
+      <td>0.910</td>
+      <td>0.001</td>
+      <td>0.09573</td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="erigon">erigon</h2>
+<table>
+  <thead>
+    <tr><th>Combo</th><th>Proposed gas</th><th>R²</th><th>p-value</th><th>Runtime (ms)</th></tr>
+  </thead>
+  <tbody>
+    <tr class="winner-row">
+      <td class="combo-cell">test_account_access · CALL · target_coef (EXISTING_CONTRACT) <span class="binding-tag">selected</span></td>
+      <td class="over-goal" title="27,893 − 3,000 = 24,893, goal 8,000">27,893 <span class="over-goal-tag">over goal</span></td>
+      <td>0.998</td>
+      <td>0.001</td>
+      <td>0.2789</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · CALLCODE · target_coef (NON_EXISTING_ACCOUNT)</td>
+      <td class="" title="189 − 3,000 = -2,811, goal 8,000">189</td>
+      <td>0.947</td>
+      <td>0.001</td>
+      <td>0.00189</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · CALLCODE · target_coef (EXISTING_CONTRACT)</td>
+      <td class="" title="7,298 − 3,000 = 4,298, goal 8,000">7,298</td>
+      <td>0.918</td>
+      <td>0.001</td>
+      <td>0.07298</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · CALL · target_coef (NON_EXISTING_ACCOUNT)</td>
+      <td class="over-goal" title="21,203 − 3,000 = 18,203, goal 8,000">21,203 <span class="over-goal-tag">over goal</span></td>
+      <td>0.976</td>
+      <td>0.001</td>
+      <td>0.212</td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="ethrex">ethrex</h2>
+<table>
+  <thead>
+    <tr><th>Combo</th><th>Proposed gas</th><th>R²</th><th>p-value</th><th>Runtime (ms)</th></tr>
+  </thead>
+  <tbody>
+    <tr class="winner-row">
+      <td class="combo-cell">test_account_access · CALL · target_coef (EXISTING_CONTRACT) <span class="binding-tag">selected</span></td>
+      <td class="" title="2,575 − 3,000 = -425, goal 8,000">2,575</td>
+      <td>0.996</td>
+      <td>0.001</td>
+      <td>0.02575</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · CALLCODE · target_coef (NON_EXISTING_ACCOUNT)</td>
+      <td class="" title="43 − 3,000 = -2,957, goal 8,000">43</td>
+      <td>0.710</td>
+      <td>0.001</td>
+      <td>0.0004219</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · CALL · target_coef (NON_EXISTING_ACCOUNT)</td>
+      <td class="" title="1,407 − 3,000 = -1,593, goal 8,000">1,407</td>
+      <td>0.779</td>
+      <td>0.001</td>
+      <td>0.01407</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · CALLCODE · target_coef (EXISTING_CONTRACT)</td>
+      <td class="" title="1,590 − 3,000 = -1,410, goal 8,000">1,590</td>
+      <td>0.992</td>
+      <td>0.001</td>
+      <td>0.0159</td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="geth">geth</h2>
+<table>
+  <thead>
+    <tr><th>Combo</th><th>Proposed gas</th><th>R²</th><th>p-value</th><th>Runtime (ms)</th></tr>
+  </thead>
+  <tbody>
+    <tr class="winner-row">
+      <td class="combo-cell">test_account_access · CALL · target_coef (NON_EXISTING_ACCOUNT) <span class="binding-tag">selected</span></td>
+      <td class="" title="10,344 − 3,000 = 7,344, goal 8,000">10,344</td>
+      <td>0.905</td>
+      <td>0.001</td>
+      <td>0.1034</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · CALLCODE · target_coef (NON_EXISTING_ACCOUNT)</td>
+      <td class="" title="1,074 − 3,000 = -1,926, goal 8,000">1,074</td>
+      <td>0.986</td>
+      <td>0.001</td>
+      <td>0.01074</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · CALLCODE · target_coef (EXISTING_CONTRACT)</td>
+      <td class="" title="2,600 − 3,000 = -400, goal 8,000">2,600</td>
+      <td>0.902</td>
+      <td>0.001</td>
+      <td>0.026</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · CALL · target_coef (EXISTING_CONTRACT)</td>
+      <td class="" title="9,798 − 3,000 = 6,798, goal 8,000">9,798</td>
+      <td>0.993</td>
+      <td>0.001</td>
+      <td>0.09797</td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="nethermind">nethermind</h2>
+<table>
+  <thead>
+    <tr><th>Combo</th><th>Proposed gas</th><th>R²</th><th>p-value</th><th>Runtime (ms)</th></tr>
+  </thead>
+  <tbody>
+    <tr class="winner-row">
+      <td class="combo-cell">test_account_access · CALL · target_coef (EXISTING_CONTRACT) <span class="binding-tag">selected</span></td>
+      <td class="" title="5,064 − 3,000 = 2,064, goal 8,000">5,064</td>
+      <td>0.886</td>
+      <td>0.001</td>
+      <td>0.05063</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · CALLCODE · target_coef (NON_EXISTING_ACCOUNT)</td>
+      <td class="" title="146 − 3,000 = -2,854, goal 8,000">146</td>
+      <td>0.640</td>
+      <td>0.001</td>
+      <td>0.001455</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · CALLCODE · target_coef (EXISTING_CONTRACT)</td>
+      <td class="" title="2,168 − 3,000 = -832, goal 8,000">2,168</td>
+      <td>0.891</td>
+      <td>0.001</td>
+      <td>0.02168</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · CALL · target_coef (NON_EXISTING_ACCOUNT)</td>
+      <td class="" title="4,905 − 3,000 = 1,905, goal 8,000">4,905</td>
+      <td>0.881</td>
+      <td>0.001</td>
+      <td>0.04904</td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="reth">reth</h2>
+<table>
+  <thead>
+    <tr><th>Combo</th><th>Proposed gas</th><th>R²</th><th>p-value</th><th>Runtime (ms)</th></tr>
+  </thead>
+  <tbody>
+    <tr class="winner-row">
+      <td class="combo-cell">test_account_access · CALL · target_coef (EXISTING_CONTRACT) <span class="binding-tag">selected</span></td>
+      <td class="" title="9,343 − 3,000 = 6,343, goal 8,000">9,343</td>
+      <td>0.999</td>
+      <td>0.001</td>
+      <td>0.09342</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · CALLCODE · target_coef (NON_EXISTING_ACCOUNT)</td>
+      <td class="" title="28 − 3,000 = -2,972, goal 8,000">28</td>
+      <td>0.763</td>
+      <td>0.001</td>
+      <td>0.0002775</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · CALLCODE · target_coef (EXISTING_CONTRACT)</td>
+      <td class="" title="2,136 − 3,000 = -864, goal 8,000">2,136</td>
+      <td>0.839</td>
+      <td>0.001</td>
+      <td>0.02135</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · CALL · target_coef (NON_EXISTING_ACCOUNT)</td>
+      <td class="" title="8,121 − 3,000 = 5,121, goal 8,000">8,121</td>
+      <td>0.968</td>
+      <td>0.001</td>
+      <td>0.0812</td>
+    </tr>
+  </tbody>
+</table>
+  </main>
+
+  <footer class="site-footer">
+    <p class="repro">
+      Suites
+<code>1abf5c96ab2bbf14</code>, <code>d88b18464da7445e</code>      · run 2026-06-10T23:58:21Z
+      · evm-gasfit 0.1.0
+      · benchmarkoor-fetch 0.2.0
+      · commit <code>98b0c87</code>
+    </p>
+  </footer>
+  <script src="run_selector.js"></script>
+</body>
+</html>

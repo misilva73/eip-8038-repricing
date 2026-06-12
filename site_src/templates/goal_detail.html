@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}{{ detail.param }} combos — EIP-8038{% endblock %}
+{% block content %}
+<p class="muted"><a href="goals.html">← Back to Goals</a></p>
+<h1>{{ detail.param }}<span class="muted"> — model combos</span></h1>
+<p>
+  Every candidate model combo evm-gasfit considered for each client's
+  <code>{{ detail.param }}</code> fit. The <strong>selected</strong> combo (winner)
+  sets the value used on the Goals page for the
+  <code>{{ detail.goal_key }}</code> goal (target {{ "{:,}".format(detail.goal) }}{% if detail.subtract %}, after subtracting {{ "{:,}".format(detail.subtract) }} for the bundled cold-access component{% endif %}).
+</p>
+
+{% for client in detail.clients %}
+<h2 id="{{ client }}">{{ client }}</h2>
+<table>
+  <thead>
+    <tr><th>Combo</th><th>Proposed gas</th><th>R²</th><th>p-value</th><th>Runtime (ms)</th></tr>
+  </thead>
+  <tbody>
+    {% for c in detail.by_client[client] %}
+    {% set effective = c.gas - detail.subtract %}
+    {% set clears = effective <= detail.goal %}
+    {# Non-clearing combos get a font color: yellow when over goal by up to 100%,
+       red when more than 100% over. #}
+    {% set otier = "" if clears else ("over-goal-mid" if effective <= 2 * detail.goal else "over-goal") %}
+    <tr{% if c.is_winner %} class="winner-row"{% endif %}>
+      <td class="combo-cell">{{ c.label }}{% if c.is_winner %} <span class="binding-tag">selected</span>{% endif %}{% if c.poor_fit %} <span class="poor-flag" title="poor fit (R²/p-value)">*</span>{% endif %}</td>
+      <td class="{{ otier }}" title="{% if detail.subtract %}{{ "{:,}".format(c.gas) }} − {{ "{:,}".format(detail.subtract) }} = {{ "{:,}".format(effective) }}, {% endif %}goal {{ "{:,}".format(detail.goal) }}">{{ "{:,}".format(c.gas) }}{% if not clears %} <span class="over-goal-tag">over goal</span>{% endif %}</td>
+      <td>{{ "%.3f" | format(c.rsquared) if c.rsquared is not none else "—" }}</td>
+      <td>{{ "%.3g" | format(c.pvalue) if c.pvalue is not none else "—" }}</td>
+      <td>{{ "%.4g" | format(c.runtime_ms) if c.runtime_ms is not none else "—" }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endfor %}
+{% endblock %}

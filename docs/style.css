@@ -157,6 +157,12 @@ td:first-child, th:first-child { text-align: left; }
 .worst-case { background: #fdecea; font-weight: 600; }
 tbody tr:hover .worst-case { background: #fbdcd6; }
 
+/* Parameter → model map (methodology): text/code cells, left-aligned, with the
+   parameter column held narrow so the wider provenance columns get the room. */
+table.param-map th, table.param-map td { text-align: left; vertical-align: top; }
+table.param-map td:first-child { white-space: nowrap; }
+table.param-map code { background: none; padding: 0; }
+
 /* Code / preformatted fit summaries */
 code {
   background: var(--code-bg);
@@ -254,7 +260,8 @@ table.heatmap.provenance th[scope="row"] { white-space: normal; }
 .card h3 { margin: 0 0 0.5rem; color: var(--accent); }
 .card p { margin: 0; color: var(--muted); font-size: 0.9rem; }
 
-/* Multi-link card (not itself clickable) */
+/* Multi-link card (not itself clickable); spans the full grid width */
+.card-links { grid-column: 1 / -1; }
 .card-links:hover { border-color: var(--border); transform: none; box-shadow: none; }
 .card-links ul { margin: 0; padding: 0; list-style: none; }
 .card-links li { margin: 0.4rem 0; color: var(--muted); font-size: 0.9rem; }
@@ -508,6 +515,50 @@ table.heatmap.provenance th[scope="row"] { white-space: normal; }
 .trend-chart h3 { margin: 0 0 0.25rem; }
 .trend-chart[hidden] { display: none; }
 
+/* Goals page: pass = clears the target (green), fail = needs optimization (red),
+   nodata = no fit for that client (muted). Same green/red as the heatmap tints. */
+.goal-pass { background: rgba(43, 138, 62, 0.82); color: #fff; font-weight: 600; }
+.goal-fail { background: rgba(201, 42, 42, 0.82); color: #fff; font-weight: 600; }
+.goal-mid { background: rgba(184, 134, 11, 0.85); color: #fff; font-weight: 600; }
+.goal-pass .variant-label, .goal-fail .variant-label,
+.goal-pass .variant-sep, .goal-fail .variant-sep { color: inherit; opacity: 0.7; }
+.goal-nodata { color: var(--muted); }
+.goal-chip {
+  display: inline-block;
+  padding: 0.02em 0.4em;
+  border-radius: 4px;
+  font-weight: 600;
+}
+.variant-label { font-size: 0.72rem; font-weight: 600; color: var(--muted); }
+.variant-sep { color: var(--muted); }
+/* Per-client detail cells link to their combo detail page; keep the cell's own
+   pass/fail color, just hint interactivity on hover. */
+.goal-cell-link,
+.goal-cell-link:link,
+.goal-cell-link:visited { color: #fff; text-decoration: none; display: block; }
+.goal-cell-link:hover { text-decoration: underline; }
+/* Combo detail pages: left-aligned combo description + highlighted winner row. */
+.combo-cell { text-align: left; }
+/* Combos whose value doesn't clear the goal (after the access subtraction):
+   yellow font when over by up to 100%, red when more than 100% over. */
+.over-goal { color: #c92a2a; font-weight: 600; }
+.over-goal-mid { color: #b8860b; font-weight: 600; }
+.over-goal-tag {
+  display: inline-block;
+  margin-left: 0.4em;
+  padding: 0.02em 0.45em;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: inherit;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+}
+/* Anchor jumps (from a Goals cell) land below the sticky header so the client
+   name stays visible above its table. */
+h2[id] { scroll-margin-top: calc(var(--header-h) + 1rem); }
+tr.winner-row td { background: rgba(47, 111, 237, 0.08); }
+tr.winner-row td:first-child { box-shadow: inset 3px 0 0 var(--accent); }
+
 @media (prefers-color-scheme: dark) {
   .delta-down { color: #69db7c; }
   .delta-mid { color: #ffd43b; }
@@ -516,4 +567,9 @@ table.heatmap.provenance th[scope="row"] { white-space: normal; }
   #delta-table tbody tr.binding-row { background: rgba(110, 160, 255, 0.13); }
   #delta-table tbody tr.binding-row:hover { background: rgba(110, 160, 255, 0.2); }
   .poor-flag { color: #fdba74; }
+  .goal-pass { background: rgba(43, 138, 62, 0.70); color: #fff; }
+  .goal-fail { background: rgba(201, 42, 42, 0.70); color: #fff; }
+  .goal-mid { background: rgba(184, 134, 11, 0.72); color: #fff; }
+  .over-goal { color: #ff8787; }
+  .over-goal-mid { color: #ffd43b; }
 }

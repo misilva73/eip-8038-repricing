@@ -65,9 +65,11 @@
   The <code>target_coef</code> — the per-unit runtime of the operation under study — is the
   quantity we care about. The trailing sum carries variable-cost terms: the supporting gas
   parameters whose cost is netted out of the fixture (for example the cold-access surcharge
-  that rides along with a warm access, or the storage-access cost bundled into a write) get
-  their own fixture parameters, while a state-access operation with a single flat cost
-  collapses to one coefficient. Parameters that are constant across all
+  that rides along with a warm access) get their own fixture parameters, while a state-access
+  operation with a single flat cost collapses to one coefficient. Combined operations such as
+  a cold write are fit whole — as a single access-plus-write cost — and the write-only delta
+  is recovered downstream as a <a href="#derived">derived parameter</a>, not split out inside
+  the regression. Parameters that are constant across all
   fixtures are dropped automatically — their column is indistinguishable from
   <code>target_coef</code> — and a fit is skipped entirely if there are too few
   observations or the opcount never varies.
@@ -141,7 +143,7 @@
   current price and is flagged for a bump; the ceiling keeps the result an integer.
 </p>
 
-<h2>5. Worst-case selection &amp; derived parameters</h2>
+<h2 id="derived">5. Worst-case selection &amp; derived parameters</h2>
 <p>
   A single gas parameter is fit many times — once per client, sometimes across several
   fixtures. The proposal consolidates those in two passes, always erring toward the slowest
@@ -162,6 +164,61 @@
   <a href="https://misilva73.github.io/evm-gasfit/concepts/gas-params/">evm-gasfit gas-params docs</a>
   cover the selection and derivation rules in full.
 </p>
+
+<h2 id="param-map">Parameter → model map</h2>
+<p>
+  Every proposed value traces back to a specific set of model fits or to a formula
+  over other parameters. The two tables below are the full provenance for this run,
+  built directly from the fit artifacts.
+</p>
+<h3>Estimated parameters</h3>
+<p>
+  Each parameter below is fit by NNLS (stage 2) over the listed
+  <code>evm-gasfit</code> presets — the worst-case selector (stage 5) then picks the
+  binding client and combo. <em>Target opcodes</em> are the operations whose runtime
+  the fixtures stress; <em>fixtures</em> are the benchmark tests that feed the
+  regression; <em>coefficient</em> is the regression term read off as the per-unit
+  runtime. The exact winning combo and binding client per parameter are on the
+  <a href="new-gas.html#client-comparison">new-gas</a> and
+  <a href="{{ root_prefix }}goals.html">goals</a> pages.
+</p>
+<table class="param-map">
+  <thead>
+    <tr><th>Parameter</th><th>Presets</th><th>Target opcodes</th><th>Fixtures</th><th>Coefficient</th></tr>
+  </thead>
+  <tbody>
+    {% for row in param_map.estimated %}
+    <tr>
+      <td><code>{{ row.param }}</code></td>
+      <td>{% for p in row.presets %}<code>{{ p }}</code>{{ ", " if not loop.last }}{% endfor %}</td>
+      <td>{% for o in row.opcodes %}<code>{{ o }}</code>{{ ", " if not loop.last }}{% endfor %}</td>
+      <td>{% for f in row.fixtures %}<code>{{ f }}</code>{{ ", " if not loop.last }}{% endfor %}</td>
+      <td>{% for c in row.coef %}<code>{{ c }}</code>{{ ", " if not loop.last }}{% endfor %}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<h3>Derived parameters</h3>
+<p>
+  These carry no per-client fit. They are evaluated in declaration order (stage 5)
+  over the estimated parameters above, the <strong>{{ fit.gas_costs.fork }}</strong>
+  fork baseline, and the <code>new_params</code> integer baselines, using an
+  arithmetic-only expression language (<code>max</code>, <code>+ − × ÷</code>, integer
+  literals). The formulas are taken verbatim from <code>fit.yaml</code>.
+</p>
+<table class="param-map">
+  <thead>
+    <tr><th>Parameter</th><th>Formula</th></tr>
+  </thead>
+  <tbody>
+    {% for row in param_map.derived %}
+    <tr>
+      <td><code>{{ row.param }}</code></td>
+      <td><code>{{ row.formula }}</code></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
 <h2>Gas-cost baseline</h2>
 <p>
