@@ -626,7 +626,10 @@ def collect_goals(gasfit: Path) -> dict:
             variants = []
             for param in spec["params"]:
                 est = value.get(param, {}).get(client)
-                eff = None if est is None else est - sub
+                # Floor at 0 (matches the proposal's derived write formula): a fast
+                # client whose whole write+access bundle is under the flat access
+                # goal would otherwise show a negative isolated write cost.
+                eff = None if est is None else max(0, est - sub)
                 variants.append({
                     "label": _variant_label(param),
                     "param": param,
