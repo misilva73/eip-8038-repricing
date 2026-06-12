@@ -7,17 +7,25 @@
   <link rel="stylesheet" href="{{ root_prefix }}style.css">
   {% block head %}{% endblock %}
 </head>
-<body>
+<body class="page-{{ page }}">
+  {% set gasfit_pages = ['new-gas', 'runtime', 'glue'] %}
   <header class="site-header">
-    <a class="site-title" href="index.html">EIP-8038 Repricing</a>
-    <nav class="site-nav">
-      <a href="index.html"{% if page == 'index' %} class="active"{% endif %}>Overview</a>
+    <div class="topbar-primary">
+      <a class="site-title" href="index.html">EIP-8038 Repricing</a>
+      <nav class="site-nav">
+        <a href="index.html"{% if page == 'index' %} class="active"{% endif %}>Overview</a>
+        <a href="new-gas.html"{% if page in gasfit_pages %} class="active"{% endif %}>Gasfit Results</a>
+        <a href="{{ root_prefix }}trends.html"{% if page == 'trends' %} class="active"{% endif %}>Trends</a>
+        <a href="methodology.html"{% if page == 'methodology' %} class="active"{% endif %}>Methodology</a>
+      </nav>
+    </div>
+    {% if page in gasfit_pages %}
+    <nav class="topbar-secondary">
       <a href="new-gas.html"{% if page == 'new-gas' %} class="active"{% endif %}>New Gas</a>
       <a href="runtime.html"{% if page == 'runtime' %} class="active"{% endif %}>Runtime Model</a>
       <a href="glue.html"{% if page == 'glue' %} class="active"{% endif %}>Glue Runtime</a>
-      <a href="{{ root_prefix }}trends.html"{% if page == 'trends' %} class="active"{% endif %}>Trends</a>
-      <a href="methodology.html"{% if page == 'methodology' %} class="active"{% endif %}>Methodology</a>
     </nav>
+    {% endif %}
   </header>
 
   <main class="content">
