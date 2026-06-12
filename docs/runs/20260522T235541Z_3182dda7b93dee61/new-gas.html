@@ -27,7 +27,7 @@
           <span class="run-dropdown-chevron" aria-hidden="true"></span>
         </button>
         <ul class="run-dropdown-list" role="listbox" aria-label="Runs" hidden>          <li role="option" aria-selected="false">
-            <a href="../../new-gas.html" class="run-dropdown-option" tabindex="-1">2026-06-10 06:01</a>
+            <a href="../../new-gas.html" class="run-dropdown-option" tabindex="-1">2026-06-10 23:58</a>
           </li>          <li role="option" aria-selected="false">
             <a href="../../runs/20260607T235606Z_3182dda7b93dee61/new-gas.html" class="run-dropdown-option" tabindex="-1">2026-06-07 23:56</a>
           </li>          <li role="option" aria-selected="false">
@@ -39,7 +39,7 @@
           </li>        </ul>
       </div>
       <noscript>
-        <span class="run-dropdown-noscript"><a href="../../new-gas.html">2026-06-10 06:01</a><a href="../../runs/20260607T235606Z_3182dda7b93dee61/new-gas.html">2026-06-07 23:56</a><a href="../../runs/20260601T234709Z_3182dda7b93dee61/new-gas.html">2026-06-01 23:47</a><a href="../../runs/20260529T234448Z_3182dda7b93dee61/new-gas.html">2026-05-29 23:44</a>        </span>
+        <span class="run-dropdown-noscript"><a href="../../new-gas.html">2026-06-10 23:58</a><a href="../../runs/20260607T235606Z_3182dda7b93dee61/new-gas.html">2026-06-07 23:56</a><a href="../../runs/20260601T234709Z_3182dda7b93dee61/new-gas.html">2026-06-01 23:47</a><a href="../../runs/20260529T234448Z_3182dda7b93dee61/new-gas.html">2026-05-29 23:44</a>        </span>
       </noscript>
       <span class="run-bar-meta">older run &middot; latest of 5</span>
     </div>
@@ -50,8 +50,8 @@
   <a href="runtime.html">runtime</a> and <a href="glue.html">glue</a> pages for the
   underlying per-fit detail.
 </p>
-<p><em>Generated 2026-06-03 07:43:24Z · fork <code>osaka</code> · anchor_rate 100 Mgas/s</em></p>
-<p><strong>Summary:</strong> 9 parameters proposed — 8 increased, 1 decreased, 0 new, 0 unresolved · 4 warnings · 0 poor-fit selections</p>
+<p><em>Generated 2026-06-12 14:41:02Z · fork <code>osaka</code> · anchor_rate 100 Mgas/s</em></p>
+<p><strong>Summary:</strong> 12 parameters proposed — 11 increased, 1 decreased, 0 new, 0 unresolved · 4 warnings · 0 poor-fit selections</p>
 
 <h2 id="proposed-gas-parameters">Proposed gas parameters</h2>
 <table id="proposed-table">
@@ -68,28 +68,34 @@
       <td class="delta-up">+711%</td>
     </tr>
     <tr>
-      <td>STORAGE_WRITE</td>
-      <td>2800</td>
-      <td>205648</td>
-      <td class="delta-up">+7245%</td>
+      <td>COLD_STORAGE_WRITE</td>
+      <td>5000</td>
+      <td>117714</td>
+      <td class="delta-up">+2254%</td>
     </tr>
     <tr>
       <td>COLD_ACCOUNT_NOCODE_ACCESS</td>
       <td>2600</td>
-      <td>5060</td>
-      <td class="delta-mid">+95%</td>
-    </tr>
-    <tr>
-      <td>ACCOUNT_WRITE</td>
-      <td>6700</td>
-      <td>183936</td>
-      <td class="delta-up">+2645%</td>
+      <td>4016</td>
+      <td class="delta-mid">+54%</td>
     </tr>
     <tr>
       <td>COLD_ACCOUNT_CODE_ACCESS</td>
       <td>2600</td>
-      <td>10239</td>
-      <td class="delta-up">+294%</td>
+      <td>8722</td>
+      <td class="delta-up">+235%</td>
+    </tr>
+    <tr>
+      <td>COLD_ACCOUNT_NOCODE_WRITE</td>
+      <td>9300</td>
+      <td>155392</td>
+      <td class="delta-up">+1571%</td>
+    </tr>
+    <tr>
+      <td>COLD_ACCOUNT_CODE_WRITE</td>
+      <td>9300</td>
+      <td>155392</td>
+      <td class="delta-up">+1571%</td>
     </tr>
     <tr>
       <td>WARM_ACCESS</td>
@@ -98,10 +104,22 @@
       <td class="delta-down">-30%</td>
     </tr>
     <tr>
+      <td>STORAGE_WRITE</td>
+      <td>2800</td>
+      <td>100689</td>
+      <td class="delta-up">+3496%</td>
+    </tr>
+    <tr>
+      <td>ACCOUNT_WRITE</td>
+      <td>6700</td>
+      <td>151376</td>
+      <td class="delta-up">+2159%</td>
+    </tr>
+    <tr>
       <td>REFUND_STORAGE_CLEAR</td>
       <td>4800</td>
-      <td>213767</td>
-      <td class="delta-up">+4353%</td>
+      <td>113006</td>
+      <td class="delta-up">+2254%</td>
     </tr>
     <tr>
       <td>TX_ACCESS_LIST_STORAGE_KEY</td>
@@ -112,8 +130,8 @@
     <tr>
       <td>TX_ACCESS_LIST_ADDRESS</td>
       <td>2400</td>
-      <td>10239</td>
-      <td class="delta-up">+327%</td>
+      <td>8722</td>
+      <td class="delta-up">+263%</td>
     </tr>
   </tbody>
 </table>
@@ -137,40 +155,48 @@
 <td>geth</td>
 <td>17025</td>
 <td>nethermind</td>
-<td>2838</td>
-<td>6.00×</td>
+<td>2581</td>
+<td>6.60×</td>
 </tr>
 <tr>
-<td>STORAGE_WRITE</td>
+<td>COLD_STORAGE_WRITE</td>
 <td>erigon</td>
-<td>205648</td>
-<td>reth</td>
-<td>17164</td>
-<td>11.98×</td>
+<td>117714</td>
+<td>geth</td>
+<td>51614</td>
+<td>2.28×</td>
 </tr>
 <tr>
 <td>COLD_ACCOUNT_NOCODE_ACCESS</td>
 <td>geth</td>
-<td>5060</td>
+<td>4016</td>
 <td>erigon</td>
 <td>1171</td>
-<td>4.32×</td>
-</tr>
-<tr>
-<td>ACCOUNT_WRITE</td>
-<td>erigon</td>
-<td>183936</td>
-<td>reth</td>
-<td>16638</td>
-<td>11.06×</td>
+<td>3.43×</td>
 </tr>
 <tr>
 <td>COLD_ACCOUNT_CODE_ACCESS</td>
 <td>erigon</td>
-<td>10239</td>
+<td>8722</td>
 <td>geth</td>
-<td>5060</td>
-<td>2.02×</td>
+<td>4416</td>
+<td>1.98×</td>
+</tr>
+<tr>
+<td>COLD_ACCOUNT_NOCODE_WRITE</td>
+<td>erigon</td>
+<td>155392</td>
+<td>reth</td>
+<td>14953</td>
+<td>10.39×</td>
+</tr>
+<tr>
+<td>COLD_ACCOUNT_CODE_WRITE</td>
+<td>erigon</td>
+<td>155392</td>
+<td>reth</td>
+<td>15478</td>
+<td>10.04×</td>
 </tr>
 <tr>
 <td>WARM_ACCESS</td>
@@ -183,16 +209,16 @@
 </tbody>
 </table>
 <p>Per-client proposed gas for each parameter. Cells are colored by <code>log2(proposed / current)</code> — red means the proposal is more expensive than the current gas cost, green means cheaper, and white sits at unchanged. Annotations show the absolute proposed gas value; blank rows are parameters with no prior baseline (see warnings below).</p>
-<table class="heatmap"><thead><tr><th scope='col'></th><th scope='col'>erigon</th><th scope='col'>geth</th><th scope='col'>nethermind</th><th scope='col'>reth</th></tr></thead><tbody><tr><th scope='row'>COLD_STORAGE_ACCESS</th><td style='background: rgba(43,138,62,0.570); color: inherit;' title='log2(proposed/current) = -1.77'>614</td><td style='background: rgba(201,42,42,0.723); color: #fff;' title='log2(proposed/current) = +3.02'>17,025</td><td style='background: rgba(201,42,42,0.302); color: inherit;' title='log2(proposed/current) = +0.43'>2,838</td><td style='background: rgba(43,138,62,0.809); color: #fff;' title='log2(proposed/current) = -3.87'>144</td></tr><tr><th scope='row'>STORAGE_WRITE</th><td style='background: rgba(201,42,42,1.000); color: #fff;' title='log2(proposed/current) = +6.20'>205,648</td><td style='background: rgba(201,42,42,0.678); color: #fff;' title='log2(proposed/current) = +2.61'>17,088</td><td style='background: rgba(201,42,42,0.489); color: inherit;' title='log2(proposed/current) = +1.26'>6,722</td><td style='background: rgba(201,42,42,0.678); color: #fff;' title='log2(proposed/current) = +2.62'>17,164</td></tr><tr><th scope='row'>COLD_ACCOUNT_NOCODE_ACCESS</th><td style='background: rgba(43,138,62,0.469); color: inherit;' title='log2(proposed/current) = -1.15'>1,171</td><td style='background: rgba(201,42,42,0.432); color: inherit;' title='log2(proposed/current) = +0.96'>5,060</td><td style='background: rgba(43,138,62,0.593); color: inherit;' title='log2(proposed/current) = -1.94'>677</td><td style='background: rgba(43,138,62,0.843); color: #fff;' title='log2(proposed/current) = -4.24'>138</td></tr><tr><th scope='row'>ACCOUNT_WRITE</th><td style='background: rgba(201,42,42,0.890); color: #fff;' title='log2(proposed/current) = +4.78'>183,936</td><td style='background: rgba(43,138,62,0.389); color: inherit;' title='log2(proposed/current) = -0.76'>3,951</td><td style='background: rgba(43,138,62,0.403); color: inherit;' title='log2(proposed/current) = -0.82'>3,786</td><td style='background: rgba(201,42,42,0.497); color: inherit;' title='log2(proposed/current) = +1.31'>16,638</td></tr><tr><th scope='row'>COLD_ACCOUNT_CODE_ACCESS</th><td style='background: rgba(201,42,42,0.598); color: inherit;' title='log2(proposed/current) = +1.98'>10,239</td><td style='background: rgba(201,42,42,0.432); color: inherit;' title='log2(proposed/current) = +0.96'>5,060</td><td style='background: rgba(43,138,62,0.250); color: inherit;' title='log2(proposed/current) = -0.17'>2,311</td><td style='background: rgba(201,42,42,0.332); color: inherit;' title='log2(proposed/current) = +0.53'>3,764</td></tr><tr><th scope='row'>WARM_ACCESS</th><td style='background: rgba(43,138,62,0.434); color: inherit;' title='log2(proposed/current) = -0.97'>51</td><td style='background: rgba(43,138,62,0.326); color: inherit;' title='log2(proposed/current) = -0.51'>70</td><td style='background: rgba(43,138,62,0.446); color: inherit;' title='log2(proposed/current) = -1.03'>49</td><td style='background: rgba(43,138,62,0.850); color: #fff;' title='log2(proposed/current) = -4.32'>5</td></tr></tbody></table>
+<table class="heatmap"><thead><tr><th scope='col'></th><th scope='col'>erigon</th><th scope='col'>geth</th><th scope='col'>nethermind</th><th scope='col'>reth</th></tr></thead><tbody><tr><th scope='row'>COLD_STORAGE_ACCESS</th><td style='background: rgba(43,138,62,0.654); color: #fff;' title='log2(proposed/current) = -1.77'>614</td><td style='background: rgba(201,42,42,0.831); color: #fff;' title='log2(proposed/current) = +3.02'>17,025</td><td style='background: rgba(201,42,42,0.293); color: inherit;' title='log2(proposed/current) = +0.30'>2,581</td><td style='background: rgba(43,138,62,0.920); color: #fff;' title='log2(proposed/current) = -3.79'>152</td></tr><tr><th scope='row'>COLD_STORAGE_WRITE</th><td style='background: rgba(201,42,42,1.000); color: #fff;' title='log2(proposed/current) = +4.56'>117,714</td><td style='background: rgba(201,42,42,0.873); color: #fff;' title='log2(proposed/current) = +3.37'>51,614</td><td style='background: rgba(201,42,42,0.345); color: inherit;' title='log2(proposed/current) = +0.43'>6,728</td><td style='background: rgba(201,42,42,0.618); color: #fff;' title='log2(proposed/current) = +1.57'>14,811</td></tr><tr><th scope='row'>COLD_ACCOUNT_NOCODE_ACCESS</th><td style='background: rgba(43,138,62,0.538); color: inherit;' title='log2(proposed/current) = -1.15'>1,171</td><td style='background: rgba(201,42,42,0.410); color: inherit;' title='log2(proposed/current) = +0.63'>4,016</td><td style='background: rgba(43,138,62,0.682); color: #fff;' title='log2(proposed/current) = -1.95'>674</td><td style='background: rgba(43,138,62,0.993); color: #fff;' title='log2(proposed/current) = -4.49'>116</td></tr><tr><th scope='row'>COLD_ACCOUNT_CODE_ACCESS</th><td style='background: rgba(201,42,42,0.649); color: #fff;' title='log2(proposed/current) = +1.75'>8,722</td><td style='background: rgba(201,42,42,0.448); color: inherit;' title='log2(proposed/current) = +0.76'>4,416</td><td style='background: rgba(43,138,62,0.263); color: inherit;' title='log2(proposed/current) = -0.23'>2,211</td><td style='background: rgba(201,42,42,0.378); color: inherit;' title='log2(proposed/current) = +0.53'>3,744</td></tr><tr><th scope='row'>COLD_ACCOUNT_NOCODE_WRITE</th><td style='background: rgba(201,42,42,0.950); color: #fff;' title='log2(proposed/current) = +4.06'>155,392</td><td style='background: rgba(43,138,62,0.463); color: inherit;' title='log2(proposed/current) = -0.82'>5,251</td><td style='background: rgba(43,138,62,0.540); color: inherit;' title='log2(proposed/current) = -1.16'>4,163</td><td style='background: rgba(201,42,42,0.426); color: inherit;' title='log2(proposed/current) = +0.69'>14,953</td></tr><tr><th scope='row'>COLD_ACCOUNT_CODE_WRITE</th><td style='background: rgba(201,42,42,0.950); color: #fff;' title='log2(proposed/current) = +4.06'>155,392</td><td style='background: rgba(201,42,42,0.250); color: inherit;' title='log2(proposed/current) = +0.04'>9,591</td><td style='background: rgba(43,138,62,0.416); color: inherit;' title='log2(proposed/current) = -0.65'>5,931</td><td style='background: rgba(201,42,42,0.440); color: inherit;' title='log2(proposed/current) = +0.73'>15,478</td></tr><tr><th scope='row'>WARM_ACCESS</th><td style='background: rgba(43,138,62,0.499); color: inherit;' title='log2(proposed/current) = -0.97'>51</td><td style='background: rgba(43,138,62,0.375); color: inherit;' title='log2(proposed/current) = -0.51'>70</td><td style='background: rgba(43,138,62,0.512); color: inherit;' title='log2(proposed/current) = -1.03'>49</td><td style='background: rgba(43,138,62,0.976); color: #fff;' title='log2(proposed/current) = -4.32'>5</td></tr></tbody></table>
 <h2 id="worst-case-provenance-per-gas-param">Worst-case provenance per gas param</h2>
 <p>One collapsible block per gas parameter showing every per-client candidate that the worst-case selector saw. Rows are model combos (the source regression's <code>test_name</code>, <code>target_opcode</code>, <code>model_coef_name</code>, and any <code>model_by</code> factors — components constant within a parameter are dropped from the label). Cells carry each candidate's proposed gas; the cell the per-client selector picked is outlined in black. Colors are <code>log2(proposed / current)</code> against that parameter's baseline on a per-parameter symmetric scale.</p>
 <details>
 <summary><code>COLD_STORAGE_ACCESS</code> — 4 combos × 4 clients</summary>
-<table class="heatmap provenance"><thead><tr><th scope='col'></th><th scope='col'>erigon</th><th scope='col'>geth</th><th scope='col'>nethermind</th><th scope='col'>reth</th></tr></thead><tbody><tr><th scope="row" title="test_name=test_sload_bloated / target_opcode=SLOAD / model_coef_name=target_coef / param_existing_slots=False">test_sload_bloated · SLOAD · slots=False</th><td class='sel' style='background: rgba(43,138,62,0.694); color: #fff;' title='log2(proposed/current) = -1.77'>614</td><td class='sel' style='background: rgba(201,42,42,0.882); color: #fff;' title='log2(proposed/current) = +3.02'>17,025</td><td style='background: rgba(43,138,62,0.811); color: #fff;' title='log2(proposed/current) = -2.50'>370</td><td style='background: rgba(43,138,62,1.000); color: #fff;' title='log2(proposed/current) = -3.99'>132</td></tr><tr><th scope="row" title="test_name=test_sload_bloated / target_opcode=SLOAD / model_coef_name=target_coef / param_existing_slots=True">test_sload_bloated · SLOAD · slots=True</th><td style='background: rgba(43,138,62,0.715); color: #fff;' title='log2(proposed/current) = -1.89'>566</td><td style='background: rgba(201,42,42,0.873); color: #fff;' title='log2(proposed/current) = +2.95'>16,272</td><td style='background: rgba(201,42,42,0.270); color: inherit;' title='log2(proposed/current) = +0.22'>2,441</td><td class='sel' style='background: rgba(43,138,62,0.986); color: #fff;' title='log2(proposed/current) = -3.87'>144</td></tr><tr><th scope="row" title="test_name=test_sstore_bloated / target_opcode=SSTORE / model_coef_name=target_coef / param_existing_slots=False">test_sstore_bloated · SSTORE · slots=False</th><td style='background: rgba(43,138,62,0.000); color: inherit;'>0</td><td style='background: rgba(201,42,42,0.557); color: inherit;' title='log2(proposed/current) = +1.09'>4,465</td><td style='background: rgba(43,138,62,0.812); color: #fff;' title='log2(proposed/current) = -2.51'>368</td><td style='background: rgba(43,138,62,0.000); color: inherit;'>0</td></tr><tr><th scope="row" title="test_name=test_sstore_bloated / target_opcode=SSTORE / model_coef_name=target_coef / param_existing_slots=True">test_sstore_bloated · SSTORE · slots=True</th><td style='background: rgba(43,138,62,0.000); color: inherit;'>0</td><td style='background: rgba(201,42,42,0.483); color: inherit;' title='log2(proposed/current) = +0.79'>3,632</td><td class='sel' style='background: rgba(201,42,42,0.369); color: inherit;' title='log2(proposed/current) = +0.43'>2,838</td><td style='background: rgba(43,138,62,0.000); color: inherit;'>0</td></tr></tbody></table>
+<table class="heatmap provenance"><thead><tr><th scope='col'></th><th scope='col'>erigon</th><th scope='col'>geth</th><th scope='col'>nethermind</th><th scope='col'>reth</th></tr></thead><tbody><tr><th scope="row" title="test_name=test_sload_bloated / target_opcode=SLOAD / model_coef_name=target_coef / param_existing_slots=False">test_sload_bloated · SLOAD · slots=False</th><td class='sel' style='background: rgba(43,138,62,0.694); color: #fff;' title='log2(proposed/current) = -1.77'>614</td><td class='sel' style='background: rgba(201,42,42,0.882); color: #fff;' title='log2(proposed/current) = +3.02'>17,025</td><td style='background: rgba(43,138,62,0.811); color: #fff;' title='log2(proposed/current) = -2.50'>370</td><td style='background: rgba(43,138,62,1.000); color: #fff;' title='log2(proposed/current) = -3.99'>132</td></tr><tr><th scope="row" title="test_name=test_sload_bloated / target_opcode=SLOAD / model_coef_name=target_coef / param_existing_slots=True">test_sload_bloated · SLOAD · slots=True</th><td style='background: rgba(43,138,62,0.715); color: #fff;' title='log2(proposed/current) = -1.89'>566</td><td style='background: rgba(201,42,42,0.873); color: #fff;' title='log2(proposed/current) = +2.95'>16,272</td><td style='background: rgba(201,42,42,0.270); color: inherit;' title='log2(proposed/current) = +0.22'>2,441</td><td style='background: rgba(43,138,62,0.986); color: #fff;' title='log2(proposed/current) = -3.87'>144</td></tr><tr><th scope="row" title="test_name=test_sstore_bloated / target_opcode=SSTORE / model_coef_name=target_coef / param_existing_slots=False">test_sstore_bloated · SSTORE · slots=False</th><td style='background: rgba(43,138,62,0.695); color: #fff;' title='log2(proposed/current) = -1.78'>611</td><td style='background: rgba(201,42,42,0.501); color: inherit;' title='log2(proposed/current) = +0.86'>3,813</td><td style='background: rgba(43,138,62,0.804); color: #fff;' title='log2(proposed/current) = -2.46'>382</td><td style='background: rgba(43,138,62,0.999); color: #fff;' title='log2(proposed/current) = -3.98'>133</td></tr><tr><th scope="row" title="test_name=test_sstore_bloated / target_opcode=SSTORE / model_coef_name=target_coef / param_existing_slots=True">test_sstore_bloated · SSTORE · slots=True</th><td style='background: rgba(43,138,62,0.715); color: #fff;' title='log2(proposed/current) = -1.89'>566</td><td style='background: rgba(201,42,42,0.437); color: inherit;' title='log2(proposed/current) = +0.64'>3,263</td><td class='sel' style='background: rgba(201,42,42,0.311); color: inherit;' title='log2(proposed/current) = +0.30'>2,581</td><td class='sel' style='background: rgba(43,138,62,0.977); color: #fff;' title='log2(proposed/current) = -3.79'>152</td></tr></tbody></table>
 </details>
 <details>
-<summary><code>STORAGE_WRITE</code> — 2 combos × 4 clients</summary>
-<table class="heatmap provenance"><thead><tr><th scope='col'></th><th scope='col'>erigon</th><th scope='col'>geth</th><th scope='col'>nethermind</th><th scope='col'>reth</th></tr></thead><tbody><tr><th scope="row" title="test_name=test_sstore_bloated / target_opcode=SSTORE / model_coef_name=update / param_existing_slots=False">slots=False</th><td class='sel' style='background: rgba(201,42,42,1.000); color: #fff;' title='log2(proposed/current) = +6.20'>205,648</td><td class='sel' style='background: rgba(201,42,42,0.678); color: #fff;' title='log2(proposed/current) = +2.61'>17,088</td><td class='sel' style='background: rgba(201,42,42,0.489); color: inherit;' title='log2(proposed/current) = +1.26'>6,722</td><td style='background: rgba(201,42,42,0.506); color: inherit;' title='log2(proposed/current) = +1.37'>7,222</td></tr><tr><th scope="row" title="test_name=test_sstore_bloated / target_opcode=SSTORE / model_coef_name=update / param_existing_slots=True">slots=True</th><td style='background: rgba(201,42,42,0.875); color: #fff;' title='log2(proposed/current) = +4.61'>68,275</td><td style='background: rgba(201,42,42,0.484); color: inherit;' title='log2(proposed/current) = +1.24'>6,594</td><td style='background: rgba(201,42,42,0.250); color: inherit;' title='log2(proposed/current) = +0.24'>3,312</td><td class='sel' style='background: rgba(201,42,42,0.678); color: #fff;' title='log2(proposed/current) = +2.62'>17,164</td></tr></tbody></table>
+<summary><code>COLD_STORAGE_WRITE</code> — 2 combos × 4 clients</summary>
+<table class="heatmap provenance"><thead><tr><th scope='col'></th><th scope='col'>erigon</th><th scope='col'>geth</th><th scope='col'>nethermind</th><th scope='col'>reth</th></tr></thead><tbody><tr><th scope="row" title="test_name=test_sstore_bloated / target_opcode=SSTORE / model_coef_name=target_coef / param_existing_slots=False">slots=False</th><td class='sel' style='background: rgba(201,42,42,1.000); color: #fff;' title='log2(proposed/current) = +4.56'>117,714</td><td class='sel' style='background: rgba(201,42,42,0.873); color: #fff;' title='log2(proposed/current) = +3.37'>51,614</td><td style='background: rgba(201,42,42,0.321); color: inherit;' title='log2(proposed/current) = +0.37'>6,442</td><td style='background: rgba(43,138,62,0.793); color: #fff;' title='log2(proposed/current) = -2.72'>758</td></tr><tr><th scope="row" title="test_name=test_sstore_bloated / target_opcode=SSTORE / model_coef_name=target_coef / param_existing_slots=True">slots=True</th><td style='background: rgba(201,42,42,0.890); color: #fff;' title='log2(proposed/current) = +3.52'>57,197</td><td style='background: rgba(201,42,42,0.537); color: inherit;' title='log2(proposed/current) = +1.15'>11,059</td><td class='sel' style='background: rgba(201,42,42,0.345); color: inherit;' title='log2(proposed/current) = +0.43'>6,728</td><td class='sel' style='background: rgba(201,42,42,0.618); color: #fff;' title='log2(proposed/current) = +1.57'>14,811</td></tr></tbody></table>
 </details>
 <details>
 <summary><code>COLD_ACCOUNT_NOCODE_ACCESS</code> — 13 combos × 4 clients</summary>
@@ -258,45 +284,7 @@
 </tr>
 </tbody>
 </table>
-<table class="heatmap provenance"><thead><tr><th scope='col'></th><th scope='col'>erigon</th><th scope='col'>geth</th><th scope='col'>nethermind</th><th scope='col'>reth</th></tr></thead><tbody><tr><th scope="row" title="test_name=test_account_access / target_opcode=BALANCE / model_coef_name=target_coef / param_account_mode=AccountMode.EXISTING_EOA / param_opcode=BALANCE">M1</th><td style='background: rgba(43,138,62,0.407); color: inherit;' title='log2(proposed/current) = -1.40'>982</td><td style='background: rgba(43,138,62,0.367); color: inherit;' title='log2(proposed/current) = -1.11'>1,203</td><td style='background: rgba(43,138,62,0.499); color: inherit;' title='log2(proposed/current) = -2.20'>564</td><td style='background: rgba(43,138,62,0.693); color: #fff;' title='log2(proposed/current) = -4.58'>109</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=BALANCE / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=BALANCE">M2</th><td style='background: rgba(43,138,62,0.421); color: inherit;' title='log2(proposed/current) = -1.51'>911</td><td style='background: rgba(201,42,42,0.250); color: inherit;' title='log2(proposed/current) = +0.11'>2,813</td><td style='background: rgba(43,138,62,0.517); color: inherit;' title='log2(proposed/current) = -2.39'>497</td><td style='background: rgba(43,138,62,0.709); color: #fff;' title='log2(proposed/current) = -4.82'>92</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=CALL / model_coef_name=target_coef / param_account_mode=AccountMode.EXISTING_EOA / param_opcode=CALL">M3</th><td style='background: rgba(43,138,62,0.000); color: inherit;'>0</td><td style='background: rgba(43,138,62,0.354); color: inherit;' title='log2(proposed/current) = -1.03'>1,274</td><td style='background: rgba(43,138,62,0.512); color: inherit;' title='log2(proposed/current) = -2.33'>516</td><td style='background: rgba(43,138,62,0.000); color: inherit;'>0</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=CALL / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=CALL">M4</th><td style='background: rgba(43,138,62,0.490); color: inherit;' title='log2(proposed/current) = -2.12'>599</td><td style='background: rgba(201,42,42,0.328); color: inherit;' title='log2(proposed/current) = +0.87'>4,750</td><td style='background: rgba(43,138,62,0.481); color: inherit;' title='log2(proposed/current) = -2.04'>633</td><td style='background: rgba(43,138,62,0.749); color: #fff;' title='log2(proposed/current) = -5.44'>60</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=CALLCODE / model_coef_name=target_coef / param_account_mode=AccountMode.EXISTING_EOA / param_opcode=CALLCODE">M5</th><td style='background: rgba(43,138,62,0.395); color: inherit;' title='log2(proposed/current) = -1.32'>1,045</td><td style='background: rgba(43,138,62,0.298); color: inherit;' title='log2(proposed/current) = -0.70'>1,600</td><td class='sel' style='background: rgba(43,138,62,0.471); color: inherit;' title='log2(proposed/current) = -1.94'>677</td><td class='sel' style='background: rgba(43,138,62,0.669); color: #fff;' title='log2(proposed/current) = -4.24'>138</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=CALLCODE / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=CALLCODE">M6</th><td style='background: rgba(43,138,62,0.417); color: inherit;' title='log2(proposed/current) = -1.48'>930</td><td class='sel' style='background: rgba(201,42,42,0.343); color: inherit;' title='log2(proposed/current) = +0.96'>5,060</td><td style='background: rgba(43,138,62,0.482); color: inherit;' title='log2(proposed/current) = -2.04'>631</td><td style='background: rgba(43,138,62,0.677); color: #fff;' title='log2(proposed/current) = -4.34'>128</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=DELEGATECALL / model_coef_name=target_coef / param_account_mode=AccountMode.EXISTING_EOA / param_opcode=DELEGATECALL">M7</th><td style='background: rgba(43,138,62,0.404); color: inherit;' title='log2(proposed/current) = -1.38'>997</td><td style='background: rgba(43,138,62,0.367); color: inherit;' title='log2(proposed/current) = -1.11'>1,201</td><td style='background: rgba(43,138,62,0.482); color: inherit;' title='log2(proposed/current) = -2.05'>629</td><td style='background: rgba(43,138,62,0.690); color: #fff;' title='log2(proposed/current) = -4.54'>112</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=DELEGATECALL / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=DELEGATECALL">M8</th><td style='background: rgba(43,138,62,0.415); color: inherit;' title='log2(proposed/current) = -1.46'>944</td><td style='background: rgba(201,42,42,0.250); color: inherit;' title='log2(proposed/current) = +0.35'>3,324</td><td style='background: rgba(43,138,62,0.492); color: inherit;' title='log2(proposed/current) = -2.14'>590</td><td style='background: rgba(43,138,62,0.705); color: #fff;' title='log2(proposed/current) = -4.76'>96</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=EXTCODECOPY / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=EXTCODECOPY">M9</th><td style='background: rgba(43,138,62,0.917); color: #fff;' title='log2(proposed/current) = -8.54'>7</td><td style='background: rgba(43,138,62,0.722); color: #fff;' title='log2(proposed/current) = -5.02'>80</td><td style='background: rgba(43,138,62,0.803); color: #fff;' title='log2(proposed/current) = -6.34'>32</td><td style='background: rgba(43,138,62,1.000); color: #fff;' title='log2(proposed/current) = -10.34'>2</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=EXTCODEHASH / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=EXTCODEHASH">M10</th><td style='background: rgba(43,138,62,0.431); color: inherit;' title='log2(proposed/current) = -1.60'>859</td><td style='background: rgba(201,42,42,0.283); color: inherit;' title='log2(proposed/current) = +0.63'>4,016</td><td style='background: rgba(43,138,62,0.512); color: inherit;' title='log2(proposed/current) = -2.34'>514</td><td style='background: rgba(43,138,62,0.709); color: #fff;' title='log2(proposed/current) = -4.82'>92</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=EXTCODESIZE / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=EXTCODESIZE">M11</th><td style='background: rgba(43,138,62,0.428); color: inherit;' title='log2(proposed/current) = -1.57'>874</td><td style='background: rgba(201,42,42,0.278); color: inherit;' title='log2(proposed/current) = +0.60'>3,940</td><td style='background: rgba(43,138,62,0.529); color: inherit;' title='log2(proposed/current) = -2.51'>455</td><td style='background: rgba(43,138,62,0.709); color: #fff;' title='log2(proposed/current) = -4.82'>92</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=STATICCALL / model_coef_name=target_coef / param_account_mode=AccountMode.EXISTING_EOA / param_opcode=STATICCALL">M12</th><td style='background: rgba(43,138,62,0.401); color: inherit;' title='log2(proposed/current) = -1.36'>1,015</td><td style='background: rgba(43,138,62,0.364); color: inherit;' title='log2(proposed/current) = -1.10'>1,217</td><td style='background: rgba(43,138,62,0.477); color: inherit;' title='log2(proposed/current) = -2.00'>651</td><td style='background: rgba(43,138,62,0.687); color: #fff;' title='log2(proposed/current) = -4.49'>116</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=STATICCALL / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=STATICCALL">M13</th><td class='sel' style='background: rgba(43,138,62,0.372); color: inherit;' title='log2(proposed/current) = -1.15'>1,171</td><td style='background: rgba(201,42,42,0.250); color: inherit;' title='log2(proposed/current) = +0.44'>3,518</td><td style='background: rgba(43,138,62,0.516); color: inherit;' title='log2(proposed/current) = -2.38'>501</td><td style='background: rgba(43,138,62,0.702); color: #fff;' title='log2(proposed/current) = -4.71'>99</td></tr></tbody></table>
-</details>
-<details>
-<summary><code>ACCOUNT_WRITE</code> — 6 combos × 4 clients</summary>
-<table>
-<thead>
-<tr>
-<th>Label</th>
-<th>Combo</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>M1</code></td>
-<td>test_name=test_account_access / target_opcode=CALL / model_coef_name=update / param_account_mode=AccountMode.EXISTING_CONTRACT / param_opcode=CALL</td>
-</tr>
-<tr>
-<td><code>M2</code></td>
-<td>test_name=test_account_access / target_opcode=CALL / model_coef_name=update / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=CALL</td>
-</tr>
-<tr>
-<td><code>M3</code></td>
-<td>test_name=test_account_access / target_opcode=CALL / model_coef_name=update / param_account_mode=AccountMode.EXISTING_EOA / param_opcode=CALL</td>
-</tr>
-<tr>
-<td><code>M4</code></td>
-<td>test_name=test_account_access / target_opcode=CALLCODE / model_coef_name=update / param_account_mode=AccountMode.EXISTING_CONTRACT / param_opcode=CALLCODE</td>
-</tr>
-<tr>
-<td><code>M5</code></td>
-<td>test_name=test_account_access / target_opcode=CALLCODE / model_coef_name=update / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=CALLCODE</td>
-</tr>
-<tr>
-<td><code>M6</code></td>
-<td>test_name=test_account_access / target_opcode=CALLCODE / model_coef_name=update / param_account_mode=AccountMode.EXISTING_EOA / param_opcode=CALLCODE</td>
-</tr>
-</tbody>
-</table>
-<table class="heatmap provenance"><thead><tr><th scope='col'></th><th scope='col'>erigon</th><th scope='col'>geth</th><th scope='col'>nethermind</th><th scope='col'>reth</th></tr></thead><tbody><tr><th scope="row" title="test_name=test_account_access / target_opcode=CALL / model_coef_name=update / param_account_mode=AccountMode.EXISTING_CONTRACT / param_opcode=CALL">M1</th><td style='background: rgba(201,42,42,0.961); color: #fff;' title='log2(proposed/current) = +4.38'>139,276</td><td class='sel' style='background: rgba(43,138,62,0.438); color: inherit;' title='log2(proposed/current) = -0.76'>3,951</td><td class='sel' style='background: rgba(43,138,62,0.453); color: inherit;' title='log2(proposed/current) = -0.82'>3,786</td><td style='background: rgba(201,42,42,0.508); color: inherit;' title='log2(proposed/current) = +1.06'>13,977</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=CALL / model_coef_name=update / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=CALL">M2</th><td class='sel' style='background: rgba(201,42,42,1.000); color: #fff;' title='log2(proposed/current) = +4.78'>183,936</td><td style='background: rgba(43,138,62,0.000); color: inherit;'>0</td><td style='background: rgba(43,138,62,0.501); color: inherit;' title='log2(proposed/current) = -1.03'>3,282</td><td style='background: rgba(43,138,62,0.482); color: inherit;' title='log2(proposed/current) = -0.94'>3,487</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=CALL / model_coef_name=update / param_account_mode=AccountMode.EXISTING_EOA / param_opcode=CALL">M3</th><td style='background: rgba(201,42,42,0.693); color: #fff;' title='log2(proposed/current) = +2.11'>28,999</td><td style='background: rgba(43,138,62,0.454); color: inherit;' title='log2(proposed/current) = -0.83'>3,778</td><td style='background: rgba(43,138,62,0.524); color: inherit;' title='log2(proposed/current) = -1.14'>3,047</td><td class='sel' style='background: rgba(201,42,42,0.559); color: inherit;' title='log2(proposed/current) = +1.31'>16,638</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=CALLCODE / model_coef_name=update / param_account_mode=AccountMode.EXISTING_CONTRACT / param_opcode=CALLCODE">M4</th><td style='background: rgba(43,138,62,0.000); color: inherit;'>0</td><td style='background: rgba(43,138,62,0.000); color: inherit;'>0</td><td style='background: rgba(43,138,62,0.000); color: inherit;'>0</td><td style='background: rgba(43,138,62,0.000); color: inherit;'>0</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=CALLCODE / model_coef_name=update / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=CALLCODE">M5</th><td style='background: rgba(43,138,62,0.000); color: inherit;'>0</td><td style='background: rgba(43,138,62,0.000); color: inherit;'>0</td><td style='background: rgba(43,138,62,0.000); color: inherit;'>0</td><td style='background: rgba(43,138,62,0.000); color: inherit;'>0</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=CALLCODE / model_coef_name=update / param_account_mode=AccountMode.EXISTING_EOA / param_opcode=CALLCODE">M6</th><td style='background: rgba(43,138,62,0.000); color: inherit;'>0</td><td style='background: rgba(43,138,62,0.000); color: inherit;'>0</td><td style='background: rgba(43,138,62,0.000); color: inherit;'>0</td><td style='background: rgba(43,138,62,0.000); color: inherit;'>0</td></tr></tbody></table>
+<table class="heatmap provenance"><thead><tr><th scope='col'></th><th scope='col'>erigon</th><th scope='col'>geth</th><th scope='col'>nethermind</th><th scope='col'>reth</th></tr></thead><tbody><tr><th scope="row" title="test_name=test_account_access / target_opcode=BALANCE / model_coef_name=target_coef / param_account_mode=AccountMode.EXISTING_EOA / param_opcode=BALANCE">M1</th><td style='background: rgba(43,138,62,0.407); color: inherit;' title='log2(proposed/current) = -1.40'>982</td><td style='background: rgba(43,138,62,0.367); color: inherit;' title='log2(proposed/current) = -1.11'>1,203</td><td style='background: rgba(43,138,62,0.499); color: inherit;' title='log2(proposed/current) = -2.20'>564</td><td style='background: rgba(43,138,62,0.693); color: #fff;' title='log2(proposed/current) = -4.58'>109</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=BALANCE / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=BALANCE">M2</th><td style='background: rgba(43,138,62,0.421); color: inherit;' title='log2(proposed/current) = -1.51'>911</td><td style='background: rgba(201,42,42,0.250); color: inherit;' title='log2(proposed/current) = +0.11'>2,813</td><td style='background: rgba(43,138,62,0.517); color: inherit;' title='log2(proposed/current) = -2.39'>497</td><td style='background: rgba(43,138,62,0.709); color: #fff;' title='log2(proposed/current) = -4.82'>92</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=CALL / model_coef_name=target_coef / param_account_mode=AccountMode.EXISTING_EOA / param_opcode=CALL">M3</th><td style='background: rgba(43,138,62,0.384); color: inherit;' title='log2(proposed/current) = -1.23'>1,105</td><td style='background: rgba(43,138,62,0.364); color: inherit;' title='log2(proposed/current) = -1.09'>1,218</td><td style='background: rgba(43,138,62,0.484); color: inherit;' title='log2(proposed/current) = -2.06'>624</td><td style='background: rgba(43,138,62,0.688); color: #fff;' title='log2(proposed/current) = -4.50'>115</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=CALL / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=CALL">M4</th><td style='background: rgba(43,138,62,0.403); color: inherit;' title='log2(proposed/current) = -1.37'>1,003</td><td style='background: rgba(201,42,42,0.250); color: inherit;' title='log2(proposed/current) = +0.26'>3,124</td><td style='background: rgba(43,138,62,0.482); color: inherit;' title='log2(proposed/current) = -2.05'>629</td><td style='background: rgba(43,138,62,0.702); color: #fff;' title='log2(proposed/current) = -4.71'>99</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=CALLCODE / model_coef_name=target_coef / param_account_mode=AccountMode.EXISTING_EOA / param_opcode=CALLCODE">M5</th><td style='background: rgba(43,138,62,0.401); color: inherit;' title='log2(proposed/current) = -1.36'>1,012</td><td style='background: rgba(43,138,62,0.351); color: inherit;' title='log2(proposed/current) = -1.01'>1,292</td><td class='sel' style='background: rgba(43,138,62,0.472); color: inherit;' title='log2(proposed/current) = -1.95'>674</td><td style='background: rgba(43,138,62,0.694); color: #fff;' title='log2(proposed/current) = -4.59'>108</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=CALLCODE / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=CALLCODE">M6</th><td style='background: rgba(43,138,62,0.415); color: inherit;' title='log2(proposed/current) = -1.46'>942</td><td style='background: rgba(201,42,42,0.250); color: inherit;' title='log2(proposed/current) = +0.35'>3,322</td><td style='background: rgba(43,138,62,0.492); color: inherit;' title='log2(proposed/current) = -2.14'>591</td><td style='background: rgba(43,138,62,0.704); color: #fff;' title='log2(proposed/current) = -4.74'>97</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=DELEGATECALL / model_coef_name=target_coef / param_account_mode=AccountMode.EXISTING_EOA / param_opcode=DELEGATECALL">M7</th><td style='background: rgba(43,138,62,0.404); color: inherit;' title='log2(proposed/current) = -1.38'>997</td><td style='background: rgba(43,138,62,0.367); color: inherit;' title='log2(proposed/current) = -1.11'>1,201</td><td style='background: rgba(43,138,62,0.482); color: inherit;' title='log2(proposed/current) = -2.05'>629</td><td style='background: rgba(43,138,62,0.690); color: #fff;' title='log2(proposed/current) = -4.54'>112</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=DELEGATECALL / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=DELEGATECALL">M8</th><td style='background: rgba(43,138,62,0.415); color: inherit;' title='log2(proposed/current) = -1.46'>944</td><td style='background: rgba(201,42,42,0.250); color: inherit;' title='log2(proposed/current) = +0.35'>3,324</td><td style='background: rgba(43,138,62,0.492); color: inherit;' title='log2(proposed/current) = -2.14'>590</td><td style='background: rgba(43,138,62,0.705); color: #fff;' title='log2(proposed/current) = -4.76'>96</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=EXTCODECOPY / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=EXTCODECOPY">M9</th><td style='background: rgba(43,138,62,0.917); color: #fff;' title='log2(proposed/current) = -8.54'>7</td><td style='background: rgba(43,138,62,0.722); color: #fff;' title='log2(proposed/current) = -5.02'>80</td><td style='background: rgba(43,138,62,0.803); color: #fff;' title='log2(proposed/current) = -6.34'>32</td><td style='background: rgba(43,138,62,1.000); color: #fff;' title='log2(proposed/current) = -10.34'>2</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=EXTCODEHASH / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=EXTCODEHASH">M10</th><td style='background: rgba(43,138,62,0.431); color: inherit;' title='log2(proposed/current) = -1.60'>859</td><td class='sel' style='background: rgba(201,42,42,0.283); color: inherit;' title='log2(proposed/current) = +0.63'>4,016</td><td style='background: rgba(43,138,62,0.512); color: inherit;' title='log2(proposed/current) = -2.34'>514</td><td style='background: rgba(43,138,62,0.709); color: #fff;' title='log2(proposed/current) = -4.82'>92</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=EXTCODESIZE / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=EXTCODESIZE">M11</th><td style='background: rgba(43,138,62,0.428); color: inherit;' title='log2(proposed/current) = -1.57'>874</td><td style='background: rgba(201,42,42,0.278); color: inherit;' title='log2(proposed/current) = +0.60'>3,940</td><td style='background: rgba(43,138,62,0.529); color: inherit;' title='log2(proposed/current) = -2.51'>455</td><td style='background: rgba(43,138,62,0.709); color: #fff;' title='log2(proposed/current) = -4.82'>92</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=STATICCALL / model_coef_name=target_coef / param_account_mode=AccountMode.EXISTING_EOA / param_opcode=STATICCALL">M12</th><td style='background: rgba(43,138,62,0.401); color: inherit;' title='log2(proposed/current) = -1.36'>1,015</td><td style='background: rgba(43,138,62,0.364); color: inherit;' title='log2(proposed/current) = -1.10'>1,217</td><td style='background: rgba(43,138,62,0.477); color: inherit;' title='log2(proposed/current) = -2.00'>651</td><td class='sel' style='background: rgba(43,138,62,0.687); color: #fff;' title='log2(proposed/current) = -4.49'>116</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=STATICCALL / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=STATICCALL">M13</th><td class='sel' style='background: rgba(43,138,62,0.372); color: inherit;' title='log2(proposed/current) = -1.15'>1,171</td><td style='background: rgba(201,42,42,0.250); color: inherit;' title='log2(proposed/current) = +0.44'>3,518</td><td style='background: rgba(43,138,62,0.516); color: inherit;' title='log2(proposed/current) = -2.38'>501</td><td style='background: rgba(43,138,62,0.702); color: #fff;' title='log2(proposed/current) = -4.71'>99</td></tr></tbody></table>
 </details>
 <details>
 <summary><code>COLD_ACCOUNT_CODE_ACCESS</code> — 16 combos × 4 clients</summary>
@@ -374,7 +362,67 @@
 </tr>
 </tbody>
 </table>
-<table class="heatmap provenance"><thead><tr><th scope='col'></th><th scope='col'>erigon</th><th scope='col'>geth</th><th scope='col'>nethermind</th><th scope='col'>reth</th></tr></thead><tbody><tr><th scope="row" title="test_name=test_account_access / target_opcode=BALANCE / model_coef_name=target_coef / param_account_mode=AccountMode.EXISTING_CONTRACT / param_opcode=BALANCE">M1</th><td style='background: rgba(201,42,42,0.250); color: inherit;' title='log2(proposed/current) = +0.46'>3,579</td><td style='background: rgba(201,42,42,0.250); color: inherit;' title='log2(proposed/current) = +0.41'>3,448</td><td style='background: rgba(43,138,62,0.250); color: inherit;' title='log2(proposed/current) = -0.42'>1,948</td><td style='background: rgba(201,42,42,0.250); color: inherit;' title='log2(proposed/current) = +0.22'>3,025</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=BALANCE / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=BALANCE">M2</th><td style='background: rgba(43,138,62,0.421); color: inherit;' title='log2(proposed/current) = -1.51'>911</td><td style='background: rgba(201,42,42,0.250); color: inherit;' title='log2(proposed/current) = +0.11'>2,813</td><td style='background: rgba(43,138,62,0.517); color: inherit;' title='log2(proposed/current) = -2.39'>497</td><td style='background: rgba(43,138,62,0.709); color: #fff;' title='log2(proposed/current) = -4.82'>92</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=CALL / model_coef_name=target_coef / param_account_mode=AccountMode.EXISTING_CONTRACT / param_opcode=CALL">M3</th><td style='background: rgba(43,138,62,0.617); color: #fff;' title='log2(proposed/current) = -3.54'>223</td><td style='background: rgba(201,42,42,0.326); color: inherit;' title='log2(proposed/current) = +0.86'>4,710</td><td style='background: rgba(43,138,62,0.250); color: inherit;' title='log2(proposed/current) = -0.30'>2,105</td><td style='background: rgba(201,42,42,0.250); color: inherit;' title='log2(proposed/current) = +0.20'>2,994</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=CALL / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=CALL">M4</th><td style='background: rgba(43,138,62,0.490); color: inherit;' title='log2(proposed/current) = -2.12'>599</td><td style='background: rgba(201,42,42,0.328); color: inherit;' title='log2(proposed/current) = +0.87'>4,750</td><td style='background: rgba(43,138,62,0.481); color: inherit;' title='log2(proposed/current) = -2.04'>633</td><td style='background: rgba(43,138,62,0.749); color: #fff;' title='log2(proposed/current) = -5.44'>60</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=CALLCODE / model_coef_name=target_coef / param_account_mode=AccountMode.EXISTING_CONTRACT / param_opcode=CALLCODE">M5</th><td class='sel' style='background: rgba(201,42,42,0.475); color: inherit;' title='log2(proposed/current) = +1.98'>10,239</td><td style='background: rgba(201,42,42,0.326); color: inherit;' title='log2(proposed/current) = +0.86'>4,716</td><td class='sel' style='background: rgba(43,138,62,0.250); color: inherit;' title='log2(proposed/current) = -0.17'>2,311</td><td class='sel' style='background: rgba(201,42,42,0.263); color: inherit;' title='log2(proposed/current) = +0.53'>3,764</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=CALLCODE / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=CALLCODE">M6</th><td style='background: rgba(43,138,62,0.417); color: inherit;' title='log2(proposed/current) = -1.48'>930</td><td class='sel' style='background: rgba(201,42,42,0.343); color: inherit;' title='log2(proposed/current) = +0.96'>5,060</td><td style='background: rgba(43,138,62,0.482); color: inherit;' title='log2(proposed/current) = -2.04'>631</td><td style='background: rgba(43,138,62,0.677); color: #fff;' title='log2(proposed/current) = -4.34'>128</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=DELEGATECALL / model_coef_name=target_coef / param_account_mode=AccountMode.EXISTING_CONTRACT / param_opcode=DELEGATECALL">M7</th><td style='background: rgba(201,42,42,0.448); color: inherit;' title='log2(proposed/current) = +1.74'>8,689</td><td style='background: rgba(201,42,42,0.251); color: inherit;' title='log2(proposed/current) = +0.48'>3,621</td><td style='background: rgba(43,138,62,0.250); color: inherit;' title='log2(proposed/current) = -0.35'>2,033</td><td style='background: rgba(201,42,42,0.262); color: inherit;' title='log2(proposed/current) = +0.53'>3,744</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=DELEGATECALL / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=DELEGATECALL">M8</th><td style='background: rgba(43,138,62,0.415); color: inherit;' title='log2(proposed/current) = -1.46'>944</td><td style='background: rgba(201,42,42,0.250); color: inherit;' title='log2(proposed/current) = +0.35'>3,324</td><td style='background: rgba(43,138,62,0.492); color: inherit;' title='log2(proposed/current) = -2.14'>590</td><td style='background: rgba(43,138,62,0.705); color: #fff;' title='log2(proposed/current) = -4.76'>96</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=EXTCODECOPY / model_coef_name=target_coef / param_account_mode=AccountMode.EXISTING_CONTRACT / param_opcode=EXTCODECOPY">M9</th><td style='background: rgba(43,138,62,0.803); color: #fff;' title='log2(proposed/current) = -6.34'>32</td><td style='background: rgba(43,138,62,0.587); color: inherit;' title='log2(proposed/current) = -3.17'>289</td><td style='background: rgba(43,138,62,0.698); color: #fff;' title='log2(proposed/current) = -4.66'>103</td><td style='background: rgba(43,138,62,0.899); color: #fff;' title='log2(proposed/current) = -8.17'>9</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=EXTCODECOPY / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=EXTCODECOPY">M10</th><td style='background: rgba(43,138,62,0.917); color: #fff;' title='log2(proposed/current) = -8.54'>7</td><td style='background: rgba(43,138,62,0.722); color: #fff;' title='log2(proposed/current) = -5.02'>80</td><td style='background: rgba(43,138,62,0.803); color: #fff;' title='log2(proposed/current) = -6.34'>32</td><td style='background: rgba(43,138,62,1.000); color: #fff;' title='log2(proposed/current) = -10.34'>2</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=EXTCODEHASH / model_coef_name=target_coef / param_account_mode=AccountMode.EXISTING_CONTRACT / param_opcode=EXTCODEHASH">M11</th><td style='background: rgba(201,42,42,0.250); color: inherit;' title='log2(proposed/current) = +0.44'>3,536</td><td style='background: rgba(201,42,42,0.250); color: inherit;' title='log2(proposed/current) = +0.40'>3,423</td><td style='background: rgba(43,138,62,0.250); color: inherit;' title='log2(proposed/current) = -0.39'>1,978</td><td style='background: rgba(201,42,42,0.250); color: inherit;' title='log2(proposed/current) = +0.45'>3,555</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=EXTCODEHASH / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=EXTCODEHASH">M12</th><td style='background: rgba(43,138,62,0.431); color: inherit;' title='log2(proposed/current) = -1.60'>859</td><td style='background: rgba(201,42,42,0.283); color: inherit;' title='log2(proposed/current) = +0.63'>4,016</td><td style='background: rgba(43,138,62,0.512); color: inherit;' title='log2(proposed/current) = -2.34'>514</td><td style='background: rgba(43,138,62,0.709); color: #fff;' title='log2(proposed/current) = -4.82'>92</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=EXTCODESIZE / model_coef_name=target_coef / param_account_mode=AccountMode.EXISTING_CONTRACT / param_opcode=EXTCODESIZE">M13</th><td style='background: rgba(201,42,42,0.446); color: inherit;' title='log2(proposed/current) = +1.72'>8,554</td><td style='background: rgba(201,42,42,0.308); color: inherit;' title='log2(proposed/current) = +0.76'>4,391</td><td style='background: rgba(43,138,62,0.250); color: inherit;' title='log2(proposed/current) = -0.29'>2,130</td><td style='background: rgba(201,42,42,0.250); color: inherit;' title='log2(proposed/current) = +0.47'>3,597</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=EXTCODESIZE / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=EXTCODESIZE">M14</th><td style='background: rgba(43,138,62,0.428); color: inherit;' title='log2(proposed/current) = -1.57'>874</td><td style='background: rgba(201,42,42,0.278); color: inherit;' title='log2(proposed/current) = +0.60'>3,940</td><td style='background: rgba(43,138,62,0.529); color: inherit;' title='log2(proposed/current) = -2.51'>455</td><td style='background: rgba(43,138,62,0.709); color: #fff;' title='log2(proposed/current) = -4.82'>92</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=STATICCALL / model_coef_name=target_coef / param_account_mode=AccountMode.EXISTING_CONTRACT / param_opcode=STATICCALL">M15</th><td style='background: rgba(201,42,42,0.449); color: inherit;' title='log2(proposed/current) = +1.74'>8,702</td><td style='background: rgba(201,42,42,0.303); color: inherit;' title='log2(proposed/current) = +0.73'>4,313</td><td style='background: rgba(43,138,62,0.250); color: inherit;' title='log2(proposed/current) = -0.23'>2,211</td><td style='background: rgba(201,42,42,0.250); color: inherit;' title='log2(proposed/current) = +0.46'>3,566</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=STATICCALL / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=STATICCALL">M16</th><td style='background: rgba(43,138,62,0.372); color: inherit;' title='log2(proposed/current) = -1.15'>1,171</td><td style='background: rgba(201,42,42,0.250); color: inherit;' title='log2(proposed/current) = +0.44'>3,518</td><td style='background: rgba(43,138,62,0.516); color: inherit;' title='log2(proposed/current) = -2.38'>501</td><td style='background: rgba(43,138,62,0.702); color: #fff;' title='log2(proposed/current) = -4.71'>99</td></tr></tbody></table>
+<table class="heatmap provenance"><thead><tr><th scope='col'></th><th scope='col'>erigon</th><th scope='col'>geth</th><th scope='col'>nethermind</th><th scope='col'>reth</th></tr></thead><tbody><tr><th scope="row" title="test_name=test_account_access / target_opcode=BALANCE / model_coef_name=target_coef / param_account_mode=AccountMode.EXISTING_CONTRACT / param_opcode=BALANCE">M1</th><td style='background: rgba(201,42,42,0.250); color: inherit;' title='log2(proposed/current) = +0.46'>3,579</td><td style='background: rgba(201,42,42,0.250); color: inherit;' title='log2(proposed/current) = +0.41'>3,448</td><td style='background: rgba(43,138,62,0.250); color: inherit;' title='log2(proposed/current) = -0.42'>1,948</td><td style='background: rgba(201,42,42,0.250); color: inherit;' title='log2(proposed/current) = +0.22'>3,025</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=BALANCE / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=BALANCE">M2</th><td style='background: rgba(43,138,62,0.421); color: inherit;' title='log2(proposed/current) = -1.51'>911</td><td style='background: rgba(201,42,42,0.250); color: inherit;' title='log2(proposed/current) = +0.11'>2,813</td><td style='background: rgba(43,138,62,0.517); color: inherit;' title='log2(proposed/current) = -2.39'>497</td><td style='background: rgba(43,138,62,0.709); color: #fff;' title='log2(proposed/current) = -4.82'>92</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=CALL / model_coef_name=target_coef / param_account_mode=AccountMode.EXISTING_CONTRACT / param_opcode=CALL">M3</th><td class='sel' style='background: rgba(201,42,42,0.449); color: inherit;' title='log2(proposed/current) = +1.75'>8,722</td><td class='sel' style='background: rgba(201,42,42,0.310); color: inherit;' title='log2(proposed/current) = +0.76'>4,416</td><td style='background: rgba(43,138,62,0.250); color: inherit;' title='log2(proposed/current) = -0.31'>2,092</td><td style='background: rgba(201,42,42,0.250); color: inherit;' title='log2(proposed/current) = +0.41'>3,465</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=CALL / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=CALL">M4</th><td style='background: rgba(43,138,62,0.403); color: inherit;' title='log2(proposed/current) = -1.37'>1,003</td><td style='background: rgba(201,42,42,0.250); color: inherit;' title='log2(proposed/current) = +0.26'>3,124</td><td style='background: rgba(43,138,62,0.482); color: inherit;' title='log2(proposed/current) = -2.05'>629</td><td style='background: rgba(43,138,62,0.702); color: #fff;' title='log2(proposed/current) = -4.71'>99</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=CALLCODE / model_coef_name=target_coef / param_account_mode=AccountMode.EXISTING_CONTRACT / param_opcode=CALLCODE">M5</th><td style='background: rgba(201,42,42,0.449); color: inherit;' title='log2(proposed/current) = +1.74'>8,714</td><td style='background: rgba(201,42,42,0.250); color: inherit;' title='log2(proposed/current) = +0.33'>3,276</td><td style='background: rgba(43,138,62,0.250); color: inherit;' title='log2(proposed/current) = -0.31'>2,102</td><td style='background: rgba(201,42,42,0.250); color: inherit;' title='log2(proposed/current) = +0.22'>3,034</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=CALLCODE / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=CALLCODE">M6</th><td style='background: rgba(43,138,62,0.415); color: inherit;' title='log2(proposed/current) = -1.46'>942</td><td style='background: rgba(201,42,42,0.250); color: inherit;' title='log2(proposed/current) = +0.35'>3,322</td><td style='background: rgba(43,138,62,0.492); color: inherit;' title='log2(proposed/current) = -2.14'>591</td><td style='background: rgba(43,138,62,0.704); color: #fff;' title='log2(proposed/current) = -4.74'>97</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=DELEGATECALL / model_coef_name=target_coef / param_account_mode=AccountMode.EXISTING_CONTRACT / param_opcode=DELEGATECALL">M7</th><td style='background: rgba(201,42,42,0.448); color: inherit;' title='log2(proposed/current) = +1.74'>8,689</td><td style='background: rgba(201,42,42,0.251); color: inherit;' title='log2(proposed/current) = +0.48'>3,621</td><td style='background: rgba(43,138,62,0.250); color: inherit;' title='log2(proposed/current) = -0.35'>2,033</td><td class='sel' style='background: rgba(201,42,42,0.262); color: inherit;' title='log2(proposed/current) = +0.53'>3,744</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=DELEGATECALL / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=DELEGATECALL">M8</th><td style='background: rgba(43,138,62,0.415); color: inherit;' title='log2(proposed/current) = -1.46'>944</td><td style='background: rgba(201,42,42,0.250); color: inherit;' title='log2(proposed/current) = +0.35'>3,324</td><td style='background: rgba(43,138,62,0.492); color: inherit;' title='log2(proposed/current) = -2.14'>590</td><td style='background: rgba(43,138,62,0.705); color: #fff;' title='log2(proposed/current) = -4.76'>96</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=EXTCODECOPY / model_coef_name=target_coef / param_account_mode=AccountMode.EXISTING_CONTRACT / param_opcode=EXTCODECOPY">M9</th><td style='background: rgba(43,138,62,0.803); color: #fff;' title='log2(proposed/current) = -6.34'>32</td><td style='background: rgba(43,138,62,0.587); color: inherit;' title='log2(proposed/current) = -3.17'>289</td><td style='background: rgba(43,138,62,0.698); color: #fff;' title='log2(proposed/current) = -4.66'>103</td><td style='background: rgba(43,138,62,0.899); color: #fff;' title='log2(proposed/current) = -8.17'>9</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=EXTCODECOPY / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=EXTCODECOPY">M10</th><td style='background: rgba(43,138,62,0.917); color: #fff;' title='log2(proposed/current) = -8.54'>7</td><td style='background: rgba(43,138,62,0.722); color: #fff;' title='log2(proposed/current) = -5.02'>80</td><td style='background: rgba(43,138,62,0.803); color: #fff;' title='log2(proposed/current) = -6.34'>32</td><td style='background: rgba(43,138,62,1.000); color: #fff;' title='log2(proposed/current) = -10.34'>2</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=EXTCODEHASH / model_coef_name=target_coef / param_account_mode=AccountMode.EXISTING_CONTRACT / param_opcode=EXTCODEHASH">M11</th><td style='background: rgba(201,42,42,0.250); color: inherit;' title='log2(proposed/current) = +0.44'>3,536</td><td style='background: rgba(201,42,42,0.250); color: inherit;' title='log2(proposed/current) = +0.40'>3,423</td><td style='background: rgba(43,138,62,0.250); color: inherit;' title='log2(proposed/current) = -0.39'>1,978</td><td style='background: rgba(201,42,42,0.250); color: inherit;' title='log2(proposed/current) = +0.45'>3,555</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=EXTCODEHASH / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=EXTCODEHASH">M12</th><td style='background: rgba(43,138,62,0.431); color: inherit;' title='log2(proposed/current) = -1.60'>859</td><td style='background: rgba(201,42,42,0.283); color: inherit;' title='log2(proposed/current) = +0.63'>4,016</td><td style='background: rgba(43,138,62,0.512); color: inherit;' title='log2(proposed/current) = -2.34'>514</td><td style='background: rgba(43,138,62,0.709); color: #fff;' title='log2(proposed/current) = -4.82'>92</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=EXTCODESIZE / model_coef_name=target_coef / param_account_mode=AccountMode.EXISTING_CONTRACT / param_opcode=EXTCODESIZE">M13</th><td style='background: rgba(201,42,42,0.446); color: inherit;' title='log2(proposed/current) = +1.72'>8,554</td><td style='background: rgba(201,42,42,0.308); color: inherit;' title='log2(proposed/current) = +0.76'>4,391</td><td style='background: rgba(43,138,62,0.250); color: inherit;' title='log2(proposed/current) = -0.29'>2,130</td><td style='background: rgba(201,42,42,0.250); color: inherit;' title='log2(proposed/current) = +0.47'>3,597</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=EXTCODESIZE / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=EXTCODESIZE">M14</th><td style='background: rgba(43,138,62,0.428); color: inherit;' title='log2(proposed/current) = -1.57'>874</td><td style='background: rgba(201,42,42,0.278); color: inherit;' title='log2(proposed/current) = +0.60'>3,940</td><td style='background: rgba(43,138,62,0.529); color: inherit;' title='log2(proposed/current) = -2.51'>455</td><td style='background: rgba(43,138,62,0.709); color: #fff;' title='log2(proposed/current) = -4.82'>92</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=STATICCALL / model_coef_name=target_coef / param_account_mode=AccountMode.EXISTING_CONTRACT / param_opcode=STATICCALL">M15</th><td style='background: rgba(201,42,42,0.449); color: inherit;' title='log2(proposed/current) = +1.74'>8,702</td><td style='background: rgba(201,42,42,0.303); color: inherit;' title='log2(proposed/current) = +0.73'>4,313</td><td class='sel' style='background: rgba(43,138,62,0.250); color: inherit;' title='log2(proposed/current) = -0.23'>2,211</td><td style='background: rgba(201,42,42,0.250); color: inherit;' title='log2(proposed/current) = +0.46'>3,566</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=STATICCALL / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=STATICCALL">M16</th><td style='background: rgba(43,138,62,0.372); color: inherit;' title='log2(proposed/current) = -1.15'>1,171</td><td style='background: rgba(201,42,42,0.250); color: inherit;' title='log2(proposed/current) = +0.44'>3,518</td><td style='background: rgba(43,138,62,0.516); color: inherit;' title='log2(proposed/current) = -2.38'>501</td><td style='background: rgba(43,138,62,0.702); color: #fff;' title='log2(proposed/current) = -4.71'>99</td></tr></tbody></table>
+</details>
+<details>
+<summary><code>COLD_ACCOUNT_NOCODE_WRITE</code> — 4 combos × 4 clients</summary>
+<table>
+<thead>
+<tr>
+<th>Label</th>
+<th>Combo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>M1</code></td>
+<td>test_name=test_account_access / target_opcode=CALL / model_coef_name=target_coef / param_account_mode=AccountMode.EXISTING_EOA / param_opcode=CALL</td>
+</tr>
+<tr>
+<td><code>M2</code></td>
+<td>test_name=test_account_access / target_opcode=CALL / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=CALL</td>
+</tr>
+<tr>
+<td><code>M3</code></td>
+<td>test_name=test_account_access / target_opcode=CALLCODE / model_coef_name=target_coef / param_account_mode=AccountMode.EXISTING_EOA / param_opcode=CALLCODE</td>
+</tr>
+<tr>
+<td><code>M4</code></td>
+<td>test_name=test_account_access / target_opcode=CALLCODE / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=CALLCODE</td>
+</tr>
+</tbody>
+</table>
+<table class="heatmap provenance"><thead><tr><th scope='col'></th><th scope='col'>erigon</th><th scope='col'>geth</th><th scope='col'>nethermind</th><th scope='col'>reth</th></tr></thead><tbody><tr><th scope="row" title="test_name=test_account_access / target_opcode=CALL / model_coef_name=target_coef / param_account_mode=AccountMode.EXISTING_EOA / param_opcode=CALL">M1</th><td style='background: rgba(201,42,42,0.431); color: inherit;' title='log2(proposed/current) = +1.32'>23,251</td><td class='sel' style='background: rgba(43,138,62,0.348); color: inherit;' title='log2(proposed/current) = -0.82'>5,251</td><td style='background: rgba(43,138,62,0.462); color: inherit;' title='log2(proposed/current) = -1.55'>3,182</td><td class='sel' style='background: rgba(201,42,42,0.320); color: inherit;' title='log2(proposed/current) = +0.69'>14,953</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=CALL / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=CALL">M2</th><td class='sel' style='background: rgba(201,42,42,0.714); color: #fff;' title='log2(proposed/current) = +4.06'>155,392</td><td style='background: rgba(201,42,42,0.250); color: inherit;' title='log2(proposed/current) = +0.30'>11,484</td><td class='sel' style='background: rgba(43,138,62,0.406); color: inherit;' title='log2(proposed/current) = -1.16'>4,163</td><td style='background: rgba(43,138,62,0.686); color: #fff;' title='log2(proposed/current) = -3.72'>705</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=CALLCODE / model_coef_name=target_coef / param_account_mode=AccountMode.EXISTING_EOA / param_opcode=CALLCODE">M3</th><td style='background: rgba(43,138,62,0.672); color: #fff;' title='log2(proposed/current) = -3.55'>793</td><td style='background: rgba(43,138,62,0.611); color: #fff;' title='log2(proposed/current) = -2.88'>1,266</td><td style='background: rgba(43,138,62,0.708); color: #fff;' title='log2(proposed/current) = -4.00'>583</td><td style='background: rgba(43,138,62,0.867); color: #fff;' title='log2(proposed/current) = -6.26'>121</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=CALLCODE / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=CALLCODE">M4</th><td style='background: rgba(43,138,62,0.829); color: #fff;' title='log2(proposed/current) = -5.68'>182</td><td style='background: rgba(43,138,62,0.672); color: #fff;' title='log2(proposed/current) = -3.55'>792</td><td style='background: rgba(43,138,62,0.804); color: #fff;' title='log2(proposed/current) = -5.30'>236</td><td style='background: rgba(43,138,62,1.000); color: #fff;' title='log2(proposed/current) = -8.60'>24</td></tr></tbody></table>
+</details>
+<details>
+<summary><code>COLD_ACCOUNT_CODE_WRITE</code> — 4 combos × 4 clients</summary>
+<table>
+<thead>
+<tr>
+<th>Label</th>
+<th>Combo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>M1</code></td>
+<td>test_name=test_account_access / target_opcode=CALL / model_coef_name=target_coef / param_account_mode=AccountMode.EXISTING_CONTRACT / param_opcode=CALL</td>
+</tr>
+<tr>
+<td><code>M2</code></td>
+<td>test_name=test_account_access / target_opcode=CALL / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=CALL</td>
+</tr>
+<tr>
+<td><code>M3</code></td>
+<td>test_name=test_account_access / target_opcode=CALLCODE / model_coef_name=target_coef / param_account_mode=AccountMode.EXISTING_CONTRACT / param_opcode=CALLCODE</td>
+</tr>
+<tr>
+<td><code>M4</code></td>
+<td>test_name=test_account_access / target_opcode=CALLCODE / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=CALLCODE</td>
+</tr>
+</tbody>
+</table>
+<table class="heatmap provenance"><thead><tr><th scope='col'></th><th scope='col'>erigon</th><th scope='col'>geth</th><th scope='col'>nethermind</th><th scope='col'>reth</th></tr></thead><tbody><tr><th scope="row" title="test_name=test_account_access / target_opcode=CALL / model_coef_name=target_coef / param_account_mode=AccountMode.EXISTING_CONTRACT / param_opcode=CALL">M1</th><td style='background: rgba(201,42,42,0.676); color: #fff;' title='log2(proposed/current) = +3.60'>112,575</td><td class='sel' style='background: rgba(201,42,42,0.250); color: inherit;' title='log2(proposed/current) = +0.04'>9,591</td><td class='sel' style='background: rgba(43,138,62,0.313); color: inherit;' title='log2(proposed/current) = -0.65'>5,931</td><td class='sel' style='background: rgba(201,42,42,0.331); color: inherit;' title='log2(proposed/current) = +0.73'>15,478</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=CALL / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=CALL">M2</th><td class='sel' style='background: rgba(201,42,42,0.714); color: #fff;' title='log2(proposed/current) = +4.06'>155,392</td><td style='background: rgba(201,42,42,0.250); color: inherit;' title='log2(proposed/current) = +0.30'>11,484</td><td style='background: rgba(43,138,62,0.406); color: inherit;' title='log2(proposed/current) = -1.16'>4,163</td><td style='background: rgba(43,138,62,0.686); color: #fff;' title='log2(proposed/current) = -3.72'>705</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=CALLCODE / model_coef_name=target_coef / param_account_mode=AccountMode.EXISTING_CONTRACT / param_opcode=CALLCODE">M3</th><td style='background: rgba(43,138,62,0.250); color: inherit;' title='log2(proposed/current) = -0.17'>8,265</td><td style='background: rgba(43,138,62,0.335); color: inherit;' title='log2(proposed/current) = -0.76'>5,498</td><td style='background: rgba(43,138,62,0.540); color: inherit;' title='log2(proposed/current) = -2.19'>2,039</td><td style='background: rgba(43,138,62,0.604); color: #fff;' title='log2(proposed/current) = -2.81'>1,330</td></tr><tr><th scope="row" title="test_name=test_account_access / target_opcode=CALLCODE / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=CALLCODE">M4</th><td style='background: rgba(43,138,62,0.829); color: #fff;' title='log2(proposed/current) = -5.68'>182</td><td style='background: rgba(43,138,62,0.672); color: #fff;' title='log2(proposed/current) = -3.55'>792</td><td style='background: rgba(43,138,62,0.804); color: #fff;' title='log2(proposed/current) = -5.30'>236</td><td style='background: rgba(43,138,62,1.000); color: #fff;' title='log2(proposed/current) = -8.60'>24</td></tr></tbody></table>
 </details>
 <details>
 <summary><code>WARM_ACCESS</code> — 8 combos × 4 clients</summary>
@@ -426,7 +474,7 @@
 <h3 id="missing-parameters">Missing parameters</h3>
 <p><em>None.</em></p>
 <h3 id="incomplete-client-coverage">Incomplete client coverage</h3>
-<p><strong>Clients with no estimations at all:</strong> <code>besu</code>. These configured clients produced no fits for any gas parameter — check that the runtimes CSV contains their rows and that the fixture-name conventions match. Inspect the <code>evm_gasfit</code> warnings in <code>meta.json</code> for the cause.</p>
+<p><strong>Clients with no estimations at all:</strong> <code>besu</code>, <code>ethrex</code>. These configured clients produced no fits for any gas parameter — check that the runtimes CSV contains their rows and that the fixture-name conventions match. Inspect the <code>evm_gasfit</code> warnings in <code>meta.json</code> for the cause.</p>
 <h3 id="missing-glue-adjustments">Missing glue adjustments</h3>
 <details>
 <summary><b>Non-priced opcodes correlated with the target opcount</b> — 1 test affected</summary>
@@ -461,42 +509,42 @@
 <tr>
 <td><code>CALLDATALOAD</code></td>
 <td><code>besu</code> (both), <code>erigon</code> (R²), <code>geth</code> (R²), <code>nethermind</code> (both), <code>reth</code> (R²)</td>
-<td>—</td>
+<td><code>COLD_ACCOUNT_CODE_ACCESS</code>, <code>COLD_ACCOUNT_CODE_WRITE</code>, <code>COLD_ACCOUNT_NOCODE_ACCESS</code>, <code>COLD_ACCOUNT_NOCODE_WRITE</code>, <code>COLD_STORAGE_ACCESS</code>, <code>COLD_STORAGE_WRITE</code></td>
 </tr>
 <tr>
 <td><code>EXP</code></td>
 <td><code>nethermind</code> (both)</td>
-<td><code>COLD_ACCOUNT_CODE_ACCESS</code></td>
+<td><code>COLD_ACCOUNT_CODE_ACCESS</code>, <code>COLD_ACCOUNT_CODE_WRITE</code></td>
 </tr>
 <tr>
 <td><code>GT</code></td>
 <td><code>nethermind</code> (R²)</td>
-<td><code>COLD_ACCOUNT_CODE_ACCESS</code>, <code>COLD_STORAGE_ACCESS</code></td>
+<td><code>COLD_ACCOUNT_CODE_ACCESS</code>, <code>COLD_ACCOUNT_CODE_WRITE</code>, <code>COLD_ACCOUNT_NOCODE_ACCESS</code>, <code>COLD_ACCOUNT_NOCODE_WRITE</code>, <code>COLD_STORAGE_ACCESS</code></td>
 </tr>
 <tr>
 <td><code>ISZERO</code></td>
 <td><code>nethermind</code> (R²)</td>
-<td><code>COLD_ACCOUNT_CODE_ACCESS</code></td>
+<td><code>COLD_ACCOUNT_CODE_ACCESS</code>, <code>COLD_ACCOUNT_CODE_WRITE</code></td>
 </tr>
 <tr>
 <td><code>JUMP</code></td>
 <td><code>besu</code> (R²)</td>
-<td><code>COLD_ACCOUNT_CODE_ACCESS</code>, <code>COLD_ACCOUNT_NOCODE_ACCESS</code></td>
+<td><code>COLD_ACCOUNT_CODE_ACCESS</code>, <code>COLD_ACCOUNT_CODE_WRITE</code>, <code>COLD_ACCOUNT_NOCODE_ACCESS</code>, <code>COLD_ACCOUNT_NOCODE_WRITE</code></td>
 </tr>
 <tr>
 <td><code>KECCAK256</code></td>
 <td><code>besu</code> (R²), <code>erigon</code> (R²), <code>geth</code> (R²), <code>nethermind</code> (both), <code>reth</code> (both)</td>
-<td><code>COLD_ACCOUNT_CODE_ACCESS</code></td>
+<td><code>COLD_ACCOUNT_CODE_ACCESS</code>, <code>COLD_ACCOUNT_CODE_WRITE</code></td>
 </tr>
 <tr>
 <td><code>LT</code></td>
 <td><code>nethermind</code> (R²)</td>
-<td><code>COLD_STORAGE_ACCESS</code></td>
+<td><code>COLD_STORAGE_ACCESS</code>, <code>COLD_STORAGE_WRITE</code></td>
 </tr>
 <tr>
 <td><code>MSTORE</code></td>
 <td><code>reth</code> (R²)</td>
-<td><code>COLD_ACCOUNT_CODE_ACCESS</code>, <code>COLD_ACCOUNT_NOCODE_ACCESS</code></td>
+<td><code>COLD_ACCOUNT_CODE_ACCESS</code>, <code>COLD_ACCOUNT_CODE_WRITE</code>, <code>COLD_ACCOUNT_NOCODE_ACCESS</code>, <code>COLD_ACCOUNT_NOCODE_WRITE</code></td>
 </tr>
 <tr>
 <td><code>PUSH0</code></td>
@@ -511,7 +559,7 @@
 <tr>
 <td><code>SWAP</code></td>
 <td><code>nethermind</code> (R²)</td>
-<td>—</td>
+<td><code>COLD_STORAGE_ACCESS</code>, <code>COLD_STORAGE_WRITE</code></td>
 </tr>
 </tbody>
 </table>
@@ -528,7 +576,7 @@
 <p><em>None.</em></p>
 <h3 id="other-weak-candidates">Other weak candidates</h3>
 <details>
-<summary><code>COLD_STORAGE_ACCESS</code> — 2 weak combos</summary>
+<summary><code>COLD_STORAGE_WRITE</code> — 1 weak combo</summary>
 <table>
 <thead>
 <tr>
@@ -544,21 +592,14 @@
 <td><code>test_sstore_bloated</code></td>
 <td><code>SSTORE</code></td>
 <td><code>target_coef</code></td>
-<td><code>param_existing_slots=False</code></td>
-<td><code>erigon</code> (p-value), <code>reth</code> (p-value)</td>
-</tr>
-<tr>
-<td><code>test_sstore_bloated</code></td>
-<td><code>SSTORE</code></td>
-<td><code>target_coef</code></td>
-<td><code>param_existing_slots=True</code></td>
-<td><code>erigon</code> (p-value), <code>reth</code> (p-value)</td>
+<td>—</td>
+<td><code>nethermind</code> (R²), <code>reth</code> (both)</td>
 </tr>
 </tbody>
 </table>
 </details>
 <details>
-<summary><code>COLD_ACCOUNT_NOCODE_ACCESS</code> — 2 weak combos</summary>
+<summary><code>COLD_ACCOUNT_NOCODE_WRITE</code> — 3 weak combos</summary>
 <table>
 <thead>
 <tr>
@@ -574,65 +615,28 @@
 <td><code>test_account_access</code></td>
 <td><code>CALL</code></td>
 <td><code>target_coef</code></td>
-<td><code>param_account_mode=AccountMode.EXISTING_EOA</code></td>
-<td><code>erigon</code> (p-value), <code>reth</code> (p-value)</td>
-</tr>
-<tr>
-<td><code>test_account_access</code></td>
-<td><code>CALL</code></td>
-<td><code>target_coef</code></td>
-<td><code>param_account_mode=AccountMode.NON_EXISTING_ACCOUNT</code></td>
-<td><code>reth</code> (R²)</td>
-</tr>
-</tbody>
-</table>
-</details>
-<details>
-<summary><code>ACCOUNT_WRITE</code> — 4 weak combos</summary>
-<table>
-<thead>
-<tr>
-<th>Test</th>
-<th>Target opcode</th>
-<th>Coef</th>
-<th>Combo</th>
-<th>Failing clients</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>test_account_access</code></td>
-<td><code>CALL</code></td>
-<td><code>update</code></td>
 <td><code>param_account_mode=AccountMode.NON_EXISTING_ACCOUNT</code> / <code>param_opcode=CALL</code></td>
-<td><code>geth</code> (p-value), <code>reth</code> (R²)</td>
+<td><code>geth</code> (R²), <code>reth</code> (both)</td>
 </tr>
 <tr>
 <td><code>test_account_access</code></td>
 <td><code>CALLCODE</code></td>
-<td><code>update</code></td>
-<td><code>param_account_mode=AccountMode.EXISTING_CONTRACT</code> / <code>param_opcode=CALLCODE</code></td>
-<td><code>erigon</code> (p-value), <code>geth</code> (p-value), <code>nethermind</code> (p-value), <code>reth</code> (p-value)</td>
-</tr>
-<tr>
-<td><code>test_account_access</code></td>
-<td><code>CALLCODE</code></td>
-<td><code>update</code></td>
+<td><code>target_coef</code></td>
 <td><code>param_account_mode=AccountMode.EXISTING_EOA</code> / <code>param_opcode=CALLCODE</code></td>
-<td><code>erigon</code> (p-value), <code>geth</code> (p-value), <code>nethermind</code> (p-value), <code>reth</code> (p-value)</td>
+<td><code>geth</code> (R²)</td>
 </tr>
 <tr>
 <td><code>test_account_access</code></td>
 <td><code>CALLCODE</code></td>
-<td><code>update</code></td>
+<td><code>target_coef</code></td>
 <td><code>param_account_mode=AccountMode.NON_EXISTING_ACCOUNT</code> / <code>param_opcode=CALLCODE</code></td>
-<td><code>erigon</code> (p-value), <code>geth</code> (p-value), <code>nethermind</code> (p-value), <code>reth</code> (p-value)</td>
+<td><code>geth</code> (both)</td>
 </tr>
 </tbody>
 </table>
 </details>
 <details>
-<summary><code>COLD_ACCOUNT_CODE_ACCESS</code> — 2 weak combos</summary>
+<summary><code>COLD_ACCOUNT_CODE_WRITE</code> — 3 weak combos</summary>
 <table>
 <thead>
 <tr>
@@ -648,15 +652,22 @@
 <td><code>test_account_access</code></td>
 <td><code>CALL</code></td>
 <td><code>target_coef</code></td>
-<td><code>param_account_mode=AccountMode.EXISTING_CONTRACT</code></td>
-<td><code>erigon</code> (p-value)</td>
+<td><code>param_account_mode=AccountMode.NON_EXISTING_ACCOUNT</code> / <code>param_opcode=CALL</code></td>
+<td><code>geth</code> (R²), <code>reth</code> (both)</td>
 </tr>
 <tr>
 <td><code>test_account_access</code></td>
-<td><code>CALL</code></td>
+<td><code>CALLCODE</code></td>
 <td><code>target_coef</code></td>
-<td><code>param_account_mode=AccountMode.NON_EXISTING_ACCOUNT</code></td>
+<td><code>param_account_mode=AccountMode.EXISTING_CONTRACT</code> / <code>param_opcode=CALLCODE</code></td>
 <td><code>reth</code> (R²)</td>
+</tr>
+<tr>
+<td><code>test_account_access</code></td>
+<td><code>CALLCODE</code></td>
+<td><code>target_coef</code></td>
+<td><code>param_account_mode=AccountMode.NON_EXISTING_ACCOUNT</code> / <code>param_opcode=CALLCODE</code></td>
+<td><code>geth</code> (both)</td>
 </tr>
 </tbody>
 </table>
@@ -667,9 +678,9 @@
     <p class="repro">
       Suites
 <code>3182dda7b93dee61</code>, <code>a11611f320a39015</code>      · run 2026-05-22T23:55:41Z
-      · evm-gasfit 0.0.4
+      · evm-gasfit 0.1.0
       · benchmarkoor-fetch 0.2.0
-      · commit <code>6471779</code>
+      · commit <code>6070569</code>
     </p>
   </footer>
   <script src="../../run_selector.js"></script>

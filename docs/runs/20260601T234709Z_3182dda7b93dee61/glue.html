@@ -27,7 +27,7 @@
           <span class="run-dropdown-chevron" aria-hidden="true"></span>
         </button>
         <ul class="run-dropdown-list" role="listbox" aria-label="Runs" hidden>          <li role="option" aria-selected="false">
-            <a href="../../glue.html" class="run-dropdown-option" tabindex="-1">2026-06-10 06:01</a>
+            <a href="../../glue.html" class="run-dropdown-option" tabindex="-1">2026-06-10 23:58</a>
           </li>          <li role="option" aria-selected="false">
             <a href="../../runs/20260607T235606Z_3182dda7b93dee61/glue.html" class="run-dropdown-option" tabindex="-1">2026-06-07 23:56</a>
           </li>          <li role="option" aria-selected="true">
@@ -39,7 +39,7 @@
           </li>        </ul>
       </div>
       <noscript>
-        <span class="run-dropdown-noscript"><a href="../../glue.html">2026-06-10 06:01</a><a href="../../runs/20260607T235606Z_3182dda7b93dee61/glue.html">2026-06-07 23:56</a><a href="../../runs/20260529T234448Z_3182dda7b93dee61/glue.html">2026-05-29 23:44</a><a href="../../runs/20260522T235541Z_3182dda7b93dee61/glue.html">2026-05-22 23:55</a>        </span>
+        <span class="run-dropdown-noscript"><a href="../../glue.html">2026-06-10 23:58</a><a href="../../runs/20260607T235606Z_3182dda7b93dee61/glue.html">2026-06-07 23:56</a><a href="../../runs/20260529T234448Z_3182dda7b93dee61/glue.html">2026-05-29 23:44</a><a href="../../runs/20260522T235541Z_3182dda7b93dee61/glue.html">2026-05-22 23:55</a>        </span>
       </noscript>
       <span class="run-bar-meta">older run &middot; latest of 5</span>
     </div>
@@ -56,7 +56,7 @@
   <label>Client
     <select data-filter="client">
       <option value="all">All</option>
-<option value="besu">besu</option><option value="erigon">erigon</option><option value="geth">geth</option><option value="nethermind">nethermind</option><option value="reth">reth</option>    </select>
+<option value="besu">besu</option><option value="erigon">erigon</option><option value="ethrex">ethrex</option><option value="geth">geth</option><option value="nethermind">nethermind</option><option value="reth">reth</option>    </select>
   </label>
   <label>Glue opcode
     <select data-filter="glue-opcode">
@@ -1182,6 +1182,566 @@
       <figcaption>bootstrap</figcaption>
     </figure>
     <figure><a href="figs/glue/KECCAK256__erigon__diagnostics.png"><img src="figs/glue/KECCAK256__erigon__diagnostics.png" loading="lazy" alt=""></a>
+      <figcaption>diagnostics</figcaption>
+    </figure>
+  </div>
+</section>
+<section class="fit-section" data-client="ethrex" data-glue-opcode="ISZERO">
+  <h3>ISZERO · ethrex</h3>
+  <div class="stat-grid">
+    <span class="stat">nobs <strong>99</strong></span>
+    <span class="stat">glue runtime (ms) <strong>1.454e-06</strong></span>
+    <span class="stat">p-value <strong>1.000e-03</strong></span>
+    <span class="stat">R² <strong>0.8492</strong></span>
+  </div>
+  <div class="plot-grid">
+    <figure><a href="figs/glue/ISZERO__ethrex__regression.png"><img src="figs/glue/ISZERO__ethrex__regression.png" loading="lazy" alt=""></a>
+      <figcaption>regression</figcaption>
+    </figure>
+    <figure><a href="figs/glue/ISZERO__ethrex__bootstrap.png"><img src="figs/glue/ISZERO__ethrex__bootstrap.png" loading="lazy" alt=""></a>
+      <figcaption>bootstrap</figcaption>
+    </figure>
+    <figure><a href="figs/glue/ISZERO__ethrex__diagnostics.png"><img src="figs/glue/ISZERO__ethrex__diagnostics.png" loading="lazy" alt=""></a>
+      <figcaption>diagnostics</figcaption>
+    </figure>
+  </div>
+</section>
+<section class="fit-section" data-client="ethrex" data-glue-opcode="JUMPDEST">
+  <h3>JUMPDEST · ethrex</h3>
+  <div class="stat-grid">
+    <span class="stat">nobs <strong>99</strong></span>
+    <span class="stat">glue runtime (ms) <strong>4.932e-07</strong></span>
+    <span class="stat">p-value <strong>1.000e-03</strong></span>
+    <span class="stat">R² <strong>0.8366</strong></span>
+  </div>
+  <div class="plot-grid">
+    <figure><a href="figs/glue/JUMPDEST__ethrex__regression.png"><img src="figs/glue/JUMPDEST__ethrex__regression.png" loading="lazy" alt=""></a>
+      <figcaption>regression</figcaption>
+    </figure>
+    <figure><a href="figs/glue/JUMPDEST__ethrex__bootstrap.png"><img src="figs/glue/JUMPDEST__ethrex__bootstrap.png" loading="lazy" alt=""></a>
+      <figcaption>bootstrap</figcaption>
+    </figure>
+    <figure><a href="figs/glue/JUMPDEST__ethrex__diagnostics.png"><img src="figs/glue/JUMPDEST__ethrex__diagnostics.png" loading="lazy" alt=""></a>
+      <figcaption>diagnostics</figcaption>
+    </figure>
+  </div>
+</section>
+<section class="fit-section" data-client="ethrex" data-glue-opcode="SWAP">
+  <h3>SWAP · ethrex</h3>
+  <div class="stat-grid">
+    <span class="stat">nobs <strong>1584</strong></span>
+    <span class="stat">glue runtime (ms) <strong>7.146e-07</strong></span>
+    <span class="stat">p-value <strong>1.000e-03</strong></span>
+    <span class="stat">R² <strong>0.7884</strong></span>
+  </div>
+  <div class="plot-grid">
+    <figure><a href="figs/glue/SWAP__ethrex__regression.png"><img src="figs/glue/SWAP__ethrex__regression.png" loading="lazy" alt=""></a>
+      <figcaption>regression</figcaption>
+    </figure>
+    <figure><a href="figs/glue/SWAP__ethrex__bootstrap.png"><img src="figs/glue/SWAP__ethrex__bootstrap.png" loading="lazy" alt=""></a>
+      <figcaption>bootstrap</figcaption>
+    </figure>
+    <figure><a href="figs/glue/SWAP__ethrex__diagnostics.png"><img src="figs/glue/SWAP__ethrex__diagnostics.png" loading="lazy" alt=""></a>
+      <figcaption>diagnostics</figcaption>
+    </figure>
+  </div>
+</section>
+<section class="fit-section" data-client="ethrex" data-glue-opcode="CALLDATASIZE">
+  <h3>CALLDATASIZE · ethrex</h3>
+  <div class="stat-grid">
+    <span class="stat">nobs <strong>5940</strong></span>
+    <span class="stat">glue runtime (ms) <strong>4.899e-07</strong></span>
+    <span class="stat">p-value <strong>1.000e-03</strong></span>
+    <span class="stat">R² <strong>0.8796</strong></span>
+  </div>
+  <div class="plot-grid">
+    <figure><a href="figs/glue/CALLDATASIZE__ethrex__regression.png"><img src="figs/glue/CALLDATASIZE__ethrex__regression.png" loading="lazy" alt=""></a>
+      <figcaption>regression</figcaption>
+    </figure>
+    <figure><a href="figs/glue/CALLDATASIZE__ethrex__bootstrap.png"><img src="figs/glue/CALLDATASIZE__ethrex__bootstrap.png" loading="lazy" alt=""></a>
+      <figcaption>bootstrap</figcaption>
+    </figure>
+    <figure><a href="figs/glue/CALLDATASIZE__ethrex__diagnostics.png"><img src="figs/glue/CALLDATASIZE__ethrex__diagnostics.png" loading="lazy" alt=""></a>
+      <figcaption>diagnostics</figcaption>
+    </figure>
+  </div>
+</section>
+<section class="fit-section" data-client="ethrex" data-glue-opcode="DUP">
+  <h3>DUP · ethrex</h3>
+  <div class="stat-grid">
+    <span class="stat">nobs <strong>5940</strong></span>
+    <span class="stat">glue runtime (ms) <strong>5.020e-07</strong></span>
+    <span class="stat">p-value <strong>1.000e-03</strong></span>
+    <span class="stat">R² <strong>0.8796</strong></span>
+  </div>
+  <div class="plot-grid">
+    <figure><a href="figs/glue/DUP__ethrex__regression.png"><img src="figs/glue/DUP__ethrex__regression.png" loading="lazy" alt=""></a>
+      <figcaption>regression</figcaption>
+    </figure>
+    <figure><a href="figs/glue/DUP__ethrex__bootstrap.png"><img src="figs/glue/DUP__ethrex__bootstrap.png" loading="lazy" alt=""></a>
+      <figcaption>bootstrap</figcaption>
+    </figure>
+    <figure><a href="figs/glue/DUP__ethrex__diagnostics.png"><img src="figs/glue/DUP__ethrex__diagnostics.png" loading="lazy" alt=""></a>
+      <figcaption>diagnostics</figcaption>
+    </figure>
+  </div>
+</section>
+<section class="fit-section" data-client="ethrex" data-glue-opcode="GAS">
+  <h3>GAS · ethrex</h3>
+  <div class="stat-grid">
+    <span class="stat">nobs <strong>5940</strong></span>
+    <span class="stat">glue runtime (ms) <strong>5.096e-07</strong></span>
+    <span class="stat">p-value <strong>1.000e-03</strong></span>
+    <span class="stat">R² <strong>0.8796</strong></span>
+  </div>
+  <div class="plot-grid">
+    <figure><a href="figs/glue/GAS__ethrex__regression.png"><img src="figs/glue/GAS__ethrex__regression.png" loading="lazy" alt=""></a>
+      <figcaption>regression</figcaption>
+    </figure>
+    <figure><a href="figs/glue/GAS__ethrex__bootstrap.png"><img src="figs/glue/GAS__ethrex__bootstrap.png" loading="lazy" alt=""></a>
+      <figcaption>bootstrap</figcaption>
+    </figure>
+    <figure><a href="figs/glue/GAS__ethrex__diagnostics.png"><img src="figs/glue/GAS__ethrex__diagnostics.png" loading="lazy" alt=""></a>
+      <figcaption>diagnostics</figcaption>
+    </figure>
+  </div>
+</section>
+<section class="fit-section" data-client="ethrex" data-glue-opcode="MLOAD">
+  <h3>MLOAD · ethrex</h3>
+  <div class="stat-grid">
+    <span class="stat">nobs <strong>5940</strong></span>
+    <span class="stat">glue runtime (ms) <strong>1.243e-06</strong></span>
+    <span class="stat">p-value <strong>1.000e-03</strong></span>
+    <span class="stat">R² <strong>0.8796</strong></span>
+  </div>
+  <div class="plot-grid">
+    <figure><a href="figs/glue/MLOAD__ethrex__regression.png"><img src="figs/glue/MLOAD__ethrex__regression.png" loading="lazy" alt=""></a>
+      <figcaption>regression</figcaption>
+    </figure>
+    <figure><a href="figs/glue/MLOAD__ethrex__bootstrap.png"><img src="figs/glue/MLOAD__ethrex__bootstrap.png" loading="lazy" alt=""></a>
+      <figcaption>bootstrap</figcaption>
+    </figure>
+    <figure><a href="figs/glue/MLOAD__ethrex__diagnostics.png"><img src="figs/glue/MLOAD__ethrex__diagnostics.png" loading="lazy" alt=""></a>
+      <figcaption>diagnostics</figcaption>
+    </figure>
+  </div>
+</section>
+<section class="fit-section" data-client="ethrex" data-glue-opcode="PUSH">
+  <h3>PUSH · ethrex</h3>
+  <div class="stat-grid">
+    <span class="stat">nobs <strong>5940</strong></span>
+    <span class="stat">glue runtime (ms) <strong>6.873e-07</strong></span>
+    <span class="stat">p-value <strong>1.000e-03</strong></span>
+    <span class="stat">R² <strong>0.8796</strong></span>
+  </div>
+  <div class="plot-grid">
+    <figure><a href="figs/glue/PUSH__ethrex__regression.png"><img src="figs/glue/PUSH__ethrex__regression.png" loading="lazy" alt=""></a>
+      <figcaption>regression</figcaption>
+    </figure>
+    <figure><a href="figs/glue/PUSH__ethrex__bootstrap.png"><img src="figs/glue/PUSH__ethrex__bootstrap.png" loading="lazy" alt=""></a>
+      <figcaption>bootstrap</figcaption>
+    </figure>
+    <figure><a href="figs/glue/PUSH__ethrex__diagnostics.png"><img src="figs/glue/PUSH__ethrex__diagnostics.png" loading="lazy" alt=""></a>
+      <figcaption>diagnostics</figcaption>
+    </figure>
+  </div>
+</section>
+<section class="fit-section" data-client="ethrex" data-glue-opcode="PUSH0">
+  <h3>PUSH0 · ethrex</h3>
+  <div class="stat-grid">
+    <span class="stat">nobs <strong>5940</strong></span>
+    <span class="stat">glue runtime (ms) <strong>4.229e-07</strong></span>
+    <span class="stat">p-value <strong>1.000e-03</strong></span>
+    <span class="stat">R² <strong>0.8796</strong></span>
+  </div>
+  <div class="plot-grid">
+    <figure><a href="figs/glue/PUSH0__ethrex__regression.png"><img src="figs/glue/PUSH0__ethrex__regression.png" loading="lazy" alt=""></a>
+      <figcaption>regression</figcaption>
+    </figure>
+    <figure><a href="figs/glue/PUSH0__ethrex__bootstrap.png"><img src="figs/glue/PUSH0__ethrex__bootstrap.png" loading="lazy" alt=""></a>
+      <figcaption>bootstrap</figcaption>
+    </figure>
+    <figure><a href="figs/glue/PUSH0__ethrex__diagnostics.png"><img src="figs/glue/PUSH0__ethrex__diagnostics.png" loading="lazy" alt=""></a>
+      <figcaption>diagnostics</figcaption>
+    </figure>
+  </div>
+</section>
+<section class="fit-section" data-client="ethrex" data-glue-opcode="STATICCALL">
+  <h3>STATICCALL · ethrex</h3>
+  <div class="stat-grid">
+    <span class="stat">nobs <strong>5940</strong></span>
+    <span class="stat">glue runtime (ms) <strong>7.454e-05</strong></span>
+    <span class="stat">p-value <strong>1.000e-03</strong></span>
+    <span class="stat">R² <strong>0.8796</strong></span>
+  </div>
+  <div class="plot-grid">
+    <figure><a href="figs/glue/STATICCALL__ethrex__regression.png"><img src="figs/glue/STATICCALL__ethrex__regression.png" loading="lazy" alt=""></a>
+      <figcaption>regression</figcaption>
+    </figure>
+    <figure><a href="figs/glue/STATICCALL__ethrex__bootstrap.png"><img src="figs/glue/STATICCALL__ethrex__bootstrap.png" loading="lazy" alt=""></a>
+      <figcaption>bootstrap</figcaption>
+    </figure>
+    <figure><a href="figs/glue/STATICCALL__ethrex__diagnostics.png"><img src="figs/glue/STATICCALL__ethrex__diagnostics.png" loading="lazy" alt=""></a>
+      <figcaption>diagnostics</figcaption>
+    </figure>
+  </div>
+</section>
+<section class="fit-section" data-client="ethrex" data-glue-opcode="ADD">
+  <h3>ADD · ethrex</h3>
+  <div class="stat-grid">
+    <span class="stat">nobs <strong>99</strong></span>
+    <span class="stat">glue runtime (ms) <strong>1.244e-06</strong></span>
+    <span class="stat">p-value <strong>1.000e-03</strong></span>
+    <span class="stat">R² <strong>0.8368</strong></span>
+  </div>
+  <div class="plot-grid">
+    <figure><a href="figs/glue/ADD__ethrex__regression.png"><img src="figs/glue/ADD__ethrex__regression.png" loading="lazy" alt=""></a>
+      <figcaption>regression</figcaption>
+    </figure>
+    <figure><a href="figs/glue/ADD__ethrex__bootstrap.png"><img src="figs/glue/ADD__ethrex__bootstrap.png" loading="lazy" alt=""></a>
+      <figcaption>bootstrap</figcaption>
+    </figure>
+    <figure><a href="figs/glue/ADD__ethrex__diagnostics.png"><img src="figs/glue/ADD__ethrex__diagnostics.png" loading="lazy" alt=""></a>
+      <figcaption>diagnostics</figcaption>
+    </figure>
+  </div>
+</section>
+<section class="fit-section" data-client="ethrex" data-glue-opcode="AND">
+  <h3>AND · ethrex</h3>
+  <div class="stat-grid">
+    <span class="stat">nobs <strong>99</strong></span>
+    <span class="stat">glue runtime (ms) <strong>1.319e-06</strong></span>
+    <span class="stat">p-value <strong>1.000e-03</strong></span>
+    <span class="stat">R² <strong>0.3975</strong></span>
+  </div>
+  <div class="plot-grid">
+    <figure><a href="figs/glue/AND__ethrex__regression.png"><img src="figs/glue/AND__ethrex__regression.png" loading="lazy" alt=""></a>
+      <figcaption>regression</figcaption>
+    </figure>
+    <figure><a href="figs/glue/AND__ethrex__bootstrap.png"><img src="figs/glue/AND__ethrex__bootstrap.png" loading="lazy" alt=""></a>
+      <figcaption>bootstrap</figcaption>
+    </figure>
+    <figure><a href="figs/glue/AND__ethrex__diagnostics.png"><img src="figs/glue/AND__ethrex__diagnostics.png" loading="lazy" alt=""></a>
+      <figcaption>diagnostics</figcaption>
+    </figure>
+  </div>
+</section>
+<section class="fit-section" data-client="ethrex" data-glue-opcode="CALLDATACOPY">
+  <h3>CALLDATACOPY · ethrex</h3>
+  <div class="stat-grid">
+    <span class="stat">nobs <strong>2376</strong></span>
+    <span class="stat">glue runtime (ms) <strong>2.840e-06</strong></span>
+    <span class="stat">p-value <strong>1.000e-03</strong></span>
+    <span class="stat">R² <strong>0.8921</strong></span>
+  </div>
+  <div class="plot-grid">
+    <figure><a href="figs/glue/CALLDATACOPY__ethrex__regression.png"><img src="figs/glue/CALLDATACOPY__ethrex__regression.png" loading="lazy" alt=""></a>
+      <figcaption>regression</figcaption>
+    </figure>
+    <figure><a href="figs/glue/CALLDATACOPY__ethrex__bootstrap.png"><img src="figs/glue/CALLDATACOPY__ethrex__bootstrap.png" loading="lazy" alt=""></a>
+      <figcaption>bootstrap</figcaption>
+    </figure>
+    <figure><a href="figs/glue/CALLDATACOPY__ethrex__diagnostics.png"><img src="figs/glue/CALLDATACOPY__ethrex__diagnostics.png" loading="lazy" alt=""></a>
+      <figcaption>diagnostics</figcaption>
+    </figure>
+  </div>
+</section>
+<section class="fit-section" data-client="ethrex" data-glue-opcode="CALLDATALOAD">
+  <h3>CALLDATALOAD · ethrex</h3>
+  <div class="stat-grid">
+    <span class="stat">nobs <strong>396</strong></span>
+    <span class="stat">glue runtime (ms) <strong>2.017e-05</strong></span>
+    <span class="stat">p-value <strong>1.000e-03</strong></span>
+    <span class="stat">R² <strong>0.3205</strong></span>
+  </div>
+  <div class="plot-grid">
+    <figure><a href="figs/glue/CALLDATALOAD__ethrex__regression.png"><img src="figs/glue/CALLDATALOAD__ethrex__regression.png" loading="lazy" alt=""></a>
+      <figcaption>regression</figcaption>
+    </figure>
+    <figure><a href="figs/glue/CALLDATALOAD__ethrex__bootstrap.png"><img src="figs/glue/CALLDATALOAD__ethrex__bootstrap.png" loading="lazy" alt=""></a>
+      <figcaption>bootstrap</figcaption>
+    </figure>
+    <figure><a href="figs/glue/CALLDATALOAD__ethrex__diagnostics.png"><img src="figs/glue/CALLDATALOAD__ethrex__diagnostics.png" loading="lazy" alt=""></a>
+      <figcaption>diagnostics</figcaption>
+    </figure>
+  </div>
+</section>
+<section class="fit-section" data-client="ethrex" data-glue-opcode="DIV">
+  <h3>DIV · ethrex</h3>
+  <div class="stat-grid">
+    <span class="stat">nobs <strong>99</strong></span>
+    <span class="stat">glue runtime (ms) <strong>9.385e-06</strong></span>
+    <span class="stat">p-value <strong>1.000e-03</strong></span>
+    <span class="stat">R² <strong>0.8314</strong></span>
+  </div>
+  <div class="plot-grid">
+    <figure><a href="figs/glue/DIV__ethrex__regression.png"><img src="figs/glue/DIV__ethrex__regression.png" loading="lazy" alt=""></a>
+      <figcaption>regression</figcaption>
+    </figure>
+    <figure><a href="figs/glue/DIV__ethrex__bootstrap.png"><img src="figs/glue/DIV__ethrex__bootstrap.png" loading="lazy" alt=""></a>
+      <figcaption>bootstrap</figcaption>
+    </figure>
+    <figure><a href="figs/glue/DIV__ethrex__diagnostics.png"><img src="figs/glue/DIV__ethrex__diagnostics.png" loading="lazy" alt=""></a>
+      <figcaption>diagnostics</figcaption>
+    </figure>
+  </div>
+</section>
+<section class="fit-section" data-client="ethrex" data-glue-opcode="EXP">
+  <h3>EXP · ethrex</h3>
+  <div class="stat-grid">
+    <span class="stat">nobs <strong>99</strong></span>
+    <span class="stat">glue runtime (ms) <strong>8.741e-04</strong></span>
+    <span class="stat">p-value <strong>1.000e-03</strong></span>
+    <span class="stat">R² <strong>0.8151</strong></span>
+  </div>
+  <div class="plot-grid">
+    <figure><a href="figs/glue/EXP__ethrex__regression.png"><img src="figs/glue/EXP__ethrex__regression.png" loading="lazy" alt=""></a>
+      <figcaption>regression</figcaption>
+    </figure>
+    <figure><a href="figs/glue/EXP__ethrex__bootstrap.png"><img src="figs/glue/EXP__ethrex__bootstrap.png" loading="lazy" alt=""></a>
+      <figcaption>bootstrap</figcaption>
+    </figure>
+    <figure><a href="figs/glue/EXP__ethrex__diagnostics.png"><img src="figs/glue/EXP__ethrex__diagnostics.png" loading="lazy" alt=""></a>
+      <figcaption>diagnostics</figcaption>
+    </figure>
+  </div>
+</section>
+<section class="fit-section" data-client="ethrex" data-glue-opcode="GT">
+  <h3>GT · ethrex</h3>
+  <div class="stat-grid">
+    <span class="stat">nobs <strong>99</strong></span>
+    <span class="stat">glue runtime (ms) <strong>1.245e-06</strong></span>
+    <span class="stat">p-value <strong>1.000e-03</strong></span>
+    <span class="stat">R² <strong>0.8213</strong></span>
+  </div>
+  <div class="plot-grid">
+    <figure><a href="figs/glue/GT__ethrex__regression.png"><img src="figs/glue/GT__ethrex__regression.png" loading="lazy" alt=""></a>
+      <figcaption>regression</figcaption>
+    </figure>
+    <figure><a href="figs/glue/GT__ethrex__bootstrap.png"><img src="figs/glue/GT__ethrex__bootstrap.png" loading="lazy" alt=""></a>
+      <figcaption>bootstrap</figcaption>
+    </figure>
+    <figure><a href="figs/glue/GT__ethrex__diagnostics.png"><img src="figs/glue/GT__ethrex__diagnostics.png" loading="lazy" alt=""></a>
+      <figcaption>diagnostics</figcaption>
+    </figure>
+  </div>
+</section>
+<section class="fit-section" data-client="ethrex" data-glue-opcode="JUMPI">
+  <h3>JUMPI · ethrex</h3>
+  <div class="stat-grid">
+    <span class="stat">nobs <strong>99</strong></span>
+    <span class="stat">glue runtime (ms) <strong>1.558e-06</strong></span>
+    <span class="stat">p-value <strong>1.000e-03</strong></span>
+    <span class="stat">R² <strong>0.7861</strong></span>
+  </div>
+  <div class="plot-grid">
+    <figure><a href="figs/glue/JUMPI__ethrex__regression.png"><img src="figs/glue/JUMPI__ethrex__regression.png" loading="lazy" alt=""></a>
+      <figcaption>regression</figcaption>
+    </figure>
+    <figure><a href="figs/glue/JUMPI__ethrex__bootstrap.png"><img src="figs/glue/JUMPI__ethrex__bootstrap.png" loading="lazy" alt=""></a>
+      <figcaption>bootstrap</figcaption>
+    </figure>
+    <figure><a href="figs/glue/JUMPI__ethrex__diagnostics.png"><img src="figs/glue/JUMPI__ethrex__diagnostics.png" loading="lazy" alt=""></a>
+      <figcaption>diagnostics</figcaption>
+    </figure>
+  </div>
+</section>
+<section class="fit-section" data-client="ethrex" data-glue-opcode="LT">
+  <h3>LT · ethrex</h3>
+  <div class="stat-grid">
+    <span class="stat">nobs <strong>99</strong></span>
+    <span class="stat">glue runtime (ms) <strong>1.080e-06</strong></span>
+    <span class="stat">p-value <strong>1.000e-03</strong></span>
+    <span class="stat">R² <strong>0.842</strong></span>
+  </div>
+  <div class="plot-grid">
+    <figure><a href="figs/glue/LT__ethrex__regression.png"><img src="figs/glue/LT__ethrex__regression.png" loading="lazy" alt=""></a>
+      <figcaption>regression</figcaption>
+    </figure>
+    <figure><a href="figs/glue/LT__ethrex__bootstrap.png"><img src="figs/glue/LT__ethrex__bootstrap.png" loading="lazy" alt=""></a>
+      <figcaption>bootstrap</figcaption>
+    </figure>
+    <figure><a href="figs/glue/LT__ethrex__diagnostics.png"><img src="figs/glue/LT__ethrex__diagnostics.png" loading="lazy" alt=""></a>
+      <figcaption>diagnostics</figcaption>
+    </figure>
+  </div>
+</section>
+<section class="fit-section" data-client="ethrex" data-glue-opcode="MSTORE">
+  <h3>MSTORE · ethrex</h3>
+  <div class="stat-grid">
+    <span class="stat">nobs <strong>495</strong></span>
+    <span class="stat">glue runtime (ms) <strong>1.803e-06</strong></span>
+    <span class="stat">p-value <strong>1.000e-03</strong></span>
+    <span class="stat">R² <strong>0.8175</strong></span>
+  </div>
+  <div class="plot-grid">
+    <figure><a href="figs/glue/MSTORE__ethrex__regression.png"><img src="figs/glue/MSTORE__ethrex__regression.png" loading="lazy" alt=""></a>
+      <figcaption>regression</figcaption>
+    </figure>
+    <figure><a href="figs/glue/MSTORE__ethrex__bootstrap.png"><img src="figs/glue/MSTORE__ethrex__bootstrap.png" loading="lazy" alt=""></a>
+      <figcaption>bootstrap</figcaption>
+    </figure>
+    <figure><a href="figs/glue/MSTORE__ethrex__diagnostics.png"><img src="figs/glue/MSTORE__ethrex__diagnostics.png" loading="lazy" alt=""></a>
+      <figcaption>diagnostics</figcaption>
+    </figure>
+  </div>
+</section>
+<section class="fit-section" data-client="ethrex" data-glue-opcode="MSTORE8">
+  <h3>MSTORE8 · ethrex</h3>
+  <div class="stat-grid">
+    <span class="stat">nobs <strong>495</strong></span>
+    <span class="stat">glue runtime (ms) <strong>1.711e-06</strong></span>
+    <span class="stat">p-value <strong>1.000e-03</strong></span>
+    <span class="stat">R² <strong>0.7991</strong></span>
+  </div>
+  <div class="plot-grid">
+    <figure><a href="figs/glue/MSTORE8__ethrex__regression.png"><img src="figs/glue/MSTORE8__ethrex__regression.png" loading="lazy" alt=""></a>
+      <figcaption>regression</figcaption>
+    </figure>
+    <figure><a href="figs/glue/MSTORE8__ethrex__bootstrap.png"><img src="figs/glue/MSTORE8__ethrex__bootstrap.png" loading="lazy" alt=""></a>
+      <figcaption>bootstrap</figcaption>
+    </figure>
+    <figure><a href="figs/glue/MSTORE8__ethrex__diagnostics.png"><img src="figs/glue/MSTORE8__ethrex__diagnostics.png" loading="lazy" alt=""></a>
+      <figcaption>diagnostics</figcaption>
+    </figure>
+  </div>
+</section>
+<section class="fit-section" data-client="ethrex" data-glue-opcode="MUL">
+  <h3>MUL · ethrex</h3>
+  <div class="stat-grid">
+    <span class="stat">nobs <strong>99</strong></span>
+    <span class="stat">glue runtime (ms) <strong>1.738e-06</strong></span>
+    <span class="stat">p-value <strong>1.000e-03</strong></span>
+    <span class="stat">R² <strong>0.787</strong></span>
+  </div>
+  <div class="plot-grid">
+    <figure><a href="figs/glue/MUL__ethrex__regression.png"><img src="figs/glue/MUL__ethrex__regression.png" loading="lazy" alt=""></a>
+      <figcaption>regression</figcaption>
+    </figure>
+    <figure><a href="figs/glue/MUL__ethrex__bootstrap.png"><img src="figs/glue/MUL__ethrex__bootstrap.png" loading="lazy" alt=""></a>
+      <figcaption>bootstrap</figcaption>
+    </figure>
+    <figure><a href="figs/glue/MUL__ethrex__diagnostics.png"><img src="figs/glue/MUL__ethrex__diagnostics.png" loading="lazy" alt=""></a>
+      <figcaption>diagnostics</figcaption>
+    </figure>
+  </div>
+</section>
+<section class="fit-section" data-client="ethrex" data-glue-opcode="PC">
+  <h3>PC · ethrex</h3>
+  <div class="stat-grid">
+    <span class="stat">nobs <strong>99</strong></span>
+    <span class="stat">glue runtime (ms) <strong>5.390e-07</strong></span>
+    <span class="stat">p-value <strong>1.000e-03</strong></span>
+    <span class="stat">R² <strong>0.8644</strong></span>
+  </div>
+  <div class="plot-grid">
+    <figure><a href="figs/glue/PC__ethrex__regression.png"><img src="figs/glue/PC__ethrex__regression.png" loading="lazy" alt=""></a>
+      <figcaption>regression</figcaption>
+    </figure>
+    <figure><a href="figs/glue/PC__ethrex__bootstrap.png"><img src="figs/glue/PC__ethrex__bootstrap.png" loading="lazy" alt=""></a>
+      <figcaption>bootstrap</figcaption>
+    </figure>
+    <figure><a href="figs/glue/PC__ethrex__diagnostics.png"><img src="figs/glue/PC__ethrex__diagnostics.png" loading="lazy" alt=""></a>
+      <figcaption>diagnostics</figcaption>
+    </figure>
+  </div>
+</section>
+<section class="fit-section" data-client="ethrex" data-glue-opcode="RETURNDATASIZE">
+  <h3>RETURNDATASIZE · ethrex</h3>
+  <div class="stat-grid">
+    <span class="stat">nobs <strong>396</strong></span>
+    <span class="stat">glue runtime (ms) <strong>1.014e-06</strong></span>
+    <span class="stat">p-value <strong>1.000e-03</strong></span>
+    <span class="stat">R² <strong>0.8461</strong></span>
+  </div>
+  <div class="plot-grid">
+    <figure><a href="figs/glue/RETURNDATASIZE__ethrex__regression.png"><img src="figs/glue/RETURNDATASIZE__ethrex__regression.png" loading="lazy" alt=""></a>
+      <figcaption>regression</figcaption>
+    </figure>
+    <figure><a href="figs/glue/RETURNDATASIZE__ethrex__bootstrap.png"><img src="figs/glue/RETURNDATASIZE__ethrex__bootstrap.png" loading="lazy" alt=""></a>
+      <figcaption>bootstrap</figcaption>
+    </figure>
+    <figure><a href="figs/glue/RETURNDATASIZE__ethrex__diagnostics.png"><img src="figs/glue/RETURNDATASIZE__ethrex__diagnostics.png" loading="lazy" alt=""></a>
+      <figcaption>diagnostics</figcaption>
+    </figure>
+  </div>
+</section>
+<section class="fit-section" data-client="ethrex" data-glue-opcode="SELFBALANCE">
+  <h3>SELFBALANCE · ethrex</h3>
+  <div class="stat-grid">
+    <span class="stat">nobs <strong>81</strong></span>
+    <span class="stat">glue runtime (ms) <strong>4.854e-06</strong></span>
+    <span class="stat">p-value <strong>1.000e-03</strong></span>
+    <span class="stat">R² <strong>0.8261</strong></span>
+  </div>
+  <div class="plot-grid">
+    <figure><a href="figs/glue/SELFBALANCE__ethrex__regression.png"><img src="figs/glue/SELFBALANCE__ethrex__regression.png" loading="lazy" alt=""></a>
+      <figcaption>regression</figcaption>
+    </figure>
+    <figure><a href="figs/glue/SELFBALANCE__ethrex__bootstrap.png"><img src="figs/glue/SELFBALANCE__ethrex__bootstrap.png" loading="lazy" alt=""></a>
+      <figcaption>bootstrap</figcaption>
+    </figure>
+    <figure><a href="figs/glue/SELFBALANCE__ethrex__diagnostics.png"><img src="figs/glue/SELFBALANCE__ethrex__diagnostics.png" loading="lazy" alt=""></a>
+      <figcaption>diagnostics</figcaption>
+    </figure>
+  </div>
+</section>
+<section class="fit-section" data-client="ethrex" data-glue-opcode="SUB">
+  <h3>SUB · ethrex</h3>
+  <div class="stat-grid">
+    <span class="stat">nobs <strong>99</strong></span>
+    <span class="stat">glue runtime (ms) <strong>1.289e-06</strong></span>
+    <span class="stat">p-value <strong>1.000e-03</strong></span>
+    <span class="stat">R² <strong>0.82</strong></span>
+  </div>
+  <div class="plot-grid">
+    <figure><a href="figs/glue/SUB__ethrex__regression.png"><img src="figs/glue/SUB__ethrex__regression.png" loading="lazy" alt=""></a>
+      <figcaption>regression</figcaption>
+    </figure>
+    <figure><a href="figs/glue/SUB__ethrex__bootstrap.png"><img src="figs/glue/SUB__ethrex__bootstrap.png" loading="lazy" alt=""></a>
+      <figcaption>bootstrap</figcaption>
+    </figure>
+    <figure><a href="figs/glue/SUB__ethrex__diagnostics.png"><img src="figs/glue/SUB__ethrex__diagnostics.png" loading="lazy" alt=""></a>
+      <figcaption>diagnostics</figcaption>
+    </figure>
+  </div>
+</section>
+<section class="fit-section" data-client="ethrex" data-glue-opcode="JUMP">
+  <h3>JUMP · ethrex</h3>
+  <div class="stat-grid">
+    <span class="stat">nobs <strong>99</strong></span>
+    <span class="stat">glue runtime (ms) <strong>4.425e-06</strong></span>
+    <span class="stat">p-value <strong>1.000e-03</strong></span>
+    <span class="stat">R² <strong>0.822</strong></span>
+  </div>
+  <div class="plot-grid">
+    <figure><a href="figs/glue/JUMP__ethrex__regression.png"><img src="figs/glue/JUMP__ethrex__regression.png" loading="lazy" alt=""></a>
+      <figcaption>regression</figcaption>
+    </figure>
+    <figure><a href="figs/glue/JUMP__ethrex__bootstrap.png"><img src="figs/glue/JUMP__ethrex__bootstrap.png" loading="lazy" alt=""></a>
+      <figcaption>bootstrap</figcaption>
+    </figure>
+    <figure><a href="figs/glue/JUMP__ethrex__diagnostics.png"><img src="figs/glue/JUMP__ethrex__diagnostics.png" loading="lazy" alt=""></a>
+      <figcaption>diagnostics</figcaption>
+    </figure>
+  </div>
+</section>
+<section class="fit-section" data-client="ethrex" data-glue-opcode="KECCAK256">
+  <h3>KECCAK256 · ethrex</h3>
+  <div class="stat-grid">
+    <span class="stat">nobs <strong>1584</strong></span>
+    <span class="stat">glue runtime (ms) <strong>1.001e-05</strong></span>
+    <span class="stat">p-value <strong>1.000e-03</strong></span>
+    <span class="stat">R² <strong>0.04335</strong></span>
+  </div>
+  <div class="plot-grid">
+    <figure><a href="figs/glue/KECCAK256__ethrex__regression.png"><img src="figs/glue/KECCAK256__ethrex__regression.png" loading="lazy" alt=""></a>
+      <figcaption>regression</figcaption>
+    </figure>
+    <figure><a href="figs/glue/KECCAK256__ethrex__bootstrap.png"><img src="figs/glue/KECCAK256__ethrex__bootstrap.png" loading="lazy" alt=""></a>
+      <figcaption>bootstrap</figcaption>
+    </figure>
+    <figure><a href="figs/glue/KECCAK256__ethrex__diagnostics.png"><img src="figs/glue/KECCAK256__ethrex__diagnostics.png" loading="lazy" alt=""></a>
       <figcaption>diagnostics</figcaption>
     </figure>
   </div>
@@ -3636,6 +4196,389 @@ Notes: Non-negative least squares with bootstrap inference (1000 iterations)
 ==============================================================================</code></pre>
 </details>
 <details>
+  <summary>ethrex — 22 regression summaries</summary>
+  <h4>Cycle glue — joint fit · ethrex</h4>
+  <pre><code>==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.880
+Model:                  NNLS                    Adj. R-squared:          0.879
+No. Observations:       5940                              RMSE:           7.27
+Df Residuals:           5932                               MAE:           5.66
+Df Model:               7      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     13.8970      0.3246       0.001     13.2382     14.5249
+  CALLDATASIZE      0.0000      0.0000       0.001      0.0000      0.0000
+           DUP      0.0000      0.0000       0.001      0.0000      0.0000
+           GAS      0.0000      0.0000       0.001      0.0000      0.0000
+         MLOAD      0.0000      0.0000       0.001      0.0000      0.0000
+          PUSH      0.0000      0.0000       0.001      0.0000      0.0000
+         PUSH0      0.0000      0.0000       0.001      0.0000      0.0000
+    STATICCALL      0.0001      0.0000       0.001      0.0001      0.0001
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================</code></pre>
+  <h4>Pure glue · ethrex</h4>
+  <pre><code>==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.849
+Model:                  NNLS                    Adj. R-squared:          0.848
+No. Observations:       99                                RMSE:          12.90
+Df Residuals:           97                                 MAE:          10.95
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     23.6519      4.7539       0.001     13.9875     33.1704
+        ISZERO      0.0000      0.0000       0.001      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================</code></pre>
+  <h4>Pure glue · ethrex</h4>
+  <pre><code>==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.837
+Model:                  NNLS                    Adj. R-squared:          0.835
+No. Observations:       99                                RMSE:          13.76
+Df Residuals:           97                                 MAE:          10.72
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const      5.6743      4.0458       0.099      0.0000     14.4328
+      JUMPDEST      0.0000      0.0000       0.001      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================</code></pre>
+  <h4>Pure glue · ethrex</h4>
+  <pre><code>==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.788
+Model:                  NNLS                    Adj. R-squared:          0.788
+No. Observations:       1584                              RMSE:           7.80
+Df Residuals:           1582                               MAE:           5.78
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     15.8394      0.5891       0.001     14.6849     16.9707
+          SWAP      0.0000      0.0000       0.001      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================</code></pre>
+  <h4>Mixed glue (tier A) · ethrex</h4>
+  <pre><code>==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.837
+Model:                  NNLS                    Adj. R-squared:          0.835
+No. Observations:       99                                RMSE:           5.78
+Df Residuals:           97                                 MAE:           4.49
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const      8.8099      1.8963       0.001      5.1270     12.4632
+           ADD      0.0000      0.0000       0.001      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================</code></pre>
+  <h4>Mixed glue (tier A) · ethrex</h4>
+  <pre><code>==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.398
+Model:                  NNLS                    Adj. R-squared:          0.391
+No. Observations:       99                                RMSE:          17.10
+Df Residuals:           97                                 MAE:          13.49
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     14.5875      5.8544       0.008      3.5218     26.0144
+           AND      0.0000      0.0000       0.001      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================</code></pre>
+  <h4>Mixed glue (tier A) · ethrex</h4>
+  <pre><code>==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.892
+Model:                  NNLS                    Adj. R-squared:          0.892
+No. Observations:       2376                              RMSE:           7.43
+Df Residuals:           2374                               MAE:           5.45
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     12.0861      0.1854       0.001     11.7220     12.4669
+  CALLDATACOPY      0.0000      0.0000       0.001      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================</code></pre>
+  <h4>Mixed glue (tier A) · ethrex</h4>
+  <pre><code>==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.320
+Model:                  NNLS                    Adj. R-squared:          0.319
+No. Observations:       396                               RMSE:           0.11
+Df Residuals:           394                                MAE:           0.09
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const      2.3361      0.0199       0.001      2.2974      2.3748
+  CALLDATALOAD      0.0000      0.0000       0.001      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================</code></pre>
+  <h4>Mixed glue (tier A) · ethrex</h4>
+  <pre><code>==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.831
+Model:                  NNLS                    Adj. R-squared:          0.830
+No. Observations:       99                                RMSE:          33.36
+Df Residuals:           97                                 MAE:          27.85
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     72.3836     12.8039       0.001     47.8766     96.2795
+           DIV      0.0000      0.0000       0.001      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================</code></pre>
+  <h4>Mixed glue (tier A) · ethrex</h4>
+  <pre><code>==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.815
+Model:                  NNLS                    Adj. R-squared:          0.813
+No. Observations:       99                                RMSE:          16.30
+Df Residuals:           97                                 MAE:          13.54
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     40.6770      6.3146       0.001     28.4313     53.6898
+           EXP      0.0009      0.0000       0.001      0.0008      0.0010
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================</code></pre>
+  <h4>Mixed glue (tier A) · ethrex</h4>
+  <pre><code>==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.821
+Model:                  NNLS                    Adj. R-squared:          0.819
+No. Observations:       99                                RMSE:           6.11
+Df Residuals:           97                                 MAE:           4.61
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const      8.5666      1.8378       0.001      5.1071     12.3127
+            GT      0.0000      0.0000       0.001      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================</code></pre>
+  <h4>Mixed glue (tier A) · ethrex</h4>
+  <pre><code>==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.786
+Model:                  NNLS                    Adj. R-squared:          0.784
+No. Observations:       99                                RMSE:           3.67
+Df Residuals:           97                                 MAE:           2.80
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const      6.7945      0.9879       0.001      4.8277      8.5315
+         JUMPI      0.0000      0.0000       0.001      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================</code></pre>
+  <h4>Mixed glue (tier A) · ethrex</h4>
+  <pre><code>==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.842
+Model:                  NNLS                    Adj. R-squared:          0.840
+No. Observations:       99                                RMSE:           4.92
+Df Residuals:           97                                 MAE:           3.90
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     11.1775      1.6737       0.001      8.1156     14.4427
+            LT      0.0000      0.0000       0.001      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================</code></pre>
+  <h4>Mixed glue (tier A) · ethrex</h4>
+  <pre><code>==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.818
+Model:                  NNLS                    Adj. R-squared:          0.817
+No. Observations:       495                               RMSE:           5.98
+Df Residuals:           493                                MAE:           4.64
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     12.3227      0.9055       0.001     10.6185     14.1220
+        MSTORE      0.0000      0.0000       0.001      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================</code></pre>
+  <h4>Mixed glue (tier A) · ethrex</h4>
+  <pre><code>==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.799
+Model:                  NNLS                    Adj. R-squared:          0.799
+No. Observations:       495                               RMSE:           6.02
+Df Residuals:           493                                MAE:           4.54
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     12.6319      0.8870       0.001     10.9315     14.4283
+       MSTORE8      0.0000      0.0000       0.001      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================</code></pre>
+  <h4>Mixed glue (tier A) · ethrex</h4>
+  <pre><code>==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.787
+Model:                  NNLS                    Adj. R-squared:          0.785
+No. Observations:       99                                RMSE:           7.14
+Df Residuals:           97                                 MAE:           5.69
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     11.4110      2.4661       0.001      6.8192     16.5389
+           MUL      0.0000      0.0000       0.001      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================</code></pre>
+  <h4>Mixed glue (tier A) · ethrex</h4>
+  <pre><code>==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.864
+Model:                  NNLS                    Adj. R-squared:          0.863
+No. Observations:       99                                RMSE:           6.38
+Df Residuals:           97                                 MAE:           4.93
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     18.0946      2.0819       0.001     14.0659     22.5217
+            PC      0.0000      0.0000       0.001      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================</code></pre>
+  <h4>Mixed glue (tier A) · ethrex</h4>
+  <pre><code>==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.846
+Model:                  NNLS                    Adj. R-squared:          0.846
+No. Observations:       396                               RMSE:           6.83
+Df Residuals:           394                                MAE:           5.55
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     12.9455      1.1659       0.001     10.5973     15.2268
+RETURNDATASIZE      0.0000      0.0000       0.001      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================</code></pre>
+  <h4>Mixed glue (tier A) · ethrex</h4>
+  <pre><code>==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.826
+Model:                  NNLS                    Adj. R-squared:          0.824
+No. Observations:       81                                RMSE:          22.46
+Df Residuals:           79                                 MAE:          18.55
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     76.3630      9.4610       0.001     57.0151     94.0491
+   SELFBALANCE      0.0000      0.0000       0.001      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================</code></pre>
+  <h4>Mixed glue (tier A) · ethrex</h4>
+  <pre><code>==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.820
+Model:                  NNLS                    Adj. R-squared:          0.818
+No. Observations:       99                                RMSE:           6.36
+Df Residuals:           97                                 MAE:           5.17
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const      8.1153      2.1258       0.001      4.1482     12.2637
+           SUB      0.0000      0.0000       0.001      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================</code></pre>
+  <h4>Mixed glue (tier B) · ethrex</h4>
+  <pre><code>==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.822
+Model:                  NNLS                    Adj. R-squared:          0.820
+No. Observations:       99                                RMSE:           7.65
+Df Residuals:           97                                 MAE:           6.24
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     17.2792      2.5162       0.001     12.3398     22.3214
+          JUMP      0.0000      0.0000       0.001      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================</code></pre>
+  <h4>Mixed glue (tier B) · ethrex</h4>
+  <pre><code>==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.043
+Model:                  NNLS                    Adj. R-squared:          0.043
+No. Observations:       1584                              RMSE:          93.48
+Df Residuals:           1582                               MAE:          74.85
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const    293.5715      5.4049       0.001    283.7155    304.0559
+     KECCAK256      0.0000      0.0000       0.001      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================</code></pre>
+</details>
+<details>
   <summary>geth — 22 regression summaries</summary>
   <h4>Cycle glue — joint fit · geth</h4>
   <pre><code>==============================================================================
@@ -4790,9 +5733,9 @@ Notes: Non-negative least squares with bootstrap inference (1000 iterations)
     <p class="repro">
       Suites
 <code>3182dda7b93dee61</code>, <code>a11611f320a39015</code>      · run 2026-06-01T23:47:09Z
-      · evm-gasfit 0.0.4
+      · evm-gasfit 0.1.0
       · benchmarkoor-fetch 0.2.0
-      · commit <code>6471779</code>
+      · commit <code>6070569</code>
     </p>
   </footer>
   <script src="../../run_selector.js"></script>

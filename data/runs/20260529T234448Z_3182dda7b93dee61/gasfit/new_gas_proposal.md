@@ -1,8 +1,8 @@
 # New gas proposal
 
-_Generated 2026-06-03 07:49:00Z · fork `osaka` · anchor_rate 100 Mgas/s_
+_Generated 2026-06-12 14:39:12Z · fork `osaka` · anchor_rate 100 Mgas/s_
 
-**Summary:** 9 parameters proposed — 9 increased, 0 decreased, 0 new, 0 unresolved · 4 warnings · 0 poor-fit selections
+**Summary:** 12 parameters proposed — 12 increased, 0 decreased, 0 new, 0 unresolved · 4 warnings · 0 poor-fit selections
 
 ## Contents
 
@@ -17,14 +17,17 @@ _Generated 2026-06-03 07:49:00Z · fork `osaka` · anchor_rate 100 Mgas/s_
 | Gas param | Current gas | Proposed gas | Diff | Diff % |
 | --- | --- | --- | --- | --- |
 | COLD_STORAGE_ACCESS | 2100 | 15576 | +13476 | +642% |
-| STORAGE_WRITE | 2800 | 204878 | +202078 | +7217% |
-| COLD_ACCOUNT_NOCODE_ACCESS | 2600 | 4802 | +2202 | +85% |
-| ACCOUNT_WRITE | 6700 | 186070 | +179370 | +2677% |
-| COLD_ACCOUNT_CODE_ACCESS | 2600 | 10295 | +7695 | +296% |
+| COLD_STORAGE_WRITE | 5000 | 111466 | +106466 | +2129% |
+| COLD_ACCOUNT_NOCODE_ACCESS | 2600 | 3859 | +1259 | +48% |
+| COLD_ACCOUNT_CODE_ACCESS | 2600 | 8783 | +6183 | +238% |
+| COLD_ACCOUNT_NOCODE_WRITE | 9300 | 157189 | +147889 | +1590% |
+| COLD_ACCOUNT_CODE_WRITE | 9300 | 157189 | +147889 | +1590% |
 | WARM_ACCESS | 100 | 136 | +36 | +36% |
-| REFUND_STORAGE_CLEAR | 4800 | 211636 | +206836 | +4309% |
+| STORAGE_WRITE | 2800 | 95890 | +93090 | +3325% |
+| ACCOUNT_WRITE | 6700 | 153330 | +146630 | +2189% |
+| REFUND_STORAGE_CLEAR | 4800 | 107008 | +102208 | +2129% |
 | TX_ACCESS_LIST_STORAGE_KEY | 1900 | 15576 | +13676 | +720% |
-| TX_ACCESS_LIST_ADDRESS | 2400 | 10295 | +7895 | +329% |
+| TX_ACCESS_LIST_ADDRESS | 2400 | 8783 | +6383 | +266% |
 
 ## Client comparison
 
@@ -32,11 +35,12 @@ Worst client vs. second-worst client per gas parameter. The `Ratio` column is `w
 
 | Gas param | Worst client | Worst gas | Second-worst client | Second-worst gas | Ratio |
 | --- | --- | --- | --- | --- | --- |
-| COLD_STORAGE_ACCESS | geth | 15576 | nethermind | 2592 | 6.01× |
-| STORAGE_WRITE | erigon | 204878 | geth | 18605 | 11.01× |
-| COLD_ACCOUNT_NOCODE_ACCESS | geth | 4802 | besu | 2250 | 2.13× |
-| ACCOUNT_WRITE | erigon | 186070 | reth | 16468 | 11.30× |
-| COLD_ACCOUNT_CODE_ACCESS | erigon | 10295 | geth | 4802 | 2.14× |
+| COLD_STORAGE_ACCESS | geth | 15576 | nethermind | 2385 | 6.53× |
+| COLD_STORAGE_WRITE | erigon | 111466 | geth | 46339 | 2.41× |
+| COLD_ACCOUNT_NOCODE_ACCESS | geth | 3859 | besu | 1933 | 2.00× |
+| COLD_ACCOUNT_CODE_ACCESS | erigon | 8783 | geth | 4421 | 1.99× |
+| COLD_ACCOUNT_NOCODE_WRITE | erigon | 157189 | reth | 14702 | 10.69× |
+| COLD_ACCOUNT_CODE_WRITE | erigon | 157189 | reth | 15135 | 10.39× |
 | WARM_ACCESS | besu | 136 | geth | 70 | 1.94× |
 
 Per-client proposed gas for each parameter. Cells are colored by `log2(proposed / current)` — red means the proposal is more expensive than the current gas cost, green means cheaper, and white sits at unchanged. Annotations show the absolute proposed gas value; blank rows are parameters with no prior baseline (see warnings below).
@@ -55,9 +59,9 @@ One collapsible block per gas parameter showing every per-client candidate that 
 </details>
 
 <details>
-<summary><code>STORAGE_WRITE</code> — 2 combos × 5 clients</summary>
+<summary><code>COLD_STORAGE_WRITE</code> — 2 combos × 5 clients</summary>
 
-![](figs/proposal/provenance__STORAGE_WRITE.png)
+![](figs/proposal/provenance__COLD_STORAGE_WRITE.png)
 
 </details>
 
@@ -81,22 +85,6 @@ One collapsible block per gas parameter showing every per-client candidate that 
 | `M13` | test_name=test_account_access / target_opcode=STATICCALL / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=STATICCALL |
 
 ![](figs/proposal/provenance__COLD_ACCOUNT_NOCODE_ACCESS.png)
-
-</details>
-
-<details>
-<summary><code>ACCOUNT_WRITE</code> — 6 combos × 5 clients</summary>
-
-| Label | Combo |
-| --- | --- |
-| `M1` | test_name=test_account_access / target_opcode=CALL / model_coef_name=update / param_account_mode=AccountMode.EXISTING_CONTRACT / param_opcode=CALL |
-| `M2` | test_name=test_account_access / target_opcode=CALL / model_coef_name=update / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=CALL |
-| `M3` | test_name=test_account_access / target_opcode=CALL / model_coef_name=update / param_account_mode=AccountMode.EXISTING_EOA / param_opcode=CALL |
-| `M4` | test_name=test_account_access / target_opcode=CALLCODE / model_coef_name=update / param_account_mode=AccountMode.EXISTING_CONTRACT / param_opcode=CALLCODE |
-| `M5` | test_name=test_account_access / target_opcode=CALLCODE / model_coef_name=update / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=CALLCODE |
-| `M6` | test_name=test_account_access / target_opcode=CALLCODE / model_coef_name=update / param_account_mode=AccountMode.EXISTING_EOA / param_opcode=CALLCODE |
-
-![](figs/proposal/provenance__ACCOUNT_WRITE.png)
 
 </details>
 
@@ -127,6 +115,34 @@ One collapsible block per gas parameter showing every per-client candidate that 
 </details>
 
 <details>
+<summary><code>COLD_ACCOUNT_NOCODE_WRITE</code> — 4 combos × 5 clients</summary>
+
+| Label | Combo |
+| --- | --- |
+| `M1` | test_name=test_account_access / target_opcode=CALL / model_coef_name=target_coef / param_account_mode=AccountMode.EXISTING_EOA / param_opcode=CALL |
+| `M2` | test_name=test_account_access / target_opcode=CALL / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=CALL |
+| `M3` | test_name=test_account_access / target_opcode=CALLCODE / model_coef_name=target_coef / param_account_mode=AccountMode.EXISTING_EOA / param_opcode=CALLCODE |
+| `M4` | test_name=test_account_access / target_opcode=CALLCODE / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=CALLCODE |
+
+![](figs/proposal/provenance__COLD_ACCOUNT_NOCODE_WRITE.png)
+
+</details>
+
+<details>
+<summary><code>COLD_ACCOUNT_CODE_WRITE</code> — 4 combos × 5 clients</summary>
+
+| Label | Combo |
+| --- | --- |
+| `M1` | test_name=test_account_access / target_opcode=CALL / model_coef_name=target_coef / param_account_mode=AccountMode.EXISTING_CONTRACT / param_opcode=CALL |
+| `M2` | test_name=test_account_access / target_opcode=CALL / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=CALL |
+| `M3` | test_name=test_account_access / target_opcode=CALLCODE / model_coef_name=target_coef / param_account_mode=AccountMode.EXISTING_CONTRACT / param_opcode=CALLCODE |
+| `M4` | test_name=test_account_access / target_opcode=CALLCODE / model_coef_name=target_coef / param_account_mode=AccountMode.NON_EXISTING_ACCOUNT / param_opcode=CALLCODE |
+
+![](figs/proposal/provenance__COLD_ACCOUNT_CODE_WRITE.png)
+
+</details>
+
+<details>
 <summary><code>WARM_ACCESS</code> — 8 combos × 5 clients</summary>
 
 | Label | Combo |
@@ -152,7 +168,7 @@ _None._
 
 ### Incomplete client coverage
 
-_None._
+**Clients with no estimations at all:** `ethrex`. These configured clients produced no fits for any gas parameter — check that the runtimes CSV contains their rows and that the fixture-name conventions match. Inspect the `evm_gasfit` warnings in `meta.json` for the cause.
 
 ### Missing glue adjustments
 
@@ -174,21 +190,21 @@ The target coefficient was left unadjusted for these. Consider adding them to th
 
 | Glue opcode | Affected clients | Affected gas params |
 | --- | --- | --- |
-| `CALLDATALOAD` | `besu` (R²), `erigon` (R²), `geth` (R²), `nethermind` (both), `reth` (R²) | — |
-| `DIV` | `nethermind` (R²) | `COLD_ACCOUNT_CODE_ACCESS` |
-| `EXP` | `erigon` (R²), `nethermind` (both) | `COLD_ACCOUNT_CODE_ACCESS` |
-| `GT` | `besu` (R²), `erigon` (R²), `nethermind` (R²) | `COLD_ACCOUNT_CODE_ACCESS`, `COLD_STORAGE_ACCESS` |
-| `ISZERO` | `nethermind` (R²) | `COLD_ACCOUNT_CODE_ACCESS` |
-| `JUMP` | `besu` (R²) | `COLD_ACCOUNT_CODE_ACCESS`, `COLD_ACCOUNT_NOCODE_ACCESS` |
-| `JUMPDEST` | `besu` (R²) | `COLD_ACCOUNT_CODE_ACCESS`, `COLD_ACCOUNT_NOCODE_ACCESS`, `COLD_STORAGE_ACCESS` |
-| `JUMPI` | `besu` (R²), `erigon` (R²) | `COLD_ACCOUNT_CODE_ACCESS`, `COLD_STORAGE_ACCESS` |
-| `KECCAK256` | `besu` (R²), `erigon` (R²), `geth` (R²), `nethermind` (both), `reth` (both) | `COLD_ACCOUNT_CODE_ACCESS` |
-| `LT` | `besu` (R²), `nethermind` (R²) | `COLD_STORAGE_ACCESS` |
-| `MSTORE` | `reth` (R²) | `COLD_ACCOUNT_CODE_ACCESS`, `COLD_ACCOUNT_NOCODE_ACCESS` |
+| `CALLDATALOAD` | `besu` (R²), `erigon` (R²), `geth` (R²), `nethermind` (both), `reth` (R²) | `COLD_ACCOUNT_CODE_ACCESS`, `COLD_ACCOUNT_CODE_WRITE`, `COLD_ACCOUNT_NOCODE_ACCESS`, `COLD_ACCOUNT_NOCODE_WRITE`, `COLD_STORAGE_ACCESS`, `COLD_STORAGE_WRITE` |
+| `DIV` | `nethermind` (R²) | `COLD_ACCOUNT_CODE_ACCESS`, `COLD_ACCOUNT_CODE_WRITE` |
+| `EXP` | `erigon` (R²), `nethermind` (both) | `COLD_ACCOUNT_CODE_ACCESS`, `COLD_ACCOUNT_CODE_WRITE` |
+| `GT` | `besu` (R²), `erigon` (R²), `nethermind` (R²) | `COLD_ACCOUNT_CODE_ACCESS`, `COLD_ACCOUNT_CODE_WRITE`, `COLD_ACCOUNT_NOCODE_ACCESS`, `COLD_ACCOUNT_NOCODE_WRITE`, `COLD_STORAGE_ACCESS` |
+| `ISZERO` | `nethermind` (R²) | `COLD_ACCOUNT_CODE_ACCESS`, `COLD_ACCOUNT_CODE_WRITE` |
+| `JUMP` | `besu` (R²) | `COLD_ACCOUNT_CODE_ACCESS`, `COLD_ACCOUNT_CODE_WRITE`, `COLD_ACCOUNT_NOCODE_ACCESS`, `COLD_ACCOUNT_NOCODE_WRITE` |
+| `JUMPDEST` | `besu` (R²) | `COLD_ACCOUNT_CODE_ACCESS`, `COLD_ACCOUNT_CODE_WRITE`, `COLD_ACCOUNT_NOCODE_ACCESS`, `COLD_ACCOUNT_NOCODE_WRITE`, `COLD_STORAGE_ACCESS`, `COLD_STORAGE_WRITE` |
+| `JUMPI` | `besu` (R²), `erigon` (R²) | `COLD_ACCOUNT_CODE_ACCESS`, `COLD_ACCOUNT_CODE_WRITE`, `COLD_ACCOUNT_NOCODE_ACCESS`, `COLD_ACCOUNT_NOCODE_WRITE`, `COLD_STORAGE_ACCESS`, `COLD_STORAGE_WRITE` |
+| `KECCAK256` | `besu` (R²), `erigon` (R²), `geth` (R²), `nethermind` (both), `reth` (both) | `COLD_ACCOUNT_CODE_ACCESS`, `COLD_ACCOUNT_CODE_WRITE` |
+| `LT` | `besu` (R²), `nethermind` (R²) | `COLD_STORAGE_ACCESS`, `COLD_STORAGE_WRITE` |
+| `MSTORE` | `reth` (R²) | `COLD_ACCOUNT_CODE_ACCESS`, `COLD_ACCOUNT_CODE_WRITE`, `COLD_ACCOUNT_NOCODE_ACCESS`, `COLD_ACCOUNT_NOCODE_WRITE` |
 | `RETURNDATASIZE` | `erigon` (R²), `nethermind` (R²) | — |
 | `SELFBALANCE` | `besu` (R²), `erigon` (R²) | — |
-| `SUB` | `erigon` (R²) | `COLD_ACCOUNT_CODE_ACCESS`, `COLD_ACCOUNT_NOCODE_ACCESS`, `COLD_STORAGE_ACCESS` |
-| `SWAP` | `erigon` (R²), `nethermind` (R²), `reth` (R²) | — |
+| `SUB` | `erigon` (R²) | `COLD_ACCOUNT_CODE_ACCESS`, `COLD_ACCOUNT_CODE_WRITE`, `COLD_ACCOUNT_NOCODE_ACCESS`, `COLD_ACCOUNT_NOCODE_WRITE`, `COLD_STORAGE_ACCESS` |
+| `SWAP` | `erigon` (R²), `nethermind` (R²), `reth` (R²) | `COLD_STORAGE_ACCESS`, `COLD_STORAGE_WRITE` |
 
 </details>
 
@@ -209,44 +225,41 @@ _None._
 ### Other weak candidates
 
 <details>
-<summary><code>COLD_STORAGE_ACCESS</code> — 3 weak combos</summary>
+<summary><code>COLD_STORAGE_ACCESS</code> — 1 weak combo</summary>
 
 | Test | Target opcode | Coef | Combo | Failing clients |
 | --- | --- | --- | --- | --- |
-| `test_sload_bloated` | `SLOAD` | `target_coef` | `param_existing_slots=True` | `nethermind` (R²) |
-| `test_sstore_bloated` | `SSTORE` | `target_coef` | `param_existing_slots=False` | `erigon` (p-value), `reth` (p-value) |
-| `test_sstore_bloated` | `SSTORE` | `target_coef` | `param_existing_slots=True` | `erigon` (p-value), `reth` (p-value) |
+| `test_sload_bloated` | `SLOAD` | `target_coef` | — | `nethermind` (R²) |
 
 </details>
 
 <details>
-<summary><code>COLD_ACCOUNT_NOCODE_ACCESS</code> — 2 weak combos</summary>
+<summary><code>COLD_STORAGE_WRITE</code> — 1 weak combo</summary>
 
 | Test | Target opcode | Coef | Combo | Failing clients |
 | --- | --- | --- | --- | --- |
-| `test_account_access` | `CALL` | `target_coef` | `param_account_mode=AccountMode.EXISTING_EOA` | `erigon` (p-value), `reth` (p-value) |
-| `test_account_access` | `CALL` | `target_coef` | `param_account_mode=AccountMode.NON_EXISTING_ACCOUNT` | `reth` (R²) |
+| `test_sstore_bloated` | `SSTORE` | `target_coef` | — | `besu` (R²), `nethermind` (R²), `reth` (R²) |
 
 </details>
 
 <details>
-<summary><code>ACCOUNT_WRITE</code> — 4 weak combos</summary>
+<summary><code>COLD_ACCOUNT_NOCODE_WRITE</code> — 3 weak combos</summary>
 
 | Test | Target opcode | Coef | Combo | Failing clients |
 | --- | --- | --- | --- | --- |
-| `test_account_access` | `CALL` | `update` | `param_account_mode=AccountMode.NON_EXISTING_ACCOUNT` / `param_opcode=CALL` | `besu` (p-value), `geth` (p-value), `reth` (R²) |
-| `test_account_access` | `CALLCODE` | `update` | `param_account_mode=AccountMode.EXISTING_CONTRACT` / `param_opcode=CALLCODE` | `besu` (p-value), `erigon` (p-value), `geth` (p-value), `nethermind` (p-value), `reth` (p-value) |
-| `test_account_access` | `CALLCODE` | `update` | `param_account_mode=AccountMode.EXISTING_EOA` / `param_opcode=CALLCODE` | `besu` (p-value), `erigon` (p-value), `geth` (p-value), `nethermind` (p-value), `reth` (p-value) |
-| `test_account_access` | `CALLCODE` | `update` | `param_account_mode=AccountMode.NON_EXISTING_ACCOUNT` / `param_opcode=CALLCODE` | `besu` (p-value), `erigon` (p-value), `geth` (p-value), `nethermind` (p-value), `reth` (p-value) |
+| `test_account_access` | `CALL` | `target_coef` | `param_account_mode=AccountMode.NON_EXISTING_ACCOUNT` / `param_opcode=CALL` | `besu` (R²), `geth` (R²), `reth` (R²) |
+| `test_account_access` | `CALLCODE` | `target_coef` | `param_account_mode=AccountMode.EXISTING_EOA` / `param_opcode=CALLCODE` | `geth` (R²) |
+| `test_account_access` | `CALLCODE` | `target_coef` | `param_account_mode=AccountMode.NON_EXISTING_ACCOUNT` / `param_opcode=CALLCODE` | `besu` (R²), `geth` (R²) |
 
 </details>
 
 <details>
-<summary><code>COLD_ACCOUNT_CODE_ACCESS</code> — 2 weak combos</summary>
+<summary><code>COLD_ACCOUNT_CODE_WRITE</code> — 3 weak combos</summary>
 
 | Test | Target opcode | Coef | Combo | Failing clients |
 | --- | --- | --- | --- | --- |
-| `test_account_access` | `CALL` | `target_coef` | `param_account_mode=AccountMode.EXISTING_CONTRACT` | `erigon` (p-value) |
-| `test_account_access` | `CALL` | `target_coef` | `param_account_mode=AccountMode.NON_EXISTING_ACCOUNT` | `reth` (R²) |
+| `test_account_access` | `CALL` | `target_coef` | `param_account_mode=AccountMode.NON_EXISTING_ACCOUNT` / `param_opcode=CALL` | `besu` (R²), `geth` (R²), `reth` (R²) |
+| `test_account_access` | `CALLCODE` | `target_coef` | `param_account_mode=AccountMode.EXISTING_CONTRACT` / `param_opcode=CALLCODE` | `reth` (R²) |
+| `test_account_access` | `CALLCODE` | `target_coef` | `param_account_mode=AccountMode.NON_EXISTING_ACCOUNT` / `param_opcode=CALLCODE` | `besu` (R²), `geth` (R²) |
 
 </details>

@@ -2,7 +2,7 @@
 
 Per-client NNLS fits of priced glue opcodes against their driver fixtures. Cycle-tier opcodes share one joint regression per client (shown once); pure-tier and mixed-tier opcodes each get a single-feature fit. Mixed-tier fits pre-adjust the LHS by subtracting the contribution of every priced upstream partner selected by the detector (pure ∪ cycle for `mixed_a`, plus `mixed_a` for `mixed_b`).
 
-**Contents:** [besu](#besu) · [erigon](#erigon) · [geth](#geth) · [nethermind](#nethermind) · [reth](#reth)
+**Contents:** [besu](#besu) · [erigon](#erigon) · [ethrex](#ethrex) · [geth](#geth) · [nethermind](#nethermind) · [reth](#reth)
 
 ## besu
 
@@ -1499,6 +1499,755 @@ Notes: Non-negative least squares with bootstrap inference (1000 iterations)
 ![](figs/glue/KECCAK256__erigon__bootstrap.png)
 
 ![](figs/glue/KECCAK256__erigon__diagnostics.png)
+
+</details>
+
+## ethrex
+
+| glue_opcode | nobs | glue_runtime_ms | p_value | rsquared |
+| --- | --- | --- | --- | --- |
+| `ISZERO` | 99 | 1.454e-06 | 1.00e-03 | 0.8492 |
+| `JUMPDEST` | 99 | 4.932e-07 | 1.00e-03 | 0.8366 |
+| `SWAP` | 1584 | 7.146e-07 | 1.00e-03 | 0.7884 |
+| `CALLDATASIZE` | 5940 | 4.899e-07 | 1.00e-03 | 0.8796 |
+| `DUP` | 5940 | 5.02e-07 | 1.00e-03 | 0.8796 |
+| `GAS` | 5940 | 5.096e-07 | 1.00e-03 | 0.8796 |
+| `MLOAD` | 5940 | 1.243e-06 | 1.00e-03 | 0.8796 |
+| `PUSH` | 5940 | 6.873e-07 | 1.00e-03 | 0.8796 |
+| `PUSH0` | 5940 | 4.229e-07 | 1.00e-03 | 0.8796 |
+| `STATICCALL` | 5940 | 7.454e-05 | 1.00e-03 | 0.8796 |
+| `ADD` | 99 | 1.244e-06 | 1.00e-03 | 0.8368 |
+| `AND` | 99 | 1.319e-06 | 1.00e-03 | 0.3975 |
+| `CALLDATACOPY` | 2376 | 2.84e-06 | 1.00e-03 | 0.8921 |
+| `CALLDATALOAD` | 396 | 2.017e-05 | 1.00e-03 | 0.3205 |
+| `DIV` | 99 | 9.385e-06 | 1.00e-03 | 0.8314 |
+| `EXP` | 99 | 0.0008741 | 1.00e-03 | 0.8151 |
+| `GT` | 99 | 1.245e-06 | 1.00e-03 | 0.8213 |
+| `JUMPI` | 99 | 1.558e-06 | 1.00e-03 | 0.7861 |
+| `LT` | 99 | 1.08e-06 | 1.00e-03 | 0.842 |
+| `MSTORE` | 495 | 1.803e-06 | 1.00e-03 | 0.8175 |
+| `MSTORE8` | 495 | 1.711e-06 | 1.00e-03 | 0.7991 |
+| `MUL` | 99 | 1.738e-06 | 1.00e-03 | 0.787 |
+| `PC` | 99 | 5.39e-07 | 1.00e-03 | 0.8644 |
+| `RETURNDATASIZE` | 396 | 1.014e-06 | 1.00e-03 | 0.8461 |
+| `SELFBALANCE` | 81 | 4.854e-06 | 1.00e-03 | 0.8261 |
+| `SUB` | 99 | 1.289e-06 | 1.00e-03 | 0.82 |
+| `JUMP` | 99 | 4.425e-06 | 1.00e-03 | 0.822 |
+| `KECCAK256` | 1584 | 1.001e-05 | 1.00e-03 | 0.04335 |
+
+### Cycle glue — joint fit · ethrex
+
+<details><summary>Joint NNLS regression summary</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.880
+Model:                  NNLS                    Adj. R-squared:          0.879
+No. Observations:       5940                              RMSE:           7.27
+Df Residuals:           5932                               MAE:           5.66
+Df Model:               7      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     13.8970      0.3246       0.001     13.2382     14.5249
+  CALLDATASIZE      0.0000      0.0000       0.001      0.0000      0.0000
+           DUP      0.0000      0.0000       0.001      0.0000      0.0000
+           GAS      0.0000      0.0000       0.001      0.0000      0.0000
+         MLOAD      0.0000      0.0000       0.001      0.0000      0.0000
+          PUSH      0.0000      0.0000       0.001      0.0000      0.0000
+         PUSH0      0.0000      0.0000       0.001      0.0000      0.0000
+    STATICCALL      0.0001      0.0000       0.001      0.0001      0.0001
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+</details>
+
+<details><summary><code>CALLDATASIZE</code> · nobs=5940 · runtime_ms=4.899e-07 · p=1.00e-03 · R²=0.8796</summary>
+
+![](figs/glue/CALLDATASIZE__ethrex__regression.png)
+
+![](figs/glue/CALLDATASIZE__ethrex__bootstrap.png)
+
+![](figs/glue/CALLDATASIZE__ethrex__diagnostics.png)
+
+</details>
+
+<details><summary><code>DUP</code> · nobs=5940 · runtime_ms=5.02e-07 · p=1.00e-03 · R²=0.8796</summary>
+
+![](figs/glue/DUP__ethrex__regression.png)
+
+![](figs/glue/DUP__ethrex__bootstrap.png)
+
+![](figs/glue/DUP__ethrex__diagnostics.png)
+
+</details>
+
+<details><summary><code>GAS</code> · nobs=5940 · runtime_ms=5.096e-07 · p=1.00e-03 · R²=0.8796</summary>
+
+![](figs/glue/GAS__ethrex__regression.png)
+
+![](figs/glue/GAS__ethrex__bootstrap.png)
+
+![](figs/glue/GAS__ethrex__diagnostics.png)
+
+</details>
+
+<details><summary><code>MLOAD</code> · nobs=5940 · runtime_ms=1.243e-06 · p=1.00e-03 · R²=0.8796</summary>
+
+![](figs/glue/MLOAD__ethrex__regression.png)
+
+![](figs/glue/MLOAD__ethrex__bootstrap.png)
+
+![](figs/glue/MLOAD__ethrex__diagnostics.png)
+
+</details>
+
+<details><summary><code>PUSH</code> · nobs=5940 · runtime_ms=6.873e-07 · p=1.00e-03 · R²=0.8796</summary>
+
+![](figs/glue/PUSH__ethrex__regression.png)
+
+![](figs/glue/PUSH__ethrex__bootstrap.png)
+
+![](figs/glue/PUSH__ethrex__diagnostics.png)
+
+</details>
+
+<details><summary><code>PUSH0</code> · nobs=5940 · runtime_ms=4.229e-07 · p=1.00e-03 · R²=0.8796</summary>
+
+![](figs/glue/PUSH0__ethrex__regression.png)
+
+![](figs/glue/PUSH0__ethrex__bootstrap.png)
+
+![](figs/glue/PUSH0__ethrex__diagnostics.png)
+
+</details>
+
+<details><summary><code>STATICCALL</code> · nobs=5940 · runtime_ms=7.454e-05 · p=1.00e-03 · R²=0.8796</summary>
+
+![](figs/glue/STATICCALL__ethrex__regression.png)
+
+![](figs/glue/STATICCALL__ethrex__bootstrap.png)
+
+![](figs/glue/STATICCALL__ethrex__diagnostics.png)
+
+</details>
+
+### Pure glue · ethrex
+
+<details><summary><code>ISZERO</code> · nobs=99 · runtime_ms=1.454e-06 · p=1.00e-03 · R²=0.8492</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.849
+Model:                  NNLS                    Adj. R-squared:          0.848
+No. Observations:       99                                RMSE:          12.90
+Df Residuals:           97                                 MAE:          10.95
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     23.6519      4.7539       0.001     13.9875     33.1704
+        ISZERO      0.0000      0.0000       0.001      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/glue/ISZERO__ethrex__regression.png)
+
+![](figs/glue/ISZERO__ethrex__bootstrap.png)
+
+![](figs/glue/ISZERO__ethrex__diagnostics.png)
+
+</details>
+
+<details><summary><code>JUMPDEST</code> · nobs=99 · runtime_ms=4.932e-07 · p=1.00e-03 · R²=0.8366</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.837
+Model:                  NNLS                    Adj. R-squared:          0.835
+No. Observations:       99                                RMSE:          13.76
+Df Residuals:           97                                 MAE:          10.72
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const      5.6743      4.0458       0.099      0.0000     14.4328
+      JUMPDEST      0.0000      0.0000       0.001      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/glue/JUMPDEST__ethrex__regression.png)
+
+![](figs/glue/JUMPDEST__ethrex__bootstrap.png)
+
+![](figs/glue/JUMPDEST__ethrex__diagnostics.png)
+
+</details>
+
+<details><summary><code>SWAP</code> · nobs=1584 · runtime_ms=7.146e-07 · p=1.00e-03 · R²=0.7884</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.788
+Model:                  NNLS                    Adj. R-squared:          0.788
+No. Observations:       1584                              RMSE:           7.80
+Df Residuals:           1582                               MAE:           5.78
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     15.8394      0.5891       0.001     14.6849     16.9707
+          SWAP      0.0000      0.0000       0.001      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/glue/SWAP__ethrex__regression.png)
+
+![](figs/glue/SWAP__ethrex__bootstrap.png)
+
+![](figs/glue/SWAP__ethrex__diagnostics.png)
+
+</details>
+
+### Mixed glue (tier A) · ethrex
+
+<details><summary><code>ADD</code> · nobs=99 · runtime_ms=1.244e-06 · p=1.00e-03 · R²=0.8368</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.837
+Model:                  NNLS                    Adj. R-squared:          0.835
+No. Observations:       99                                RMSE:           5.78
+Df Residuals:           97                                 MAE:           4.49
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const      8.8099      1.8963       0.001      5.1270     12.4632
+           ADD      0.0000      0.0000       0.001      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/glue/ADD__ethrex__regression.png)
+
+![](figs/glue/ADD__ethrex__bootstrap.png)
+
+![](figs/glue/ADD__ethrex__diagnostics.png)
+
+</details>
+
+<details><summary><code>AND</code> · nobs=99 · runtime_ms=1.319e-06 · p=1.00e-03 · R²=0.3975</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.398
+Model:                  NNLS                    Adj. R-squared:          0.391
+No. Observations:       99                                RMSE:          17.10
+Df Residuals:           97                                 MAE:          13.49
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     14.5875      5.8544       0.008      3.5218     26.0144
+           AND      0.0000      0.0000       0.001      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/glue/AND__ethrex__regression.png)
+
+![](figs/glue/AND__ethrex__bootstrap.png)
+
+![](figs/glue/AND__ethrex__diagnostics.png)
+
+</details>
+
+<details><summary><code>CALLDATACOPY</code> · nobs=2376 · runtime_ms=2.84e-06 · p=1.00e-03 · R²=0.8921</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.892
+Model:                  NNLS                    Adj. R-squared:          0.892
+No. Observations:       2376                              RMSE:           7.43
+Df Residuals:           2374                               MAE:           5.45
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     12.0861      0.1854       0.001     11.7220     12.4669
+  CALLDATACOPY      0.0000      0.0000       0.001      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/glue/CALLDATACOPY__ethrex__regression.png)
+
+![](figs/glue/CALLDATACOPY__ethrex__bootstrap.png)
+
+![](figs/glue/CALLDATACOPY__ethrex__diagnostics.png)
+
+</details>
+
+<details><summary><code>CALLDATALOAD</code> · nobs=396 · runtime_ms=2.017e-05 · p=1.00e-03 · R²=0.3205</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.320
+Model:                  NNLS                    Adj. R-squared:          0.319
+No. Observations:       396                               RMSE:           0.11
+Df Residuals:           394                                MAE:           0.09
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const      2.3361      0.0199       0.001      2.2974      2.3748
+  CALLDATALOAD      0.0000      0.0000       0.001      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/glue/CALLDATALOAD__ethrex__regression.png)
+
+![](figs/glue/CALLDATALOAD__ethrex__bootstrap.png)
+
+![](figs/glue/CALLDATALOAD__ethrex__diagnostics.png)
+
+</details>
+
+<details><summary><code>DIV</code> · nobs=99 · runtime_ms=9.385e-06 · p=1.00e-03 · R²=0.8314</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.831
+Model:                  NNLS                    Adj. R-squared:          0.830
+No. Observations:       99                                RMSE:          33.36
+Df Residuals:           97                                 MAE:          27.85
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     72.3836     12.8039       0.001     47.8766     96.2795
+           DIV      0.0000      0.0000       0.001      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/glue/DIV__ethrex__regression.png)
+
+![](figs/glue/DIV__ethrex__bootstrap.png)
+
+![](figs/glue/DIV__ethrex__diagnostics.png)
+
+</details>
+
+<details><summary><code>EXP</code> · nobs=99 · runtime_ms=0.0008741 · p=1.00e-03 · R²=0.8151</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.815
+Model:                  NNLS                    Adj. R-squared:          0.813
+No. Observations:       99                                RMSE:          16.30
+Df Residuals:           97                                 MAE:          13.54
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     40.6770      6.3146       0.001     28.4313     53.6898
+           EXP      0.0009      0.0000       0.001      0.0008      0.0010
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/glue/EXP__ethrex__regression.png)
+
+![](figs/glue/EXP__ethrex__bootstrap.png)
+
+![](figs/glue/EXP__ethrex__diagnostics.png)
+
+</details>
+
+<details><summary><code>GT</code> · nobs=99 · runtime_ms=1.245e-06 · p=1.00e-03 · R²=0.8213</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.821
+Model:                  NNLS                    Adj. R-squared:          0.819
+No. Observations:       99                                RMSE:           6.11
+Df Residuals:           97                                 MAE:           4.61
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const      8.5666      1.8378       0.001      5.1071     12.3127
+            GT      0.0000      0.0000       0.001      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/glue/GT__ethrex__regression.png)
+
+![](figs/glue/GT__ethrex__bootstrap.png)
+
+![](figs/glue/GT__ethrex__diagnostics.png)
+
+</details>
+
+<details><summary><code>JUMPI</code> · nobs=99 · runtime_ms=1.558e-06 · p=1.00e-03 · R²=0.7861</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.786
+Model:                  NNLS                    Adj. R-squared:          0.784
+No. Observations:       99                                RMSE:           3.67
+Df Residuals:           97                                 MAE:           2.80
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const      6.7945      0.9879       0.001      4.8277      8.5315
+         JUMPI      0.0000      0.0000       0.001      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/glue/JUMPI__ethrex__regression.png)
+
+![](figs/glue/JUMPI__ethrex__bootstrap.png)
+
+![](figs/glue/JUMPI__ethrex__diagnostics.png)
+
+</details>
+
+<details><summary><code>LT</code> · nobs=99 · runtime_ms=1.08e-06 · p=1.00e-03 · R²=0.842</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.842
+Model:                  NNLS                    Adj. R-squared:          0.840
+No. Observations:       99                                RMSE:           4.92
+Df Residuals:           97                                 MAE:           3.90
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     11.1775      1.6737       0.001      8.1156     14.4427
+            LT      0.0000      0.0000       0.001      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/glue/LT__ethrex__regression.png)
+
+![](figs/glue/LT__ethrex__bootstrap.png)
+
+![](figs/glue/LT__ethrex__diagnostics.png)
+
+</details>
+
+<details><summary><code>MSTORE</code> · nobs=495 · runtime_ms=1.803e-06 · p=1.00e-03 · R²=0.8175</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.818
+Model:                  NNLS                    Adj. R-squared:          0.817
+No. Observations:       495                               RMSE:           5.98
+Df Residuals:           493                                MAE:           4.64
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     12.3227      0.9055       0.001     10.6185     14.1220
+        MSTORE      0.0000      0.0000       0.001      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/glue/MSTORE__ethrex__regression.png)
+
+![](figs/glue/MSTORE__ethrex__bootstrap.png)
+
+![](figs/glue/MSTORE__ethrex__diagnostics.png)
+
+</details>
+
+<details><summary><code>MSTORE8</code> · nobs=495 · runtime_ms=1.711e-06 · p=1.00e-03 · R²=0.7991</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.799
+Model:                  NNLS                    Adj. R-squared:          0.799
+No. Observations:       495                               RMSE:           6.02
+Df Residuals:           493                                MAE:           4.54
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     12.6319      0.8870       0.001     10.9315     14.4283
+       MSTORE8      0.0000      0.0000       0.001      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/glue/MSTORE8__ethrex__regression.png)
+
+![](figs/glue/MSTORE8__ethrex__bootstrap.png)
+
+![](figs/glue/MSTORE8__ethrex__diagnostics.png)
+
+</details>
+
+<details><summary><code>MUL</code> · nobs=99 · runtime_ms=1.738e-06 · p=1.00e-03 · R²=0.787</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.787
+Model:                  NNLS                    Adj. R-squared:          0.785
+No. Observations:       99                                RMSE:           7.14
+Df Residuals:           97                                 MAE:           5.69
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     11.4110      2.4661       0.001      6.8192     16.5389
+           MUL      0.0000      0.0000       0.001      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/glue/MUL__ethrex__regression.png)
+
+![](figs/glue/MUL__ethrex__bootstrap.png)
+
+![](figs/glue/MUL__ethrex__diagnostics.png)
+
+</details>
+
+<details><summary><code>PC</code> · nobs=99 · runtime_ms=5.39e-07 · p=1.00e-03 · R²=0.8644</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.864
+Model:                  NNLS                    Adj. R-squared:          0.863
+No. Observations:       99                                RMSE:           6.38
+Df Residuals:           97                                 MAE:           4.93
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     18.0946      2.0819       0.001     14.0659     22.5217
+            PC      0.0000      0.0000       0.001      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/glue/PC__ethrex__regression.png)
+
+![](figs/glue/PC__ethrex__bootstrap.png)
+
+![](figs/glue/PC__ethrex__diagnostics.png)
+
+</details>
+
+<details><summary><code>RETURNDATASIZE</code> · nobs=396 · runtime_ms=1.014e-06 · p=1.00e-03 · R²=0.8461</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.846
+Model:                  NNLS                    Adj. R-squared:          0.846
+No. Observations:       396                               RMSE:           6.83
+Df Residuals:           394                                MAE:           5.55
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     12.9455      1.1659       0.001     10.5973     15.2268
+RETURNDATASIZE      0.0000      0.0000       0.001      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/glue/RETURNDATASIZE__ethrex__regression.png)
+
+![](figs/glue/RETURNDATASIZE__ethrex__bootstrap.png)
+
+![](figs/glue/RETURNDATASIZE__ethrex__diagnostics.png)
+
+</details>
+
+<details><summary><code>SELFBALANCE</code> · nobs=81 · runtime_ms=4.854e-06 · p=1.00e-03 · R²=0.8261</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.826
+Model:                  NNLS                    Adj. R-squared:          0.824
+No. Observations:       81                                RMSE:          22.46
+Df Residuals:           79                                 MAE:          18.55
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     76.3630      9.4610       0.001     57.0151     94.0491
+   SELFBALANCE      0.0000      0.0000       0.001      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/glue/SELFBALANCE__ethrex__regression.png)
+
+![](figs/glue/SELFBALANCE__ethrex__bootstrap.png)
+
+![](figs/glue/SELFBALANCE__ethrex__diagnostics.png)
+
+</details>
+
+<details><summary><code>SUB</code> · nobs=99 · runtime_ms=1.289e-06 · p=1.00e-03 · R²=0.82</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.820
+Model:                  NNLS                    Adj. R-squared:          0.818
+No. Observations:       99                                RMSE:           6.36
+Df Residuals:           97                                 MAE:           5.17
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const      8.1153      2.1258       0.001      4.1482     12.2637
+           SUB      0.0000      0.0000       0.001      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/glue/SUB__ethrex__regression.png)
+
+![](figs/glue/SUB__ethrex__bootstrap.png)
+
+![](figs/glue/SUB__ethrex__diagnostics.png)
+
+</details>
+
+### Mixed glue (tier B) · ethrex
+
+<details><summary><code>JUMP</code> · nobs=99 · runtime_ms=4.425e-06 · p=1.00e-03 · R²=0.822</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.822
+Model:                  NNLS                    Adj. R-squared:          0.820
+No. Observations:       99                                RMSE:           7.65
+Df Residuals:           97                                 MAE:           6.24
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const     17.2792      2.5162       0.001     12.3398     22.3214
+          JUMP      0.0000      0.0000       0.001      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/glue/JUMP__ethrex__regression.png)
+
+![](figs/glue/JUMP__ethrex__bootstrap.png)
+
+![](figs/glue/JUMP__ethrex__diagnostics.png)
+
+</details>
+
+<details><summary><code>KECCAK256</code> · nobs=1584 · runtime_ms=1.001e-05 · p=1.00e-03 · R²=0.04335</summary>
+
+```
+==============================================================================
+                           NNLS Regression Results                            
+==============================================================================
+Dep. Variable:          test_runtime_ms              R-squared:          0.043
+Model:                  NNLS                    Adj. R-squared:          0.043
+No. Observations:       1584                              RMSE:          93.48
+Df Residuals:           1582                               MAE:          74.85
+Df Model:               1      
+==============================================================================
+                      coef     std err     P-value      [0.025      0.975]
+------------------------------------------------------------------------------
+         const    293.5715      5.4049       0.001    283.7155    304.0559
+     KECCAK256      0.0000      0.0000       0.001      0.0000      0.0000
+==============================================================================
+Notes: Non-negative least squares with bootstrap inference (1000 iterations)
+==============================================================================
+```
+
+![](figs/glue/KECCAK256__ethrex__regression.png)
+
+![](figs/glue/KECCAK256__ethrex__bootstrap.png)
+
+![](figs/glue/KECCAK256__ethrex__diagnostics.png)
 
 </details>
 

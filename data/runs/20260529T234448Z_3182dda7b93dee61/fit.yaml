@@ -6,6 +6,7 @@ anchor_rate: 100000000
 clients:
   - besu
   - erigon
+  - ethrex
   - geth
   - nethermind
   - reth
@@ -16,6 +17,12 @@ gas_costs:
 new_params:
   COLD_ACCOUNT_NOCODE_ACCESS: 2600
   COLD_ACCOUNT_CODE_ACCESS: 2600
+  # Combined access+write costs fit directly from the write-only fixtures; the
+  # write deltas are recovered below in `derived`. COLD_STORAGE_WRITE is already
+  # a raw osaka field (=5000), so it is not redeclared here.
+  COLD_ACCOUNT_NOCODE_WRITE: 9300
+  COLD_ACCOUNT_CODE_WRITE: 9300
+  # Baselines kept for the report's current-gas diff column.
   ACCOUNT_WRITE: 6700
   STORAGE_WRITE: 2800
 
@@ -26,24 +33,26 @@ glue_adjustment:
   enabled: true
 
 derived:
-  # Named after the osaka fork fields (REFUND_STORAGE_CLEAR=4800,
-  # TX_ACCESS_LIST_STORAGE_KEY=1900, TX_ACCESS_LIST_ADDRESS=2400) so the
-  # proposal diff picks up the current gas as the baseline. Shadowing those
-  # fork fields is intentional (evm-gasfit warns but allows it).
+  # Write deltas: combined cold-write minus the cold access, floored at 0.
+  STORAGE_WRITE: "max(0, COLD_STORAGE_WRITE - COLD_STORAGE_ACCESS)"
+  ACCOUNT_WRITE: "max(0, COLD_ACCOUNT_CODE_WRITE - COLD_ACCOUNT_CODE_ACCESS, COLD_ACCOUNT_NOCODE_WRITE - COLD_ACCOUNT_NOCODE_ACCESS)"
   REFUND_STORAGE_CLEAR:
-    formula: "(STORAGE_WRITE + COLD_STORAGE_ACCESS) * 4800 / 5000"
+    formula: "COLD_STORAGE_WRITE * 4800 / 5000"
   TX_ACCESS_LIST_STORAGE_KEY: "COLD_STORAGE_ACCESS"
-  TX_ACCESS_LIST_ADDRESS: "COLD_ACCOUNT_CODE_ACCESS"
+  TX_ACCESS_LIST_ADDRESS: "max(COLD_ACCOUNT_CODE_ACCESS, COLD_ACCOUNT_NOCODE_ACCESS)"
 
 models:
   presets:
     # --- Storage access (SSTORE, SLOAD) ---
     - cold_storage_sload
-    - cold_storage_sstore
+    - cold_storage_sstore_access
+    - cold_storage_sstore_write
 
     # --- Account access (CALL, CALLCODE, BALANCE, SELFDESTRUCT, EXT*) ---
     - cold_account_nocode_access
     - cold_account_code_access
+    - cold_account_nocode_write
+    - cold_account_code_write
 
     # --- Warm access
     - warm_account_access
