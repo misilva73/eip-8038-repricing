@@ -1,8 +1,8 @@
 query:
   fork: amsterdam
   run_id_pattern: '.*-full.*'
-  start_date: 2026-06-04
-  end_date: 2026-06-10
+  start_date: 2026-06-13
+  end_date: 2026-06-15
   suites:
     - 1abf5c96ab2bbf14 # jochennet compute
     - d88b18464da7445e # jochennet stateful
