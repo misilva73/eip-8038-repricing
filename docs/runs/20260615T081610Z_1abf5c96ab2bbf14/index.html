@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EIP-8038 Repricing — Overview</title>
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body class="page-index">
+  <header class="site-header">
+    <div class="topbar-primary">
+      <a class="site-title" href="index.html">EIP-8038 Repricing</a>
+      <nav class="site-nav">
+        <a href="index.html" class="active">Overview</a>
+        <a href="../../goals.html">Goals</a>
+        <a href="new-gas.html">Gasfit Results</a>
+        <a href="../../trends.html">Trends</a>
+        <a href="methodology.html">Methodology</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="content"><h1>EIP-8038 Repricing Analysis</h1>
+
+<p>
+  <a href="https://eips.ethereum.org/EIPS/eip-8038">EIP-8038</a> reprices EVM
+  state-access operations — cold and warm storage and account access, plus account
+  and storage writes. This site turns client benchmark performance into
+  <a href="../../goals.html">gas-cost goals</a>: NNLS regressions on
+  measured runtimes, anchored at 100&nbsp;Mgas/s, set a target value each client
+  should be able to reach for every parameter — and we then report each client's
+  progress toward clearing those goals. See the
+  <a href="methodology.html">methodology</a> page for the full pipeline.
+</p>
+
+<p class="warning">
+  <strong>Preliminary results.</strong> Neither the goals nor the progress against
+  them are final: the underlying measurements are still being refined as execution
+  clients optimize their state-access paths. As those optimizations land, per-client
+  runtimes should converge — which may shift the goal targets and move each client's
+  progress toward clearing them.
+</p>
+
+<div class="cards">
+  <a class="card" href="../../goals.html">
+    <h3>Goals &rarr;</h3>
+    <p>Target gas values for the key 8038 parameters, and which clients currently clear them.</p>
+  </a>
+  <a class="card" href="new-gas.html">
+    <h3>Gasfit Results &rarr;</h3>
+    <p>Proposed vs. current gas per parameter, the per-opcode runtime model, and the glue fits behind them.</p>
+  </a>
+  <a class="card" href="../../trends.html">
+    <h3>Trends &rarr;</h3>
+    <p>How each estimated parameter has moved across runs, per client and at the binding worst case.</p>
+  </a>
+  <a class="card" href="methodology.html">
+    <h3>Methodology &rarr;</h3>
+    <p>Benchmark suites, regression model, anchor, worst-case selection, and how to reproduce.</p>
+  </a>
+  <div class="card card-links">
+    <h3>Source &amp; Data</h3>
+    <ul>
+      <li><a href="https://github.com/misilva73/benchmarkoor-fetch">benchmarkoor-fetch</a> — benchmark data fetcher</li>
+      <li><a href="https://github.com/misilva73/evm-gasfit">evm-gasfit</a> — gas-cost estimation</li>
+      <li><a href="https://benchmarkoor.core.ethpandaops.io/">Benchmarkoor API</a> — upstream benchmark data</li>
+    </ul>
+  </div>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <p class="repro">
+      Suites
+<code>1abf5c96ab2bbf14</code>, <code>d88b18464da7445e</code>      · run 2026-06-15T08:16:10Z
+      · evm-gasfit 0.1.0
+      · benchmarkoor-fetch 0.2.0
+      · commit <code>d344d80</code>
+    </p>
+  </footer>
+  <script src="../../run_selector.js"></script>
+</body>
+</html>
