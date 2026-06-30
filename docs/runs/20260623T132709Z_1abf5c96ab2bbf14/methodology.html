@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Methodology — EIP-8038</title>
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body class="page-methodology">
+  <header class="site-header">
+    <div class="topbar-primary">
+      <a class="site-title" href="index.html">EIP-8038 Repricing</a>
+      <nav class="site-nav">
+        <a href="index.html">Overview</a>
+        <a href="../../goals.html">Goals</a>
+        <a href="new-gas.html">Gasfit Results</a>
+        <a href="../../trends.html">Trends</a>
+        <a href="methodology.html" class="active">Methodology</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="content">    <div class="run-bar run-bar-older">
+      <span class="run-bar-label">Viewing run</span>
+      <div class="run-dropdown" data-run-dropdown>
+        <button type="button" class="run-dropdown-toggle" aria-haspopup="listbox" aria-expanded="false">
+          <span class="run-dropdown-current">2026-06-23 13:27</span>
+          <span class="run-dropdown-chevron" aria-hidden="true"></span>
+        </button>
+        <ul class="run-dropdown-list" role="listbox" aria-label="Runs" hidden>          <li role="option" aria-selected="false">
+            <a href="../../methodology.html" class="run-dropdown-option" tabindex="-1">2026-06-30 10:30</a>
+          </li>          <li role="option" aria-selected="true">
+            <a href="../../runs/20260623T132709Z_1abf5c96ab2bbf14/methodology.html" class="run-dropdown-option is-current" tabindex="-1">2026-06-23 13:27</a>
+          </li>          <li role="option" aria-selected="false">
+            <a href="../../runs/20260615T081610Z_1abf5c96ab2bbf14/methodology.html" class="run-dropdown-option" tabindex="-1">2026-06-15 08:16</a>
+          </li>          <li role="option" aria-selected="false">
+            <a href="../../runs/20260610T235821Z_1abf5c96ab2bbf14/methodology.html" class="run-dropdown-option" tabindex="-1">2026-06-10 23:58</a>
+          </li>          <li role="option" aria-selected="false">
+            <a href="../../runs/20260607T235606Z_3182dda7b93dee61/methodology.html" class="run-dropdown-option" tabindex="-1">2026-06-07 23:56</a>
+          </li>          <li role="option" aria-selected="false">
+            <a href="../../runs/20260601T234709Z_3182dda7b93dee61/methodology.html" class="run-dropdown-option" tabindex="-1">2026-06-01 23:47</a>
+          </li>          <li role="option" aria-selected="false">
+            <a href="../../runs/20260529T234448Z_3182dda7b93dee61/methodology.html" class="run-dropdown-option" tabindex="-1">2026-05-29 23:44</a>
+          </li>          <li role="option" aria-selected="false">
+            <a href="../../runs/20260522T235541Z_3182dda7b93dee61/methodology.html" class="run-dropdown-option" tabindex="-1">2026-05-22 23:55</a>
+          </li>        </ul>
+      </div>
+      <noscript>
+        <span class="run-dropdown-noscript"><a href="../../methodology.html">2026-06-30 10:30</a><a href="../../runs/20260615T081610Z_1abf5c96ab2bbf14/methodology.html">2026-06-15 08:16</a><a href="../../runs/20260610T235821Z_1abf5c96ab2bbf14/methodology.html">2026-06-10 23:58</a><a href="../../runs/20260607T235606Z_3182dda7b93dee61/methodology.html">2026-06-07 23:56</a><a href="../../runs/20260601T234709Z_3182dda7b93dee61/methodology.html">2026-06-01 23:47</a><a href="../../runs/20260529T234448Z_3182dda7b93dee61/methodology.html">2026-05-29 23:44</a><a href="../../runs/20260522T235541Z_3182dda7b93dee61/methodology.html">2026-05-22 23:55</a>        </span>
+      </noscript>
+      <span class="run-bar-meta">older run &middot; latest of 8</span>
+    </div>
+<h1>Methodology</h1>
+
+<p>
+  The proposed gas parameters come from the actual time each execution client takes to run
+  a targeted set of benchmarks: runtimes are collected from the Benchmarkoor API by
+  <code>benchmarkoor-fetch</code> and turned into gas numbers by <code>evm-gasfit</code>.
+  Five stages turn a wall-clock measurement into a gas number:
+</p>
+<div class="takeaway">
+  <ol>
+    <li><strong>Benchmark data collection</strong> — synthetic blocks stress one operation
+      at a time; Benchmarkoor records each block's runtime and opcode counts.</li>
+    <li><strong>Runtime model</strong> — an NNLS regression isolates the per-unit
+      runtime of each opcode, per client.</li>
+    <li><strong>Glue adjustment</strong> — the overhead of the supporting opcodes
+      that surround the target in each fixture is netted out.</li>
+    <li><strong>Runtime → gas</strong> — the adjusted runtime is converted to gas at
+      a fixed anchor rate.</li>
+    <li><strong>Worst-case selection</strong> — the proposal takes the slowest
+      client for each parameter, then evaluates any derived parameters.</li>
+  </ol>
+</div>
+
+<h2>1. Benchmark data collection</h2>
+<p>
+  The proposed gas costs are grounded in the actual time each execution client takes to run
+  a specific set of benchmarks. Similar to the methodology of the
+  <a href="https://github.com/imapp-pl/gas-cost-estimator">Gas Cost Estimator</a> project,
+  we generate synthetic blocks that isolate and stress individual EVM operations and use
+  them to derive the various gas parameters.
+</p>
+<p>
+  Concretely, to benchmark a single operation, different blocks are created by varying the
+  number of times the target operation is executed and by changing the parameter values
+  passed to it. These test blocks come from the
+  <a href="https://github.com/ethereum/execution-spec-tests">EEST benchmark suite</a>. The
+  raw data that feeds this analysis was queried from the following two Benchmarkoor suites:
+</p>
+<ul>
+<li><code>1abf5c96ab2bbf14</code></li><li><code>d88b18464da7445e</code></li></ul>
+<p>
+  The Benchmarkoor tool then runs each block and collects the metrics we need: the block's
+  total execution time and the number of times each operation was executed. Each block is
+  run multiple times on every client to account for variability in execution time. Runtimes
+  are pulled from the Benchmarkoor API by <code>benchmarkoor-fetch</code>; the benchmarks
+  ran on the <strong>amsterdam</strong> fork and runs are selected by the
+  <code>.*-full.*</code> run-id pattern. The compute suite drives the target-opcode fits,
+  while the stateful suite feeds the glue-opcode analysis. Each block contributes one row to
+  the model: a measured <code>test_runtime_ms</code> alongside the count of every opcode it
+  executed.
+</p>
+
+<h2>2. Runtime model (NNLS)</h2>
+<p>
+  <code>evm-gasfit</code> solves one non-negative least squares (NNLS) regression per
+  <em>(opcode spec, model variant, client)</em> combination. It models the measured
+  runtime of each fixture as a linear function of how many times the target opcode runs:
+</p>
+<pre><code>test_runtime_ms = intercept + target_coef · opcount + Σ (param_i · opcount · value_i)</code></pre>
+<p>
+  The <code>target_coef</code> — the per-unit runtime of the operation under study — is the
+  quantity we care about. The trailing sum carries variable-cost terms: the supporting gas
+  parameters whose cost is netted out of the fixture (for example the cold-access surcharge
+  that rides along with a warm access) get their own fixture parameters, while a state-access
+  operation with a single flat cost collapses to one coefficient. Combined operations such as
+  a cold write are fit whole — as a single access-plus-write cost — and the write-only delta
+  is recovered downstream as a <a href="#derived">derived parameter</a>, not split out inside
+  the regression. Parameters that are constant across all
+  fixtures are dropped automatically — their column is indistinguishable from
+  <code>target_coef</code> — and a fit is skipped entirely if there are too few
+  observations or the opcount never varies.
+</p>
+<p>
+  The <strong>non-negativity</strong> constraint is the point of NNLS: gas costs cannot be
+  negative, and an unconstrained fit would let correlated features take opposite signs to
+  cancel noise. NNLS instead drives such a coefficient to exactly zero or spreads the
+  signal across the remaining features.
+</p>
+<p>
+  Inference is a non-parametric <strong>bootstrap</strong> over the rows of the design
+  matrix (1000 iterations). Each coefficient gets a p-value — the bootstrap share of
+  near-zero estimates — and a 2.5 / 97.5 percentile confidence interval. A fit is flagged
+  as a <em>poor-fit selection</em> when its p-value exceeds <code>0.05</code> or its R²
+  falls below <code>0.5</code>. Fits cover 6 clients:
+</p>
+<ul>
+<li><code>besu</code></li><li><code>erigon</code></li><li><code>ethrex</code></li><li><code>geth</code></li><li><code>nethermind</code></li><li><code>reth</code></li></ul>
+<p>
+  See the <a href="runtime.html">runtime model page</a> for every per-fit regression
+  summary, or the
+  <a href="https://misilva73.github.io/evm-gasfit/concepts/nnls/">evm-gasfit NNLS docs</a>
+  for the full derivation.
+</p>
+
+<h2>3. Glue adjustment</h2>
+<p>
+  Glue adjustment is <strong>enabled</strong>.
+  A benchmark never measures an opcode in isolation: the recorded runtime also includes the
+  <em>glue</em> opcodes that set up arguments, advance the program counter, and clean the
+  stack (pushes, dups, loads, control flow). Because NNLS attributes the entire
+  <code>intercept + target_coef · opcount</code> budget to the target, glue that scales with
+  the loop body inflates the estimate. Glue adjustment removes that overhead before the
+  runtime is converted to gas.
+</p>
+<p>
+  <code>evm-gasfit</code> works from a fixed set of canonical glue opcodes, fit in
+  dependency tiers (pure opcodes first, then cycle, then mixed tiers that lean on the
+  already-priced ones). The adjustment runs in three steps:
+</p>
+<ul>
+  <li><strong>Detect</strong> which glue opcodes actually contaminated each measurement, by
+    correlating each glue opcode's per-fixture count against the target
+    <code>opcount</code> and recording the count ratio <code>Δglue / Δopcount</code>.</li>
+  <li><strong>Estimate</strong> a per-unit runtime (<code>glue_runtime_ms</code>) for every
+    <em>(client, glue opcode)</em> with its own tiered NNLS fit.</li>
+  <li><strong>Subtract</strong> the total glue overhead from the target coefficient:</li>
+</ul>
+<pre><code>adjusted_target_coef = max(0, target_coef − Σ_g ratio_g · glue_runtime_ms_g)</code></pre>
+<p>
+  A glue partner only contributes to the sum when its own fit clears the same
+  p-value (&lt; 0.05) and R² (&ge; 0.5) gates; the confidence interval shifts with it and
+  clips at zero. Skipped fits — targets left without a glue correction — are listed under
+  <a href="new-gas.html">Warnings</a>. See the <a href="glue.html">glue page</a> for the
+  per-fit detail and the
+  <a href="https://misilva73.github.io/evm-gasfit/concepts/glue/">evm-gasfit glue docs</a>
+  for the tier structure.
+</p>
+
+<h2>4. Runtime → gas</h2>
+<p>
+  Each adjusted runtime coefficient is converted to gas at a fixed anchor rate of
+  <strong>100,000,000</strong> gas/s (100&nbsp;Mgas/s) — the
+  throughput EIP-8038 targets. With <code>runtime_ms</code> in milliseconds:
+</p>
+<pre><code>new_gas = ⌈ anchor_rate · runtime_ms / 1000 ⌉</code></pre>
+<p>
+  Any op whose measured cost implies a slower throughput than the anchor lands above its
+  current price and is flagged for a bump; the ceiling keeps the result an integer.
+</p>
+
+<h2 id="derived">5. Worst-case selection &amp; derived parameters</h2>
+<p>
+  A single gas parameter is fit many times — once per client, sometimes across several
+  fixtures. The proposal consolidates those in two passes, always erring toward the slowest
+  observation so the cost holds on every implementation:
+</p>
+<ul>
+  <li><strong>Per client</strong> — among the rows that pass the p-value and R² gates, take
+    the one with the largest runtime; if none qualify, the best available is kept and
+    flagged <code>poor_fit</code>.</li>
+  <li><strong>Across clients</strong> — take the client with the largest runtime.</li>
+</ul>
+<p>
+  Finally, <em>derived</em> parameters (those defined in terms of others) are evaluated in
+  declaration order against the fitted values, the fork baseline, and any
+  <code>new_params</code> integer baselines, using a small arithmetic-only expression
+  language. The <a href="new-gas.html#client-comparison">client comparison</a> shows how
+  far the worst client sits from the rest of the field. The
+  <a href="https://misilva73.github.io/evm-gasfit/concepts/gas-params/">evm-gasfit gas-params docs</a>
+  cover the selection and derivation rules in full.
+</p>
+
+<h2 id="param-map">Parameter → model map</h2>
+<p>
+  Every proposed value traces back to a specific set of model fits or to a formula
+  over other parameters. The two tables below are the full provenance for this run,
+  built directly from the fit artifacts.
+</p>
+<h3>Estimated parameters</h3>
+<p>
+  Each parameter below is fit by NNLS (stage 2) over the listed
+  <code>evm-gasfit</code> presets — the worst-case selector (stage 5) then picks the
+  binding client and combo. <em>Target opcodes</em> are the operations whose runtime
+  the fixtures stress; <em>fixtures</em> are the benchmark tests that feed the
+  regression; <em>coefficient</em> is the regression term read off as the per-unit
+  runtime. The exact winning combo and binding client per parameter are on the
+  <a href="new-gas.html#client-comparison">new-gas</a> and
+  <a href="../../goals.html">goals</a> pages.
+</p>
+<table class="param-map">
+  <thead>
+    <tr><th>Parameter</th><th>Presets</th><th>Target opcodes</th><th>Fixtures</th><th>Coefficient</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>COLD_STORAGE_ACCESS</code></td>
+      <td><code>cold_storage_sload</code>, <code>cold_storage_sstore_access</code></td>
+      <td><code>SLOAD</code>, <code>SSTORE</code></td>
+      <td><code>test_sload_bloated</code>, <code>test_sstore_bloated</code></td>
+      <td><code>target_coef</code></td>
+    </tr>
+    <tr>
+      <td><code>COLD_STORAGE_WRITE</code></td>
+      <td><code>cold_storage_sstore_write</code></td>
+      <td><code>SSTORE</code></td>
+      <td><code>test_sstore_bloated</code></td>
+      <td><code>target_coef</code></td>
+    </tr>
+    <tr>
+      <td><code>COLD_ACCOUNT_NOCODE_ACCESS</code></td>
+      <td><code>cold_account_nocode_access</code></td>
+      <td><code>BALANCE</code>, <code>CALL</code>, <code>CALLCODE</code>, <code>DELEGATECALL</code>, <code>EXTCODECOPY</code>, <code>EXTCODEHASH</code>, <code>EXTCODESIZE</code>, <code>STATICCALL</code></td>
+      <td><code>test_account_access</code></td>
+      <td><code>target_coef</code></td>
+    </tr>
+    <tr>
+      <td><code>COLD_ACCOUNT_CODE_ACCESS</code></td>
+      <td><code>cold_account_code_access</code></td>
+      <td><code>BALANCE</code>, <code>CALL</code>, <code>CALLCODE</code>, <code>DELEGATECALL</code>, <code>EXTCODECOPY</code>, <code>EXTCODEHASH</code>, <code>EXTCODESIZE</code>, <code>STATICCALL</code></td>
+      <td><code>test_account_access</code></td>
+      <td><code>target_coef</code></td>
+    </tr>
+    <tr>
+      <td><code>COLD_ACCOUNT_NOCODE_WRITE</code></td>
+      <td><code>cold_account_nocode_write</code></td>
+      <td><code>CALL</code>, <code>CALLCODE</code></td>
+      <td><code>test_account_access</code></td>
+      <td><code>target_coef</code></td>
+    </tr>
+    <tr>
+      <td><code>COLD_ACCOUNT_CODE_WRITE</code></td>
+      <td><code>cold_account_code_write</code></td>
+      <td><code>CALL</code>, <code>CALLCODE</code></td>
+      <td><code>test_account_access</code></td>
+      <td><code>target_coef</code></td>
+    </tr>
+    <tr>
+      <td><code>WARM_ACCESS</code></td>
+      <td><code>warm_account_access</code>, <code>warm_storage_access_sload</code></td>
+      <td><code>BALANCE</code>, <code>CALL</code>, <code>CALLCODE</code>, <code>DELEGATECALL</code>, <code>EXTCODEHASH</code>, <code>EXTCODESIZE</code>, <code>STATICCALL</code>, <code>SLOAD</code></td>
+      <td><code>test_ext_account_query_warm</code>, <code>test_storage_sload_same_key_benchmark</code></td>
+      <td><code>target_coef</code></td>
+    </tr>
+  </tbody>
+</table>
+<h3>Derived parameters</h3>
+<p>
+  These carry no per-client fit. They are evaluated in declaration order (stage 5)
+  over the estimated parameters above, the <strong>osaka</strong>
+  fork baseline, and the <code>new_params</code> integer baselines, using an
+  arithmetic-only expression language (<code>max</code>, <code>+ − × ÷</code>, integer
+  literals). The formulas are taken verbatim from <code>fit.yaml</code>.
+</p>
+<table class="param-map">
+  <thead>
+    <tr><th>Parameter</th><th>Formula</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>STORAGE_WRITE</code></td>
+      <td><code>max(0, COLD_STORAGE_WRITE - COLD_STORAGE_ACCESS)</code></td>
+    </tr>
+    <tr>
+      <td><code>ACCOUNT_WRITE</code></td>
+      <td><code>max(0, COLD_ACCOUNT_CODE_WRITE - COLD_ACCOUNT_CODE_ACCESS, COLD_ACCOUNT_NOCODE_WRITE - COLD_ACCOUNT_NOCODE_ACCESS)</code></td>
+    </tr>
+    <tr>
+      <td><code>REFUND_STORAGE_CLEAR</code></td>
+      <td><code>COLD_STORAGE_WRITE * 4800 / 5000</code></td>
+    </tr>
+    <tr>
+      <td><code>TX_ACCESS_LIST_STORAGE_KEY</code></td>
+      <td><code>COLD_STORAGE_ACCESS</code></td>
+    </tr>
+    <tr>
+      <td><code>TX_ACCESS_LIST_ADDRESS</code></td>
+      <td><code>max(COLD_ACCOUNT_CODE_ACCESS, COLD_ACCOUNT_NOCODE_ACCESS)</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Gas-cost baseline</h2>
+<p>
+  Proposed values are compared against the <strong>osaka</strong>
+  gas-cost table — distinct from the amsterdam fork the benchmarks ran on. The
+  baseline is the osaka <code>GasCosts</code> patched with any config
+  overrides and <code>new_params</code> baselines, and it is the intended cost reference for
+  the EIP-8038 proposal.
+</p>
+
+<h2>Reproducibility</h2>
+<p>Re-run the full pipeline end to end:</p>
+<pre><code>make fetch     # → data/raw/    (needs a Benchmarkoor token in secrets.json)
+make gasfit    # → data/gasfit/
+make site      # renders this site into site/</code></pre>
+<p>
+  The committed <code>data/</code> directory makes the published site self-contained:
+  every figure and table on these pages traces back to those artifacts.
+</p>
+  </main>
+
+  <footer class="site-footer">
+    <p class="repro">
+      Suites
+<code>1abf5c96ab2bbf14</code>, <code>d88b18464da7445e</code>      · run 2026-06-23T13:27:09Z
+      · evm-gasfit 0.1.0
+      · benchmarkoor-fetch 0.2.0
+      · commit <code>02d4c02</code>
+    </p>
+  </footer>
+  <script src="../../run_selector.js"></script>
+</body>
+</html>
