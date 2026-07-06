@@ -28,7 +28,7 @@ RUNS = ROOT / "data" / "runs"
 FIT = ROOT / "fit.yaml"
 
 # Newest N runs keep runtime/glue figs; older runs keep none.
-KEEP_FULL_FIGS = 5
+KEEP_FULL_FIGS = 3
 
 
 def run_id_from_meta(meta: dict) -> str:
