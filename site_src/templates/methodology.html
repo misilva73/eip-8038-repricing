@@ -173,9 +173,15 @@
 </p>
 <h3>Estimated parameters</h3>
 <p>
-  Each parameter below is fit by NNLS (stage 2) over the listed
-  <code>evm-gasfit</code> presets — the worst-case selector (stage 5) then picks the
-  binding client and combo. <em>Target opcodes</em> are the operations whose runtime
+  Each parameter below is fit by NNLS (stage 2) over the listed model specs — the
+  worst-case selector (stage 5) then picks the binding client and combo.
+  {% if param_map.has_custom %}
+  Most are <code>evm-gasfit</code> presets; entries tagged <code>custom:</code> are
+  written out in <code>fit.yaml</code>, and here they are the two account-code
+  recipes with the <code>EXISTING_CONTRACT_JUMPDEST</code> fixture variant excluded
+  (its single-JUMPDEST contract is not a representative cold account).
+  {% endif %}
+  <em>Target opcodes</em> are the operations whose runtime
   the fixtures stress; <em>fixtures</em> are the benchmark tests that feed the
   regression; <em>coefficient</em> is the regression term read off as the per-unit
   runtime. The exact winning combo and binding client per parameter are on the

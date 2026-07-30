@@ -771,16 +771,37 @@ def _derived_formula(spec) -> str:
     return spec["formula"] if isinstance(spec, dict) else str(spec)
 
 
+def _model_source_label(source_label: str, custom_specs: list) -> str:
+    """Readable name for a fit's ``source_label`` column.
+
+    Preset fits carry ``presets[<name>]``; specs written inline in ``fit.yaml``
+    carry ``models.custom[<i>]``, which says nothing on its own — name those by
+    the gas param their ``target_coef`` feeds, tagged ``custom:`` so the table
+    doesn't imply an upstream preset of that name."""
+    preset = re.fullmatch(r"presets\[(.*)\]", source_label)
+    if preset:
+        return preset.group(1)
+    custom = re.fullmatch(r"models\.custom\[(\d+)\]", source_label)
+    if custom:
+        i = int(custom.group(1))
+        spec = custom_specs[i] if i < len(custom_specs) else {}
+        coef = ((spec.get("model_params") or {}).get("target_coef") or "").lower()
+        return f"custom: {coef}" if coef else f"custom[{i}]"
+    return source_label
+
+
 def collect_param_map(gasfit: Path, fit_cfg: dict) -> dict:
     """The parameter→provenance reference for the methodology page.
 
-    ``estimated`` lists one row per fitted gas param — the presets, target
-    opcodes, fixtures, and model coefficient that feed its NNLS fits, aggregated
-    over *every* candidate combo in ``new_gas_all_params.csv`` (not just the
-    winner). ``derived`` lists the params computed from others, with the verbatim
-    ``fit.yaml`` formula. Both preserve first-appearance / declaration order so
-    the tables stay stable across re-fits."""
+    ``estimated`` lists one row per fitted gas param — the model specs (presets
+    or ``fit.yaml`` custom entries), target opcodes, fixtures, and model
+    coefficient that feed its NNLS fits, aggregated over *every* candidate combo
+    in ``new_gas_all_params.csv`` (not just the winner). ``derived`` lists the
+    params computed from others, with the verbatim ``fit.yaml`` formula. Both
+    preserve first-appearance / declaration order so the tables stay stable
+    across re-fits."""
     derived_cfg = fit_cfg.get("derived") or {}
+    custom_specs = ((fit_cfg.get("models") or {}).get("custom")) or []
     derived = [
         {"param": name, "formula": _derived_formula(spec)}
         for name, spec in derived_cfg.items()
@@ -796,8 +817,9 @@ def collect_param_map(gasfit: Path, fit_cfg: dict) -> dict:
                 continue  # a derived param can also carry stray fitted rows
             g = ap[ap["gas_param"] == param]
             presets = _ordered_unique(
-                re.sub(r"^presets\[(.*)\]$", r"\1", s)
+                _model_source_label(s, custom_specs)
                 for s in g["source_label"]
+                if isinstance(s, str)
             )
             estimated.append({
                 "param": param,
@@ -807,7 +829,10 @@ def collect_param_map(gasfit: Path, fit_cfg: dict) -> dict:
                 "coef": _ordered_unique(g["model_coef_name"]),
             })
 
-    return {"estimated": estimated, "derived": derived}
+    # Older runs were fit purely from presets; only flag the custom-spec caveat
+    # on runs whose fits actually came from one.
+    has_custom = any(p.startswith("custom") for r in estimated for p in r["presets"])
+    return {"estimated": estimated, "derived": derived, "has_custom": has_custom}
 
 
 # --------------------------------------------------------------------------- #
