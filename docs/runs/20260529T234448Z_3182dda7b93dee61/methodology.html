@@ -28,7 +28,9 @@
           <span class="run-dropdown-chevron" aria-hidden="true"></span>
         </button>
         <ul class="run-dropdown-list" role="listbox" aria-label="Runs" hidden>          <li role="option" aria-selected="false">
-            <a href="../../methodology.html" class="run-dropdown-option" tabindex="-1">2026-07-20 17:04</a>
+            <a href="../../methodology.html" class="run-dropdown-option" tabindex="-1">2026-07-30 12:15</a>
+          </li>          <li role="option" aria-selected="false">
+            <a href="../../runs/20260720T170453Z_1abf5c96ab2bbf14/methodology.html" class="run-dropdown-option" tabindex="-1">2026-07-20 17:04</a>
           </li>          <li role="option" aria-selected="false">
             <a href="../../runs/20260707T121556Z_1abf5c96ab2bbf14/methodology.html" class="run-dropdown-option" tabindex="-1">2026-07-07 12:15</a>
           </li>          <li role="option" aria-selected="false">
@@ -50,9 +52,9 @@
           </li>        </ul>
       </div>
       <noscript>
-        <span class="run-dropdown-noscript"><a href="../../methodology.html">2026-07-20 17:04</a><a href="../../runs/20260707T121556Z_1abf5c96ab2bbf14/methodology.html">2026-07-07 12:15</a><a href="../../runs/20260701T235552Z_1abf5c96ab2bbf14/methodology.html">2026-07-01 23:55</a><a href="../../runs/20260623T132709Z_1abf5c96ab2bbf14/methodology.html">2026-06-23 13:27</a><a href="../../runs/20260615T081610Z_1abf5c96ab2bbf14/methodology.html">2026-06-15 08:16</a><a href="../../runs/20260610T235821Z_1abf5c96ab2bbf14/methodology.html">2026-06-10 23:58</a><a href="../../runs/20260607T235606Z_3182dda7b93dee61/methodology.html">2026-06-07 23:56</a><a href="../../runs/20260601T234709Z_3182dda7b93dee61/methodology.html">2026-06-01 23:47</a><a href="../../runs/20260522T235541Z_3182dda7b93dee61/methodology.html">2026-05-22 23:55</a>        </span>
+        <span class="run-dropdown-noscript"><a href="../../methodology.html">2026-07-30 12:15</a><a href="../../runs/20260720T170453Z_1abf5c96ab2bbf14/methodology.html">2026-07-20 17:04</a><a href="../../runs/20260707T121556Z_1abf5c96ab2bbf14/methodology.html">2026-07-07 12:15</a><a href="../../runs/20260701T235552Z_1abf5c96ab2bbf14/methodology.html">2026-07-01 23:55</a><a href="../../runs/20260623T132709Z_1abf5c96ab2bbf14/methodology.html">2026-06-23 13:27</a><a href="../../runs/20260615T081610Z_1abf5c96ab2bbf14/methodology.html">2026-06-15 08:16</a><a href="../../runs/20260610T235821Z_1abf5c96ab2bbf14/methodology.html">2026-06-10 23:58</a><a href="../../runs/20260607T235606Z_3182dda7b93dee61/methodology.html">2026-06-07 23:56</a><a href="../../runs/20260601T234709Z_3182dda7b93dee61/methodology.html">2026-06-01 23:47</a><a href="../../runs/20260522T235541Z_3182dda7b93dee61/methodology.html">2026-05-22 23:55</a>        </span>
       </noscript>
-      <span class="run-bar-meta">older run &middot; latest of 10</span>
+      <span class="run-bar-meta">older run &middot; latest of 11</span>
     </div>
 <h1>Methodology</h1>
 
@@ -224,9 +226,9 @@
 </p>
 <h3>Estimated parameters</h3>
 <p>
-  Each parameter below is fit by NNLS (stage 2) over the listed
-  <code>evm-gasfit</code> presets — the worst-case selector (stage 5) then picks the
-  binding client and combo. <em>Target opcodes</em> are the operations whose runtime
+  Each parameter below is fit by NNLS (stage 2) over the listed model specs — the
+  worst-case selector (stage 5) then picks the binding client and combo.
+  <em>Target opcodes</em> are the operations whose runtime
   the fixtures stress; <em>fixtures</em> are the benchmark tests that feed the
   regression; <em>coefficient</em> is the regression term read off as the per-unit
   runtime. The exact winning combo and binding client per parameter are on the
@@ -349,9 +351,9 @@ make site      # renders this site into site/</code></pre>
     <p class="repro">
       Suites
 <code>3182dda7b93dee61</code>, <code>a11611f320a39015</code>      · run 2026-05-29T23:44:48Z
-      · evm-gasfit 0.1.0
-      · benchmarkoor-fetch 0.2.0
-      · commit <code>26225df8</code>
+      · evm-gasfit 0.3.0
+      · benchmarkoor-fetch 0.3.1
+      · commit <code>74479444</code>
     </p>
   </footer>
   <script src="../../run_selector.js"></script>
