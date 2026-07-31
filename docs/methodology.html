@@ -24,11 +24,11 @@
       <span class="run-bar-label">Viewing run</span>
       <div class="run-dropdown" data-run-dropdown>
         <button type="button" class="run-dropdown-toggle" aria-haspopup="listbox" aria-expanded="false">
-          <span class="run-dropdown-current">2026-07-30 12:15</span>
+          <span class="run-dropdown-current">2026-07-31 14:48</span>
           <span class="run-dropdown-chevron" aria-hidden="true"></span>
         </button>
         <ul class="run-dropdown-list" role="listbox" aria-label="Runs" hidden>          <li role="option" aria-selected="true">
-            <a href="methodology.html" class="run-dropdown-option is-current" tabindex="-1">2026-07-30 12:15</a>
+            <a href="methodology.html" class="run-dropdown-option is-current" tabindex="-1">2026-07-31 14:48</a>
           </li>          <li role="option" aria-selected="false">
             <a href="runs/20260720T170453Z_1abf5c96ab2bbf14/methodology.html" class="run-dropdown-option" tabindex="-1">2026-07-20 17:04</a>
           </li>          <li role="option" aria-selected="false">
@@ -187,10 +187,18 @@
 <h2>4. Runtime → gas</h2>
 <p>
   Each adjusted runtime coefficient is converted to gas at a fixed anchor rate of
-  <strong>100,000,000</strong> gas/s (100&nbsp;Mgas/s) — the
-  throughput EIP-8038 targets. With <code>runtime_ms</code> in milliseconds:
+  <strong>75,000,000</strong> gas/s (75&nbsp;Mgas/s). With <code>runtime_ms</code> in milliseconds:
 </p>
 <pre><code>new_gas = ⌈ anchor_rate · runtime_ms / 1000 ⌉</code></pre>
+<p class="warning">
+  <strong>Off-spec anchor.</strong> EIP-8038 specifies a performance target of
+  100&nbsp;Mgas/s; this run is anchored at
+  75&nbsp;Mgas/s instead. The gas values here are therefore
+  <em>not</em> the EIP's proposed costs — they show what the parameters would price at
+  under a 75&nbsp;Mgas/s throughput goal. Gas scales linearly
+  with the anchor, so every estimate is
+  0.75× the 100&nbsp;Mgas/s figure.
+</p>
 <p>
   Any op whose measured cost implies a slower throughput than the anchor lands above its
   current price and is flagged for a bump; the ceiling keeps the result an integer.
@@ -354,10 +362,10 @@ make site      # renders this site into site/</code></pre>
   <footer class="site-footer">
     <p class="repro">
       Suites
-<code>3c6dc791050b116d</code>, <code>3f6a0898955dff4f</code>      · run 2026-07-30T12:15:27Z
+<code>3c6dc791050b116d</code>, <code>3f6a0898955dff4f</code>      · run 2026-07-31T14:48:53Z
       · evm-gasfit 0.3.0
       · benchmarkoor-fetch 0.3.1
-      · commit <code>74479444</code>
+      · commit <code>6b0f2521</code>
     </p>
   </footer>
   <script src="run_selector.js"></script>

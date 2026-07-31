@@ -38,6 +38,9 @@
   at least two runs; it'll populate once another run is archived.
 </p>
 {% else %}
+{# Filled + shown by trends.js only when an anchor change is actually in view
+   (gas metric, and the filters keep at least one affected row). #}
+<p id="anchor-note" class="warning" hidden></p>
 <p id="compare-caption" class="muted"></p>
 <p class="muted">
   When a client has no measurement in the previous run, its Previous value is
@@ -72,6 +75,19 @@
   the y-axis, one line per client. Toggle clients above or via each chart's
   legend; hover a point to see the fit that produced it.
 </p>
+{# Only when the archived runs disagree on anchor_rate — otherwise the gas series
+   are directly comparable and the caveat would be noise. #}
+{% set anchors = trends.runs | map(attribute="anchor_rate") | reject("none") | unique | list %}
+{% if anchors | length > 1 %}
+<p class="warning">
+  <strong>Mixed anchors across runs.</strong> These runs were not all fit at the same
+  anchor rate ({{ anchors | sort | map("mgas") | join(", ") }}&nbsp;Mgas/s), and
+  proposed gas scales linearly with it — so part of the movement in the gas charts is a
+  methodology change, not client performance. Spans that cross an anchor change are drawn
+  <strong>dashed</strong>, and each point's anchor is in its tooltip. The
+  <strong>runtime (ms)</strong> metric is anchor-independent and comparable throughout.
+</p>
+{% endif %}
 <div id="trend-charts"></div>
 <p id="charts-empty" class="muted" hidden>No parameters match the current filters.</p>
 {% endblock %}

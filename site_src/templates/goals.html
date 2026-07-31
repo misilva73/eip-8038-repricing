@@ -13,8 +13,15 @@
     NOCODE variants — both values are shown in the cell.</li>
   <li>The <strong>write</strong> goals subtract the bundled cold-access component
     before comparing: <code>STORAGE_WRITE</code> uses
-    <code>COLD_STORAGE_WRITE − 3000</code> and <code>ACCOUNT_WRITE</code> uses
-    <code>COLD_ACCOUNT_*_WRITE − 3000</code> (the access goals).</li>
+    <code>COLD_STORAGE_WRITE − {{ goals.subtract_by_key.STORAGE_WRITE }}</code> and <code>ACCOUNT_WRITE</code> uses
+    <code>COLD_ACCOUNT_*_WRITE − {{ goals.subtract_by_key.ACCOUNT_WRITE }}</code> (the access goals).</li>
+  {% if goals.anchor_rate %}
+  <li>The targets are <strong>fixed</strong> — they don't move with the anchor rate.
+    The estimates they're checked against do, though: this run is anchored at
+    <strong>{{ goals.anchor_rate | mgas }}&nbsp;Mgas/s</strong>, so a cell reads
+    "can this client reach this cost at a {{ goals.anchor_rate | mgas }}&nbsp;Mgas/s
+    throughput goal?"</li>
+  {% endif %}
 </ul>
 
 <h2>Goals vs current</h2>

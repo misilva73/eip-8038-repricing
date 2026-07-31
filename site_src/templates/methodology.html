@@ -134,10 +134,21 @@
 <h2>4. Runtime → gas</h2>
 <p>
   Each adjusted runtime coefficient is converted to gas at a fixed anchor rate of
-  <strong>{{ "{:,}".format(fit.anchor_rate) }}</strong> gas/s (100&nbsp;Mgas/s) — the
-  throughput EIP-8038 targets. With <code>runtime_ms</code> in milliseconds:
+  <strong>{{ "{:,}".format(fit.anchor_rate) }}</strong> gas/s ({{ fit.anchor_rate | mgas }}&nbsp;Mgas/s){% if fit.anchor_rate == EIP_ANCHOR_RATE %} — the
+  throughput EIP-8038 targets{% endif %}. With <code>runtime_ms</code> in milliseconds:
 </p>
 <pre><code>new_gas = ⌈ anchor_rate · runtime_ms / 1000 ⌉</code></pre>
+{% if fit.anchor_rate != EIP_ANCHOR_RATE %}
+<p class="warning">
+  <strong>Off-spec anchor.</strong> EIP-8038 specifies a performance target of
+  {{ EIP_ANCHOR_RATE | mgas }}&nbsp;Mgas/s; this run is anchored at
+  {{ fit.anchor_rate | mgas }}&nbsp;Mgas/s instead. The gas values here are therefore
+  <em>not</em> the EIP's proposed costs — they show what the parameters would price at
+  under a {{ fit.anchor_rate | mgas }}&nbsp;Mgas/s throughput goal. Gas scales linearly
+  with the anchor, so every estimate is
+  {{ (fit.anchor_rate / EIP_ANCHOR_RATE) | g4 }}× the {{ EIP_ANCHOR_RATE | mgas }}&nbsp;Mgas/s figure.
+</p>
+{% endif %}
 <p>
   Any op whose measured cost implies a slower throughput than the anchor lands above its
   current price and is flagged for a bump; the ceiling keeps the result an integer.

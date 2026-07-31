@@ -57,6 +57,12 @@ OUT = ROOT / "docs"
 # have had their runtime/glue figs pruned, so their pages flag plots as omitted.
 KEEP_FULL_FIGS = 5
 
+# The performance target EIP-8038 itself specifies ("a performance target of 100
+# million gas per second is chosen"). fit.yaml's anchor_rate is free to differ — the
+# methodology page only claims the anchor *is* the EIP's target when the two match,
+# and warns that the values are off-spec when they don't.
+EIP_ANCHOR_RATE = 100_000_000
+
 MD_EXTENSIONS = ["tables", "fenced_code", "sane_lists", "md_in_html", "toc"]
 
 # Page key -> output filename. A run's pages all share one directory, so these
@@ -507,7 +513,12 @@ def collect_trends(runs: list[dict]) -> dict:
     value actually proposed (``new_gas.csv``). Estimated params carry a per-client
     series; derived params (empty ``client_name``) only have the binding value.
     Clients are unioned across runs; a run missing a (param, client) leaves a
-    ``None`` gap."""
+    ``None`` gap.
+
+    Each run also carries its ``anchor_rate``. Gas scales linearly with the anchor,
+    so a run fit at a different rate is not comparable to its neighbours on the gas
+    axis — ``trends.js`` marks those steps rather than reading them as client
+    movement. Runtime series are anchor-independent and always comparable."""
     chron = list(reversed(runs))
     n = len(chron)
     gas: dict[str, dict[str, list]] = {}
@@ -547,7 +558,14 @@ def collect_trends(runs: list[dict]) -> dict:
 
     all_params = sorted(binding)
     return {
-        "runs": [{"run_id": r["run_id"], "label": r["label"]} for r in chron],
+        "runs": [
+            {
+                "run_id": r["run_id"],
+                "label": r["label"],
+                "anchor_rate": (yaml.safe_load(r["fit"].read_text()) or {}).get("anchor_rate"),
+            }
+            for r in chron
+        ],
         "clients": sorted(clients),
         "estimated_params": [p for p in all_params if p in gas],
         "derived_params": [p for p in all_params if p not in gas],
@@ -566,6 +584,12 @@ def collect_trends(runs: list[dict]) -> dict:
 # estimate is <= the goal (lower is better). The write goals subtract the bundled
 # cold-access component (the access goal) to isolate the pure-write cost, and the
 # account goals require *both* the CODE and NOCODE variants to clear.
+#
+# These targets are deliberately **absolute and anchor-independent**: they are the
+# gas costs we want these operations to reach, full stop, not a restatement of
+# fit.yaml's anchor_rate. Estimates *do* scale with the anchor, so lowering it makes
+# goals easier to clear — that is the intended reading ("at this throughput goal,
+# can clients hit this cost?"), not a bug to correct by rescaling the targets.
 GOAL_SPECS = [
     {"key": "COLD_STORAGE_ACCESS", "goal": 3000, "subtract": 0,
      "params": ["COLD_STORAGE_ACCESS"], "current_param": "COLD_STORAGE_ACCESS"},
@@ -589,7 +613,7 @@ def _variant_label(param: str) -> str:
     return "CODE" if "CODE" in param else ""
 
 
-def collect_goals(gasfit: Path) -> dict:
+def collect_goals(gasfit: Path, anchor_rate: int | None = None) -> dict:
     """Per-client pass/fail of each goal target for the latest run.
 
     Reads the per-client selected fits (``winning_fits`` over
@@ -597,7 +621,11 @@ def collect_goals(gasfit: Path) -> dict:
     the bundled access component for the write goals), and flags
     ``clears = effective <= goal``. Account goals require *both* the CODE and NOCODE
     variants to clear; a client missing any required param leaves a ``no_data`` cell
-    (which never counts as cleared)."""
+    (which never counts as cleared).
+
+    ``anchor_rate`` is the run's own anchor, passed through for display only: the
+    targets are fixed regardless of it, but the *estimates* they're checked against
+    scale with it, so the page names the rate the comparison was made at."""
     ap = pd.read_csv(gasfit / "new_gas_all_params.csv")
     sel = winning_fits(ap)
     # value[param][client] -> rounded proposed gas (same extraction as build_proposal_heatmap)
@@ -664,6 +692,9 @@ def collect_goals(gasfit: Path) -> dict:
         "clients": ordered_clients,
         "goals": goals,
         "matrix": matrix,
+        "anchor_rate": anchor_rate,
+        # Keyed, not positional: the page quotes the write goals' subtraction.
+        "subtract_by_key": {s["key"]: s["subtract"] for s in GOAL_SPECS},
     }
 
 
@@ -903,6 +934,11 @@ def build_env() -> Environment:
     )
     env.filters["sci"] = lambda v: f"{v:.3e}"
     env.filters["g4"] = lambda v: f"{v:.4g}"
+    # anchor_rate (gas/s) → Mgas/s label, e.g. 50000000 → "50", 12500000 → "12.5".
+    # Prose that names the anchor must go through this so every archived run
+    # reports the rate it was actually fit at.
+    env.filters["mgas"] = lambda v: f"{v / 1_000_000:g}"
+    env.globals["EIP_ANCHOR_RATE"] = EIP_ANCHOR_RATE
     return env
 
 
@@ -937,6 +973,9 @@ def render_run(env: Environment, run: dict, runs: list[dict]) -> None:
     out.mkdir(parents=True, exist_ok=True)
     gasfit = run["gasfit"]
     meta = load_meta(run["raw_meta"])
+    # This run's own fit config — the index and methodology pages quote the anchor
+    # rate from it, so older runs keep reporting the rate they were fit at.
+    fit_cfg = yaml.safe_load(run["fit"].read_text())
 
     def common(page: str) -> dict:
         return {
@@ -963,6 +1002,7 @@ def render_run(env: Environment, run: dict, runs: list[dict]) -> None:
     index_ctx = common("index")
     index_ctx["runs"] = None
     (out / PAGES["index"]).write_text(env.get_template("index.html").render(
+        fit=fit_cfg,
         **index_ctx,
     ))
 
@@ -1020,7 +1060,6 @@ def render_run(env: Environment, run: dict, runs: list[dict]) -> None:
 
     # Methodology page — static narrative, config-driven values from the run's
     # fit, plus the parameter→provenance map built from this run's fits.
-    fit_cfg = yaml.safe_load(run["fit"].read_text())
     (out / PAGES["methodology"]).write_text(env.get_template("methodology.html").render(
         fit=fit_cfg, param_map=collect_param_map(gasfit, fit_cfg),
         **common("methodology"),
@@ -1050,8 +1089,9 @@ def main() -> None:
     # target gas values. Singleton like Trends (kept out of PAGES / the dropdown).
     latest_gasfit = runs[0]["gasfit"]
     latest_meta = load_meta(runs[0]["raw_meta"])
+    latest_anchor = (yaml.safe_load(runs[0]["fit"].read_text()) or {}).get("anchor_rate")
     (OUT / "goals.html").write_text(env.get_template("goals.html").render(
-        goals=collect_goals(latest_gasfit),
+        goals=collect_goals(latest_gasfit, latest_anchor),
         meta=latest_meta,
         page="goals",
         root_prefix="",

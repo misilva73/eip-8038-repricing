@@ -82,7 +82,7 @@ A run dir holds `meta.json`, `fit.yaml`, the markdown reports, the CSVs, and
 | Path | Purpose |
 | --- | --- |
 | `fetch.yaml` | benchmarkoor-fetch config (pinned suites, amsterdam fork) |
-| `fit.yaml` | evm-gasfit config (anchor 1e8, osaka cost table, presets, glue on) |
+| `fit.yaml` | evm-gasfit config (`anchor_rate`, osaka cost table, presets, glue on) |
 | `scripts/build_site.py` | renders templates → `docs/`, copies figures |
 | `scripts/clean_run.py` | deletes a run dir + re-renders (`make clean-run RUN_ID=<id>`) |
 | `site_src/templates/` | Jinja2 templates (`base.html` + one per page) |

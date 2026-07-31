@@ -8,7 +8,7 @@
   state-access operations — cold and warm storage and account access, plus account
   and storage writes. This site turns client benchmark performance into
   <a href="{{ root_prefix }}goals.html">gas-cost goals</a>: NNLS regressions on
-  measured runtimes, anchored at 100&nbsp;Mgas/s, set a target value each client
+  measured runtimes, anchored at {{ fit.anchor_rate | mgas }}&nbsp;Mgas/s, set a target value each client
   should be able to reach for every parameter — and we then report each client's
   progress toward clearing those goals. See the
   <a href="methodology.html">methodology</a> page for the full pipeline.

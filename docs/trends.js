@@ -13,6 +13,12 @@
   var RUNS = DATA.runs;                  // chronological (oldest → newest)
   var N = RUNS.length;
   var LABELS = RUNS.map(function (r) { return r.label; });
+  // Proposed gas is runtime × anchor_rate, so two runs fit at different anchors
+  // are not comparable on the gas axis — a 100→75 Mgas/s change alone shows up as
+  // a uniform -25%, which reads as a client speedup. Runtime is anchor-independent
+  // and always comparable, so these marks only apply to the gas metric.
+  var ANCHORS = RUNS.map(function (r) { return r.anchor_rate; });
+  var ANCHORS_VARY = ANCHORS.some(function (a) { return a !== ANCHORS[0]; });
 
   var PALETTE = ["#2f6fed", "#e8590c", "#2f9e44", "#ae3ec9", "#1098ad", "#f08c00", "#e03131", "#5c7cfa"];
   var COLOR = {};
@@ -54,6 +60,20 @@
   // Clients that actually have a per-client series for this param.
   function clientsWithSeries(param) {
     return DATA.clients.filter(function (c) { return seriesFor(param, c); });
+  }
+
+  // Mgas/s label for an anchor rate, matching build_site.py's `mgas` filter.
+  function mgas(rate) {
+    return rate == null ? "?" : String(rate / 1e6);
+  }
+
+  // True when the gas values at run indices i and j were fit at different anchors
+  // (so the step between them is at least partly a methodology change, not client
+  // movement). Always false for the runtime metric.
+  function anchorDiffers(i, j) {
+    if (state.metric !== "gas") return false;
+    if (i == null || j == null) return false;
+    return ANCHORS[i] != null && ANCHORS[j] != null && ANCHORS[i] !== ANCHORS[j];
   }
 
   // Axis tick label for a percent value: round off float noise, drop trailing
@@ -105,6 +125,11 @@
           // Flag + source label when the previous value isn't from run N-2.
           backfilled: prevIdx != null && prevIdx !== prev,
           prevLabel: prevIdx != null ? LABELS[prevIdx] : null,
+          // Anchor of whichever run each side came from — a change makes the delta
+          // partly a rescale. Compared per row because prev can be back-filled.
+          anchorPrev: prevIdx != null ? ANCHORS[prevIdx] : null,
+          anchorLast: ANCHORS[last],
+          anchorShift: anchorDiffers(prevIdx, last),
         });
       });
     });
@@ -127,12 +152,36 @@
 
     tableBody.textContent = "";
     var anyPoor = false;
+    var anyAnchorShift = false;
     rows.forEach(function (r) {
       tableBody.appendChild(deltaRow(r));
       anyPoor = anyPoor || r.poorPrev || r.poorLast;
+      anyAnchorShift = anyAnchorShift || r.anchorShift;
     });
     deltaEmpty.hidden = rows.length > 0;
     if (poorNote) poorNote.hidden = !anyPoor;     // only show the legend when a * is present
+    showAnchorNote(anyAnchorShift);
+  }
+
+  // Banner above the delta views, shown only while an anchor change is actually
+  // in view: it disappears on the runtime metric and when the filters exclude
+  // every affected row.
+  var anchorNote = document.getElementById("anchor-note");
+
+  function showAnchorNote(show) {
+    if (!anchorNote) return;
+    anchorNote.hidden = !show;
+    if (!show) return;
+    var from = mgas(ANCHORS[N - 2]), to = mgas(ANCHORS[N - 1]);
+    var ratio = (ANCHORS[N - 2] && ANCHORS[N - 1]) ? ANCHORS[N - 1] / ANCHORS[N - 2] : null;
+    anchorNote.innerHTML =
+      "<strong>Anchor changed between these runs.</strong> The latest run is anchored at " +
+      to + "&nbsp;Mgas/s, the previous at " + from + "&nbsp;Mgas/s. Proposed gas scales " +
+      "linearly with the anchor, so every value below is rescaled by " +
+      (ratio ? "≈" + Number(ratio.toFixed(4)) + "×" : "the anchor ratio") +
+      " on top of any real client movement — the two are not separable in these deltas, " +
+      "and a delta can even flip sign. Switch the metric to <strong>runtime (ms)</strong> " +
+      "for an anchor-independent comparison.";
   }
 
   // A "*" on a value whose underlying fit evm-gasfit flagged as poor (its
@@ -159,6 +208,15 @@
           escapeAttr(r.comboPrev) + '\nnow: ' + escapeAttr(r.comboLast) +
           '">⚠ combo changed</span>';
       }
+    }
+    // The anchor moved between the two runs, so this delta is a rescale plus
+    // whatever the client actually did — the two can't be separated here.
+    if (r.anchorShift) {
+      clientCell += ' <span class="combo-badge" tabindex="0" data-tip="anchor: ' +
+        mgas(r.anchorPrev) + ' -> ' + mgas(r.anchorLast) + ' Mgas/s\n' +
+        'gas scales with the anchor, so this delta is not purely client movement\n' +
+        'switch the metric to runtime (ms) for an anchor-independent comparison' +
+        '">⚠ anchor changed</span>';
     }
     clientCell += "</td>";
 
@@ -333,6 +391,13 @@
       tension: 0.15,
       spanGaps: true,
       pointRadius: 3,
+      // Dash the one span that crosses an anchor change: that step is a rescale,
+      // not (only) client movement. Inert on the runtime metric.
+      segment: {
+        borderDash: function (ctx) {
+          return anchorDiffers(ctx.p0DataIndex, ctx.p1DataIndex) ? [6, 4] : undefined;
+        },
+      },
     };
   }
 
@@ -357,8 +422,14 @@
             afterLabel: function (ctx) {
               var client = ctx.dataset.clientName;
               if (!client) return undefined;
+              var lines = [];
               var cs = DATA.combo[param] && DATA.combo[param][client];
-              return cs && cs[ctx.dataIndex] ? "fit: " + cs[ctx.dataIndex] : undefined;
+              if (cs && cs[ctx.dataIndex]) lines.push("fit: " + cs[ctx.dataIndex]);
+              // Only worth naming when the runs disagree on the anchor.
+              if (state.metric === "gas" && ANCHORS_VARY) {
+                lines.push("anchor: " + mgas(ANCHORS[ctx.dataIndex]) + " Mgas/s");
+              }
+              return lines.length ? lines : undefined;
             },
           },
         },
