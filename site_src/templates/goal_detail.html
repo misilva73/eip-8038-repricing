@@ -7,7 +7,7 @@
   Every candidate model combo evm-gasfit considered for each client's
   <code>{{ detail.param }}</code> fit. The <strong>selected</strong> combo (winner)
   sets the value used on the Goals page for the
-  <code>{{ detail.goal_key }}</code> goal (target {{ "{:,}".format(detail.goal) }}{% if detail.subtract %}, after subtracting {{ "{:,}".format(detail.subtract) }} for the bundled cold-access component{% endif %}).
+  <code>{{ detail.goal_key }}</code> goal (target {{ "{:,}".format(detail.goal) }}{% if detail.subtract %}, after subtracting {{ "{:,}".format(detail.subtract) }} for the bundled cold-access component — the <code>{{ detail.subtract_source }}</code> goal{% endif %}).
 </p>
 
 {% for client in detail.clients %}
@@ -18,7 +18,9 @@
   </thead>
   <tbody>
     {% for c in detail.by_client[client] %}
-    {% set effective = c.gas - detail.subtract %}
+    {# Floored at 0 to match collect_goals: a combo cheaper than the whole access
+       goal would otherwise tooltip a negative isolated write cost. #}
+    {% set effective = [0, c.gas - detail.subtract] | max %}
     {% set clears = effective <= detail.goal %}
     {# Non-clearing combos get a font color: yellow when over goal by up to 100%,
        red when more than 100% over. #}

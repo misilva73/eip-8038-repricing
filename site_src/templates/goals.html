@@ -12,9 +12,14 @@
     <code>ACCOUNT_WRITE</code>) require a client to clear <em>both</em> the CODE and
     NOCODE variants — both values are shown in the cell.</li>
   <li>The <strong>write</strong> goals subtract the bundled cold-access component
-    before comparing: <code>STORAGE_WRITE</code> uses
-    <code>COLD_STORAGE_WRITE − {{ goals.subtract_by_key.STORAGE_WRITE }}</code> and <code>ACCOUNT_WRITE</code> uses
-    <code>COLD_ACCOUNT_*_WRITE − {{ goals.subtract_by_key.ACCOUNT_WRITE }}</code> (the access goals).</li>
+    before comparing, and what they subtract is the matching <em>access goal's own
+    target</em> — retarget an access goal and the write rows move with it:
+    <code>STORAGE_WRITE</code> uses
+    <code>COLD_STORAGE_WRITE − {{ goals.subtract_by_key.STORAGE_WRITE }}</code>
+    (the <code>{{ goals.subtract_source_by_key.STORAGE_WRITE }}</code> goal) and
+    <code>ACCOUNT_WRITE</code> uses
+    <code>COLD_ACCOUNT_*_WRITE − {{ goals.subtract_by_key.ACCOUNT_WRITE }}</code>
+    (the <code>{{ goals.subtract_source_by_key.ACCOUNT_WRITE }}</code> goal), each floored at 0.</li>
   {% if goals.anchor_rate %}
   <li>The targets are <strong>fixed</strong> — they don't move with the anchor rate.
     The estimates they're checked against do, though: this run is anchored at

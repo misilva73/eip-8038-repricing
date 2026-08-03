@@ -1,0 +1,102 @@
+version: 1
+
+# EIP-8038 itself targets state-access operations performing worse than 100M gas/s.
+# This fit deliberately anchors lower, at 75M gas/s, to price the parameters under a
+# more conservative throughput goal. Gas scales linearly with the anchor, so every
+# estimate here is 0.75x its 100M counterpart — the values are NOT the EIP's proposed
+# costs, and the methodology page says so (build_site.py's EIP_ANCHOR_RATE).
+anchor_rate: 75000000
+
+clients:
+  - besu
+  - erigon
+  - ethrex
+  - geth
+  - nethermind
+  - reth
+
+gas_costs:
+  fork: osaka
+
+new_params:
+  COLD_ACCOUNT_NOCODE_ACCESS: 2600
+  COLD_ACCOUNT_CODE_ACCESS: 2600
+  # Combined access+write costs fit directly from the write-only fixtures; the
+  # write deltas are recovered below in `derived`. COLD_STORAGE_WRITE is already
+  # a raw osaka field (=5000), so it is not redeclared here.
+  COLD_ACCOUNT_NOCODE_WRITE: 9300
+  COLD_ACCOUNT_CODE_WRITE: 9300
+  # Baselines kept for the report's current-gas diff column.
+  ACCOUNT_WRITE: 6700
+  STORAGE_WRITE: 2800
+
+output:
+  plots: true
+
+glue_adjustment:
+  enabled: true
+
+derived:
+  # Write deltas: combined cold-write minus the cold access, floored at 0.
+  STORAGE_WRITE: "max(0, COLD_STORAGE_WRITE - COLD_STORAGE_ACCESS)"
+  ACCOUNT_WRITE: "max(0, COLD_ACCOUNT_CODE_WRITE - COLD_ACCOUNT_CODE_ACCESS, COLD_ACCOUNT_NOCODE_WRITE - COLD_ACCOUNT_NOCODE_ACCESS)"
+  REFUND_STORAGE_CLEAR:
+    formula: "COLD_STORAGE_WRITE * 4800 / 5000"
+  TX_ACCESS_LIST_STORAGE_KEY: "COLD_STORAGE_ACCESS"
+  TX_ACCESS_LIST_ADDRESS: "max(COLD_ACCOUNT_CODE_ACCESS, COLD_ACCOUNT_NOCODE_ACCESS)"
+
+models:
+  presets:
+    # --- Storage access (SSTORE, SLOAD) ---
+    - cold_storage_sload
+    - cold_storage_sstore_access
+    - cold_storage_sstore_write
+
+    # --- Warm access
+    - warm_account_access
+    - warm_storage_access_sload
+
+    # --- Account access (CALL, CALLCODE, BALANCE, SELFDESTRUCT, EXT*) ---
+    # evm-gasfit 0.3.0 folded `overhead_baseline_False` into these presets. The
+    # filter is still load-bearing: test_account_access parametrizes every
+    # fixture with overhead_baseline True/False, and the True (baseline) variants
+    # run no target opcode, which trips evm-gasfit's nonzero-opcount invariant if
+    # they are not excluded.
+    # The nocode presets filter `!AccountMode.EXISTING_CONTRACT`, so they never
+    # see the JUMPDEST mode. The two *code* presets do, so they are dropped here
+    # in favour of the custom copies below.
+    - cold_account_nocode_access
+    - cold_account_nocode_write
+
+  # Verbatim copies of the `cold_account_code_access` / `cold_account_code_write`
+  # presets with one extra exclusion: `AccountMode.EXISTING_CONTRACT_JUMPDEST`.
+  # That fixture variant points the target opcode at a contract whose code is a
+  # single JUMPDEST — an account shape that is not representative of the cold
+  # account access we are pricing, and it was winning the worst-case selection
+  # for 7 (param, client) pairs, including the binding COLD_ACCOUNT_CODE_ACCESS
+  # value. Keep these in sync with the upstream presets on an evm-gasfit bump —
+  # `models.presets` takes names only, so there is no override mechanism.
+  custom:
+    - test_name: test_account_access
+      target_operation_param: opcode
+      filter_by:
+        - CacheStrategy.NO_CACHE
+        - "!AccountMode.EXISTING_EOA"
+        - "!AccountMode.EXISTING_CONTRACT_JUMPDEST"
+        - value_sent_0
+        - overhead_baseline_False
+      model_by: [opcode, account_mode]
+      model_params:
+        target_coef: COLD_ACCOUNT_CODE_ACCESS
+
+    - test_name: test_account_access
+      target_operation_param: opcode
+      filter_by:
+        - CacheStrategy.NO_CACHE
+        - "!AccountMode.EXISTING_EOA"
+        - "!AccountMode.EXISTING_CONTRACT_JUMPDEST"
+        - value_sent_1
+        - overhead_baseline_False
+      model_by: [opcode, account_mode]
+      model_params:
+        target_coef: COLD_ACCOUNT_CODE_WRITE

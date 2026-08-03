@@ -582,28 +582,48 @@ def collect_trends(runs: list[dict]) -> dict:
 # --------------------------------------------------------------------------- #
 # Fixed target gas values a client should reach. A client "clears" a goal when its
 # estimate is <= the goal (lower is better). The write goals subtract the bundled
-# cold-access component (the access goal) to isolate the pure-write cost, and the
-# account goals require *both* the CODE and NOCODE variants to clear.
+# cold-access component to isolate the pure-write cost, and the account goals
+# require *both* the CODE and NOCODE variants to clear.
 #
 # These targets are deliberately **absolute and anchor-independent**: they are the
 # gas costs we want these operations to reach, full stop, not a restatement of
 # fit.yaml's anchor_rate. Estimates *do* scale with the anchor, so lowering it makes
 # goals easier to clear — that is the intended reading ("at this throughput goal,
 # can clients hit this cost?"), not a bug to correct by rescaling the targets.
+#
+# ``subtract_goal`` names the access goal whose target comes off a write goal's raw
+# estimate — a reference, never a literal, so the two can't drift apart. `goal` is
+# the only number to edit here: retarget COLD_STORAGE_ACCESS and STORAGE_WRITE's
+# effective values follow automatically (see ``goal_subtract``).
 GOAL_SPECS = [
-    {"key": "COLD_STORAGE_ACCESS", "goal": 3000, "subtract": 0,
+    {"key": "COLD_STORAGE_ACCESS", "goal": 2100, "subtract_goal": None,
      "params": ["COLD_STORAGE_ACCESS"], "current_param": "COLD_STORAGE_ACCESS"},
-    {"key": "STORAGE_WRITE", "goal": 10000, "subtract": 3000,
+    {"key": "STORAGE_WRITE", "goal": 8000, "subtract_goal": "COLD_STORAGE_ACCESS",
      "params": ["COLD_STORAGE_WRITE"], "current_param": "STORAGE_WRITE"},
-    {"key": "COLD_ACCOUNT_ACCESS", "goal": 3000, "subtract": 0,
+    {"key": "COLD_ACCOUNT_ACCESS", "goal": 3000, "subtract_goal": None,
      "params": ["COLD_ACCOUNT_CODE_ACCESS", "COLD_ACCOUNT_NOCODE_ACCESS"],
      "current_param": "COLD_ACCOUNT_NOCODE_ACCESS"},
-    {"key": "ACCOUNT_WRITE", "goal": 8000, "subtract": 3000,
+    {"key": "ACCOUNT_WRITE", "goal": 9000, "subtract_goal": "COLD_ACCOUNT_ACCESS",
      "params": ["COLD_ACCOUNT_CODE_WRITE", "COLD_ACCOUNT_NOCODE_WRITE"],
      "current_param": "ACCOUNT_WRITE"},
-    {"key": "WARM_ACCESS", "goal": 100, "subtract": 0,
+    {"key": "WARM_ACCESS", "goal": 100, "subtract_goal": None,
      "params": ["WARM_ACCESS"], "current_param": "WARM_ACCESS"},
 ]
+
+_GOAL_BY_KEY = {s["key"]: s for s in GOAL_SPECS}
+
+
+def goal_subtract(spec: dict) -> int:
+    """Gas removed from a write goal's raw estimate to isolate the write cost.
+
+    The write params are fit as the *bundled* access+write cost, so the access
+    component comes off before the comparison — and what comes off is the access
+    goal's own target (``subtract_goal``), mirroring fit.yaml's ``derived`` write
+    formulas. Goals with no ``subtract_goal`` (the access goals themselves) subtract
+    nothing. Every consumer — cells, tooltips, detail pages, the page's prose —
+    routes through here, so there is one number to change, not five."""
+    ref = spec.get("subtract_goal")
+    return _GOAL_BY_KEY[ref]["goal"] if ref else 0
 
 
 def _variant_label(param: str) -> str:
@@ -644,7 +664,7 @@ def collect_goals(gasfit: Path, anchor_rate: int | None = None) -> dict:
     matrix: dict[str, dict[str, dict]] = {}
     goals: list[dict] = []
     for spec in GOAL_SPECS:
-        goal, sub = spec["goal"], spec["subtract"]
+        goal, sub = spec["goal"], goal_subtract(spec)
         row: dict[str, dict] = {}
         n_clear = 0
         for client in ordered_clients:
@@ -694,7 +714,10 @@ def collect_goals(gasfit: Path, anchor_rate: int | None = None) -> dict:
         "matrix": matrix,
         "anchor_rate": anchor_rate,
         # Keyed, not positional: the page quotes the write goals' subtraction.
-        "subtract_by_key": {s["key"]: s["subtract"] for s in GOAL_SPECS},
+        "subtract_by_key": {s["key"]: goal_subtract(s) for s in GOAL_SPECS},
+        # Which access goal each write goal borrows its subtraction from, so the
+        # prose can name it instead of presenting the number as a bare constant.
+        "subtract_source_by_key": {s["key"]: s["subtract_goal"] for s in GOAL_SPECS},
     }
 
 
@@ -704,7 +727,9 @@ def _goal_param_meta() -> dict[str, dict]:
     for spec in GOAL_SPECS:
         for p in spec["params"]:
             meta[p] = {"goal_key": spec["key"], "goal": spec["goal"],
-                       "subtract": spec["subtract"], "variant": _variant_label(p)}
+                       "subtract": goal_subtract(spec),
+                       "subtract_source": spec["subtract_goal"],
+                       "variant": _variant_label(p)}
     return meta
 
 
@@ -784,6 +809,7 @@ def collect_goal_combos(gasfit: Path) -> dict[str, dict]:
             "goal_key": pmeta["goal_key"],
             "goal": pmeta["goal"],
             "subtract": pmeta["subtract"],
+            "subtract_source": pmeta["subtract_source"],
             "variant": pmeta["variant"],
             "clients": sorted(by_client),
             "by_client": by_client,
