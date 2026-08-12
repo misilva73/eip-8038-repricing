@@ -26,7 +26,7 @@
   Every candidate model combo evm-gasfit considered for each client's
   <code>COLD_STORAGE_WRITE</code> fit. The <strong>selected</strong> combo (winner)
   sets the value used on the Goals page for the
-  <code>STORAGE_WRITE</code> goal (target 8,000, after subtracting 2,100 for the bundled cold-access component — the <code>COLD_STORAGE_ACCESS</code> goal).
+  <code>STORAGE_WRITE</code> goal (target 10,000, after subtracting 2,100 for the bundled cold-access component — the <code>COLD_STORAGE_ACCESS</code> goal).
 </p>
 
 <h2 id="besu">besu</h2>
@@ -37,14 +37,14 @@
   <tbody>
     <tr class="winner-row">
       <td class="combo-cell">test_sstore_bloated · SSTORE · target_coef (slots=False) <span class="binding-tag">selected</span></td>
-      <td class="over-goal-mid" title="10,350 − 2,100 = 8,250, goal 8,000">10,350 <span class="over-goal-tag">over goal</span></td>
+      <td class="" title="10,350 − 2,100 = 8,250, goal 10,000">10,350</td>
       <td>0.946</td>
       <td>0.001</td>
       <td>0.1035</td>
     </tr>
     <tr>
       <td class="combo-cell">test_sstore_bloated · SSTORE · target_coef (slots=True)</td>
-      <td class="" title="6,116 − 2,100 = 4,016, goal 8,000">6,116</td>
+      <td class="" title="6,116 − 2,100 = 4,016, goal 10,000">6,116</td>
       <td>0.971</td>
       <td>0.001</td>
       <td>0.06115</td>
@@ -59,14 +59,14 @@
   <tbody>
     <tr class="winner-row">
       <td class="combo-cell">test_sstore_bloated · SSTORE · target_coef (slots=False) <span class="binding-tag">selected</span></td>
-      <td class="over-goal-mid" title="16,726 − 2,100 = 14,626, goal 8,000">16,726 <span class="over-goal-tag">over goal</span></td>
+      <td class="over-goal-mid" title="16,726 − 2,100 = 14,626, goal 10,000">16,726 <span class="over-goal-tag">over goal</span></td>
       <td>0.996</td>
       <td>0.001</td>
       <td>0.1673</td>
     </tr>
     <tr>
       <td class="combo-cell">test_sstore_bloated · SSTORE · target_coef (slots=True)</td>
-      <td class="over-goal-mid" title="10,183 − 2,100 = 8,083, goal 8,000">10,183 <span class="over-goal-tag">over goal</span></td>
+      <td class="" title="10,183 − 2,100 = 8,083, goal 10,000">10,183</td>
       <td>0.999</td>
       <td>0.001</td>
       <td>0.1018</td>
@@ -81,14 +81,14 @@
   <tbody>
     <tr class="winner-row">
       <td class="combo-cell">test_sstore_bloated · SSTORE · target_coef (slots=False) <span class="binding-tag">selected</span></td>
-      <td class="over-goal-mid" title="14,175 − 2,100 = 12,075, goal 8,000">14,175 <span class="over-goal-tag">over goal</span></td>
+      <td class="over-goal-mid" title="14,175 − 2,100 = 12,075, goal 10,000">14,175 <span class="over-goal-tag">over goal</span></td>
       <td>0.926</td>
       <td>0.001</td>
       <td>0.1417</td>
     </tr>
     <tr>
       <td class="combo-cell">test_sstore_bloated · SSTORE · target_coef (slots=True)</td>
-      <td class="over-goal-mid" title="10,752 − 2,100 = 8,652, goal 8,000">10,752 <span class="over-goal-tag">over goal</span></td>
+      <td class="" title="10,752 − 2,100 = 8,652, goal 10,000">10,752</td>
       <td>0.991</td>
       <td>0.001</td>
       <td>0.1075</td>
@@ -103,14 +103,14 @@
   <tbody>
     <tr class="winner-row">
       <td class="combo-cell">test_sstore_bloated · SSTORE · target_coef (slots=False) <span class="binding-tag">selected</span></td>
-      <td class="" title="6,292 − 2,100 = 4,192, goal 8,000">6,292</td>
+      <td class="" title="6,292 − 2,100 = 4,192, goal 10,000">6,292</td>
       <td>0.939</td>
       <td>0.001</td>
       <td>0.06292</td>
     </tr>
     <tr>
       <td class="combo-cell">test_sstore_bloated · SSTORE · target_coef (slots=True)</td>
-      <td class="" title="6,223 − 2,100 = 4,123, goal 8,000">6,223</td>
+      <td class="" title="6,223 − 2,100 = 4,123, goal 10,000">6,223</td>
       <td>0.990</td>
       <td>0.001</td>
       <td>0.06222</td>
@@ -125,14 +125,14 @@
   <tbody>
     <tr class="winner-row">
       <td class="combo-cell">test_sstore_bloated · SSTORE · target_coef (slots=False) <span class="binding-tag">selected</span></td>
-      <td class="" title="3,651 − 2,100 = 1,551, goal 8,000">3,651</td>
+      <td class="" title="3,651 − 2,100 = 1,551, goal 10,000">3,651</td>
       <td>0.930</td>
       <td>0.001</td>
       <td>0.03651</td>
     </tr>
     <tr>
       <td class="combo-cell">test_sstore_bloated · SSTORE · target_coef (slots=True)</td>
-      <td class="" title="2,490 − 2,100 = 390, goal 8,000">2,490</td>
+      <td class="" title="2,490 − 2,100 = 390, goal 10,000">2,490</td>
       <td>0.989</td>
       <td>0.001</td>
       <td>0.02489</td>
@@ -147,7 +147,7 @@
 <code>3c6dc791050b116d</code>, <code>0d93b5bf3b970403</code>      · run 2026-08-12T05:20:44Z
       · evm-gasfit 0.4.0
       · benchmarkoor-fetch 0.3.1
-      · commit <code>6f07789d</code>
+      · commit <code>4ff212ba</code>
     </p>
   </footer>
   <script src="run_selector.js"></script>

@@ -598,7 +598,7 @@ def collect_trends(runs: list[dict]) -> dict:
 GOAL_SPECS = [
     {"key": "COLD_STORAGE_ACCESS", "goal": 2100, "subtract_goal": None,
      "params": ["COLD_STORAGE_ACCESS"], "current_param": "COLD_STORAGE_ACCESS"},
-    {"key": "STORAGE_WRITE", "goal": 8000, "subtract_goal": "COLD_STORAGE_ACCESS",
+    {"key": "STORAGE_WRITE", "goal": 10000, "subtract_goal": "COLD_STORAGE_ACCESS",
      "params": ["COLD_STORAGE_WRITE"], "current_param": "STORAGE_WRITE"},
     {"key": "COLD_ACCOUNT_ACCESS", "goal": 3000, "subtract_goal": None,
      "params": ["COLD_ACCOUNT_CODE_ACCESS", "COLD_ACCOUNT_NOCODE_ACCESS"],
