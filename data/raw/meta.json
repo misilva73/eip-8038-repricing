@@ -3,10 +3,10 @@
     "end": "2026-08-12T05:20:44Z",
     "start": "2026-08-09T00:31:21Z"
   },
-  "fetched_at": "2026-08-12T09:59:30Z",
+  "fetched_at": "2026-08-12T15:29:41Z",
   "opcount_coverage": {
-    "bench_rows": 444346,
-    "with_opcount": 444346,
+    "bench_rows": 447272,
+    "with_opcount": 447272,
     "without_opcount": 0
   },
   "package_version": "0.3.1",
@@ -22,9 +22,9 @@
     "test_type": null
   },
   "row_counts": {
-    "bench_data": 444346,
+    "bench_data": 447272,
     "opcounts": 5715,
-    "runtimes": 444346,
+    "runtimes": 447272,
     "trace": 5715
   },
   "suites": [

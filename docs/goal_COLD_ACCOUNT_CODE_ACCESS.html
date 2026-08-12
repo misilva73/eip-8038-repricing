@@ -205,6 +205,182 @@
     </tr>
   </tbody>
 </table>
+<h2 id="erigon">erigon</h2>
+<table>
+  <thead>
+    <tr><th>Combo</th><th>Proposed gas</th><th>R²</th><th>p-value</th><th>Runtime (ms)</th></tr>
+  </thead>
+  <tbody>
+    <tr class="winner-row">
+      <td class="combo-cell">test_account_access · EXTCODESIZE · target_coef (EXISTING_CONTRACT_DIFF_MAX) <span class="binding-tag">selected</span></td>
+      <td class="over-goal" title="goal 3,000">13,733 <span class="over-goal-tag">over goal</span></td>
+      <td>0.887</td>
+      <td>0.001</td>
+      <td>0.1373</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · EXTCODECOPY · target_coef (EXISTING_CONTRACT_SAME_MAX)</td>
+      <td class="" title="goal 3,000">811</td>
+      <td>0.988</td>
+      <td>0.001</td>
+      <td>0.008101</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · BALANCE · target_coef (EXISTING_CONTRACT_SAME_MAX)</td>
+      <td class="" title="goal 3,000">838</td>
+      <td>0.979</td>
+      <td>0.001</td>
+      <td>0.008373</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · EXTCODEHASH · target_coef (EXISTING_CONTRACT_SAME_MAX)</td>
+      <td class="" title="goal 3,000">842</td>
+      <td>0.984</td>
+      <td>0.001</td>
+      <td>0.008419</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · EXTCODESIZE · target_coef (EXISTING_CONTRACT_SAME_MAX)</td>
+      <td class="" title="goal 3,000">845</td>
+      <td>0.982</td>
+      <td>0.001</td>
+      <td>0.008448</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · EXTCODESIZE · target_coef (EXISTING_CONTRACT_MINIMAL)</td>
+      <td class="" title="goal 3,000">851</td>
+      <td>0.986</td>
+      <td>0.001</td>
+      <td>0.008502</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · BALANCE · target_coef (EXISTING_CONTRACT_MINIMAL)</td>
+      <td class="" title="goal 3,000">855</td>
+      <td>0.977</td>
+      <td>0.001</td>
+      <td>0.008547</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · EXTCODECOPY · target_coef (EXISTING_CONTRACT_MINIMAL)</td>
+      <td class="" title="goal 3,000">861</td>
+      <td>0.983</td>
+      <td>0.001</td>
+      <td>0.008602</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · EXTCODEHASH · target_coef (EXISTING_CONTRACT_MINIMAL)</td>
+      <td class="" title="goal 3,000">869</td>
+      <td>0.985</td>
+      <td>0.001</td>
+      <td>0.008681</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · DELEGATECALL · target_coef (EXISTING_CONTRACT_SAME_MAX)</td>
+      <td class="" title="goal 3,000">881</td>
+      <td>0.986</td>
+      <td>0.001</td>
+      <td>0.008807</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · CALLCODE · target_coef (EXISTING_CONTRACT_SAME_MAX)</td>
+      <td class="" title="goal 3,000">893</td>
+      <td>0.981</td>
+      <td>0.001</td>
+      <td>0.008929</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · DELEGATECALL · target_coef (EXISTING_CONTRACT_MINIMAL)</td>
+      <td class="" title="goal 3,000">911</td>
+      <td>0.985</td>
+      <td>0.001</td>
+      <td>0.009107</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · CALLCODE · target_coef (EXISTING_CONTRACT_MINIMAL)</td>
+      <td class="" title="goal 3,000">920</td>
+      <td>0.986</td>
+      <td>0.001</td>
+      <td>0.009192</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · BALANCE · target_coef (EXISTING_CONTRACT_DIFF_MAX)</td>
+      <td class="" title="goal 3,000">925</td>
+      <td>0.986</td>
+      <td>0.001</td>
+      <td>0.009244</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · STATICCALL · target_coef (EXISTING_CONTRACT_SAME_MAX)</td>
+      <td class="" title="goal 3,000">925</td>
+      <td>0.978</td>
+      <td>0.001</td>
+      <td>0.009241</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · EXTCODEHASH · target_coef (EXISTING_CONTRACT_DIFF_MAX)</td>
+      <td class="" title="goal 3,000">930</td>
+      <td>0.983</td>
+      <td>0.001</td>
+      <td>0.009299</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · CALL · target_coef (EXISTING_CONTRACT_SAME_MAX)</td>
+      <td class="" title="goal 3,000">944</td>
+      <td>0.990</td>
+      <td>0.001</td>
+      <td>0.009433</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · CALL · target_coef (EXISTING_CONTRACT_MINIMAL)</td>
+      <td class="" title="goal 3,000">945</td>
+      <td>0.994</td>
+      <td>0.001</td>
+      <td>0.009445</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · STATICCALL · target_coef (EXISTING_CONTRACT_MINIMAL)</td>
+      <td class="" title="goal 3,000">961</td>
+      <td>0.988</td>
+      <td>0.001</td>
+      <td>0.009601</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · STATICCALL · target_coef (EXISTING_CONTRACT_DIFF_MAX)</td>
+      <td class="over-goal" title="goal 3,000">11,882 <span class="over-goal-tag">over goal</span></td>
+      <td>0.887</td>
+      <td>0.001</td>
+      <td>0.1188</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · DELEGATECALL · target_coef (EXISTING_CONTRACT_DIFF_MAX)</td>
+      <td class="over-goal" title="goal 3,000">11,905 <span class="over-goal-tag">over goal</span></td>
+      <td>0.887</td>
+      <td>0.001</td>
+      <td>0.119</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · CALLCODE · target_coef (EXISTING_CONTRACT_DIFF_MAX)</td>
+      <td class="over-goal" title="goal 3,000">11,939 <span class="over-goal-tag">over goal</span></td>
+      <td>0.887</td>
+      <td>0.001</td>
+      <td>0.1194</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · EXTCODECOPY · target_coef (EXISTING_CONTRACT_DIFF_MAX)</td>
+      <td class="over-goal" title="goal 3,000">11,942 <span class="over-goal-tag">over goal</span></td>
+      <td>0.888</td>
+      <td>0.001</td>
+      <td>0.1194</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · CALL · target_coef (EXISTING_CONTRACT_DIFF_MAX)</td>
+      <td class="over-goal" title="goal 3,000">12,003 <span class="over-goal-tag">over goal</span></td>
+      <td>0.891</td>
+      <td>0.001</td>
+      <td>0.12</td>
+    </tr>
+  </tbody>
+</table>
 <h2 id="geth">geth</h2>
 <table>
   <thead>
@@ -213,171 +389,171 @@
   <tbody>
     <tr class="winner-row">
       <td class="combo-cell">test_account_access · EXTCODECOPY · target_coef (EXISTING_CONTRACT_DIFF_MAX) <span class="binding-tag">selected</span></td>
-      <td class="" title="goal 3,000">2,210</td>
-      <td>0.931</td>
+      <td class="" title="goal 3,000">2,228</td>
+      <td>0.934</td>
       <td>0.001</td>
-      <td>0.0221</td>
+      <td>0.02227</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · EXTCODEHASH · target_coef (EXISTING_CONTRACT_DIFF_MAX)</td>
-      <td class="" title="goal 3,000">373</td>
-      <td>0.955</td>
+      <td class="" title="goal 3,000">376</td>
+      <td>0.956</td>
       <td>0.001</td>
-      <td>0.003726</td>
+      <td>0.003755</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · BALANCE · target_coef (EXISTING_CONTRACT_DIFF_MAX)</td>
       <td class="" title="goal 3,000">387</td>
-      <td>0.958</td>
+      <td>0.959</td>
       <td>0.001</td>
-      <td>0.003861</td>
+      <td>0.003867</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · BALANCE · target_coef (EXISTING_CONTRACT_SAME_MAX)</td>
-      <td class="" title="goal 3,000">467</td>
-      <td>0.940</td>
+      <td class="" title="goal 3,000">461</td>
+      <td>0.939</td>
       <td>0.001</td>
-      <td>0.004667</td>
-    </tr>
-    <tr>
-      <td class="combo-cell">test_account_access · EXTCODESIZE · target_coef (EXISTING_CONTRACT_MINIMAL)</td>
-      <td class="" title="goal 3,000">494</td>
-      <td>0.933</td>
-      <td>0.001</td>
-      <td>0.004939</td>
+      <td>0.004609</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · EXTCODEHASH · target_coef (EXISTING_CONTRACT_MINIMAL)</td>
       <td class="" title="goal 3,000">495</td>
-      <td>0.951</td>
+      <td>0.952</td>
       <td>0.001</td>
-      <td>0.004948</td>
+      <td>0.004942</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · EXTCODESIZE · target_coef (EXISTING_CONTRACT_MINIMAL)</td>
+      <td class="" title="goal 3,000">495</td>
+      <td>0.934</td>
+      <td>0.001</td>
+      <td>0.00494</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · EXTCODECOPY · target_coef (EXISTING_CONTRACT_SAME_MAX)</td>
-      <td class="" title="goal 3,000">499</td>
-      <td>0.943</td>
+      <td class="" title="goal 3,000">497</td>
+      <td>0.945</td>
       <td>0.001</td>
-      <td>0.004989</td>
+      <td>0.004961</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · BALANCE · target_coef (EXISTING_CONTRACT_MINIMAL)</td>
-      <td class="" title="goal 3,000">511</td>
-      <td>0.961</td>
+      <td class="" title="goal 3,000">513</td>
+      <td>0.962</td>
       <td>0.001</td>
-      <td>0.005107</td>
-    </tr>
-    <tr>
-      <td class="combo-cell">test_account_access · EXTCODESIZE · target_coef (EXISTING_CONTRACT_SAME_MAX)</td>
-      <td class="" title="goal 3,000">512</td>
-      <td>0.947</td>
-      <td>0.001</td>
-      <td>0.005118</td>
+      <td>0.005122</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · EXTCODEHASH · target_coef (EXISTING_CONTRACT_SAME_MAX)</td>
-      <td class="" title="goal 3,000">517</td>
-      <td>0.944</td>
+      <td class="" title="goal 3,000">514</td>
+      <td>0.943</td>
       <td>0.001</td>
-      <td>0.005162</td>
+      <td>0.005131</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · EXTCODESIZE · target_coef (EXISTING_CONTRACT_SAME_MAX)</td>
+      <td class="" title="goal 3,000">514</td>
+      <td>0.948</td>
+      <td>0.001</td>
+      <td>0.005138</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · CALL · target_coef (EXISTING_CONTRACT_SAME_MAX)</td>
-      <td class="" title="goal 3,000">519</td>
-      <td>0.941</td>
+      <td class="" title="goal 3,000">520</td>
+      <td>0.945</td>
       <td>0.001</td>
-      <td>0.005187</td>
-    </tr>
-    <tr>
-      <td class="combo-cell">test_account_access · STATICCALL · target_coef (EXISTING_CONTRACT_SAME_MAX)</td>
-      <td class="" title="goal 3,000">526</td>
-      <td>0.951</td>
-      <td>0.001</td>
-      <td>0.005257</td>
+      <td>0.005192</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · CALLCODE · target_coef (EXISTING_CONTRACT_MINIMAL)</td>
-      <td class="" title="goal 3,000">528</td>
-      <td>0.938</td>
+      <td class="" title="goal 3,000">523</td>
+      <td>0.942</td>
       <td>0.001</td>
-      <td>0.005272</td>
+      <td>0.005226</td>
     </tr>
     <tr>
-      <td class="combo-cell">test_account_access · CALL · target_coef (EXISTING_CONTRACT_MINIMAL)</td>
-      <td class="" title="goal 3,000">532</td>
-      <td>0.931</td>
+      <td class="combo-cell">test_account_access · STATICCALL · target_coef (EXISTING_CONTRACT_SAME_MAX)</td>
+      <td class="" title="goal 3,000">525</td>
+      <td>0.954</td>
       <td>0.001</td>
-      <td>0.00531</td>
-    </tr>
-    <tr>
-      <td class="combo-cell">test_account_access · CALLCODE · target_coef (EXISTING_CONTRACT_SAME_MAX)</td>
-      <td class="" title="goal 3,000">532</td>
-      <td>0.943</td>
-      <td>0.001</td>
-      <td>0.00531</td>
+      <td>0.00524</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · DELEGATECALL · target_coef (EXISTING_CONTRACT_SAME_MAX)</td>
-      <td class="" title="goal 3,000">532</td>
-      <td>0.953</td>
+      <td class="" title="goal 3,000">529</td>
+      <td>0.956</td>
       <td>0.001</td>
-      <td>0.005315</td>
+      <td>0.005281</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · CALL · target_coef (EXISTING_CONTRACT_MINIMAL)</td>
+      <td class="" title="goal 3,000">530</td>
+      <td>0.931</td>
+      <td>0.001</td>
+      <td>0.005292</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · EXTCODECOPY · target_coef (EXISTING_CONTRACT_MINIMAL)</td>
-      <td class="" title="goal 3,000">536</td>
-      <td>0.939</td>
+      <td class="" title="goal 3,000">530</td>
+      <td>0.938</td>
       <td>0.001</td>
-      <td>0.005354</td>
+      <td>0.005296</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · CALLCODE · target_coef (EXISTING_CONTRACT_SAME_MAX)</td>
+      <td class="" title="goal 3,000">533</td>
+      <td>0.944</td>
+      <td>0.001</td>
+      <td>0.005321</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · DELEGATECALL · target_coef (EXISTING_CONTRACT_MINIMAL)</td>
-      <td class="" title="goal 3,000">538</td>
-      <td>0.959</td>
+      <td class="" title="goal 3,000">535</td>
+      <td>0.961</td>
       <td>0.001</td>
-      <td>0.005376</td>
+      <td>0.005348</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · STATICCALL · target_coef (EXISTING_CONTRACT_MINIMAL)</td>
-      <td class="" title="goal 3,000">546</td>
-      <td>0.947</td>
+      <td class="" title="goal 3,000">539</td>
+      <td>0.943</td>
       <td>0.001</td>
-      <td>0.005459</td>
-    </tr>
-    <tr>
-      <td class="combo-cell">test_account_access · DELEGATECALL · target_coef (EXISTING_CONTRACT_DIFF_MAX)</td>
-      <td class="" title="goal 3,000">2,096</td>
-      <td>0.901</td>
-      <td>0.001</td>
-      <td>0.02095</td>
+      <td>0.005382</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · STATICCALL · target_coef (EXISTING_CONTRACT_DIFF_MAX)</td>
-      <td class="" title="goal 3,000">2,097</td>
-      <td>0.919</td>
+      <td class="" title="goal 3,000">2,099</td>
+      <td>0.922</td>
       <td>0.001</td>
-      <td>0.02097</td>
+      <td>0.02099</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · DELEGATECALL · target_coef (EXISTING_CONTRACT_DIFF_MAX)</td>
+      <td class="" title="goal 3,000">2,113</td>
+      <td>0.907</td>
+      <td>0.001</td>
+      <td>0.02113</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · CALL · target_coef (EXISTING_CONTRACT_DIFF_MAX)</td>
-      <td class="" title="goal 3,000">2,098</td>
-      <td>0.909</td>
+      <td class="" title="goal 3,000">2,132</td>
+      <td>0.916</td>
       <td>0.001</td>
-      <td>0.02098</td>
-    </tr>
-    <tr>
-      <td class="combo-cell">test_account_access · EXTCODESIZE · target_coef (EXISTING_CONTRACT_DIFF_MAX)</td>
-      <td class="" title="goal 3,000">2,144</td>
-      <td>0.926</td>
-      <td>0.001</td>
-      <td>0.02144</td>
+      <td>0.02131</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · CALLCODE · target_coef (EXISTING_CONTRACT_DIFF_MAX)</td>
-      <td class="" title="goal 3,000">2,153</td>
-      <td>0.932</td>
+      <td class="" title="goal 3,000">2,155</td>
+      <td>0.929</td>
       <td>0.001</td>
-      <td>0.02153</td>
+      <td>0.02155</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · EXTCODESIZE · target_coef (EXISTING_CONTRACT_DIFF_MAX)</td>
+      <td class="" title="goal 3,000">2,156</td>
+      <td>0.930</td>
+      <td>0.001</td>
+      <td>0.02155</td>
     </tr>
   </tbody>
 </table>
@@ -741,7 +917,7 @@
 <code>3c6dc791050b116d</code>, <code>0d93b5bf3b970403</code>      · run 2026-08-12T05:20:44Z
       · evm-gasfit 0.4.0
       · benchmarkoor-fetch 0.3.1
-      · commit <code>504d20b6</code>
+      · commit <code>6f07789d</code>
     </p>
   </footer>
   <script src="run_selector.js"></script>

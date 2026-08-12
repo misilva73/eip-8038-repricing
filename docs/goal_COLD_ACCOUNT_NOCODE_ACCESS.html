@@ -149,6 +149,126 @@
     </tr>
   </tbody>
 </table>
+<h2 id="erigon">erigon</h2>
+<table>
+  <thead>
+    <tr><th>Combo</th><th>Proposed gas</th><th>R²</th><th>p-value</th><th>Runtime (ms)</th></tr>
+  </thead>
+  <tbody>
+    <tr class="winner-row">
+      <td class="combo-cell">test_account_access · STATICCALL · target_coef (NON_EXISTING_ACCOUNT) <span class="binding-tag">selected</span></td>
+      <td class="" title="goal 3,000">880</td>
+      <td>0.999</td>
+      <td>0.001</td>
+      <td>0.0088</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · EXTCODECOPY · target_coef (NON_EXISTING_ACCOUNT)</td>
+      <td class="" title="goal 3,000">781</td>
+      <td>0.996</td>
+      <td>0.001</td>
+      <td>0.00781</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · EXTCODESIZE · target_coef (NON_EXISTING_ACCOUNT)</td>
+      <td class="" title="goal 3,000">783</td>
+      <td>0.995</td>
+      <td>0.001</td>
+      <td>0.007827</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · EXTCODESIZE · target_coef (EXISTING_EOA)</td>
+      <td class="" title="goal 3,000">789</td>
+      <td>0.994</td>
+      <td>0.001</td>
+      <td>0.007885</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · EXTCODECOPY · target_coef (EXISTING_EOA)</td>
+      <td class="" title="goal 3,000">792</td>
+      <td>0.996</td>
+      <td>0.001</td>
+      <td>0.007918</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · EXTCODEHASH · target_coef (NON_EXISTING_ACCOUNT)</td>
+      <td class="" title="goal 3,000">793</td>
+      <td>0.996</td>
+      <td>0.001</td>
+      <td>0.007921</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · CALLCODE · target_coef (NON_EXISTING_ACCOUNT)</td>
+      <td class="" title="goal 3,000">798</td>
+      <td>0.995</td>
+      <td>0.001</td>
+      <td>0.007974</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · DELEGATECALL · target_coef (NON_EXISTING_ACCOUNT)</td>
+      <td class="" title="goal 3,000">808</td>
+      <td>0.995</td>
+      <td>0.001</td>
+      <td>0.008071</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · DELEGATECALL · target_coef (EXISTING_EOA)</td>
+      <td class="" title="goal 3,000">811</td>
+      <td>0.996</td>
+      <td>0.001</td>
+      <td>0.008103</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · CALLCODE · target_coef (EXISTING_EOA)</td>
+      <td class="" title="goal 3,000">812</td>
+      <td>0.995</td>
+      <td>0.001</td>
+      <td>0.008119</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · BALANCE · target_coef (NON_EXISTING_ACCOUNT)</td>
+      <td class="" title="goal 3,000">813</td>
+      <td>0.990</td>
+      <td>0.001</td>
+      <td>0.008124</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · CALL · target_coef (NON_EXISTING_ACCOUNT)</td>
+      <td class="" title="goal 3,000">821</td>
+      <td>0.995</td>
+      <td>0.001</td>
+      <td>0.00821</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · BALANCE · target_coef (EXISTING_EOA)</td>
+      <td class="" title="goal 3,000">843</td>
+      <td>0.996</td>
+      <td>0.001</td>
+      <td>0.008423</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · EXTCODEHASH · target_coef (EXISTING_EOA)</td>
+      <td class="" title="goal 3,000">844</td>
+      <td>0.998</td>
+      <td>0.001</td>
+      <td>0.008438</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · CALL · target_coef (EXISTING_EOA)</td>
+      <td class="" title="goal 3,000">857</td>
+      <td>0.998</td>
+      <td>0.001</td>
+      <td>0.008564</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · STATICCALL · target_coef (EXISTING_EOA)</td>
+      <td class="" title="goal 3,000">858</td>
+      <td>0.997</td>
+      <td>0.001</td>
+      <td>0.008576</td>
+    </tr>
+  </tbody>
+</table>
 <h2 id="geth">geth</h2>
 <table>
   <thead>
@@ -156,116 +276,116 @@
   </thead>
   <tbody>
     <tr class="winner-row">
-      <td class="combo-cell">test_account_access · DELEGATECALL · target_coef (NON_EXISTING_ACCOUNT) <span class="binding-tag">selected</span></td>
-      <td class="" title="goal 3,000">2,213</td>
-      <td>0.972</td>
+      <td class="combo-cell">test_account_access · STATICCALL · target_coef (NON_EXISTING_ACCOUNT) <span class="binding-tag">selected</span></td>
+      <td class="" title="goal 3,000">2,228</td>
+      <td>0.983</td>
       <td>0.001</td>
-      <td>0.02213</td>
+      <td>0.02227</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · STATICCALL · target_coef (EXISTING_EOA)</td>
-      <td class="" title="goal 3,000">1,117</td>
-      <td>0.973</td>
+      <td class="" title="goal 3,000">1,126</td>
+      <td>0.975</td>
       <td>0.001</td>
-      <td>0.01117</td>
-    </tr>
-    <tr>
-      <td class="combo-cell">test_account_access · DELEGATECALL · target_coef (EXISTING_EOA)</td>
-      <td class="" title="goal 3,000">1,129</td>
-      <td>0.967</td>
-      <td>0.001</td>
-      <td>0.01129</td>
+      <td>0.01125</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · EXTCODEHASH · target_coef (EXISTING_EOA)</td>
-      <td class="" title="goal 3,000">1,132</td>
-      <td>0.969</td>
+      <td class="" title="goal 3,000">1,134</td>
+      <td>0.971</td>
       <td>0.001</td>
-      <td>0.01132</td>
+      <td>0.01134</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · EXTCODESIZE · target_coef (EXISTING_EOA)</td>
-      <td class="" title="goal 3,000">1,134</td>
+      <td class="" title="goal 3,000">1,135</td>
+      <td>0.972</td>
+      <td>0.001</td>
+      <td>0.01134</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · DELEGATECALL · target_coef (EXISTING_EOA)</td>
+      <td class="" title="goal 3,000">1,136</td>
       <td>0.970</td>
       <td>0.001</td>
-      <td>0.01133</td>
+      <td>0.01136</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · BALANCE · target_coef (EXISTING_EOA)</td>
-      <td class="" title="goal 3,000">1,148</td>
-      <td>0.969</td>
+      <td class="" title="goal 3,000">1,147</td>
+      <td>0.971</td>
       <td>0.001</td>
-      <td>0.01147</td>
-    </tr>
-    <tr>
-      <td class="combo-cell">test_account_access · CALLCODE · target_coef (EXISTING_EOA)</td>
-      <td class="" title="goal 3,000">1,158</td>
-      <td>0.974</td>
-      <td>0.001</td>
-      <td>0.01157</td>
+      <td>0.01146</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · CALL · target_coef (EXISTING_EOA)</td>
-      <td class="" title="goal 3,000">1,167</td>
+      <td class="" title="goal 3,000">1,159</td>
       <td>0.977</td>
+      <td>0.001</td>
+      <td>0.01158</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · CALLCODE · target_coef (EXISTING_EOA)</td>
+      <td class="" title="goal 3,000">1,167</td>
+      <td>0.975</td>
       <td>0.001</td>
       <td>0.01166</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · EXTCODECOPY · target_coef (EXISTING_EOA)</td>
-      <td class="" title="goal 3,000">1,181</td>
-      <td>0.972</td>
+      <td class="" title="goal 3,000">1,187</td>
+      <td>0.974</td>
       <td>0.001</td>
-      <td>0.01181</td>
+      <td>0.01186</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · EXTCODEHASH · target_coef (NON_EXISTING_ACCOUNT)</td>
-      <td class="" title="goal 3,000">2,060</td>
-      <td>0.972</td>
+      <td class="" title="goal 3,000">2,081</td>
+      <td>0.974</td>
       <td>0.001</td>
-      <td>0.02059</td>
+      <td>0.02081</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · EXTCODESIZE · target_coef (NON_EXISTING_ACCOUNT)</td>
-      <td class="" title="goal 3,000">2,144</td>
-      <td>0.974</td>
+      <td class="" title="goal 3,000">2,154</td>
+      <td>0.976</td>
       <td>0.001</td>
-      <td>0.02143</td>
+      <td>0.02153</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · BALANCE · target_coef (NON_EXISTING_ACCOUNT)</td>
-      <td class="" title="goal 3,000">2,171</td>
-      <td>0.976</td>
+      <td class="" title="goal 3,000">2,176</td>
+      <td>0.978</td>
       <td>0.001</td>
-      <td>0.02171</td>
+      <td>0.02176</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · CALL · target_coef (NON_EXISTING_ACCOUNT)</td>
-      <td class="" title="goal 3,000">2,174</td>
-      <td>0.982</td>
+      <td class="" title="goal 3,000">2,180</td>
+      <td>0.983</td>
       <td>0.001</td>
-      <td>0.02174</td>
+      <td>0.02179</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · EXTCODECOPY · target_coef (NON_EXISTING_ACCOUNT)</td>
-      <td class="" title="goal 3,000">2,186</td>
-      <td>0.976</td>
+      <td class="" title="goal 3,000">2,202</td>
+      <td>0.978</td>
       <td>0.001</td>
-      <td>0.02186</td>
+      <td>0.02201</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · CALLCODE · target_coef (NON_EXISTING_ACCOUNT)</td>
-      <td class="" title="goal 3,000">2,191</td>
-      <td>0.980</td>
-      <td>0.001</td>
-      <td>0.0219</td>
-    </tr>
-    <tr>
-      <td class="combo-cell">test_account_access · STATICCALL · target_coef (NON_EXISTING_ACCOUNT)</td>
-      <td class="" title="goal 3,000">2,211</td>
+      <td class="" title="goal 3,000">2,203</td>
       <td>0.981</td>
       <td>0.001</td>
-      <td>0.02211</td>
+      <td>0.02203</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · DELEGATECALL · target_coef (NON_EXISTING_ACCOUNT)</td>
+      <td class="" title="goal 3,000">2,222</td>
+      <td>0.975</td>
+      <td>0.001</td>
+      <td>0.02221</td>
     </tr>
   </tbody>
 </table>
@@ -517,7 +637,7 @@
 <code>3c6dc791050b116d</code>, <code>0d93b5bf3b970403</code>      · run 2026-08-12T05:20:44Z
       · evm-gasfit 0.4.0
       · benchmarkoor-fetch 0.3.1
-      · commit <code>504d20b6</code>
+      · commit <code>6f07789d</code>
     </p>
   </footer>
   <script src="run_selector.js"></script>

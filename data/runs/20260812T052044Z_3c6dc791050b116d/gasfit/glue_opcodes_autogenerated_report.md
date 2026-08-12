@@ -235,13 +235,13 @@ Notes: Non-negative least squares with bootstrap inference (1000 iterations)
 | `ISZERO` | 120 | 0 | 1.00e+00 | 0 |
 | `JUMPDEST` | 30 | 0 | 1.00e+00 | -2.22e-16 |
 | `SWAP` | 2145 | 0 | 1.00e+00 | 0 |
-| `CALLDATASIZE` | 7530 | 6.1e-07 | 3.80e-02 | 0.01686 |
-| `DUP` | 7530 | 0 | 1.00e+00 | 0.01686 |
-| `GAS` | 7530 | 4.713e-08 | 5.10e-01 | 0.01686 |
-| `MLOAD` | 7530 | 1.302e-05 | 1.00e-03 | 0.01686 |
-| `PUSH` | 7530 | 0 | 1.00e+00 | 0.01686 |
-| `PUSH0` | 7530 | 0 | 1.00e+00 | 0.01686 |
-| `STATICCALL` | 7530 | 0 | 1.00e+00 | 0.01686 |
+| `CALLDATASIZE` | 7541 | 6.128e-07 | 2.80e-02 | 0.01725 |
+| `DUP` | 7541 | 0 | 1.00e+00 | 0.01725 |
+| `GAS` | 7541 | 7.078e-08 | 4.86e-01 | 0.01725 |
+| `MLOAD` | 7541 | 1.304e-05 | 1.00e-03 | 0.01725 |
+| `PUSH` | 7541 | 0 | 1.00e+00 | 0.01725 |
+| `PUSH0` | 7541 | 0 | 1.00e+00 | 0.01725 |
+| `STATICCALL` | 7541 | 0 | 1.00e+00 | 0.01725 |
 | `ADD` | 135 | 0 | 1.00e+00 | 0 |
 | `AND` | 120 | 0 | 1.00e+00 | 2.22e-16 |
 | `CALLDATACOPY` | 3525 | 0 | 1.00e+00 | 0 |
@@ -271,16 +271,16 @@ Notes: Non-negative least squares with bootstrap inference (1000 iterations)
 ==============================================================================
 Dep. Variable:          test_runtime_ms              R-squared:          0.017
 Model:                  NNLS                    Adj. R-squared:          0.016
-No. Observations:       7530                              RMSE:          43.58
-Df Residuals:           7522                               MAE:          35.34
+No. Observations:       7541                              RMSE:          43.56
+Df Residuals:           7533                               MAE:          35.32
 Df Model:               7      
 ==============================================================================
                       coef     std err     P-value      [0.025      0.975]
 ------------------------------------------------------------------------------
-         const    122.5737      0.5206       0.001    121.5240    123.5462
-  CALLDATASIZE      0.0000      0.0000       0.038      0.0000      0.0000
+         const    122.5607      0.5371       0.001    121.4924    123.5643
+  CALLDATASIZE      0.0000      0.0000       0.028      0.0000      0.0000
            DUP      0.0000      0.0000       1.000      0.0000      0.0000
-           GAS      0.0000      0.0000       0.510      0.0000      0.0000
+           GAS      0.0000      0.0000       0.486      0.0000      0.0000
          MLOAD      0.0000      0.0000       0.001      0.0000      0.0000
           PUSH      0.0000      0.0000       1.000      0.0000      0.0000
          PUSH0      0.0000      0.0000       1.000      0.0000      0.0000
@@ -292,7 +292,7 @@ Notes: Non-negative least squares with bootstrap inference (1000 iterations)
 
 </details>
 
-<details><summary><code>CALLDATASIZE</code> · nobs=7530 · runtime_ms=6.1e-07 · p=3.80e-02 · R²=0.01686</summary>
+<details><summary><code>CALLDATASIZE</code> · nobs=7541 · runtime_ms=6.128e-07 · p=2.80e-02 · R²=0.01725</summary>
 
 ![](figs/glue/CALLDATASIZE__erigon__regression.png)
 
@@ -302,7 +302,7 @@ Notes: Non-negative least squares with bootstrap inference (1000 iterations)
 
 </details>
 
-<details><summary><code>DUP</code> · nobs=7530 · runtime_ms=0 · p=1.00e+00 · R²=0.01686</summary>
+<details><summary><code>DUP</code> · nobs=7541 · runtime_ms=0 · p=1.00e+00 · R²=0.01725</summary>
 
 ![](figs/glue/DUP__erigon__regression.png)
 
@@ -312,7 +312,7 @@ Notes: Non-negative least squares with bootstrap inference (1000 iterations)
 
 </details>
 
-<details><summary><code>GAS</code> · nobs=7530 · runtime_ms=4.713e-08 · p=5.10e-01 · R²=0.01686</summary>
+<details><summary><code>GAS</code> · nobs=7541 · runtime_ms=7.078e-08 · p=4.86e-01 · R²=0.01725</summary>
 
 ![](figs/glue/GAS__erigon__regression.png)
 
@@ -322,7 +322,7 @@ Notes: Non-negative least squares with bootstrap inference (1000 iterations)
 
 </details>
 
-<details><summary><code>MLOAD</code> · nobs=7530 · runtime_ms=1.302e-05 · p=1.00e-03 · R²=0.01686</summary>
+<details><summary><code>MLOAD</code> · nobs=7541 · runtime_ms=1.304e-05 · p=1.00e-03 · R²=0.01725</summary>
 
 ![](figs/glue/MLOAD__erigon__regression.png)
 
@@ -332,7 +332,7 @@ Notes: Non-negative least squares with bootstrap inference (1000 iterations)
 
 </details>
 
-<details><summary><code>PUSH</code> · nobs=7530 · runtime_ms=0 · p=1.00e+00 · R²=0.01686</summary>
+<details><summary><code>PUSH</code> · nobs=7541 · runtime_ms=0 · p=1.00e+00 · R²=0.01725</summary>
 
 ![](figs/glue/PUSH__erigon__regression.png)
 
@@ -342,7 +342,7 @@ Notes: Non-negative least squares with bootstrap inference (1000 iterations)
 
 </details>
 
-<details><summary><code>PUSH0</code> · nobs=7530 · runtime_ms=0 · p=1.00e+00 · R²=0.01686</summary>
+<details><summary><code>PUSH0</code> · nobs=7541 · runtime_ms=0 · p=1.00e+00 · R²=0.01725</summary>
 
 ![](figs/glue/PUSH0__erigon__regression.png)
 
@@ -352,7 +352,7 @@ Notes: Non-negative least squares with bootstrap inference (1000 iterations)
 
 </details>
 
-<details><summary><code>STATICCALL</code> · nobs=7530 · runtime_ms=0 · p=1.00e+00 · R²=0.01686</summary>
+<details><summary><code>STATICCALL</code> · nobs=7541 · runtime_ms=0 · p=1.00e+00 · R²=0.01725</summary>
 
 ![](figs/glue/STATICCALL__erigon__regression.png)
 
@@ -1733,13 +1733,13 @@ Notes: Non-negative least squares with bootstrap inference (1000 iterations)
 | `ISZERO` | 216 | 0 | 1.00e+00 | 0 |
 | `JUMPDEST` | 54 | 0 | 1.00e+00 | 2.22e-16 |
 | `SWAP` | 3861 | 0 | 1.00e+00 | 0 |
-| `CALLDATASIZE` | 13630 | 4.354e-06 | 1.00e-03 | 0.08478 |
-| `DUP` | 13630 | 0 | 1.00e+00 | 0.08478 |
-| `GAS` | 13630 | 5.534e-06 | 1.00e-03 | 0.08478 |
-| `MLOAD` | 13630 | 8.97e-06 | 1.00e-03 | 0.08478 |
-| `PUSH` | 13630 | 0 | 1.00e+00 | 0.08478 |
-| `PUSH0` | 13630 | 0 | 1.00e+00 | 0.08478 |
-| `STATICCALL` | 13630 | 8.868e-05 | 1.00e-03 | 0.08478 |
+| `CALLDATASIZE` | 13641 | 4.356e-06 | 1.00e-03 | 0.09551 |
+| `DUP` | 13641 | 0 | 1.00e+00 | 0.09551 |
+| `GAS` | 13641 | 5.536e-06 | 1.00e-03 | 0.09551 |
+| `MLOAD` | 13641 | 8.976e-06 | 1.00e-03 | 0.09551 |
+| `PUSH` | 13641 | 0 | 1.00e+00 | 0.09551 |
+| `PUSH0` | 13641 | 0 | 1.00e+00 | 0.09551 |
+| `STATICCALL` | 13641 | 8.977e-05 | 1.00e-03 | 0.09551 |
 | `ADD` | 243 | 0 | 1.00e+00 | 0 |
 | `AND` | 216 | 0 | 1.00e+00 | -2.22e-16 |
 | `CALLDATACOPY` | 6345 | 0 | 1.00e+00 | 0 |
@@ -1767,15 +1767,15 @@ Notes: Non-negative least squares with bootstrap inference (1000 iterations)
 ==============================================================================
                            NNLS Regression Results                            
 ==============================================================================
-Dep. Variable:          test_runtime_ms              R-squared:          0.085
-Model:                  NNLS                    Adj. R-squared:          0.084
-No. Observations:       13630                             RMSE:          47.00
-Df Residuals:           13622                              MAE:          38.03
+Dep. Variable:          test_runtime_ms              R-squared:          0.096
+Model:                  NNLS                    Adj. R-squared:          0.095
+No. Observations:       13641                             RMSE:          47.00
+Df Residuals:           13633                              MAE:          38.03
 Df Model:               7      
 ==============================================================================
                       coef     std err     P-value      [0.025      0.975]
 ------------------------------------------------------------------------------
-         const    137.5062      0.4342       0.001    136.6959    138.3702
+         const    137.4912      0.4347       0.001    136.6254    138.3474
   CALLDATASIZE      0.0000      0.0000       0.001      0.0000      0.0000
            DUP      0.0000      0.0000       1.000      0.0000      0.0000
            GAS      0.0000      0.0000       0.001      0.0000      0.0000
@@ -1790,7 +1790,7 @@ Notes: Non-negative least squares with bootstrap inference (1000 iterations)
 
 </details>
 
-<details><summary><code>CALLDATASIZE</code> · nobs=13630 · runtime_ms=4.354e-06 · p=1.00e-03 · R²=0.08478</summary>
+<details><summary><code>CALLDATASIZE</code> · nobs=13641 · runtime_ms=4.356e-06 · p=1.00e-03 · R²=0.09551</summary>
 
 ![](figs/glue/CALLDATASIZE__geth__regression.png)
 
@@ -1800,7 +1800,7 @@ Notes: Non-negative least squares with bootstrap inference (1000 iterations)
 
 </details>
 
-<details><summary><code>DUP</code> · nobs=13630 · runtime_ms=0 · p=1.00e+00 · R²=0.08478</summary>
+<details><summary><code>DUP</code> · nobs=13641 · runtime_ms=0 · p=1.00e+00 · R²=0.09551</summary>
 
 ![](figs/glue/DUP__geth__regression.png)
 
@@ -1810,7 +1810,7 @@ Notes: Non-negative least squares with bootstrap inference (1000 iterations)
 
 </details>
 
-<details><summary><code>GAS</code> · nobs=13630 · runtime_ms=5.534e-06 · p=1.00e-03 · R²=0.08478</summary>
+<details><summary><code>GAS</code> · nobs=13641 · runtime_ms=5.536e-06 · p=1.00e-03 · R²=0.09551</summary>
 
 ![](figs/glue/GAS__geth__regression.png)
 
@@ -1820,7 +1820,7 @@ Notes: Non-negative least squares with bootstrap inference (1000 iterations)
 
 </details>
 
-<details><summary><code>MLOAD</code> · nobs=13630 · runtime_ms=8.97e-06 · p=1.00e-03 · R²=0.08478</summary>
+<details><summary><code>MLOAD</code> · nobs=13641 · runtime_ms=8.976e-06 · p=1.00e-03 · R²=0.09551</summary>
 
 ![](figs/glue/MLOAD__geth__regression.png)
 
@@ -1830,7 +1830,7 @@ Notes: Non-negative least squares with bootstrap inference (1000 iterations)
 
 </details>
 
-<details><summary><code>PUSH</code> · nobs=13630 · runtime_ms=0 · p=1.00e+00 · R²=0.08478</summary>
+<details><summary><code>PUSH</code> · nobs=13641 · runtime_ms=0 · p=1.00e+00 · R²=0.09551</summary>
 
 ![](figs/glue/PUSH__geth__regression.png)
 
@@ -1840,7 +1840,7 @@ Notes: Non-negative least squares with bootstrap inference (1000 iterations)
 
 </details>
 
-<details><summary><code>PUSH0</code> · nobs=13630 · runtime_ms=0 · p=1.00e+00 · R²=0.08478</summary>
+<details><summary><code>PUSH0</code> · nobs=13641 · runtime_ms=0 · p=1.00e+00 · R²=0.09551</summary>
 
 ![](figs/glue/PUSH0__geth__regression.png)
 
@@ -1850,7 +1850,7 @@ Notes: Non-negative least squares with bootstrap inference (1000 iterations)
 
 </details>
 
-<details><summary><code>STATICCALL</code> · nobs=13630 · runtime_ms=8.868e-05 · p=1.00e-03 · R²=0.08478</summary>
+<details><summary><code>STATICCALL</code> · nobs=13641 · runtime_ms=8.977e-05 · p=1.00e-03 · R²=0.09551</summary>
 
 ![](figs/glue/STATICCALL__geth__regression.png)
 

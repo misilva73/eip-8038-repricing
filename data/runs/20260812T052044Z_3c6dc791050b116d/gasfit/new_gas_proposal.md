@@ -1,8 +1,8 @@
 # New gas proposal
 
-_Generated 2026-08-12 10:00:56Z · fork `osaka` · anchor_rate 100 Mgas/s_
+_Generated 2026-08-12 15:31:11Z · fork `osaka` · anchor_rate 100 Mgas/s_
 
-**Summary:** 12 parameters proposed — 7 increased, 5 decreased, 0 new, 0 unresolved · 3 warnings · 0 poor-fit selections
+**Summary:** 12 parameters proposed — 10 increased, 2 decreased, 0 new, 0 unresolved · 3 warnings · 0 poor-fit selections
 
 ## Contents
 
@@ -16,18 +16,18 @@ _Generated 2026-08-12 10:00:56Z · fork `osaka` · anchor_rate 100 Mgas/s_
 
 | Gas param | Current gas | Proposed gas | Diff | Diff % |
 | --- | --- | --- | --- | --- |
-| COLD_STORAGE_ACCESS | 2100 | 2280 | +180 | +9% |
-| COLD_STORAGE_WRITE | 5000 | 14281 | +9281 | +186% |
+| COLD_STORAGE_ACCESS | 2100 | 2288 | +188 | +9% |
+| COLD_STORAGE_WRITE | 5000 | 16726 | +11726 | +235% |
 | WARM_ACCESS | 100 | 45 | -55 | -55% |
-| COLD_ACCOUNT_NOCODE_ACCESS | 2600 | 2213 | -387 | -15% |
-| COLD_ACCOUNT_NOCODE_WRITE | 9300 | 14999 | +5699 | +61% |
-| COLD_ACCOUNT_CODE_ACCESS | 2600 | 2247 | -353 | -14% |
-| COLD_ACCOUNT_CODE_WRITE | 9300 | 7405 | -1895 | -20% |
-| STORAGE_WRITE | 2800 | 12001 | +9201 | +329% |
-| ACCOUNT_WRITE | 6700 | 12786 | +6086 | +91% |
-| REFUND_STORAGE_CLEAR | 4800 | 13710 | +8910 | +186% |
-| TX_ACCESS_LIST_STORAGE_KEY | 1900 | 2280 | +380 | +20% |
-| TX_ACCESS_LIST_ADDRESS | 2400 | 2247 | -153 | -6% |
+| COLD_ACCOUNT_NOCODE_ACCESS | 2600 | 2228 | -372 | -14% |
+| COLD_ACCOUNT_NOCODE_WRITE | 9300 | 28960 | +19660 | +211% |
+| COLD_ACCOUNT_CODE_ACCESS | 2600 | 13733 | +11133 | +428% |
+| COLD_ACCOUNT_CODE_WRITE | 9300 | 15959 | +6659 | +72% |
+| STORAGE_WRITE | 2800 | 14438 | +11638 | +416% |
+| ACCOUNT_WRITE | 6700 | 26732 | +20032 | +299% |
+| REFUND_STORAGE_CLEAR | 4800 | 16057 | +11257 | +235% |
+| TX_ACCESS_LIST_STORAGE_KEY | 1900 | 2288 | +388 | +20% |
+| TX_ACCESS_LIST_ADDRESS | 2400 | 13733 | +11333 | +472% |
 
 ## Client comparison
 
@@ -35,13 +35,13 @@ Worst client vs. second-worst client per gas parameter. The `Ratio` column is `w
 
 | Gas param | Worst client | Worst gas | Second-worst client | Second-worst gas | Ratio |
 | --- | --- | --- | --- | --- | --- |
-| COLD_STORAGE_ACCESS | geth | 2280 | besu | 1517 | 1.50× |
-| COLD_STORAGE_WRITE | geth | 14281 | besu | 10350 | 1.38× |
+| COLD_STORAGE_ACCESS | geth | 2288 | besu | 1517 | 1.51× |
+| COLD_STORAGE_WRITE | erigon | 16726 | geth | 14175 | 1.18× |
 | WARM_ACCESS | nethermind | 45 | geth | 18 | 2.50× |
-| COLD_ACCOUNT_NOCODE_ACCESS | geth | 2213 | besu | 1785 | 1.24× |
-| COLD_ACCOUNT_NOCODE_WRITE | besu | 14999 | geth | 12285 | 1.22× |
-| COLD_ACCOUNT_CODE_ACCESS | besu | 2247 | geth | 2210 | 1.02× |
-| COLD_ACCOUNT_CODE_WRITE | besu | 7405 | geth | 5232 | 1.42× |
+| COLD_ACCOUNT_NOCODE_ACCESS | geth | 2228 | besu | 1785 | 1.25× |
+| COLD_ACCOUNT_NOCODE_WRITE | erigon | 28960 | besu | 14999 | 1.93× |
+| COLD_ACCOUNT_CODE_ACCESS | erigon | 13733 | besu | 2247 | 6.11× |
+| COLD_ACCOUNT_CODE_WRITE | erigon | 15959 | besu | 7405 | 2.16× |
 
 Per-client proposed gas for each parameter. Cells are colored by `log2(proposed / current)` — red means the proposal is more expensive than the current gas cost, green means cheaper, and white sits at unchanged. Annotations show the absolute proposed gas value; blank rows are parameters with no prior baseline (see warnings below).
 
@@ -52,21 +52,21 @@ Per-client proposed gas for each parameter. Cells are colored by `log2(proposed 
 One collapsible block per gas parameter showing every per-client candidate that the worst-case selector saw. Rows are model combos (the source regression's `test_name`, `target_opcode`, `model_coef_name`, and any `model_by` factors — components constant within a parameter are dropped from the label). Cells carry each candidate's proposed gas; the cell the per-client selector picked is outlined in black. Colors are `log2(proposed / current)` against that parameter's baseline on a per-parameter symmetric scale.
 
 <details>
-<summary><code>COLD_STORAGE_ACCESS</code> — 4 combos × 4 clients</summary>
+<summary><code>COLD_STORAGE_ACCESS</code> — 4 combos × 5 clients</summary>
 
 ![](figs/proposal/provenance__COLD_STORAGE_ACCESS.png)
 
 </details>
 
 <details>
-<summary><code>COLD_STORAGE_WRITE</code> — 2 combos × 4 clients</summary>
+<summary><code>COLD_STORAGE_WRITE</code> — 2 combos × 5 clients</summary>
 
 ![](figs/proposal/provenance__COLD_STORAGE_WRITE.png)
 
 </details>
 
 <details>
-<summary><code>WARM_ACCESS</code> — 8 combos × 4 clients</summary>
+<summary><code>WARM_ACCESS</code> — 8 combos × 5 clients</summary>
 
 | Label | Combo |
 | --- | --- |
@@ -84,7 +84,7 @@ One collapsible block per gas parameter showing every per-client candidate that 
 </details>
 
 <details>
-<summary><code>COLD_ACCOUNT_NOCODE_ACCESS</code> — 16 combos × 4 clients</summary>
+<summary><code>COLD_ACCOUNT_NOCODE_ACCESS</code> — 16 combos × 5 clients</summary>
 
 | Label | Combo |
 | --- | --- |
@@ -110,7 +110,7 @@ One collapsible block per gas parameter showing every per-client candidate that 
 </details>
 
 <details>
-<summary><code>COLD_ACCOUNT_NOCODE_WRITE</code> — 4 combos × 4 clients</summary>
+<summary><code>COLD_ACCOUNT_NOCODE_WRITE</code> — 4 combos × 5 clients</summary>
 
 | Label | Combo |
 | --- | --- |
@@ -124,7 +124,7 @@ One collapsible block per gas parameter showing every per-client candidate that 
 </details>
 
 <details>
-<summary><code>COLD_ACCOUNT_CODE_ACCESS</code> — 24 combos × 4 clients</summary>
+<summary><code>COLD_ACCOUNT_CODE_ACCESS</code> — 24 combos × 5 clients</summary>
 
 | Label | Combo |
 | --- | --- |
@@ -158,7 +158,7 @@ One collapsible block per gas parameter showing every per-client candidate that 
 </details>
 
 <details>
-<summary><code>COLD_ACCOUNT_CODE_WRITE</code> — 6 combos × 4 clients</summary>
+<summary><code>COLD_ACCOUNT_CODE_WRITE</code> — 6 combos × 5 clients</summary>
 
 | Label | Combo |
 | --- | --- |
@@ -181,7 +181,7 @@ _None._
 
 ### Incomplete client coverage
 
-**Clients with no estimations at all:** `erigon`, `ethrex`. These configured clients produced no fits for any gas parameter — check that the runtimes CSV contains their rows and that the fixture-name conventions match. Inspect the `evm_gasfit` warnings in `meta.json` for the cause.
+**Clients with no estimations at all:** `ethrex`. These configured clients produced no fits for any gas parameter — check that the runtimes CSV contains their rows and that the fixture-name conventions match. Inspect the `evm_gasfit` warnings in `meta.json` for the cause.
 
 ### Missing glue adjustments
 

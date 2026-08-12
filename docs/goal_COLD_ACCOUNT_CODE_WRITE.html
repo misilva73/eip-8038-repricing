@@ -79,6 +79,56 @@
     </tr>
   </tbody>
 </table>
+<h2 id="erigon">erigon</h2>
+<table>
+  <thead>
+    <tr><th>Combo</th><th>Proposed gas</th><th>R²</th><th>p-value</th><th>Runtime (ms)</th></tr>
+  </thead>
+  <tbody>
+    <tr class="winner-row">
+      <td class="combo-cell">test_account_access · CALL · target_coef (EXISTING_CONTRACT_DIFF_MAX) <span class="binding-tag">selected</span></td>
+      <td class="over-goal-mid" title="15,959 − 3,000 = 12,959, goal 9,000">15,959 <span class="over-goal-tag">over goal</span></td>
+      <td>0.977</td>
+      <td>0.001</td>
+      <td>0.1596</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · CALLCODE · target_coef (EXISTING_CONTRACT_SAME_MAX)</td>
+      <td class="" title="1,242 − 3,000 = 0, goal 9,000">1,242</td>
+      <td>0.921</td>
+      <td>0.001</td>
+      <td>0.01241</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · CALLCODE · target_coef (EXISTING_CONTRACT_MINIMAL)</td>
+      <td class="" title="1,338 − 3,000 = 0, goal 9,000">1,338</td>
+      <td>0.944</td>
+      <td>0.001</td>
+      <td>0.01338</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · CALL · target_coef (EXISTING_CONTRACT_MINIMAL)</td>
+      <td class="" title="8,156 − 3,000 = 5,156, goal 9,000">8,156</td>
+      <td>0.990</td>
+      <td>0.001</td>
+      <td>0.08156</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · CALL · target_coef (EXISTING_CONTRACT_SAME_MAX)</td>
+      <td class="" title="8,363 − 3,000 = 5,363, goal 9,000">8,363</td>
+      <td>0.995</td>
+      <td>0.001</td>
+      <td>0.08362</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · CALLCODE · target_coef (EXISTING_CONTRACT_DIFF_MAX)</td>
+      <td class="over-goal-mid" title="12,539 − 3,000 = 9,539, goal 9,000">12,539 <span class="over-goal-tag">over goal</span></td>
+      <td>0.877</td>
+      <td>0.001</td>
+      <td>0.1254</td>
+    </tr>
+  </tbody>
+</table>
 <h2 id="geth">geth</h2>
 <table>
   <thead>
@@ -87,45 +137,45 @@
   <tbody>
     <tr class="winner-row">
       <td class="combo-cell">test_account_access · CALL · target_coef (EXISTING_CONTRACT_SAME_MAX) <span class="binding-tag">selected</span></td>
-      <td class="" title="5,232 − 3,000 = 2,232, goal 9,000">5,232</td>
-      <td>0.978</td>
+      <td class="" title="5,237 − 3,000 = 2,237, goal 9,000">5,237</td>
+      <td>0.980</td>
       <td>0.001</td>
-      <td>0.05231</td>
+      <td>0.05236</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · CALLCODE · target_coef (EXISTING_CONTRACT_SAME_MAX)</td>
-      <td class="" title="528 − 3,000 = 0, goal 9,000">528</td>
-      <td>0.699</td>
+      <td class="" title="547 − 3,000 = 0, goal 9,000">547</td>
+      <td>0.725</td>
       <td>0.001</td>
-      <td>0.005278</td>
+      <td>0.005467</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · CALLCODE · target_coef (EXISTING_CONTRACT_MINIMAL)</td>
-      <td class="" title="548 − 3,000 = 0, goal 9,000">548</td>
-      <td>0.722</td>
+      <td class="" title="556 − 3,000 = 0, goal 9,000">556</td>
+      <td>0.723</td>
       <td>0.001</td>
-      <td>0.005475</td>
+      <td>0.005557</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · CALLCODE · target_coef (EXISTING_CONTRACT_DIFF_MAX)</td>
-      <td class="" title="2,948 − 3,000 = 0, goal 9,000">2,948</td>
-      <td>0.921</td>
+      <td class="" title="2,924 − 3,000 = 0, goal 9,000">2,924</td>
+      <td>0.922</td>
       <td>0.001</td>
-      <td>0.02948</td>
+      <td>0.02923</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · CALL · target_coef (EXISTING_CONTRACT_DIFF_MAX)</td>
-      <td class="" title="4,959 − 3,000 = 1,959, goal 9,000">4,959</td>
-      <td>0.956</td>
+      <td class="" title="4,951 − 3,000 = 1,951, goal 9,000">4,951</td>
+      <td>0.958</td>
       <td>0.001</td>
-      <td>0.04959</td>
+      <td>0.0495</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · CALL · target_coef (EXISTING_CONTRACT_MINIMAL)</td>
-      <td class="" title="5,076 − 3,000 = 2,076, goal 9,000">5,076</td>
-      <td>0.970</td>
+      <td class="" title="5,061 − 3,000 = 2,061, goal 9,000">5,061</td>
+      <td>0.972</td>
       <td>0.001</td>
-      <td>0.05075</td>
+      <td>0.0506</td>
     </tr>
   </tbody>
 </table>
@@ -237,7 +287,7 @@
 <code>3c6dc791050b116d</code>, <code>0d93b5bf3b970403</code>      · run 2026-08-12T05:20:44Z
       · evm-gasfit 0.4.0
       · benchmarkoor-fetch 0.3.1
-      · commit <code>504d20b6</code>
+      · commit <code>6f07789d</code>
     </p>
   </footer>
   <script src="run_selector.js"></script>
