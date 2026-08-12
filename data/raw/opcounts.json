@@ -27050,7 +27050,7 @@
     "MSTORE": 16.0,
     "POP": 2077654.0,
     "PUSH1": 12466532.0,
-    "PUSH19": 16.0,
+    "PUSH20": 16.0,
     "opcount": 2077670.0
   },
   "test_account_query.py__test_ext_account_query_warm[fork_Amsterdam-blockchain_test_stateful_engine-initial_storage_True-initial_balance_True-empty_code_True-opcode_CALL-benchmark-gas-value_280M]": {

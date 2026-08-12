@@ -41,8 +41,8 @@
     (the <code>COLD_ACCOUNT_ACCESS</code> goal), each floored at 0.</li>
   <li>The targets are <strong>fixed</strong> — they don't move with the anchor rate.
     The estimates they're checked against do, though: this run is anchored at
-    <strong>75&nbsp;Mgas/s</strong>, so a cell reads
-    "can this client reach this cost at a 75&nbsp;Mgas/s
+    <strong>100&nbsp;Mgas/s</strong>, so a cell reads
+    "can this client reach this cost at a 100&nbsp;Mgas/s
     throughput goal?"</li>
 </ul>
 
@@ -57,35 +57,35 @@
       <td>2,100</td>
       <td>2100</td>
       <td class="">+0%</td>
-      <td class="delta-down">6 / 6</td>
+      <td class="delta-mid">3 / 4</td>
     </tr>
     <tr>
       <th scope="row">STORAGE_WRITE</th>
       <td>8,000</td>
       <td>2800</td>
       <td class="delta-up">+186%</td>
-      <td class="delta-mid">3 / 6</td>
+      <td class="delta-mid">2 / 4</td>
     </tr>
     <tr>
       <th scope="row">COLD_ACCOUNT_ACCESS</th>
       <td>3,000</td>
       <td>2600</td>
       <td class="delta-mid">+15%</td>
-      <td class="delta-up">2 / 6</td>
+      <td class="delta-down">4 / 4</td>
     </tr>
     <tr>
       <th scope="row">ACCOUNT_WRITE</th>
       <td>9,000</td>
       <td>6700</td>
       <td class="delta-mid">+34%</td>
-      <td class="delta-mid">4 / 6</td>
+      <td class="delta-mid">2 / 4</td>
     </tr>
     <tr>
       <th scope="row">WARM_ACCESS</th>
       <td>100</td>
       <td>100</td>
       <td class="">+0%</td>
-      <td class="delta-down">6 / 6</td>
+      <td class="delta-down">4 / 4</td>
     </tr>
   </tbody>
 </table>
@@ -100,71 +100,57 @@
   <thead>
     <tr>
       <th scope="col"></th>
-<th scope="col">besu</th><th scope="col">erigon</th><th scope="col">ethrex</th><th scope="col">geth</th><th scope="col">nethermind</th><th scope="col">reth</th>    </tr>
+<th scope="col">besu</th><th scope="col">geth</th><th scope="col">nethermind</th><th scope="col">reth</th>    </tr>
   </thead>
   <tbody>
     <tr>
       <th scope="row" title="goal 2100">COLD_STORAGE_ACCESS</th>
-      <td class="goal-pass" title="est 1489, goal 2100 — click for combos"><a class="goal-cell-link" href="goal_COLD_STORAGE_ACCESS.html#besu">1,489</a></td>
-      <td class="goal-pass" title="est 471, goal 2100 — click for combos"><a class="goal-cell-link" href="goal_COLD_STORAGE_ACCESS.html#erigon">471</a></td>
-      <td class="goal-pass" title="est 988, goal 2100 — click for combos"><a class="goal-cell-link" href="goal_COLD_STORAGE_ACCESS.html#ethrex">988</a></td>
-      <td class="goal-pass" title="est 1615, goal 2100 — click for combos"><a class="goal-cell-link" href="goal_COLD_STORAGE_ACCESS.html#geth">1,615</a></td>
-      <td class="goal-pass" title="est 686, goal 2100 — click for combos"><a class="goal-cell-link" href="goal_COLD_STORAGE_ACCESS.html#nethermind">686</a></td>
-      <td class="goal-pass" title="est 305, goal 2100 — click for combos"><a class="goal-cell-link" href="goal_COLD_STORAGE_ACCESS.html#reth">305</a></td>
+      <td class="goal-pass" title="est 1517, goal 2100 — click for combos"><a class="goal-cell-link" href="goal_COLD_STORAGE_ACCESS.html#besu">1,517</a></td>
+      <td class="goal-mid" title="est 2280, goal 2100 — click for combos"><a class="goal-cell-link" href="goal_COLD_STORAGE_ACCESS.html#geth">2,280</a></td>
+      <td class="goal-pass" title="est 782, goal 2100 — click for combos"><a class="goal-cell-link" href="goal_COLD_STORAGE_ACCESS.html#nethermind">782</a></td>
+      <td class="goal-pass" title="est 150, goal 2100 — click for combos"><a class="goal-cell-link" href="goal_COLD_STORAGE_ACCESS.html#reth">150</a></td>
     </tr>
     <tr>
       <th scope="row" title="goal 8000">STORAGE_WRITE</th>
-      <td class="goal-mid" title="est 10354 − 2100 = 8254, goal 8000 — click for combos"><a class="goal-cell-link" href="goal_COLD_STORAGE_WRITE.html#besu">8,254</a></td>
-      <td class="goal-mid" title="est 17371 − 2100 = 15271, goal 8000 — click for combos"><a class="goal-cell-link" href="goal_COLD_STORAGE_WRITE.html#erigon">15,271</a></td>
-      <td class="goal-pass" title="est 753 − 2100 = 0, goal 8000 — click for combos"><a class="goal-cell-link" href="goal_COLD_STORAGE_WRITE.html#ethrex">0</a></td>
-      <td class="goal-mid" title="est 10106 − 2100 = 8006, goal 8000 — click for combos"><a class="goal-cell-link" href="goal_COLD_STORAGE_WRITE.html#geth">8,006</a></td>
-      <td class="goal-pass" title="est 5662 − 2100 = 3562, goal 8000 — click for combos"><a class="goal-cell-link" href="goal_COLD_STORAGE_WRITE.html#nethermind">3,562</a></td>
-      <td class="goal-pass" title="est 3090 − 2100 = 990, goal 8000 — click for combos"><a class="goal-cell-link" href="goal_COLD_STORAGE_WRITE.html#reth">990</a></td>
+      <td class="goal-mid" title="est 10350 − 2100 = 8250, goal 8000 — click for combos"><a class="goal-cell-link" href="goal_COLD_STORAGE_WRITE.html#besu">8,250</a></td>
+      <td class="goal-mid" title="est 14281 − 2100 = 12181, goal 8000 — click for combos"><a class="goal-cell-link" href="goal_COLD_STORAGE_WRITE.html#geth">12,181</a></td>
+      <td class="goal-pass" title="est 6292 − 2100 = 4192, goal 8000 — click for combos"><a class="goal-cell-link" href="goal_COLD_STORAGE_WRITE.html#nethermind">4,192</a></td>
+      <td class="goal-pass" title="est 3651 − 2100 = 1551, goal 8000 — click for combos"><a class="goal-cell-link" href="goal_COLD_STORAGE_WRITE.html#reth">1,551</a></td>
     </tr>
     <tr>
       <th scope="row" title="goal 3000">COLD_ACCOUNT_ACCESS <span class="variant-label">CODE</span></th>
-      <td class="goal-mid" title="est 3564, goal 3000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_CODE_ACCESS.html#besu">3,564</a></td>
-      <td class="goal-fail" title="est 11682, goal 3000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_CODE_ACCESS.html#erigon">11,682</a></td>
-      <td class="goal-fail" title="est 7680, goal 3000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_CODE_ACCESS.html#ethrex">7,680</a></td>
-      <td class="goal-mid" title="est 3164, goal 3000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_CODE_ACCESS.html#geth">3,164</a></td>
-      <td class="goal-pass" title="est 2843, goal 3000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_CODE_ACCESS.html#nethermind">2,843</a></td>
-      <td class="goal-pass" title="est 1777, goal 3000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_CODE_ACCESS.html#reth">1,777</a></td>
+      <td class="goal-pass" title="est 2247, goal 3000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_CODE_ACCESS.html#besu">2,247</a></td>
+      <td class="goal-pass" title="est 2210, goal 3000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_CODE_ACCESS.html#geth">2,210</a></td>
+      <td class="goal-pass" title="est 1676, goal 3000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_CODE_ACCESS.html#nethermind">1,676</a></td>
+      <td class="goal-pass" title="est 2160, goal 3000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_CODE_ACCESS.html#reth">2,160</a></td>
     </tr>
     <tr>
       <th scope="row" title="goal 3000">COLD_ACCOUNT_ACCESS <span class="variant-label">NOCODE</span></th>
-      <td class="goal-pass" title="est 2544, goal 3000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_NOCODE_ACCESS.html#besu">2,544</a></td>
-      <td class="goal-pass" title="est 655, goal 3000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_NOCODE_ACCESS.html#erigon">655</a></td>
-      <td class="goal-pass" title="est 1380, goal 3000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_NOCODE_ACCESS.html#ethrex">1,380</a></td>
-      <td class="goal-pass" title="est 1621, goal 3000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_NOCODE_ACCESS.html#geth">1,621</a></td>
-      <td class="goal-pass" title="est 831, goal 3000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_NOCODE_ACCESS.html#nethermind">831</a></td>
-      <td class="goal-pass" title="est 357, goal 3000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_NOCODE_ACCESS.html#reth">357</a></td>
+      <td class="goal-pass" title="est 1785, goal 3000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_NOCODE_ACCESS.html#besu">1,785</a></td>
+      <td class="goal-pass" title="est 2213, goal 3000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_NOCODE_ACCESS.html#geth">2,213</a></td>
+      <td class="goal-pass" title="est 393, goal 3000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_NOCODE_ACCESS.html#nethermind">393</a></td>
+      <td class="goal-pass" title="est 163, goal 3000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_NOCODE_ACCESS.html#reth">163</a></td>
     </tr>
     <tr>
       <th scope="row" title="goal 9000">ACCOUNT_WRITE <span class="variant-label">CODE</span></th>
-      <td class="goal-mid" title="est 13426 − 3000 = 10426, goal 9000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_CODE_WRITE.html#besu">10,426</a></td>
-      <td class="goal-fail" title="est 21555 − 3000 = 18555, goal 9000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_CODE_WRITE.html#erigon">18,555</a></td>
-      <td class="goal-pass" title="est 9986 − 3000 = 6986, goal 9000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_CODE_WRITE.html#ethrex">6,986</a></td>
-      <td class="goal-pass" title="est 11923 − 3000 = 8923, goal 9000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_CODE_WRITE.html#geth">8,923</a></td>
-      <td class="goal-pass" title="est 7434 − 3000 = 4434, goal 9000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_CODE_WRITE.html#nethermind">4,434</a></td>
-      <td class="goal-pass" title="est 4315 − 3000 = 1315, goal 9000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_CODE_WRITE.html#reth">1,315</a></td>
+      <td class="goal-pass" title="est 7405 − 3000 = 4405, goal 9000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_CODE_WRITE.html#besu">4,405</a></td>
+      <td class="goal-pass" title="est 5232 − 3000 = 2232, goal 9000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_CODE_WRITE.html#geth">2,232</a></td>
+      <td class="goal-pass" title="est 5227 − 3000 = 2227, goal 9000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_CODE_WRITE.html#nethermind">2,227</a></td>
+      <td class="goal-pass" title="est 5224 − 3000 = 2224, goal 9000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_CODE_WRITE.html#reth">2,224</a></td>
     </tr>
     <tr>
       <th scope="row" title="goal 9000">ACCOUNT_WRITE <span class="variant-label">NOCODE</span></th>
-      <td class="goal-mid" title="est 13426 − 3000 = 10426, goal 9000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_NOCODE_WRITE.html#besu">10,426</a></td>
-      <td class="goal-mid" title="est 20589 − 3000 = 17589, goal 9000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_NOCODE_WRITE.html#erigon">17,589</a></td>
-      <td class="goal-pass" title="est 3616 − 3000 = 616, goal 9000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_NOCODE_WRITE.html#ethrex">616</a></td>
-      <td class="goal-pass" title="est 11923 − 3000 = 8923, goal 9000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_NOCODE_WRITE.html#geth">8,923</a></td>
-      <td class="goal-pass" title="est 7434 − 3000 = 4434, goal 9000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_NOCODE_WRITE.html#nethermind">4,434</a></td>
-      <td class="goal-pass" title="est 4079 − 3000 = 1079, goal 9000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_NOCODE_WRITE.html#reth">1,079</a></td>
+      <td class="goal-mid" title="est 14999 − 3000 = 11999, goal 9000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_NOCODE_WRITE.html#besu">11,999</a></td>
+      <td class="goal-mid" title="est 12285 − 3000 = 9285, goal 9000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_NOCODE_WRITE.html#geth">9,285</a></td>
+      <td class="goal-pass" title="est 8770 − 3000 = 5770, goal 9000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_NOCODE_WRITE.html#nethermind">5,770</a></td>
+      <td class="goal-pass" title="est 4433 − 3000 = 1433, goal 9000 — click for combos"><a class="goal-cell-link" href="goal_COLD_ACCOUNT_NOCODE_WRITE.html#reth">1,433</a></td>
     </tr>
     <tr>
       <th scope="row" title="goal 100">WARM_ACCESS</th>
-      <td class="goal-pass" title="est 34, goal 100 — click for combos"><a class="goal-cell-link" href="goal_WARM_ACCESS.html#besu">34</a></td>
-      <td class="goal-pass" title="est 9, goal 100 — click for combos"><a class="goal-cell-link" href="goal_WARM_ACCESS.html#erigon">9</a></td>
-      <td class="goal-pass" title="est 8, goal 100 — click for combos"><a class="goal-cell-link" href="goal_WARM_ACCESS.html#ethrex">8</a></td>
-      <td class="goal-pass" title="est 14, goal 100 — click for combos"><a class="goal-cell-link" href="goal_WARM_ACCESS.html#geth">14</a></td>
-      <td class="goal-pass" title="est 37, goal 100 — click for combos"><a class="goal-cell-link" href="goal_WARM_ACCESS.html#nethermind">37</a></td>
-      <td class="goal-pass" title="est 5, goal 100 — click for combos"><a class="goal-cell-link" href="goal_WARM_ACCESS.html#reth">5</a></td>
+      <td class="goal-pass" title="est 8, goal 100 — click for combos"><a class="goal-cell-link" href="goal_WARM_ACCESS.html#besu">8</a></td>
+      <td class="goal-pass" title="est 18, goal 100 — click for combos"><a class="goal-cell-link" href="goal_WARM_ACCESS.html#geth">18</a></td>
+      <td class="goal-pass" title="est 45, goal 100 — click for combos"><a class="goal-cell-link" href="goal_WARM_ACCESS.html#nethermind">45</a></td>
+      <td class="goal-pass" title="est 7, goal 100 — click for combos"><a class="goal-cell-link" href="goal_WARM_ACCESS.html#reth">7</a></td>
     </tr>
   </tbody>
 </table>
@@ -173,10 +159,10 @@
   <footer class="site-footer">
     <p class="repro">
       Suites
-<code>3c6dc791050b116d</code>, <code>3f6a0898955dff4f</code>      · run 2026-08-03T07:44:48Z
-      · evm-gasfit 0.3.0
+<code>3c6dc791050b116d</code>, <code>0d93b5bf3b970403</code>      · run 2026-08-12T05:20:44Z
+      · evm-gasfit 0.4.0
       · benchmarkoor-fetch 0.3.1
-      · commit <code>234008b3</code>
+      · commit <code>504d20b6</code>
     </p>
   </footer>
   <script src="run_selector.js"></script>

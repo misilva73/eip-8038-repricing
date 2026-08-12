@@ -24,13 +24,11 @@
       <span class="run-bar-label">Viewing run</span>
       <div class="run-dropdown" data-run-dropdown>
         <button type="button" class="run-dropdown-toggle" aria-haspopup="listbox" aria-expanded="false">
-          <span class="run-dropdown-current">2026-08-03 07:44</span>
+          <span class="run-dropdown-current">2026-08-12 05:20</span>
           <span class="run-dropdown-chevron" aria-hidden="true"></span>
         </button>
         <ul class="run-dropdown-list" role="listbox" aria-label="Runs" hidden>          <li role="option" aria-selected="true">
-            <a href="methodology.html" class="run-dropdown-option is-current" tabindex="-1">2026-08-03 07:44</a>
-          </li>          <li role="option" aria-selected="false">
-            <a href="runs/20260731T144853Z_3c6dc791050b116d/methodology.html" class="run-dropdown-option" tabindex="-1">2026-07-31 14:48</a>
+            <a href="methodology.html" class="run-dropdown-option is-current" tabindex="-1">2026-08-12 05:20</a>
           </li>          <li role="option" aria-selected="false">
             <a href="runs/20260720T170453Z_1abf5c96ab2bbf14/methodology.html" class="run-dropdown-option" tabindex="-1">2026-07-20 17:04</a>
           </li>          <li role="option" aria-selected="false">
@@ -54,9 +52,9 @@
           </li>        </ul>
       </div>
       <noscript>
-        <span class="run-dropdown-noscript"><a href="runs/20260731T144853Z_3c6dc791050b116d/methodology.html">2026-07-31 14:48</a><a href="runs/20260720T170453Z_1abf5c96ab2bbf14/methodology.html">2026-07-20 17:04</a><a href="runs/20260707T121556Z_1abf5c96ab2bbf14/methodology.html">2026-07-07 12:15</a><a href="runs/20260701T235552Z_1abf5c96ab2bbf14/methodology.html">2026-07-01 23:55</a><a href="runs/20260623T132709Z_1abf5c96ab2bbf14/methodology.html">2026-06-23 13:27</a><a href="runs/20260615T081610Z_1abf5c96ab2bbf14/methodology.html">2026-06-15 08:16</a><a href="runs/20260610T235821Z_1abf5c96ab2bbf14/methodology.html">2026-06-10 23:58</a><a href="runs/20260607T235606Z_3182dda7b93dee61/methodology.html">2026-06-07 23:56</a><a href="runs/20260601T234709Z_3182dda7b93dee61/methodology.html">2026-06-01 23:47</a><a href="runs/20260529T234448Z_3182dda7b93dee61/methodology.html">2026-05-29 23:44</a><a href="runs/20260522T235541Z_3182dda7b93dee61/methodology.html">2026-05-22 23:55</a>        </span>
+        <span class="run-dropdown-noscript"><a href="runs/20260720T170453Z_1abf5c96ab2bbf14/methodology.html">2026-07-20 17:04</a><a href="runs/20260707T121556Z_1abf5c96ab2bbf14/methodology.html">2026-07-07 12:15</a><a href="runs/20260701T235552Z_1abf5c96ab2bbf14/methodology.html">2026-07-01 23:55</a><a href="runs/20260623T132709Z_1abf5c96ab2bbf14/methodology.html">2026-06-23 13:27</a><a href="runs/20260615T081610Z_1abf5c96ab2bbf14/methodology.html">2026-06-15 08:16</a><a href="runs/20260610T235821Z_1abf5c96ab2bbf14/methodology.html">2026-06-10 23:58</a><a href="runs/20260607T235606Z_3182dda7b93dee61/methodology.html">2026-06-07 23:56</a><a href="runs/20260601T234709Z_3182dda7b93dee61/methodology.html">2026-06-01 23:47</a><a href="runs/20260529T234448Z_3182dda7b93dee61/methodology.html">2026-05-29 23:44</a><a href="runs/20260522T235541Z_3182dda7b93dee61/methodology.html">2026-05-22 23:55</a>        </span>
       </noscript>
-      <span class="run-bar-meta">latest of 12</span>
+      <span class="run-bar-meta">latest of 11</span>
     </div>
 <h1>Methodology</h1>
 
@@ -97,7 +95,7 @@
   raw data that feeds this analysis was queried from the following two Benchmarkoor suites:
 </p>
 <ul>
-<li><code>3c6dc791050b116d</code></li><li><code>3f6a0898955dff4f</code></li></ul>
+<li><code>3c6dc791050b116d</code></li><li><code>0d93b5bf3b970403</code></li></ul>
 <p>
   The Benchmarkoor tool then runs each block and collects the metrics we need: the block's
   total execution time and the number of times each operation was executed. Each block is
@@ -189,18 +187,10 @@
 <h2>4. Runtime → gas</h2>
 <p>
   Each adjusted runtime coefficient is converted to gas at a fixed anchor rate of
-  <strong>75,000,000</strong> gas/s (75&nbsp;Mgas/s). With <code>runtime_ms</code> in milliseconds:
+  <strong>100,000,000</strong> gas/s (100&nbsp;Mgas/s) — the
+  throughput EIP-8038 targets. With <code>runtime_ms</code> in milliseconds:
 </p>
 <pre><code>new_gas = ⌈ anchor_rate · runtime_ms / 1000 ⌉</code></pre>
-<p class="warning">
-  <strong>Off-spec anchor.</strong> EIP-8038 specifies a performance target of
-  100&nbsp;Mgas/s; this run is anchored at
-  75&nbsp;Mgas/s instead. The gas values here are therefore
-  <em>not</em> the EIP's proposed costs — they show what the parameters would price at
-  under a 75&nbsp;Mgas/s throughput goal. Gas scales linearly
-  with the anchor, so every estimate is
-  0.75× the 100&nbsp;Mgas/s figure.
-</p>
 <p>
   Any op whose measured cost implies a slower throughput than the anchor lands above its
   current price and is flagged for a bump; the ceiling keeps the result an integer.
@@ -238,10 +228,6 @@
 <p>
   Each parameter below is fit by NNLS (stage 2) over the listed model specs — the
   worst-case selector (stage 5) then picks the binding client and combo.
-  Most are <code>evm-gasfit</code> presets; entries tagged <code>custom:</code> are
-  written out in <code>fit.yaml</code>, and here they are the two account-code
-  recipes with the <code>EXISTING_CONTRACT_JUMPDEST</code> fixture variant excluded
-  (its single-JUMPDEST contract is not a representative cold account).
   <em>Target opcodes</em> are the operations whose runtime
   the fixtures stress; <em>fixtures</em> are the benchmark tests that feed the
   regression; <em>coefficient</em> is the regression term read off as the per-unit
@@ -291,14 +277,14 @@
     </tr>
     <tr>
       <td><code>COLD_ACCOUNT_CODE_ACCESS</code></td>
-      <td><code>custom: cold_account_code_access</code></td>
+      <td><code>cold_account_code_access</code></td>
       <td><code>BALANCE</code>, <code>CALL</code>, <code>CALLCODE</code>, <code>DELEGATECALL</code>, <code>EXTCODECOPY</code>, <code>EXTCODEHASH</code>, <code>EXTCODESIZE</code>, <code>STATICCALL</code></td>
       <td><code>test_account_access</code></td>
       <td><code>target_coef</code></td>
     </tr>
     <tr>
       <td><code>COLD_ACCOUNT_CODE_WRITE</code></td>
-      <td><code>custom: cold_account_code_write</code></td>
+      <td><code>cold_account_code_write</code></td>
       <td><code>CALL</code>, <code>CALLCODE</code></td>
       <td><code>test_account_access</code></td>
       <td><code>target_coef</code></td>
@@ -364,10 +350,10 @@ make site      # renders this site into site/</code></pre>
   <footer class="site-footer">
     <p class="repro">
       Suites
-<code>3c6dc791050b116d</code>, <code>3f6a0898955dff4f</code>      · run 2026-08-03T07:44:48Z
-      · evm-gasfit 0.3.0
+<code>3c6dc791050b116d</code>, <code>0d93b5bf3b970403</code>      · run 2026-08-12T05:20:44Z
+      · evm-gasfit 0.4.0
       · benchmarkoor-fetch 0.3.1
-      · commit <code>234008b3</code>
+      · commit <code>504d20b6</code>
     </p>
   </footer>
   <script src="run_selector.js"></script>
