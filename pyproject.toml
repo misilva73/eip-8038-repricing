@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Static site summarising the EIP-8038 gas-repricing analysis"
 requires-python = ">=3.11"
 dependencies = [
-    "benchmarkoor-fetch>=0.3.1",
+    "benchmarkoor-fetch>=0.3.2",
     "evm-gasfit>=0.3.0",
     "jinja2>=3.1",
     "pandas>=2.0",

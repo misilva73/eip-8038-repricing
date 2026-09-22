@@ -37,31 +37,31 @@
   <tbody>
     <tr class="winner-row">
       <td class="combo-cell">test_account_access · CALL · target_coef (NON_EXISTING_ACCOUNT) <span class="binding-tag">selected</span></td>
-      <td class="over-goal-mid" title="14,273 − 3,000 = 11,273, goal 9,000">14,273 <span class="over-goal-tag">over goal</span></td>
-      <td>0.949</td>
+      <td class="over-goal" title="23,993 − 3,000 = 20,993, goal 9,000">23,993 <span class="over-goal-tag">over goal</span></td>
+      <td>0.936</td>
       <td>0.001</td>
-      <td>0.1427</td>
+      <td>0.2399</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · CALLCODE · target_coef (NON_EXISTING_ACCOUNT)</td>
-      <td class="" title="1,563 − 3,000 = 0, goal 9,000">1,563</td>
-      <td>0.944</td>
+      <td class="" title="2,930 − 3,000 = 0, goal 9,000">2,930</td>
+      <td>0.939</td>
       <td>0.001</td>
-      <td>0.01562</td>
+      <td>0.0293</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · CALLCODE · target_coef (EXISTING_EOA)</td>
-      <td class="" title="2,246 − 3,000 = 0, goal 9,000">2,246</td>
-      <td>0.957</td>
+      <td class="" title="4,152 − 3,000 = 1,152, goal 9,000">4,152</td>
+      <td>0.964</td>
       <td>0.001</td>
-      <td>0.02245</td>
+      <td>0.04151</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · CALL · target_coef (EXISTING_EOA)</td>
-      <td class="" title="7,551 − 3,000 = 4,551, goal 9,000">7,551</td>
-      <td>0.978</td>
+      <td class="" title="10,438 − 3,000 = 7,438, goal 9,000">10,438</td>
+      <td>0.976</td>
       <td>0.001</td>
-      <td>0.0755</td>
+      <td>0.1044</td>
     </tr>
   </tbody>
 </table>
@@ -73,31 +73,67 @@
   <tbody>
     <tr class="winner-row">
       <td class="combo-cell">test_account_access · CALL · target_coef (NON_EXISTING_ACCOUNT) <span class="binding-tag">selected</span></td>
-      <td class="over-goal" title="33,667 − 3,000 = 30,667, goal 9,000">33,667 <span class="over-goal-tag">over goal</span></td>
-      <td>0.982</td>
+      <td class="over-goal-mid" title="19,897 − 3,000 = 16,897, goal 9,000">19,897 <span class="over-goal-tag">over goal</span></td>
+      <td>0.993</td>
       <td>0.001</td>
-      <td>0.3367</td>
-    </tr>
-    <tr>
-      <td class="combo-cell">test_account_access · CALLCODE · target_coef (EXISTING_EOA)</td>
-      <td class="" title="786 − 3,000 = 0, goal 9,000">786</td>
-      <td>0.987</td>
-      <td>0.001</td>
-      <td>0.007857</td>
+      <td>0.199</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · CALLCODE · target_coef (NON_EXISTING_ACCOUNT)</td>
-      <td class="" title="789 − 3,000 = 0, goal 9,000">789</td>
-      <td>0.983</td>
+      <td class="" title="334 − 3,000 = 0, goal 9,000">334</td>
+      <td>0.924</td>
       <td>0.001</td>
-      <td>0.007889</td>
+      <td>0.003335</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · CALLCODE · target_coef (EXISTING_EOA)</td>
+      <td class="" title="383 − 3,000 = 0, goal 9,000">383</td>
+      <td>0.940</td>
+      <td>0.001</td>
+      <td>0.003829</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · CALL · target_coef (EXISTING_EOA)</td>
-      <td class="" title="7,847 − 3,000 = 4,847, goal 9,000">7,847</td>
-      <td>0.993</td>
+      <td class="" title="6,372 − 3,000 = 3,372, goal 9,000">6,372</td>
+      <td>0.999</td>
       <td>0.001</td>
-      <td>0.07846</td>
+      <td>0.06371</td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="ethrex">ethrex</h2>
+<table>
+  <thead>
+    <tr><th>Combo</th><th>Proposed gas</th><th>R²</th><th>p-value</th><th>Runtime (ms)</th></tr>
+  </thead>
+  <tbody>
+    <tr class="winner-row">
+      <td class="combo-cell">test_account_access · CALL · target_coef (EXISTING_EOA) <span class="binding-tag">selected</span></td>
+      <td class="" title="3,642 − 3,000 = 642, goal 9,000">3,642</td>
+      <td>0.995</td>
+      <td>0.001</td>
+      <td>0.03642</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · CALLCODE · target_coef (EXISTING_EOA) <span class="poor-flag" title="poor fit (R²/p-value)">*</span></td>
+      <td class="" title="200 − 3,000 = 0, goal 9,000">200</td>
+      <td>0.031</td>
+      <td>0.034</td>
+      <td>0.00199</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · CALLCODE · target_coef (NON_EXISTING_ACCOUNT)</td>
+      <td class="" title="349 − 3,000 = 0, goal 9,000">349</td>
+      <td>0.953</td>
+      <td>0.001</td>
+      <td>0.003488</td>
+    </tr>
+    <tr>
+      <td class="combo-cell">test_account_access · CALL · target_coef (NON_EXISTING_ACCOUNT)</td>
+      <td class="" title="2,445 − 3,000 = 0, goal 9,000">2,445</td>
+      <td>0.900</td>
+      <td>0.001</td>
+      <td>0.02444</td>
     </tr>
   </tbody>
 </table>
@@ -109,31 +145,31 @@
   <tbody>
     <tr class="winner-row">
       <td class="combo-cell">test_account_access · CALL · target_coef (NON_EXISTING_ACCOUNT) <span class="binding-tag">selected</span></td>
-      <td class="" title="10,303 − 3,000 = 7,303, goal 9,000">10,303</td>
-      <td>0.615</td>
+      <td class="over-goal-mid" title="12,440 − 3,000 = 9,440, goal 9,000">12,440 <span class="over-goal-tag">over goal</span></td>
+      <td>0.877</td>
       <td>0.001</td>
-      <td>0.103</td>
+      <td>0.1244</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · CALLCODE · target_coef (EXISTING_EOA)</td>
-      <td class="" title="2,256 − 3,000 = 0, goal 9,000">2,256</td>
-      <td>0.856</td>
+      <td class="" title="2,927 − 3,000 = 0, goal 9,000">2,927</td>
+      <td>0.949</td>
       <td>0.001</td>
-      <td>0.02256</td>
+      <td>0.02927</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · CALLCODE · target_coef (NON_EXISTING_ACCOUNT)</td>
-      <td class="" title="2,479 − 3,000 = 0, goal 9,000">2,479</td>
-      <td>0.880</td>
+      <td class="" title="2,973 − 3,000 = 0, goal 9,000">2,973</td>
+      <td>0.957</td>
       <td>0.001</td>
-      <td>0.02479</td>
+      <td>0.02973</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · CALL · target_coef (EXISTING_EOA)</td>
-      <td class="" title="8,612 − 3,000 = 5,612, goal 9,000">8,612</td>
-      <td>0.897</td>
+      <td class="" title="10,802 − 3,000 = 7,802, goal 9,000">10,802</td>
+      <td>0.991</td>
       <td>0.001</td>
-      <td>0.08611</td>
+      <td>0.108</td>
     </tr>
   </tbody>
 </table>
@@ -145,31 +181,31 @@
   <tbody>
     <tr class="winner-row">
       <td class="combo-cell">test_account_access · CALL · target_coef (NON_EXISTING_ACCOUNT) <span class="binding-tag">selected</span></td>
-      <td class="" title="8,578 − 3,000 = 5,578, goal 9,000">8,578</td>
-      <td>0.944</td>
+      <td class="" title="9,031 − 3,000 = 6,031, goal 9,000">9,031</td>
+      <td>0.921</td>
       <td>0.001</td>
-      <td>0.08577</td>
+      <td>0.09031</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · CALLCODE · target_coef (NON_EXISTING_ACCOUNT)</td>
-      <td class="" title="456 − 3,000 = 0, goal 9,000">456</td>
-      <td>0.770</td>
+      <td class="" title="572 − 3,000 = 0, goal 9,000">572</td>
+      <td>0.800</td>
       <td>0.001</td>
-      <td>0.004551</td>
+      <td>0.005719</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · CALLCODE · target_coef (EXISTING_EOA)</td>
-      <td class="" title="591 − 3,000 = 0, goal 9,000">591</td>
-      <td>0.867</td>
+      <td class="" title="757 − 3,000 = 0, goal 9,000">757</td>
+      <td>0.859</td>
       <td>0.001</td>
-      <td>0.005909</td>
+      <td>0.007561</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · CALL · target_coef (EXISTING_EOA)</td>
-      <td class="" title="3,291 − 3,000 = 291, goal 9,000">3,291</td>
-      <td>0.928</td>
+      <td class="" title="3,665 − 3,000 = 665, goal 9,000">3,665</td>
+      <td>0.826</td>
       <td>0.001</td>
-      <td>0.03291</td>
+      <td>0.03665</td>
     </tr>
   </tbody>
 </table>
@@ -181,31 +217,31 @@
   <tbody>
     <tr class="winner-row">
       <td class="combo-cell">test_account_access · CALL · target_coef (NON_EXISTING_ACCOUNT) <span class="binding-tag">selected</span></td>
-      <td class="" title="4,883 − 3,000 = 1,883, goal 9,000">4,883</td>
-      <td>0.769</td>
+      <td class="over-goal-mid" title="14,617 − 3,000 = 11,617, goal 9,000">14,617 <span class="over-goal-tag">over goal</span></td>
+      <td>0.997</td>
       <td>0.001</td>
-      <td>0.04882</td>
+      <td>0.1462</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · CALLCODE · target_coef (NON_EXISTING_ACCOUNT)</td>
-      <td class="" title="597 − 3,000 = 0, goal 9,000">597</td>
-      <td>0.937</td>
+      <td class="" title="670 − 3,000 = 0, goal 9,000">670</td>
+      <td>0.978</td>
       <td>0.001</td>
-      <td>0.00596</td>
+      <td>0.006694</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · CALLCODE · target_coef (EXISTING_EOA)</td>
-      <td class="" title="609 − 3,000 = 0, goal 9,000">609</td>
-      <td>0.944</td>
+      <td class="" title="676 − 3,000 = 0, goal 9,000">676</td>
+      <td>0.969</td>
       <td>0.001</td>
-      <td>0.006085</td>
+      <td>0.006758</td>
     </tr>
     <tr>
       <td class="combo-cell">test_account_access · CALL · target_coef (EXISTING_EOA)</td>
-      <td class="" title="2,829 − 3,000 = 0, goal 9,000">2,829</td>
-      <td>0.983</td>
+      <td class="" title="9,529 − 3,000 = 6,529, goal 9,000">9,529</td>
+      <td>0.998</td>
       <td>0.001</td>
-      <td>0.02829</td>
+      <td>0.09529</td>
     </tr>
   </tbody>
 </table>
@@ -214,10 +250,10 @@
   <footer class="site-footer">
     <p class="repro">
       Suites
-<code>a181add1419629b2</code>, <code>c49a162ae5cee8cd</code>      · run 2026-08-24T08:31:40Z
+<code>22c2404b9ce3f47c</code>, <code>a1d24ab967f59175</code>      · run 2026-09-22T09:16:25Z
       · evm-gasfit 0.4.0
-      · benchmarkoor-fetch 0.3.1
-      · commit <code>c2bf5f9e</code>
+      · benchmarkoor-fetch 0.3.2
+      · commit <code>18c0a816</code>
     </p>
   </footer>
   <script src="run_selector.js"></script>
