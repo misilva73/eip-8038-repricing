@@ -1,17 +1,17 @@
 {
   "data_window": {
-    "end": "2026-10-06T10:02:37Z",
+    "end": "2026-10-12T10:23:55Z",
     "start": "2026-09-25T00:45:19Z"
   },
-  "fetched_at": "2026-10-06T11:43:51Z",
+  "fetched_at": "2026-10-13T11:48:15Z",
   "opcount_coverage": {
-    "bench_rows": 2966524,
-    "with_opcount": 2966524,
+    "bench_rows": 3203112,
+    "with_opcount": 3203112,
     "without_opcount": 0
   },
   "package_version": "0.3.2",
   "query": {
-    "end_date": "2026-10-06",
+    "end_date": "2026-10-13",
     "fork": "amsterdam",
     "metrics": [
       "runtime"
@@ -22,9 +22,9 @@
     "test_type": null
   },
   "row_counts": {
-    "bench_data": 2966524,
+    "bench_data": 3203112,
     "opcounts": 7513,
-    "runtimes": 2966524,
+    "runtimes": 3203112,
     "trace": 7513
   },
   "suites": [

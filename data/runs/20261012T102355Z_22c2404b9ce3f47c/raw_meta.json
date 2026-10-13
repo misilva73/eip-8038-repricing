@@ -1,0 +1,43 @@
+{
+  "data_window": {
+    "end": "2026-10-12T10:23:55Z",
+    "start": "2026-09-25T00:45:19Z"
+  },
+  "fetched_at": "2026-10-13T11:48:15Z",
+  "opcount_coverage": {
+    "bench_rows": 3203112,
+    "with_opcount": 3203112,
+    "without_opcount": 0
+  },
+  "package_version": "0.3.2",
+  "query": {
+    "end_date": "2026-10-13",
+    "fork": "amsterdam",
+    "metrics": [
+      "runtime"
+    ],
+    "network": null,
+    "run_id_pattern": ".*-bal-full-aot|(?!.*besu-bal-full$).*-bal-full",
+    "start_date": "2026-09-25",
+    "test_type": null
+  },
+  "row_counts": {
+    "bench_data": 3203112,
+    "opcounts": 7513,
+    "runtimes": 3203112,
+    "trace": 7513
+  },
+  "suites": [
+    {
+      "indexed_at": null,
+      "name": null,
+      "suite_hash": "22c2404b9ce3f47c"
+    },
+    {
+      "indexed_at": null,
+      "name": null,
+      "suite_hash": "a1d24ab967f59175"
+    }
+  ],
+  "unparsed_fixtures": []
+}
